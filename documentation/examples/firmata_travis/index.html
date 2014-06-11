@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta content="A Gobot code example" name="description">
+<meta content="The Hybrid Group" name="author">
+<title>Gobot Example - firmata_travis</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/javascripts/script.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+
+  _gaq.push(['_setAccount', "UA-46433484-3"]);
+
+
+
+
+
+
+
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head>
+<body>
+    
+    <div class="app">
+      <div class="w">
+        <header class="app-header" role="banner"><div class="display">
+            <h1 class="app-logo">
+              <a href="/">Gobot</a>
+            </h1>
+            <span class="subtitle">
+              <div class="main"></div>
+            </span>
+          </div>
+          <span class="menu">
+            <a class="active" href="/documentation">Docs</a>
+            <a href="/documentation/platforms" class="item">Platforms</a>
+            
+            <a href="/blog" class="item">Blog</a>
+            <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
+          </span>
+        </header>
+</div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Example: firmata_travis</h1>
+          <h2 class="subtitle"><a href="https://github.com/hybridgroup/gobot/tree/master/examples" target="_blank">View In Repo</a></h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main" role="main">
+          <section class="content full"><div class="documentation">
+              <div class="container-documentation">
+                
+                <div class="example">
+                  <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">encoding/json</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">io/ioutil</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">net/http</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">type</span> TravisResponse <span class="keyword">struct</span> {
+        ID                  <span class="predefined-type">int</span>    <span class="shell"><span class="delimiter">`</span><span class="content">json:"id"</span><span class="delimiter">`</span></span>
+        Slug                <span class="predefined-type">string</span> <span class="shell"><span class="delimiter">`</span><span class="content">json:"slug"</span><span class="delimiter">`</span></span>
+        Description         <span class="predefined-type">string</span> <span class="shell"><span class="delimiter">`</span><span class="content">json:"description"</span><span class="delimiter">`</span></span>
+        PublicKey           <span class="predefined-type">string</span> <span class="shell"><span class="delimiter">`</span><span class="content">json:"public_key"</span><span class="delimiter">`</span></span>
+        LastBuildID         <span class="predefined-type">int</span>    <span class="shell"><span class="delimiter">`</span><span class="content">json:"last_build_id"</span><span class="delimiter">`</span></span>
+        LastBuildNumber     <span class="predefined-type">string</span> <span class="shell"><span class="delimiter">`</span><span class="content">json:"last_build_number"</span><span class="delimiter">`</span></span>
+        LastBuildStatus     <span class="predefined-type">int</span>    <span class="shell"><span class="delimiter">`</span><span class="content">json:"last_build_status"</span><span class="delimiter">`</span></span>
+        LastBuildResult     <span class="predefined-type">int</span>    <span class="shell"><span class="delimiter">`</span><span class="content">json:"last_build_result"</span><span class="delimiter">`</span></span>
+        LastBuildDuration   <span class="predefined-type">int</span>    <span class="shell"><span class="delimiter">`</span><span class="content">json:"last_build_duration"</span><span class="delimiter">`</span></span>
+        LastBuildLanguage   <span class="predefined-type">string</span> <span class="shell"><span class="delimiter">`</span><span class="content">json:"last_build_language"</span><span class="delimiter">`</span></span>
+        LastBuildStartedAt  <span class="predefined-type">string</span> <span class="shell"><span class="delimiter">`</span><span class="content">json:"last_build_started_at"</span><span class="delimiter">`</span></span>
+        LastBuildFinishedAt <span class="predefined-type">string</span> <span class="shell"><span class="delimiter">`</span><span class="content">json:"last_build_finished_at"</span><span class="delimiter">`</span></span>
+}
+
+<span class="keyword">func</span> resetLeds(robot *gobot.Robot) {
+        gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">red</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">Off</span><span class="delimiter">"</span></span>)
+        gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">green</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">Off</span><span class="delimiter">"</span></span>)
+        gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">Off</span><span class="delimiter">"</span></span>)
+}
+
+<span class="keyword">func</span> checkTravis(robot *gobot.Robot) {
+        resetLeds(robot)
+        user := <span class="string"><span class="delimiter">"</span><span class="content">hybridgroup</span><span class="delimiter">"</span></span>
+        name := <span class="string"><span class="delimiter">"</span><span class="content">gobot</span><span class="delimiter">"</span></span>
+        <span class="comment">//name := "broken-arrow"</span>
+        fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">Checking repo %s/%s</span><span class="char">\n</span><span class="delimiter">"</span></span>, user, name)
+        gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">On</span><span class="delimiter">"</span></span>)
+        resp, err := http.Get(fmt.Sprintf(<span class="string"><span class="delimiter">"</span><span class="content">https://api.travis-ci.org/repos/%s/%s.json</span><span class="delimiter">"</span></span>, user, name))
+        <span class="keyword">defer</span> resp.Body.Close()
+        <span class="keyword">if</span> err != <span class="predefined-constant">nil</span> {
+                <span class="predefined">panic</span>(err)
+        }
+        body, err := ioutil.ReadAll(resp.Body)
+        <span class="keyword">if</span> err != <span class="predefined-constant">nil</span> {
+                <span class="predefined">panic</span>(err)
+        }
+        <span class="keyword">var</span> travis TravisResponse
+        json.Unmarshal(body, &amp;travis)
+        resetLeds(robot)
+        <span class="keyword">if</span> travis.LastBuildStatus == <span class="integer">0</span> {
+                gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">green</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">On</span><span class="delimiter">"</span></span>)
+        } <span class="keyword">else</span> {
+                gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">red</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">On</span><span class="delimiter">"</span></span>)
+        }
+}
+
+<span class="keyword">func</span> main() {
+        master := gobot.NewGobot()
+        firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+        red := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">red</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">7</span><span class="delimiter">"</span></span>)
+        green := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">green</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">6</span><span class="delimiter">"</span></span>)
+        blue := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">5</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                checkTravis(master.Robot(<span class="string"><span class="delimiter">"</span><span class="content">travis</span><span class="delimiter">"</span></span>))
+                gobot.Every(<span class="integer">10</span>*time.Second, <span class="keyword">func</span>() {
+                        checkTravis(master.Robot(<span class="string"><span class="delimiter">"</span><span class="content">travis</span><span class="delimiter">"</span></span>))
+                })
+        }
+
+        master.Robots = <span class="predefined">append</span>(master.Robots,
+                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">travis</span><span class="delimiter">"</span></span>, []gobot.Connection{firmataAdaptor}, []gobot.Device{red, green, blue}, work))
+
+        master.Start()
+}
+</pre>
+                </div>
+              </div>
+              <div class="side-documentation">
+                <div class="mobile-menu">
+                  <a href="#" id="menu-docs">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </a>
+                </div>
+                <dl class="accordion-docs hide">
+<h5 class="doc-button">
+                    <a href="/documentation">Docs</a>
+                  </h5>
+                  <span></span>
+                  <dt>
+                    <a href="">Getting Started</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="getting-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/getting-started">Setup your environment</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Guides</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="guides-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/guides/what_is_gobot">
+                          About Gobot
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/api">
+                          API
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/cli">
+                          CLI
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/helpers">Helper Methods</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Platforms</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="platform-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/platforms/ardrone">Ardrone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/arduino">Arduino</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/digispark">Digispark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/joystick">Joystick</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/opencv">OpenCV</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/spark">Spark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/sphero">Sphero</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Drivers</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="driver-panel">
+                    GPIO
+                    <ul id="gpio">
+<li>
+                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/button">Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/led">LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/makey">Makey Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/motor">Motor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/servo">Servo</a>
+                      </li>
+                    </ul>
+                    I2C
+                    <ul id="i2c">
+<li>
+                        <a href="/documentation/drivers/blinkm">Blinkm</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/wiichuck">Wiichuck</a>
+                      </li>
+                    </ul>
+                    ARDrone
+                    <ul id="ardrone">
+<li>
+                        <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
+                      </li>
+                    </ul>
+                    Joystick
+                    <ul id="joystick">
+<li>
+                        <a href="/documentation/drivers/dualshock3">Dualshock3 Controller</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/xbox360">XBox360 Controller</a>
+                      </li>
+                    </ul>
+                    Other Drivers
+                    <ul id="others">
+<li>
+                        <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/sphero">Sphero</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Contribute</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="contribute-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/contribute/guidelines">Guidelines</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/contribute/contact-us">Contact us</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Examples</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="example-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/examples">All examples</a>
+                      </li>
+                    </ul>
+</dd>
+                </dl>
+<script>
+                    $(document).ready(function(){
+                      $("#menu-docs").click(function(){
+                        $(".accordion-docs").removeClass("hide");
+                        $(this).addClass("active");
+                      });
+                    });
+                </script>
+</div>
+            </div>
+          </section>
+</div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="w">
+        <div class="copyright">
+          <div class="left-side">
+            © Copyright 2012-2014
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">Top</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
