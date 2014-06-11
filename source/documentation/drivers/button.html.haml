@@ -40,22 +40,17 @@ spark_platform: true
 
         import (
           "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot-firmata"
-          "github.com/hybridgroup/gobot-gpio"
+          "github.com/hybridgroup/gobot/platforms/firmata"
+          "github.com/hybridgroup/gobot/platforms/gpio"
         )
 
         func main() {
-          firmata := new(gobotFirmata.FirmataAdaptor)
-          firmata.Name = "firmata"
-          firmata.Port = "/dev/ttyACM0"
+          gbot := gobot.NewGobot()
 
-          button := gobotGPIO.NewButton(firmata)
-          button.Name = "button"
-          button.Pin = "2"
+          firmataAdaptor := firmata.NewFirmataAdaptor("myFirmata", "/dev/ttyACM0")
 
-          led := gobotGPIO.NewLed(firmata)
-          led.Name = "led"
-          led.Pin = "13"
+          button := gpio.NewButtonDriver(firmataAdaptor, "myButton", "2")
+          led := gpio.NewLedDriver(firmataAdaptor, "myLed", "13")
         ...
 
 
@@ -69,40 +64,32 @@ spark_platform: true
 
         import (
           "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot-firmata"
-          "github.com/hybridgroup/gobot-gpio"
+          "github.com/hybridgroup/gobot/platforms/firmata"
+          "github.com/hybridgroup/gobot/platforms/gpio"
         )
 
         func main() {
-          firmata := new(gobotFirmata.FirmataAdaptor)
-          firmata.Name = "firmata"
-          firmata.Port = "/dev/ttyACM0"
+          gbot := gobot.NewGobot()
 
-          button := gobotGPIO.NewButton(firmata)
-          button.Name = "button"
-          button.Pin = "2"
+          firmataAdaptor := firmata.NewFirmataAdaptor("myFirmata", "/dev/ttyACM0")
 
-          led := gobotGPIO.NewLed(firmata)
-          led.Name = "led"
-          led.Pin = "13"
+          button := gpio.NewButtonDriver(firmataAdaptor, "myButton", "2")
+          led := gpio.NewLedDriver(firmataAdaptor, "myLed", "13")
 
           work := func() {
             gobot.On(button.Events["push"], func(data interface{}) {
               led.On()
             })
-
             gobot.On(button.Events["release"], func(data interface{}) {
               led.Off()
             })
           }
 
-          robot := gobot.Robot{
-            Connections: []gobot.Connection{firmata},
-            Devices:     []gobot.Device{button, led},
-            Work:        work,
-          }
+          gbot.Robots = append(gbot.Robots,
+            gobot.NewRobot("buttonBot", []gobot.Connection{firmataAdaptor}, []gobot.Device{button, led}, work),
+          )
 
-          robot.Start()
+          gbot.Start()
         }
 
 %section.public-methods
