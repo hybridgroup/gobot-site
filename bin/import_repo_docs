@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-#!/usr/bin/env ruby
 
 require 'bundler'
 Bundler.setup
@@ -7,69 +6,31 @@ Bundler.setup
 require 'git'
 require 'fileutils'
 
-if ARGV.any?
-  REPOS = ARGV.collect do |arg|
-    if arg[/^([\w-]+\/[\w-]+)$/, 1]
-      "https://github.com/#{arg}.git"
-    else
-      arg
-    end
+REPO_URL = "https://github.com/hybridgroup/gobot.git"
+REPO_PATH = File.expand_path(__dir__ + "/../.gobot")
+
+def main
+  clone_repo
+
+  Dir.glob(REPO_PATH + "/platforms/*") do |path|
+    name = File.basename path
+
+    docs = extract_docs_from_dir path
+    add_docs_to_site name, docs
+
+    images = extract_breadboard_images_from_dir path
+    add_breadboard_images_to_site name, images
   end
-else
-  REPOS = %w(
-    https://github.com/hybridgroup/gobot-ardrone.git
-    https://github.com/hybridgroup/gobot-beaglebone.git
-    https://github.com/hybridgroup/gobot-cli.git
-    https://github.com/hybridgroup/gobot-digispark.git
-    https://github.com/hybridgroup/gobot-firmata.git
-    https://github.com/hybridgroup/gobot-gpio.git
-    https://github.com/hybridgroup/gobot-i2c.git
-    https://github.com/hybridgroup/gobot-leapmotion.git
-    https://github.com/hybridgroup/gobot-spark.git
-    https://github.com/hybridgroup/gobot-sphero.git
-    https://github.com/hybridgroup/gobot-joystick.git
-    https://github.com/hybridgroup/gobot-neurosky.git
-  )
 end
 
-# Public: Gets the name of the repository from it's GitHub clone URI
-#
-# uri - string git clone URI to extract a name from
-#
-# Examples
-#
-#   get_repo_name "https://github.com/hybridgroup/gobot-ardrone.git"
-#   #=> "gobot-ardrone"
-#
-#   get_repo_name "git@github.com:hybridgroup/gobot.git"
-#   #=> "gobot"
-#
-#   get_repo_name ""
-#   #=> nil
-#
-# Returns a string or nil if it couldn't be parsed
-def get_repo_name(uri)
-  uri[/.*\/(.*).git/, 1]
+def clone_repo
+  FileUtils.rm_rf(REPO_PATH) if File.directory?(REPO_PATH)
+  puts " - Cloning repo. "
+  repo = Git.clone REPO_URL, REPO_PATH
+  repo.checkout 'dev'
 end
 
-# Public: Uses the git gem to clone down a remote git repository
-#
-# uri - string URI of remote git repo to clone down
-#
-# Returns an array containing the path to the cloned repository, and the Git
-# repository instance
-def clone_repo(uri)
-  name = get_repo_name(uri)
-  path = File.expand_path("#{__dir__}/../.docs/#{name}")
-
-  remove_repo(path) if File.directory?(path)
-
-  puts "  - Cloning #{name}."
-  repo = Git.clone(uri, path)
-  return [path, repo]
-end
-
-def extract_docs_from_repo(path)
+def extract_docs_from_dir(path)
   docs = {}
 
   puts "  - Importing docs from #{File.basename(path)}"
@@ -84,10 +45,10 @@ def extract_docs_from_repo(path)
   docs
 end
 
-def add_docs_to_site(repo_name, docs)
+def add_docs_to_site(platform, docs)
   return if docs == {}
   docs_path = File.expand_path("#{__dir__}/../source/documentation/drivers/partials/")
-  docs_path += "/" + repo_name[/^gobot-(.*)$/, 1]
+  docs_path += "/" + platform
 
   if File.directory?(docs_path)
     FileUtils.rm_rf docs_path + "/*.html.haml"
@@ -108,50 +69,23 @@ def add_docs_to_site(repo_name, docs)
   end
 end
 
-def extract_breadboard_images_from_repo(path)
+def extract_breadboard_images_from_dir(path)
   puts "  - Importing breadboard images from #{File.basename(path)}"
   images = Dir.glob(path + "/docs/breadboards/*_bb.png")
   images.each { |image| puts "    - #{File.basename(image)}" }
   images
 end
 
-def add_breadboard_images_to_site(repo_name, images)
+def add_breadboard_images_to_site(platform, images)
   return if images == []
 
   images_path = File.expand_path("#{__dir__}/../source/documentation/drivers/breadboards/")
-  images_path += "/" + repo_name[/^gobot-(.*)$/, 1]
+  images_path += "/" + platform
 
   FileUtils.rm_rf images_path if File.directory?(images_path)
   FileUtils.mkdir_p images_path
 
   FileUtils.cp images, images_path
-end
-
-
-# Public: Removes the existing git repository
-#
-# path - path to git repository to remove
-#
-# Returns nothing
-def remove_repo(path)
-  FileUtils.rm_r path
-end
-
-def main
-  REPOS.each do |repo|
-    name = get_repo_name(repo)
-    puts "Importing docs from #{name}."
-
-    path, repo = clone_repo repo
-
-    docs = extract_docs_from_repo path
-    add_docs_to_site name, docs
-
-    images = extract_breadboard_images_from_repo path
-    add_breadboard_images_to_site name, images
-
-    remove_repo path
-  end
 end
 
 main
