@@ -1,0 +1,55 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - sphero_master"
+page_title: "Example: sphero_master"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/sphero"
+        	"time"
+        )
+
+        func main() {
+        	master := gobot.NewGobot()
+
+        	spheros := map[string]string{
+        		"Sphero-BPO": "/dev/rfcomm0",
+        	}
+
+        	for name, port := range spheros {
+        		spheroAdaptor := sphero.NewSpheroAdaptor("sphero", port)
+
+        		spheroDriver := sphero.NewSpheroDriver(spheroAdaptor, "sphero")
+
+        		work := func() {
+        			spheroDriver.SetRGB(uint8(255), uint8(0), uint8(0))
+        		}
+
+        		master.Robots = append(master.Robots,
+        			gobot.NewRobot(name, []gobot.Connection{spheroAdaptor}, []gobot.Device{spheroDriver}, work))
+        	}
+
+        	master.Robots = append(master.Robots, gobot.NewRobot(
+        		"",
+        		nil,
+        		nil,
+        		func() {
+        			gobot.Every(1*time.Second, func() {
+        				gobot.Call(master.Robot("Sphero-BPO").Device("sphero").Driver, "SetRGB", uint8(gobot.Rand(255)), uint8(gobot.Rand(255)), uint8(gobot.Rand(255)))
+        			})
+        		},
+        	))
+
+        	master.Start()
+        }
+

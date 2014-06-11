@@ -1,0 +1,108 @@
+---
+title: Gobot - BlinkM Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: BlinkM
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+
+beaglebone_platform: true
+arduino_platform: true
+digispark_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#i2c li:nth-child(1)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/blinkm.jpg", class: "display"
+  .info-intro  
+    %p
+      Allows user to control BlinkM RGB LED via i2c interface.
+  .clear
+  
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/i2c`
+  %h3 For Arduino
+  :markdown
+        :::go
+        package main
+
+        import (
+          "fmt"
+          "github.com/hybridgroup/gobot"
+          "github.com/hybridgroup/gobot/platforms/firmata"
+          "github.com/hybridgroup/gobot/platforms/i2c"
+          "time"
+        )
+
+        func main() {
+          gbot := gobot.NewGobot()
+          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
+          blinkm := i2c.NewBlinkMDriver(firmataAdaptor, "blinkm")
+        ...
+        
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a BlinkM and Arduino
+  :markdown
+        :::go
+        package main
+
+        import (
+          "fmt"
+          "github.com/hybridgroup/gobot"
+          "github.com/hybridgroup/gobot/platforms/firmata"
+          "github.com/hybridgroup/gobot/platforms/i2c"
+          "time"
+        )
+
+        func main() {
+          gbot := gobot.NewGobot()
+          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
+          blinkm := i2c.NewBlinkMDriver(firmataAdaptor, "blinkm")
+
+          work := func() {
+            gobot.Every(3*time.Second, func() {
+              r := byte(gobot.Rand(255))
+              g := byte(gobot.Rand(255))
+              b := byte(gobot.Rand(255))
+              blinkm.Rgb(r, g, b)
+              fmt.Println("color", blinkm.Color())
+            })
+          }
+
+          gbot.Robots = append(gbot.Robots,
+            gobot.NewRobot("blinkmBot", []gobot.Connection{firmataAdaptor}, []gobot.Device{blinkm}, work))
+          gbot.Start()
+        }
+  
+%section.public-methods
+  .commands-api#Commands
+    = partial "/documentation/drivers/partials/i2c/commands_blinkm"
+  .commands-api#Events
+    = partial "/documentation/drivers/partials/i2c/events_blinkm"   
+
+%section.circuit#Circuit
+  %h2 Circuit 
+  .description-circuit
+    %p
+  .image-circuit 
+    %img{:src => "/documentation/drivers/breadboards/i2c/blinkm_bb.png", :alt => ""}/ 
+  .clear 
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"
+    

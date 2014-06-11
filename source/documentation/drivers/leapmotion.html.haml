@@ -1,0 +1,87 @@
+---
+title: Gobot - Leap Motion Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Leap Motion
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+
+leapmotion_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#others li:nth-child(1)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/leap_motion.jpg", class: "display"
+  .info-intro
+    %p
+      Allows user to interact with Gobot devices using a Leap Motion controller. The Leap Motion uses its built in cameras to track the user's hand motions, and translations those to events that Gobot can use to trigger actions or control hardware.
+  .clear
+  
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::go
+        package main
+
+        import (
+            "fmt"
+            "github.com/hybridgroup/gobot"
+            "github.com/hybridgroup/gobot/platforms/leap"
+        )
+
+        func main() {
+            gbot := gobot.NewGobot()
+            adaptor := leap.NewLeapMotionAdaptor("leap", "127.0.0.1:6437")
+            l := leap.NewLeapMotionDriver(adaptor, "leap")
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %h3 Example receiving hand events from a Leap Motion.
+  :markdown
+        :::go
+        package main
+
+        import (
+            "fmt"
+            "github.com/hybridgroup/gobot"
+            "github.com/hybridgroup/gobot/platforms/leap"
+        )
+
+        func main() {
+            gbot := gobot.NewGobot()
+            adaptor := leap.NewLeapMotionAdaptor("leap", "127.0.0.1:6437")
+            l := leap.NewLeapMotionDriver(adaptor, "leap")
+
+            work := func() {
+                gobot.On(l.Events["Message"], func(data interface{}) {
+                    fmt.Println(data.(leap.Frame))
+                })
+            }
+
+            gbot.Robots = append(gbot.Robots, gobot.NewRobot(
+                "leapBot", []gobot.Connection{adaptor}, []gobot.Device{l}, work))
+
+            gbot.Start()
+        }
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Functions
+    %p No commands
+  .commands-api#Events
+    = partial "/documentation/drivers/partials/leapmotion/events_leapmotion"   
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"

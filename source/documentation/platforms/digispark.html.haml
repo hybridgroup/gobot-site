@@ -1,0 +1,171 @@
+---
+title: Digispark with Gobot
+author: The Hybrid Group
+page_title: Platforms
+page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
+page_title_docs: Digispark
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot-digispark' target='_blank' class='repository'>Repository</a> <a class+'issues' target='_blank' href='https://github.com/hybridgroup/gobot-digispark/issues'>Issues</a>"
+page_title_show: true
+layout: documentation
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+
+button_driver: true
+led_driver: true
+servo_driver: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#platform-panel").addClass("active-panel");
+    $("#platform-panel ul li:nth-child(4)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  = image_tag "/images/devices/digispark.jpg", class: "display"
+  .info-intro
+    %p
+      The Digispark is an Attiny85 based microcontroller development board similar to the Arduino line, only cheaper, smaller,
+      and a bit less powerful. With a whole host of shields to extend its functionality and the ability to
+      use the familiar Arduino IDE the Digispark is a great way to jump into electronics, or perfect for when
+      an Arduino is too big or too much.
+
+    %p 
+      This package provides the Gobot adaptor for the 
+      = link_to "Digispark", "http://digistump.com/category/1", target: :blank  
+      ATTiny-based USB development board with the 
+      = link_to "Little Wire ", "http://littlewire.cc/", target: :blank  
+      protocol firmware installed.
+
+  .clear
+  
+%section.how-to#HowToInstall
+  %h2 How To Install
+  :markdown
+    This package requires `libusb.`
+
+  %h3 OSX
+  %p To install libusb on OSX using Homebrew:
+  :markdown
+        :::bash
+        brew install libusb
+
+  %h3 Ubuntu
+  %p To install libusb on linux:
+  :markdown
+        :::bash
+        sudo apt-get install libusb-dev
+
+  %p Now you can install the library with:
+
+  :markdown
+        :::bash
+        go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/digispark
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p
+    This small program lets you toggle an LED on and off.
+  :markdown
+        :::go
+        package main
+
+        import (
+            "github.com/hybridgroup/gobot"
+            "github.com/hybridgroup/gobot/platforms/digispark"
+            "github.com/hybridgroup/gobot/platforms/gpio"
+            "time"
+        )
+
+        func main() {
+            gbot := gobot.NewGobot()
+            adaptor := digispark.NewDigisparkAdaptor("Digispark")
+            led := gpio.NewLedDriver(adaptor, "led", "0")
+
+            work := func() {
+                gobot.Every(1*time.Second, func() {
+                    led.Toggle()
+                })
+            }
+
+            gbot.Robots = append(gbot.Robots,
+                gobot.NewRobot("blinkBot", []gobot.Connection{adaptor}, []gobot.Device{led}, work))
+            gbot.Start()
+        }
+        
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  %p If your Digispark already has the Little Wire protocol firmware installed, you can connect right away with Gobot.
+
+  %p
+    Otherwise, for instructions on how to install Little Wire on a Digispark check out 
+    %a{ href:"http://digistump.com/board/index.php/topic,160.0.html " } http://digistump.com/board/index.php/topic,160.0.html 
+
+  %h3 OSX
+  :markdown
+        :::bash
+        Important: 2012 MBP The USB ports on the 2012 MBPs (Retina and non) cause issues due to their USB3 controllers,currently the best work around is to use a cheap USB hub (non USB3) - we are working on future solutions. The hub on a Cinema display will work as well.
+  %p Plug the Digispark into your computer via the USB port and you're ready to go!
+
+  %h3 Ubuntu
+  %p Ubuntu requires a few extra steps to set up the digispark for communication with Gobot:
+  %ul 
+    %li Add a udev rule to allow access to the Digispark device
+    %li Plug in the Digispark to the USB port
+    %li Connect to the device via Gobot
+  %p First, you must add a udev rule, so that Gobot can communicate with the USB device. Ubuntu and other modern Linux distibutions use udev to manage device files when USB devices are added and removed. By default, udev will create a device with read-only permission which will not allow to you download code. You must place the udev rules below into a file named /etc/udev/rules.d/49-micronucleus.rules.
+
+  :markdown
+        :::bash
+        # UDEV Rules for Micronucleus boards including the Digispark.
+        # This file must be placed at:
+        #
+        # /etc/udev/rules.d/49-micronucleus.rules    (preferred location)
+        #   or
+        # /lib/udev/rules.d/49-micronucleus.rules    (req'd on some broken systems)
+        #
+        # After this file is copied, physically unplug and reconnect the board.
+        #
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="1781", ATTRS{idProduct}=="0c9f", MODE:="0666"
+        KERNEL=="ttyACM*", ATTRS{idVendor}=="1781", ATTRS{idProduct}=="0c9f", MODE:="0666", ENV{ID_MM_DEVICE_IGNORE}="1"
+
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="0753", MODE:="0666"
+        KERNEL=="ttyACM*", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="0753", MODE:="0666", ENV{ID_MM_DEVICE_IGNORE}="1"
+        #
+        # If you share your linux system with other users, or just don't like the
+        # idea of write permission for everybody, you can replace MODE:="0666" with
+        # OWNER:="yourusername" to create the device owned by you, or with
+        # GROUP:="somegroupname" and mange access using standard unix groups.
+        
+  %p 
+    Thanks to 
+    = link_to "@bluebie", "https://github.com/Bluebie" 
+    for these instructions! 
+    = link_to "(https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux)", "https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux"
+  %p Now plug the Digispark into your computer via the USB port.
+
+%section.drivers#Drivers
+  %h2 Drivers
+  %p
+    Thanks to
+    %b Gobot
+    and
+    %b go
+    it is possible to interact with several I/O hardware devices and interfaces connected to the digispark
+    using a set of already defined and easy to use drivers, all of this thanks to the Gobot architecture,
+    in conjuction with gobot-digispark adaptor (using the littlewire communication protocol),
+    which makes it even possible to swap the entire platform for something else like arduino,
+    and keep using the same code you just wrote for digispark, this just by swapping a couple
+    of lines in your program.
+  %p
+    Available drivers for the digispark platform are listed below, the drivers contain detailed documentation and examples of what kind
+    physical computing (using Gobot and Go) you could be doing:
+
+  .hardware
+    %h2 GPIO Drivers
+    .devices
+      = partial "documentation/partials/devices_gpio_drivers"
+    -#%h2 i2c Drivers
+    .devices
+      = partial "documentation/partials/devices_i2c_drivers"
+    

@@ -1,0 +1,189 @@
+---
+title: Getting Started - Gobot - Golang framework for robotics, physical computing, and the Internet of Things
+author: The Hybrid Group
+description: Gobot Getting Started
+page_title: Getting Started
+page_subtitle: A Guide by Humans, for Humans.
+active_menu_docs: true
+
+page_title_show: true
+layout: documentation
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#getting-panel").addClass("active-panel");
+    $("#getting-panel ul li:nth-child(1)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(3) a:nth-child(2) img").addClass("rotate");
+    
+%section.how-to
+  %h1 How to Install Go
+  %p 
+  Go is an open source programming environment that makes it easy to build simple, reliable, and efficient software.
+  = link_to "http://golang.org/doc/install","http://golang.org/doc/install", target:"blank"  
+  %h3 OSX
+  %p 
+  Go to the Go downloads page at 
+  = link_to "https://code.google.com/p/go/downloads/list", "https://code.google.com/p/go/downloads/list", target:"blank"  
+  download the installer file and run it.
+  %h3 Ubuntu
+  %p 
+  Go to the Go downloads page at 
+  = link_to "https://code.google.com/p/go/downloads/list", "https://code.google.com/p/go/downloads/list", target:"blank"  
+  download the installer file and run it.
+  %h3 Windows
+  %p 
+  Go to the Go downloads page at 
+  = link_to "https://code.google.com/p/go/downloads/list", "https://code.google.com/p/go/downloads/list", target:"blank"  
+  download the installer file and run it.
+
+%section
+  %h2 How to Install Gobot
+  :markdown
+    Install the library with: `go get -u github.com/hybridgroup/gobot`
+
+    In order to use Gobot, you must install the libraries needed to control your particular hardware setup. For example, to use Gobot with an Beaglebone, you will need to install the `go get -u github.com/hybridgroup/gobot-beaglebone` library. Check out these examples:
+
+  %h3 OSX
+  :markdown
+        :::bash
+        go get -u github.com/hybridgroup/gobot
+        go get -u github.com/hybridgroup/gobot-beaglebone
+
+  %h3 Ubuntu
+  :markdown
+        :::bash
+        go get -u github.com/hybridgroup/gobot
+        go get -u github.com/hybridgroup/gobot-beaglebone
+
+  %h3 Windows
+  %p
+    Windows setup for gobot.
+
+  %section
+  %h2 Gobot Robots
+  %h3 Writing your robot code:
+
+  %p 
+  Now you are ready to write your own code. Take a look at the examples below, or go to the 
+  = link_to "examples", "https://github.com/hybridgroup/gobot/tree/master/examples", target:"blank"  
+  directory for a whole bunch of code you can use to help get started. We recommend using Test-Driven Robotics (TDR) with your preferred test frameworks.
+
+
+%section
+  %h2 Gobot Code Examples
+
+  %h3 Example: Arduino with LED.
+  :markdown
+    To use this example, you must first run `go get -u github.com/hybridgroup/gobot-firmata`
+
+  :markdown
+        :::go
+        package main
+
+        import (
+          "github.com/hybridgroup/gobot"
+          "github.com/hybridgroup/gobot-firmata"
+          "github.com/hybridgroup/gobot-gpio"
+        )
+
+        func main() {
+
+          firmata := new(gobotFirmata.FirmataAdaptor)
+          firmata.Name = "firmata"
+          firmata.Port = "/dev/ttyACM0"
+
+          led := gobotGPIO.NewLed(firmata)
+          led.Name = "led"
+          led.Pin = "13"
+
+          work := func() {
+            gobot.Every("1s", func() {
+              led.Toggle()
+            })
+          }
+
+          robot := gobot.Robot{
+            Connections: []gobot.Connection{firmata},
+            Devices:     []gobot.Device{led},
+            Work:        work,
+          }
+
+          robot.Start()
+        }
+
+  %h3 Sphero 2.0
+  :markdown
+    To use this example, you must first run `go get -u github.com/hybridgroup/gobot-sphero`
+  :markdown
+        :::go
+        package main
+
+        import (
+          "github.com/hybridgroup/gobot"
+          "github.com/hybridgroup/gobot-sphero"
+        )
+
+        func main() {
+
+          spheroAdaptor := new(gobotSphero.SpheroAdaptor)
+          spheroAdaptor.Name = "Sphero"
+          spheroAdaptor.Port = "/dev/rfcomm0"
+
+          sphero := gobotSphero.NewSphero(spheroAdaptor)
+          sphero.Name = "Sphero"
+
+          work := func() {
+            gobot.Every("2s", func() {
+              sphero.Roll(100, uint16(gobot.Rand(360)))
+            })
+          }
+
+          robot := gobot.Robot{
+            Connections: []gobot.Connection{spheroAdaptor},
+            Devices:     []gobot.Device{sphero},
+            Work:        work,
+          }
+
+          robot.Start()
+        }
+
+%h2 API
+%p Gobot includes a RESTful API to query the status of any robot running within a group, including the connection and device status, and execute device commands.
+
+:markdown
+  To activate the API, use the `Api` command like this:
+
+      :::bash
+      master := gobot.GobotMaster()
+      gobot.Api(master)
+
+  To specify the api port run your Gobot program with the `PORT` environment variable
+
+      :::bash
+      $ PORT=8080 go run gobotProgram.go 
+
+%section.contributing
+  %h2 Contributing
+
+  %p 
+    You can help gobot grow by contributing your code, new drivers or platforms to the project, check the Github page
+    = link_to "gobot on github.","https://github.com/hybridgroup/gobot" 
+
+  %ul
+    %li All patches must be provided under the Apache 2.0 License
+    %li Please use the -s option in git to "sign off" that the commit is your work and you are providing it under the Apache 2.0 License
+    %li Submit a Github Pull Request to the appropriate branch and ideally discuss the changes with us in IRC.
+    %li We will look at the patch, test it out, and give you feedback.
+    %li Avoid doing minor whitespace changes, renamings, etc. along with merged content. These will be done by the maintainers from time to time but they can complicate merges and should be done seperately.
+    %li Take care to maintain the existing coding style.
+    %li Add unit tests for any new or changed functionality.
+    %li All pull requests should be "fast forward".
+    %ul 
+      %li If there are commits after yours use “git rebase -i ”
+      %li If you have local changes you may need to use “git stash”
+      %li 
+        For git help see 
+        = link_to "progit","http://git-scm.com/book", target: "_blank" 
+        which is an awesome (and free) book on git
+
+%section.footer

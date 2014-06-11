@@ -1,0 +1,53 @@
+---
+title: Gobot - ARDrone Navigation Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: ARDrone Navigation
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+
+ardrone_platform: true
+---
+
+%section.intro
+  =image_tag "/images/devices/ardrone-navigation.jpg", class: "display"
+  .info-intro
+    %p
+      Allows user to receive in-flight navgation data from an ARDrone. Navigation data includes such information as the ARDrone's current pitch and yaw, along with many other data elements.
+  .clear
+  
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  %p
+    Communication with the ARDrone's navigation data interface takes place using a WiFi connection. The ARDrone is a WiFi access point, so it normally can be the only device you connect to, without some additional effort to reconfigure the drone itself to put it into infrastructure mode.
+
+  :markdown
+        :::go
+        ...
+
+  
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Once the connection and the devices have been setup (as explained above) you can receive navigation events on them as follows:
+
+  :markdown
+        :::go
+        ...
+
+
+%section.public-methods
+  .commands-api#Commands
+    = #partial "/documentation/drivers/partials/gpio/commands_analog_sensor"
+  .commands-api#Events
+    = #partial "/documentation/drivers/partials/gpio/events_analog_sensor" 
+
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"
