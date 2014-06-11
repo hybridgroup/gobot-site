@@ -1,0 +1,51 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - digispark_led_brightness"
+page_title: "Example: digispark_led_brightness"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#example-panel").addClass("active-panel");
+    $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
+
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/digispark"
+        	"github.com/hybridgroup/gobot/platforms/gpio"
+        	"time"
+        )
+
+        func main() {
+        	gbot := gobot.NewGobot()
+
+        	digisparkAdaptor := digispark.NewDigisparkAdaptor("digispark")
+        	led := gpio.NewLedDriver(digisparkAdaptor, "led", "0")
+
+        	work := func() {
+        		brightness := uint8(0)
+        		fadeAmount := uint8(15)
+
+        		gobot.Every(100*time.Millisecond, func() {
+        			led.Brightness(brightness)
+        			brightness = brightness + fadeAmount
+        			if brightness == 0 || brightness == 255 {
+        				fadeAmount = -fadeAmount
+        			}
+        		})
+        	}
+
+        	gbot.Robots = append(gbot.Robots,
+        		gobot.NewRobot("pwmBot", []gobot.Connection{digisparkAdaptor}, []gobot.Device{led}, work))
+        	gbot.Start()
+        }
+

@@ -1,0 +1,49 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - leap_motion_hands"
+page_title: "Example: leap_motion_hands"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#example-panel").addClass("active-panel");
+    $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
+
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/leap"
+        )
+
+        func main() {
+        	gbot := gobot.NewGobot()
+        	leapMotionAdaptor := leap.NewLeapMotionAdaptor("leap", "127.0.0.1:6437")
+        	l := leap.NewLeapMotionDriver(leapMotionAdaptor, "leap")
+
+        	work := func() {
+        		gobot.On(l.Events["Message"], func(data interface{}) {
+        			printHands(data.(leap.Frame))
+        		})
+        	}
+
+        	gbot.Robots = append(gbot.Robots, gobot.NewRobot(
+        		"leapBot", []gobot.Connection{leapMotionAdaptor}, []gobot.Device{l}, work))
+
+        	gbot.Start()
+        }
+
+        func printHands(frame leap.Frame) {
+        	for key, hand := range frame.Hands {
+        		fmt.Println("Hand", key, hand)
+        	}
+        }
+

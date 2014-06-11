@@ -8,6 +8,7 @@ description: Examples of using gobot with different hardware configurations
 page_subtitle: How you can get started.
 active_menu_docs: true
 ---
+
 -content_for :js_accordeon do
   :javascript
     $("#example-panel").addClass("active-panel");
@@ -15,15 +16,147 @@ active_menu_docs: true
     $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
 
 .examples
-  = partial "partials/gobot", locals: { name: "Gobot" }
-  = partial "partials/ardrone", locals: { name: "ARDrone" }
-  = partial "partials/beaglebone", locals: { name: "Beaglebone" }
-  = partial "partials/digispark", locals: { name: "Digispark" }
-  = partial "partials/firmata", locals: { name: "Firmata" }
-  = partial "partials/joystick", locals: { name: "Joystick" }
-  = partial "partials/leapmotion", locals: { name: "Leap Motion" }
-  = partial "partials/neurosky", locals: { name: "Neurosky" }
-  = partial "partials/opencv", locals: { name: "OpenCV" }
-  = partial "partials/spark", locals: { name: "Spark" }
-  = partial "partials/sphero", locals: { name: "Sphero" }
-
+  %h2 Examples
+  %table
+    %thead
+      %th Example
+      %th.links Link
+    %tbody
+      %tr
+        %td ardrone
+        %td.links= link_to 'Code', '/documentation/examples/ardrone'
+      %tr
+        %td ardrone_face_tracking
+        %td.links= link_to 'Code', '/documentation/examples/ardrone_face_tracking'
+      %tr
+        %td ardrone_ps3
+        %td.links= link_to 'Code', '/documentation/examples/ardrone_ps3'
+      %tr
+        %td beaglebone_blink
+        %td.links= link_to 'Code', '/documentation/examples/beaglebone_blink'
+      %tr
+        %td beaglebone_blinkm
+        %td.links= link_to 'Code', '/documentation/examples/beaglebone_blinkm'
+      %tr
+        %td beaglebone_led_brightness
+        %td.links= link_to 'Code', '/documentation/examples/beaglebone_led_brightness'
+      %tr
+        %td beaglebone_led_brightness_with_analog_input
+        %td.links= link_to 'Code', '/documentation/examples/beaglebone_led_brightness_with_analog_input'
+      %tr
+        %td beaglebone_servo
+        %td.links= link_to 'Code', '/documentation/examples/beaglebone_servo'
+      %tr
+        %td digispark_api
+        %td.links= link_to 'Code', '/documentation/examples/digispark_api'
+      %tr
+        %td digispark_blink
+        %td.links= link_to 'Code', '/documentation/examples/digispark_blink'
+      %tr
+        %td digispark_led_brightness
+        %td.links= link_to 'Code', '/documentation/examples/digispark_led_brightness'
+      %tr
+        %td digispark_servo
+        %td.links= link_to 'Code', '/documentation/examples/digispark_servo'
+      %tr
+        %td firmata_blink
+        %td.links= link_to 'Code', '/documentation/examples/firmata_blink'
+      %tr
+        %td firmata_blinkm
+        %td.links= link_to 'Code', '/documentation/examples/firmata_blinkm'
+      %tr
+        %td firmata_button
+        %td.links= link_to 'Code', '/documentation/examples/firmata_button'
+      %tr
+        %td firmata_cat_toy
+        %td.links= link_to 'Code', '/documentation/examples/firmata_cat_toy'
+      %tr
+        %td firmata_direct_pin
+        %td.links= link_to 'Code', '/documentation/examples/firmata_direct_pin'
+      %tr
+        %td firmata_hmc6352
+        %td.links= link_to 'Code', '/documentation/examples/firmata_hmc6352'
+      %tr
+        %td firmata_led_brightness
+        %td.links= link_to 'Code', '/documentation/examples/firmata_led_brightness'
+      %tr
+        %td firmata_led_brightness_with_analog_input
+        %td.links= link_to 'Code', '/documentation/examples/firmata_led_brightness_with_analog_input'
+      %tr
+        %td firmata_makey_button
+        %td.links= link_to 'Code', '/documentation/examples/firmata_makey_button'
+      %tr
+        %td firmata_motor
+        %td.links= link_to 'Code', '/documentation/examples/firmata_motor'
+      %tr
+        %td firmata_servo
+        %td.links= link_to 'Code', '/documentation/examples/firmata_servo'
+      %tr
+        %td firmata_travis
+        %td.links= link_to 'Code', '/documentation/examples/firmata_travis'
+      %tr
+        %td firmata_wiichuck
+        %td.links= link_to 'Code', '/documentation/examples/firmata_wiichuck'
+      %tr
+        %td hello
+        %td.links= link_to 'Code', '/documentation/examples/hello'
+      %tr
+        %td hello_api
+        %td.links= link_to 'Code', '/documentation/examples/hello_api'
+      %tr
+        %td hello_api_auth
+        %td.links= link_to 'Code', '/documentation/examples/hello_api_auth'
+      %tr
+        %td joystick_ps3
+        %td.links= link_to 'Code', '/documentation/examples/joystick_ps3'
+      %tr
+        %td joystick_xbox360
+        %td.links= link_to 'Code', '/documentation/examples/joystick_xbox360'
+      %tr
+        %td leap_motion
+        %td.links= link_to 'Code', '/documentation/examples/leap_motion'
+      %tr
+        %td leap_motion_hands
+        %td.links= link_to 'Code', '/documentation/examples/leap_motion_hands'
+      %tr
+        %td neurosky
+        %td.links= link_to 'Code', '/documentation/examples/neurosky'
+      %tr
+        %td opencv_face_detect
+        %td.links= link_to 'Code', '/documentation/examples/opencv_face_detect'
+      %tr
+        %td opencv_window
+        %td.links= link_to 'Code', '/documentation/examples/opencv_window'
+      %tr
+        %td pebble
+        %td.links= link_to 'Code', '/documentation/examples/pebble'
+      %tr
+        %td pebble_accelerometer
+        %td.links= link_to 'Code', '/documentation/examples/pebble_accelerometer'
+      %tr
+        %td spark_core_api
+        %td.links= link_to 'Code', '/documentation/examples/spark_core_api'
+      %tr
+        %td spark_core_blink
+        %td.links= link_to 'Code', '/documentation/examples/spark_core_blink'
+      %tr
+        %td spark_core_button
+        %td.links= link_to 'Code', '/documentation/examples/spark_core_button'
+      %tr
+        %td spark_core_led_brithgness
+        %td.links= link_to 'Code', '/documentation/examples/spark_core_led_brithgness'
+      %tr
+        %td sphero
+        %td.links= link_to 'Code', '/documentation/examples/sphero'
+      %tr
+        %td sphero_api
+        %td.links= link_to 'Code', '/documentation/examples/sphero_api'
+      %tr
+        %td sphero_conways
+        %td.links= link_to 'Code', '/documentation/examples/sphero_conways'
+      %tr
+        %td sphero_master
+        %td.links= link_to 'Code', '/documentation/examples/sphero_master'
+      %tr
+        %td sphero_multiple
+        %td.links= link_to 'Code', '/documentation/examples/sphero_multiple'
