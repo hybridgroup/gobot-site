@@ -1,0 +1,54 @@
+---
+page_title_show: true
+title: Gobot 0.5 is out!
+page_title: Blog
+date: 2014-06-18
+tags: releases
+author: Adrian Zankich
+---
+
+We're happy to announce the release of Gobot 0.5! This release is the culmination of lessons learned at GopherCon and many weeks of hard work.
+
+Here's a overview of the changes, but if you want to see more check out the compare view on [GitHub](https://github.com/hybridgroup/gobot/compare/0.4...0.5).
+
+Changelog  
+
+* **Idomatic clean up**: All files and tests have been refactored and ran through `golint`  
+
+* **Removed reflections throughout packages**: We used reflection in a few situations to retrieve elements from structs and execute functions. Those reflections have been removed in favor in better interface design   
+
+* **All officially supported platforms are now in ./platforms**: Instead of each platform being in a seperate repo, they are all now included in the main Gobot repo.   
+
+* **API is now a new package ./api**: The RESTful API is now in a seperate `api` package and must be explicitely imported for use in your Gobot program.  
+
+* **All platforms examples are in ./examples**: All examples has now been moved into a shared `examples` folder.   
+
+* **Replaced martini with net/http**: We no longer use Martini as our API server, and now use the standard net/http package with [pat](https://github.com/bmizerany/pat) as our pattern muxer.   
+
+* **Replaced ginkgo/gomega with system testing package**: We now use the system `testing` package for testing  
+
+* **Refactor gobot/robot/device commands**: User defined API commands have been completely refactored and now have an easier definition. You may now attach a command to your robot like [this](https://github.com/hybridgroup/gobot/blob/master/examples/hello_api.go#L18-L20)  
+
+* **Added Event type**: Added a new type for registering and responding to device events  
+
+* **Replaced Master type with Gobot type**: The `Master` type is now known as `Gobot`  
+
+* **`Every` and `After` now accept `time.Duration`**  
+
+* **Removed reflection helper methods**: We had a few helper methods for retrieveing fields from structs and executing functions on structs. Those have been removed.  
+
+* **And many more small changes throughout the system**  
+
+
+
+## Contributors  
+
+A huge thanks to our contributors who made this release possible. And a special thanks to [Matt Aimonettit](https://github.com/mattetti) and [Jeremy Saenz](https://github.com/codegangsta)!  
+
+## Documentation
+
+We're constantly updating the Gobot docs to keep them up-to-date. You can find the latest info on the [docs page](http://gobot.io/documentation/).  
+
+## Issues
+
+If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a [GitHub issue](https://github.com/hybridgroup/gobot/issues) and we'll get back to you as soon as possible.
