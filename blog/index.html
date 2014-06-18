@@ -9,7 +9,7 @@
 <meta name="author">
 <title>Blog - Gobot - Golang framework for robotics, physical computing, and the Internet of Things</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/javascripts/script.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
 <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
 <script type="text/javascript">
 
@@ -64,6 +64,95 @@
         <div class="main blog" role="main">
           <div class="articles">
             <div class="article">
+              <div class="article">
+                <header class="header"><div class="date">
+                    <div class="blue">
+                      <div class="month">
+                        Jun
+                      </div>
+                      <div class="day">
+                        18
+                      </div>
+                    </div>
+                    <div class="red">
+                      <div class="year">
+                        2014
+                      </div>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <h3>
+                      <a href="/blog/2014/06/18/gobot-0.5/">Gobot 0.5 is out!</a>
+                    </h3>
+                    <div class="author">
+                      by Adrian Zankich
+                    </div>
+                  </div>
+                </header><p>We're happy to announce the release of Gobot 0.5! This release is the culmination of lessons learned at GopherCon and many weeks of hard work.</p>
+                
+                <p>Here's a overview of the changes, but if you want to see more check out the compare view on <a href="https://github.com/hybridgroup/gobot/compare/0.4...0.5">GitHub</a>.</p>
+                
+                <p>Changelog  </p>
+                
+                <ul>
+<li>
+                    <p><strong>Idomatic clean up</strong>: All files and tests have been refactored and ran through <code>golint</code>  </p>
+                  </li>
+                  <li>
+                    <p><strong>Removed reflections throughout packages</strong>: We used reflection in a few situations to retrieve elements from structs and execute functions. Those reflections have been removed in favor in better interface design   </p>
+                  </li>
+                  <li>
+                    <p><strong>All officially supported platforms are now in ./platforms</strong>: Instead of each platform being in a seperate repo, they are all now included in the main Gobot repo.   </p>
+                  </li>
+                  <li>
+                    <p><strong>API is now a new package ./api</strong>: The RESTful API is now in a seperate <code>api</code> package and must be explicitely imported for use in your Gobot program.  </p>
+                  </li>
+                  <li>
+                    <p><strong>All platforms examples are in ./examples</strong>: All examples has now been moved into a shared <code>examples</code> folder.   </p>
+                  </li>
+                  <li>
+                    <p><strong>Replaced martini with net/http</strong>: We no longer use Martini as our API server, and now use the standard net/http package with <a href="https://github.com/bmizerany/pat">pat</a> as our pattern muxer.   </p>
+                  </li>
+                  <li>
+                    <p><strong>Replaced ginkgo/gomega with system testing package</strong>: We now use the system <code>testing</code> package for testing  </p>
+                  </li>
+                  <li>
+                    <p><strong>Refactor gobot/robot/device commands</strong>: User defined API commands have been completely refactored and now have an easier definition. You may now attach a command to your robot like <a href="https://github.com/hybridgroup/gobot/blob/master/examples/hello_api.go#L18-L20">this</a>  </p>
+                  </li>
+                  <li>
+                    <p><strong>Added Event type</strong>: Added a new type for registering and responding to device events  </p>
+                  </li>
+                  <li>
+                    <p><strong>Replaced Master type with Gobot type</strong>: The <code>Master</code> type is now known as <code>Gobot</code>  </p>
+                  </li>
+                  <li>
+                    <p><strong><code>Every</code> and <code>After</code> now accept <code>time.Duration</code></strong>  </p>
+                  </li>
+                  <li>
+                    <p><strong>Removed reflection helper methods</strong>: We had a few helper methods for retrieveing fields from structs and executing functions on structs. Those have been removed.  </p>
+                  </li>
+                  <li>
+                    <p><strong>And many more small changes throughout the system</strong>  </p>
+                  </li>
+                </ul>
+<h2 id="contributors">Contributors</h2>
+                
+                <p>A huge thanks to our contributors who made this release possible. And a special thanks to <a href="https://github.com/mattetti">Matt Aimonettit</a> and <a href="https://github.com/codegangsta">Jeremy Saenz</a>!  </p>
+                
+                <h2 id="documentation">Documentation</h2>
+                
+                <p>We're constantly updating the Gobot docs to keep them up-to-date. You can find the latest info on the <a href="http://gobot.io/documentation/">docs page</a>.  </p>
+                
+                <h2 id="issues">Issues</h2>
+                
+                <p>If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a <a href="https://github.com/hybridgroup/gobot/issues">GitHub issue</a> and we'll get back to you as soon as possible.</p>
+                <div class="tags">
+                  <div class="img">
+                    <img src="/images/elements/tag.png">
+</div>
+                  <a href="/blog/tags/releases/">releases</a>
+                </div>
+              </div>
               <div class="article">
                 <header class="header"><div class="date">
                     <div class="blue">
@@ -203,7 +292,8 @@
             <div class="titles">
               <h4>Posts</h4>
               <ul>
-<li><a href="/blog/2014/04/29/taking-the-stage-at-gophercon/">Taking The Stage At GopherCon</a></li>
+<li><a href="/blog/2014/06/18/gobot-0.5/">Gobot 0.5 is out!</a></li>
+                <li><a href="/blog/2014/04/29/taking-the-stage-at-gophercon/">Taking The Stage At GopherCon</a></li>
                 <li><a href="/blog/2014/04/10/national-robotics-week-at-boston-golang/">National Robotics Week at Boston Golang</a></li>
                 <li><a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a></li>
               </ul>

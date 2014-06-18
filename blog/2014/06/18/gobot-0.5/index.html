@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="description">
+<meta content="Adrian Zankich" name="author">
+<title>Gobot 0.5 is out!</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+
+  _gaq.push(['_setAccount', "UA-46433484-3"]);
+
+
+
+
+
+
+
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head>
+<body>
+    
+    <div class="app">
+      <div class="w">
+        <header class="app-header" role="banner"><div class="display">
+            <h1 class="app-logo">
+              <a href="/">Gobot</a>
+            </h1>
+            <span class="subtitle">
+              <div class="main"></div>
+            </span>
+          </div>
+          <span class="menu">
+            <a href="/documentation" class="item">Docs</a>
+            <a href="/documentation/platforms" class="item">Platforms</a>
+            
+            <a href="/blog" class="item">Blog</a>
+            <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
+          </span>
+        </header>
+</div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Blog</h1>
+        </div>
+      </div>
+      <div class="container">
+        
+        <div class="main blog" role="main">
+          <div class="articles">
+            <div class="article">
+              <header class="header"><div class="date">
+                  <div class="blue">
+                    <div class="month">
+                      Jun
+                    </div>
+                    <div class="day">
+                      18
+                    </div>
+                  </div>
+                  <div class="red">
+                    <div class="year">
+                      2014
+                    </div>
+                  </div>
+                </div>
+                <div class="data">
+                  <h3>
+                    <a href="/blog/2014/06/18/gobot-0.5/">Gobot 0.5 is out!</a>
+                  </h3>
+                  <div class="author">
+                    by Adrian Zankich
+                  </div>
+                </div>
+              </header><p>We're happy to announce the release of Gobot 0.5! This release is the culmination of lessons learned at GopherCon and many weeks of hard work.</p>
+              
+              <p>Here's a overview of the changes, but if you want to see more check out the compare view on <a href="https://github.com/hybridgroup/gobot/compare/0.4...0.5">GitHub</a>.</p>
+              
+              <p>Changelog  </p>
+              
+              <ul>
+<li>
+                  <p><strong>Idomatic clean up</strong>: All files and tests have been refactored and ran through <code>golint</code>  </p>
+                </li>
+                <li>
+                  <p><strong>Removed reflections throughout packages</strong>: We used reflection in a few situations to retrieve elements from structs and execute functions. Those reflections have been removed in favor in better interface design   </p>
+                </li>
+                <li>
+                  <p><strong>All officially supported platforms are now in ./platforms</strong>: Instead of each platform being in a seperate repo, they are all now included in the main Gobot repo.   </p>
+                </li>
+                <li>
+                  <p><strong>API is now a new package ./api</strong>: The RESTful API is now in a seperate <code>api</code> package and must be explicitely imported for use in your Gobot program.  </p>
+                </li>
+                <li>
+                  <p><strong>All platforms examples are in ./examples</strong>: All examples has now been moved into a shared <code>examples</code> folder.   </p>
+                </li>
+                <li>
+                  <p><strong>Replaced martini with net/http</strong>: We no longer use Martini as our API server, and now use the standard net/http package with <a href="https://github.com/bmizerany/pat">pat</a> as our pattern muxer.   </p>
+                </li>
+                <li>
+                  <p><strong>Replaced ginkgo/gomega with system testing package</strong>: We now use the system <code>testing</code> package for testing  </p>
+                </li>
+                <li>
+                  <p><strong>Refactor gobot/robot/device commands</strong>: User defined API commands have been completely refactored and now have an easier definition. You may now attach a command to your robot like <a href="https://github.com/hybridgroup/gobot/blob/master/examples/hello_api.go#L18-L20">this</a>  </p>
+                </li>
+                <li>
+                  <p><strong>Added Event type</strong>: Added a new type for registering and responding to device events  </p>
+                </li>
+                <li>
+                  <p><strong>Replaced Master type with Gobot type</strong>: The <code>Master</code> type is now known as <code>Gobot</code>  </p>
+                </li>
+                <li>
+                  <p><strong><code>Every</code> and <code>After</code> now accept <code>time.Duration</code></strong>  </p>
+                </li>
+                <li>
+                  <p><strong>Removed reflection helper methods</strong>: We had a few helper methods for retrieveing fields from structs and executing functions on structs. Those have been removed.  </p>
+                </li>
+                <li>
+                  <p><strong>And many more small changes throughout the system</strong>  </p>
+                </li>
+              </ul>
+<h2 id="contributors">Contributors</h2>
+              
+              <p>A huge thanks to our contributors who made this release possible. And a special thanks to <a href="https://github.com/mattetti">Matt Aimonettit</a> and <a href="https://github.com/codegangsta">Jeremy Saenz</a>!  </p>
+              
+              <h2 id="documentation">Documentation</h2>
+              
+              <p>We're constantly updating the Gobot docs to keep them up-to-date. You can find the latest info on the <a href="http://gobot.io/documentation/">docs page</a>.  </p>
+              
+              <h2 id="issues">Issues</h2>
+              
+              <p>If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a <a href="https://github.com/hybridgroup/gobot/issues">GitHub issue</a> and we'll get back to you as soon as possible.</p>
+            </div>
+          </div>
+          <div class="side-column">
+            <div class="categories">
+              <h4>Tags</h4>
+              <ul>
+<li><a href="/blog/tags/robots/">Robots</a></li>
+                <li><a href="/blog/tags/events/">Events</a></li>
+              </ul>
+</div>
+            <div class="network">
+              <h4>Network</h4>
+              <div class="network-links">
+                <a href="https://twitter.com/gobotio"><img src="/images/elements/twitter.png"></a>
+                <a href="https://github.com/hybridgroup/gobot"><img src="/images/elements/github.png"></a>
+              </div>
+            </div>
+            <div class="titles">
+              <h4>Posts</h4>
+              <ul>
+<li><a href="/blog/2014/06/18/gobot-0.5/">Gobot 0.5 is out!</a></li>
+                <li><a href="/blog/2014/04/29/taking-the-stage-at-gophercon/">Taking The Stage At GopherCon</a></li>
+                <li><a href="/blog/2014/04/10/national-robotics-week-at-boston-golang/">National Robotics Week at Boston Golang</a></li>
+                <li><a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a></li>
+              </ul>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="w">
+        <div class="copyright">
+          <div class="left-side">
+            © Copyright 2012-2014
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">Top</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
