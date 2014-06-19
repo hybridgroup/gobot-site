@@ -12,31 +12,36 @@ active_menu_docs: true
     $("#guides-panel").addClass("active-panel");
     $("#guides-panel ul li:nth-child(2)").addClass("active-link");
     $(".accordion-docs dt:nth-child(5) a:nth-child(2) img").addClass("rotate");
-    
+
 .api
   %h1 API
   %h2  How To Connect
   %p Now you're ready to write code that will let you access your robots on a Gobot API server.
   %p Gobot includes a RESTful API to query the status of any robot running within a group, including the connection and device status, and execute device commands.
-  %p 
+  %p
     :markdown
       To activate the API, use the `Api` command like this:
 
           :::bash
-          master := gobot.GobotMaster()
-          gobot.Api(master)
+          master := gobot.NewGobot()
+          api.NewAPI(master).Start()
 
-      To specify the api port run your Gobot program with the `PORT` environment variable
+      You can also specify the api host and port, and turn on authentication:
 
           :::bash
-          $ PORT=8080 go run gobotProgram.go
-  
-  %p 
-    In order to use the 
-    = link_to "robeaux", "https://github.com/hybridgroup/robeaux", target: "_blank" 
-    AngularJS interface with Gobot you simply clone the robeaux repo and place it in the directory of your Gobot program. 
-  %p 
-    :markdown 
+          master := gobot.NewGobot()
+          server := api.NewAPI(master)
+          server.Port = "4000"
+          server.Username = "Gort"
+          server.Password = "klaatu"
+          server.Start()
+
+  %p
+    In order to use the
+    = link_to "robeaux", "https://github.com/hybridgroup/robeaux", target: "_blank"
+    AngularJS interface with Gobot you simply clone the robeaux repo and place it in the directory of your Gobot program.
+  %p
+    :markdown
       The robeaux assets must be in a folder called `robeaux`.
 
 
@@ -47,7 +52,7 @@ active_menu_docs: true
         :::go
         package main
 
-        import (  
+        import (
           "fmt"
           "github.com/hybridgroup/gobot"
         )
@@ -242,5 +247,3 @@ active_menu_docs: true
         {
           result: "successful"
         }
-
-    
