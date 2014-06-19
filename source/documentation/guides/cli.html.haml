@@ -18,7 +18,10 @@ active_menu_docs: true
   %h2 What is it?
   %p
     Gobot CLI is a powerful command line interface tool that provides several tools to make RobotOps and setting up your devices to work with gobot a lot easier.
-
+  %p
+    Gort
+    = link_to "(http://gort.io)","http://gort.io", target: :blank
+    is a Command Line Interface (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more.
   %h2 How to install
   %p For the commands to be available everywhere the gobot module needs to be installed globally.
 
@@ -26,12 +29,12 @@ active_menu_docs: true
 
   :markdown
         :::bash
-        go get -u github.com/hybridgroup/gobot/gobot
+        go get -u github.com/hybridgroup/gobot
 
-  %p 
+  %p
     If you need more help to install golang click
     = link_to "here.", "http://golang.org/doc/install", target: "_blank"
-  
+
 
   %h2 How can I use it?
   %p
@@ -41,11 +44,11 @@ active_menu_docs: true
   %h3 Printing a list of available commands
   :markdown
         :::bash
-        gobot - 
+        gobot
 
         Commands:
 
-            generate    Generates a Gobot library skeleton
+            generate    # Generate new Gobot skeleton project
 
         Use "gobot help <command>" for more information about a command.
 
@@ -67,5 +70,3 @@ active_menu_docs: true
         Creating /private/tmp/gobot-test/test_driver_test.go
         Creating /private/tmp/gobot-test/test_adaptor_test.go
         Creating /private/tmp/gobot-test/gobot-test_suite_test.go
-
-  
