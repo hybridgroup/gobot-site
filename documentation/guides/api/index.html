@@ -48,7 +48,7 @@
           <span class="menu">
             <a class="active" href="/documentation">Docs</a>
             <a href="/documentation/platforms" class="item">Platforms</a>
-            
+            <a href="/videos" class="item">Videos</a>
             <a href="/blog" class="item">Blog</a>
             <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
           </span>
@@ -74,13 +74,18 @@
                     </p>
 <p>To activate the API, use the <code>Api</code> command like this:</p>
                     
-                    <pre class="CodeRay">master := gobot.GobotMaster()
-gobot.Api(master)
+                    <pre class="CodeRay">master := gobot.NewGobot()
+api.NewAPI(master).Start()
 </pre>
                     
-                    <p>To specify the api port run your Gobot program with the <code>PORT</code> environment variable</p>
+                    <p>You can also specify the api host and port, and turn on authentication:</p>
                     
-                    <pre class="CodeRay">$ PORT=8080 go run gobotProgram.go
+                    <pre class="CodeRay">master := gobot.NewGobot()
+server := api.NewAPI(master)
+server.Port = "4000"
+server.Username = "Gort"
+server.Password = "klaatu"
+server.Start()
 </pre>
                   
                   <p>
@@ -96,7 +101,7 @@ gobot.Api(master)
                   <p>The following code example will spin up an API server:</p>
                   <pre class="CodeRay"><span class="keyword">package</span> main
 
-<span class="keyword">import</span> (  
+<span class="keyword">import</span> (
   <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
 )

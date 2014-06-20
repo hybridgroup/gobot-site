@@ -48,7 +48,7 @@
           <span class="menu">
             <a href="/documentation" class="item">Docs</a>
             <a href="/documentation/platforms" class="item">Platforms</a>
-            
+            <a href="/videos" class="item">Videos</a>
             <a href="/blog" class="item">Blog</a>
             <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
           </span>
@@ -87,9 +87,8 @@
           <section class="content"><div class="index-content">
               <h2>About</h2>
               <p>
-                Gobot is a framework and set of libraries in the
+                Gobot is a framework for robotics, physical computing, and the Internet of Things written in the
                 <a target="_blank" href="http://golang.org/">Go programming language</a>
-                for robotics, physical computing, and the Internet of Things.
               </p>
               <p>It provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
               <p>
@@ -109,42 +108,31 @@
             <p>Gobot makes commanding robots incredibly simple and fun.</p>
             <p>All you need to get started is install the library with :</p>
             <p><code>go get -u github.com/hybridgroup/gobot</code>.</p>
-            <p>
-              </p>
-<p>Then install additional libraries for whatever hardware support you want to use from your robot. For example, 
-              <code>go get -u github.com/hybridgroup/gobot-sphero</code> 
-              to use Gobot with a Sphero.</p>
-            
             <h2>Gobot with Sphero</h2>
             <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot-sphero</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
+  gbot := gobot.NewGobot()
 
-  spheroAdaptor := <span class="predefined">new</span>(gobotSphero.SpheroAdaptor)
-  spheroAdaptor.Name = <span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>
-  spheroAdaptor.Port = <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>
-
-  sphero := gobotSphero.NewSphero(spheroAdaptor)
-  sphero.Name = <span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>
+  adaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>)
+  ball := sphero.NewSpheroDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
 
   work := <span class="keyword">func</span>() {
-    gobot.Every(<span class="string"><span class="delimiter">"</span><span class="content">2s</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>() {
-      sphero.Roll(<span class="integer">100</span>, <span class="predefined-type">uint16</span>(gobot.Rand(<span class="integer">360</span>)))
+    gobot.Every(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
+      ball.Roll(<span class="integer">30</span>, <span class="predefined-type">uint16</span>(gobot.Rand(<span class="integer">360</span>)))
     })
   }
 
-  robot := gobot.Robot{
-    Connections: []gobot.Connection{spheroAdaptor},
-    Devices:     []gobot.Device{sphero},
-    Work:        work,
-  }
+  gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
+    gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, []gobot.Connection{adaptor}, []gobot.Device{ball}, work))
 
-  robot.Start()
+  gbot.Start()
 }
 </pre>
             <h2>Gobot with Arduino</h2>
@@ -152,33 +140,27 @@
 
 <span class="keyword">import</span> (
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot-firmata</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot-gpio</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
+  gbot := gobot.NewGobot()
 
-  firmata := <span class="predefined">new</span>(gobotFirmata.FirmataAdaptor)
-  firmata.Name = <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>
-  firmata.Port = <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>
-
-  led := gobotGPIO.NewLed(firmata)
-  led.Name = <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>
-  led.Pin = <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>
+  adaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">myFirmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+  led := gpio.NewLedDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">myLed</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
 
   work := <span class="keyword">func</span>() {
-    gobot.Every(<span class="string"><span class="delimiter">"</span><span class="content">1s</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>() {
+    gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
       led.Toggle()
     })
   }
 
-  robot := gobot.Robot{
-    Connections: []gobot.Connection{firmata},
-    Devices:     []gobot.Device{led},
-    Work:        work,
-  }
+  gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
+    gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">blink</span><span class="delimiter">"</span></span>, []gobot.Connection{adaptor}, []gobot.Device{led}, work))
 
-  robot.Start()
+  gbot.Start()
 }
 </pre>
             <h2 id="platforms">Platform Support</h2>
@@ -440,11 +422,20 @@ api.Password = <span class="string"><span class="delimiter">"</span><span class=
 </pre>
             <p>
               </p>
-<p>In order to use the 
-              <a href="https://github.com/hybridgroup/robeaux">robeaux</a> 
-              AngularJS interface with Gobot you simply clone the robeaux repo and place it in the directory of your Gobot program. The robeaux assets must be in a folder called 
+<p>In order to use the
+              <a href="https://github.com/hybridgroup/robeaux">robeaux</a>
+              AngularJS interface with Gobot you simply clone the robeaux repo and place it in the directory of your Gobot program. The robeaux assets must be in a folder called
               <code>robeaux</code>.</p>
             
+            <h2>CLI</h2>
+            <p>
+              Gort
+              <a target="blank" href="http://gort.io">(http://gort.io)</a>
+              is a Command Line Toolkit for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more. It works well with Gobot.
+            </p>
+            <p>
+              Gobot also includes a Command Line Interface (CLI) for generating new robots and adaptors.
+            </p>
             <h2>Be Part Of The Robot Evolution</h2>
             <ul>
 <li>Code on Github:   <a href="https://github.com/hybridgroup/gobot">https://github.com/hybridgroup/gobot</a>

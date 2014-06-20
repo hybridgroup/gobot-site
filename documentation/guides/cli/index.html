@@ -48,7 +48,7 @@
           <span class="menu">
             <a class="active" href="/documentation">Docs</a>
             <a href="/documentation/platforms" class="item">Platforms</a>
-            
+            <a href="/videos" class="item">Videos</a>
             <a href="/blog" class="item">Blog</a>
             <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
           </span>
@@ -71,10 +71,15 @@
                   <p>
                     Gobot CLI is a powerful command line interface tool that provides several tools to make RobotOps and setting up your devices to work with gobot a lot easier.
                   </p>
+                  <p>
+                    Gort
+                    <a target="blank" href="http://gort.io">(http://gort.io)</a>
+                    is a Command Line Interface (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more.
+                  </p>
                   <h2>How to install</h2>
                   <p>For the commands to be available everywhere the gobot module needs to be installed globally.</p>
                   <p>Here's how to do it.</p>
-                  <pre class="CodeRay">go get -u github.com/hybridgroup/gobot/gobot
+                  <pre class="CodeRay">go get -u github.com/hybridgroup/gobot
 </pre>
                   <p>
                     If you need more help to install golang click
@@ -86,11 +91,11 @@
 <p>The Gobot CLI tools are easy to use, designed to be intuitive, and offer contextual help regarding the commands you're using. Once you have the <code>gobot-cli</code> module installed globally, the toolkit will be available at all times. To find all available commands, just run <code>gobot help</code>.</p>
                   
                   <h3>Printing a list of available commands</h3>
-                  <pre class="CodeRay">gobot - 
+                  <pre class="CodeRay">gobot
 
 Commands:
 
-    generate    Generates a Gobot library skeleton
+    generate    # Generate new Gobot skeleton project
 
 Use "gobot help &lt;command&gt;" for more information about a command.
 </pre>
