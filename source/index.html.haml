@@ -21,9 +21,8 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
 
   %h2 About
   %p
-    Gobot is a framework and set of libraries in the
+    Gobot is a framework for robotics, physical computing, and the Internet of Things written in the
     =link_to "Go programming language", "http://golang.org/", target: "_blank"
-    for robotics, physical computing, and the Internet of Things.
 
   %p It provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.
 
@@ -34,11 +33,6 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
   %p
     Want to use JavaScript? Check out our sister project CylonJS
     = link_to "(http://cylonjs.com", "http://cylonjs.com", target: :blank
-
-  %p
-    Gort
-    = link_to "(http://gort.io)","http://gort.io", target: :blank
-    is a Command Line Interface (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more.
 
 .aside.right
   = current_page.data.img_character
@@ -333,6 +327,15 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
     [robeaux](https://github.com/hybridgroup/robeaux)
     AngularJS interface with Gobot you simply clone the robeaux repo and place it in the directory of your Gobot program. The robeaux assets must be in a folder called
     `robeaux`.
+
+%h2 CLI
+%p 
+  Gort
+  = link_to "(http://gort.io)","http://gort.io", target: :blank
+  is a Command Line Toolkit for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more. It works well with Gobot.
+
+%p 
+  Gobot also includes a Command Line Interface (CLI) for generating new robots and adaptors.
 
 %h2 Be Part Of The Robot Evolution
 :markdown
