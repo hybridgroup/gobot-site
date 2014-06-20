@@ -1,5 +1,9 @@
 ## Gobot Website
 
+This is the code for the website for Gobot (http://gobot.io) a framework for robotics, physical computing, and the Internet of Things written using the Go programming language (http://golang.org/)
+
+If you are looking for the actual Gobot code itself, it is at https://github.com/hybridgroup/gobot
+
 This site is build using [Middleman](http://middlemanapp.com/basics/getting-started/)  
 
 To run locally:  
@@ -11,7 +15,7 @@ To run locally:
 
 [middleman-gh-pages](https://github.com/neo/middleman-gh-pages) gem is being used to build the webpage and deploy to gh-pages branch.  
 
-For deploying the webpage, your must be in 'artoo.io' branch and run the following command:
+For deploying the webpage, your must be in 'master' branch and run the following command:
 
       rake publish
 
