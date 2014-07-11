@@ -6,8 +6,8 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta name="description">
-<meta content="Ron Evans" name="author">
-<title>Taking The Stage At GopherCon</title>
+<meta content="Adrian Zankich" name="author">
+<title>Gobot 0.6 is out!</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
 <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
@@ -67,10 +67,10 @@
               <header class="header"><div class="date">
                   <div class="blue">
                     <div class="month">
-                      Apr
+                      Jul
                     </div>
                     <div class="day">
-                      29
+                      11
                     </div>
                   </div>
                   <div class="red">
@@ -81,25 +81,67 @@
                 </div>
                 <div class="data">
                   <h3>
-                    <a href="/blog/2014/04/29/taking-the-stage-at-gophercon/">Taking The Stage At GopherCon</a>
+                    <a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a>
                   </h3>
                   <div class="author">
-                    by Ron Evans
+                    by Adrian Zankich
                   </div>
                 </div>
-              </header><p>We just left the amazing <a href="http://www.gophercon.com/">GopherCon</a> in Denver, the first conference dedicated to <a href="http://golang.org/">the Go programming language</a>. A remarkable array of speakers and attendees were present, including <a href="https://twitter.com/rob_pike">Rob Pike</a> and many members of the Golang core team.</p>
+              </header><p>Here's a overview of the changes, but if you want to see more check out the compare view on <a href="https://github.com/hybridgroup/gobot/compare/0.5.2...0.6">GitHub</a>.</p>
               
-              <p><img src="/images/blog/2014-04-29/gophercon-rob-pike-gobot.jpg" alt="" style="margin: 10px 0;"></p>
+              <p>Changelog  </p>
               
-              <p>It was a great honor for Team <a href="http://gobot.io">Gobot</a> to be invited to speak to such an illustrious crowd, and we worked hard to prepare some demos worthy of the event. When you do live coding of flying objects, there is of course, always some element of aerial risk. However, the talk went off without a hitch! We will post a link once the video is online.</p>
+              <ul>
+<li>
+<strong>api</strong>
+                  <ul>
+<li>
+<strong>Robeaux support</strong>: <a href="https://github.com/hybridgroup/robeaux">Robeaux</a> is now included with the <code>api</code> package thanks to <a href="https://github.com/jteeuwen/go-bindata">go-bindata</a>. For more information check out the <a href="https://github.com/hybridgroup/gobot#api">README</a>
+</li>
+                  </ul>
+</li>
+                <li>
+<strong>core</strong>
+                  <ul>
+<li>
+<strong>Refactor <code>Connection</code> and <code>Device</code></strong>:<br><ul>
+<li>Connections are now a collection of Adaptors</li>
+                        <li>Devices are now a collection of Drivers</li>
+                      </ul>
+</li>
+                    <li>
+<strong>events</strong>:
+                      <ul>
+<li>Add <code>Event(string)</code> function instead of <code>Events[string]</code> for retrieving Driver event</li>
+                        <li>Add <code>AddEvent(string)</code> function to register an event on a Driver</li>
+                      </ul>
+</li>
+                  </ul>
+</li>
+                <li>
+<strong>firmata</strong>
+                  <ul>
+<li>Fix slice bounds out of range error</li>
+                  </ul>
+</li>
+                <li>
+<strong>sphero</strong>
+                  <ul>
+<li>Fix issue where the driver would not halt correctly on OSX</li>
+                  </ul>
+</li>
+              </ul>
+<h2 id="contributors">Contributors</h2>
               
-              <p>One new demo we've added, is running Gobot on the <a href="http://ardrone2.parrot.com/">ARDrone</a>'s own internal board in parallel to their firmware, while controlling it using a different Gobot running on a separate computer controlling the drone. How meta!</p>
+              <p>A huge thanks to our contributors who made this release possible.   </p>
               
-              <p>The next day was the open hack day, and we brought lots of <a href="http://www.gosphero.com">Sphero</a> robots to play with. It was especially fun and exciting to pair up with the master himself. When Rob Pike sat down to play, and to help us improve our code, we were giddy to say the least. Thanks, Rob!</p>
+              <h2 id="documentation">Documentation</h2>
               
-              <p>Thank you to the conference organizers, staff, the other presenters, and especially the attendees for making it a great experience. We really enjoyed showing our robotics road show to so many of the best and brightest in the Golang community. </p>
+              <p>We're constantly updating the Gobot docs to keep them up-to-date. You can find the latest info on the <a href="http://gobot.io/documentation/">docs page</a>.  </p>
               
-              <p>Please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a> to keep up to date on the latest news and information, as the community continues to work together on Golang powered robotics using Gobot.</p>
+              <h2 id="issues">Issues</h2>
+              
+              <p>If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a <a href="https://github.com/hybridgroup/gobot/issues">GitHub issue</a> and we'll get back to you as soon as possible.</p>
             </div>
           </div>
           <div class="side-column">
