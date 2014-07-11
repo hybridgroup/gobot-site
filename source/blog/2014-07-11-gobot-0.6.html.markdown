@@ -1,0 +1,38 @@
+---
+page_title_show: true
+title: Gobot 0.6 is out!
+page_title: Blog
+date: 2014-07-11
+tags: releases
+author: Adrian Zankich
+---
+
+Here's a overview of the changes, but if you want to see more check out the compare view on [GitHub](https://github.com/hybridgroup/gobot/compare/0.5.2...0.6).
+
+Changelog  
+
+* **api**
+  * **Robeaux support**: [Robeaux](https://github.com/hybridgroup/robeaux) is now included with the `api` package thanks to [go-bindata](https://github.com/jteeuwen/go-bindata). For more information check out the [README](https://github.com/hybridgroup/gobot#api)
+* **core**
+  * **Refactor `Connection` and `Device`**:  
+    - Connections are now a collection of Adaptors
+    - Devices are now a collection of Drivers
+  * **events**:
+    - Add `Event(string)` function instead of `Events[string]` for retrieving Driver event
+    - Add `AddEvent(string)` function to register an event on a Driver
+* **firmata**
+  - Fix slice bounds out of range error
+* **sphero**
+  - Fix issue where the driver would not halt correctly on OSX
+
+## Contributors  
+
+A huge thanks to our contributors who made this release possible.   
+
+## Documentation
+
+We're constantly updating the Gobot docs to keep them up-to-date. You can find the latest info on the [docs page](http://gobot.io/documentation/).  
+
+## Issues
+
+If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a [GitHub issue](https://github.com/hybridgroup/gobot/issues) and we'll get back to you as soon as possible.
