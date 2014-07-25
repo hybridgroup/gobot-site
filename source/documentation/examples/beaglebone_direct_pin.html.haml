@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - beaglebone_led_brightness"
-page_title: "Example: beaglebone_led_brightness"
+title: "Gobot Example - beaglebone_direct_pin"
+page_title: "Example: beaglebone_direct_pin"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -23,23 +23,22 @@ active_menu_docs: true
 
         func main() {
         	gbot := gobot.NewGobot()
+
         	beagleboneAdaptor := beaglebone.NewBeagleboneAdaptor("beaglebone")
-        	led := gpio.NewLedDriver(beagleboneAdaptor, "led", "P9_14")
+        	led := gpio.NewDirectPinDriver(beagleboneAdaptor, "led", "P8_10")
+        	button := gpio.NewDirectPinDriver(beagleboneAdaptor, "button", "P8_9")
 
         	work := func() {
-        		brightness := uint8(0)
-        		fadeAmount := uint8(5)
-
-        		gobot.Every(100*time.Millisecond, func() {
-        			led.Brightness(brightness)
-        			brightness = brightness + fadeAmount
-        			if brightness == 0 || brightness == 255 {
-        				fadeAmount = -fadeAmount
+        		gobot.Every(500*time.Millisecond, func() {
+        			if button.DigitalRead() == 1 {
+        				led.DigitalWrite(1)
+        			} else {
+        				led.DigitalWrite(0)
         			}
         		})
         	}
 
-        	robot := gobot.NewRobot("pwmBot",
+        	robot := gobot.NewRobot("pinBot",
         		[]gobot.Connection{beagleboneAdaptor},
         		[]gobot.Device{led},
         		work,
