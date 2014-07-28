@@ -54,31 +54,37 @@ ardrone_platform: true
   :markdown
         :::go
         package main
-        
+
         import (
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/ardrone"
-            "time"
+          "time"
+
+          "github.com/hybridgroup/gobot"
+          "github.com/hybridgroup/gobot/platforms/ardrone"
         )
 
         func main() {
-            gbot := gobot.NewGobot()
-            adaptor := ardrone.NewArdroneAdaptor("Drone")
-            drone := ardrone.NewArdroneDriver(adaptor, "Drone")
+          gbot := gobot.NewGobot()
 
-            work := func() {
-                drone.TakeOff()
-                gobot.On(drone.Events["Flying"], func(data interface{}) {
-                    gobot.After(3*time.Second, func() {
-                        drone.Land()
-                    })
-                })
-            }
+          ardroneAdaptor := ardrone.NewArdroneAdaptor("Drone")
+          drone := ardrone.NewArdroneDriver(ardroneAdaptor, "Drone")
 
-            gbot.Robots = append(gbot.Robots,
-                gobot.NewRobot("drone", []gobot.Connection{adaptor}, []gobot.Device{drone}, work))
+          work := func() {
+            drone.TakeOff()
+            gobot.On(drone.Event("flying"), func(data interface{}) {
+              gobot.After(3*time.Second, func() {
+                drone.Land()
+              })
+            })
+          }
 
-            gbot.Start()
+          robot := gobot.NewRobot("drone",
+            []gobot.Connection{ardroneAdaptor},
+            []gobot.Device{drone},
+            work,
+          )
+          gbot.AddRobot(robot)
+
+          gbot.Start()
         }
 
 %section.public-methods
