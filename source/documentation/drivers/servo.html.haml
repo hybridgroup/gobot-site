@@ -32,7 +32,7 @@ digispark_platform: true
   %h2 How To Connect
   :markdown
     Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/gpio`
-  %h3 For Firmata:
+  %h3 For Arduino:
   :markdown
         :::go
         package main
@@ -63,14 +63,16 @@ digispark_platform: true
 
         import (
           "fmt"
+          "time"
+
           "github.com/hybridgroup/gobot"
           "github.com/hybridgroup/gobot/platforms/firmata"
           "github.com/hybridgroup/gobot/platforms/gpio"
-          "time"
         )
 
         func main() {
           gbot := gobot.NewGobot()
+
           firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
           servo := gpio.NewServoDriver(firmataAdaptor, "servo", "3")
 
@@ -82,9 +84,13 @@ digispark_platform: true
             })
           }
 
-          gbot.Robots = append(gbot.Robots,
-            gobot.NewRobot("servoBot", []gobot.Connection{firmataAdaptor}, []gobot.Device{servo}, work))
+          robot := gobot.NewRobot("servoBot",
+            []gobot.Connection{firmataAdaptor},
+            []gobot.Device{servo},
+            work,
+          )
 
+          gbot.AddRobot(robot)
           gbot.Start()
         }
   

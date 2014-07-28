@@ -16,12 +16,13 @@ active_menu_docs: true
         import (
         	"encoding/json"
         	"fmt"
-        	"github.com/hybridgroup/gobot"
-        	"github.com/hybridgroup/gobot/platforms/firmata"
-        	"github.com/hybridgroup/gobot/platforms/gpio"
         	"io/ioutil"
         	"net/http"
         	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/firmata"
+        	"github.com/hybridgroup/gobot/platforms/gpio"
         )
 
         type TravisResponse struct {
@@ -39,10 +40,14 @@ active_menu_docs: true
         	LastBuildFinishedAt string `json:"last_build_finished_at"`
         }
 
+        func turnOn(robot *gobot.Robot, device string) {
+        	robot.Device(device).(*gpio.LedDriver).On()
+        }
+
         func resetLeds(robot *gobot.Robot) {
-        	gobot.Call(robot.Device("red").Driver, "Off")
-        	gobot.Call(robot.Device("green").Driver, "Off")
-        	gobot.Call(robot.Device("blue").Driver, "Off")
+        	robot.Device("red").(*gpio.LedDriver).Off()
+        	robot.Device("green").(*gpio.LedDriver).Off()
+        	robot.Device("blue").(*gpio.LedDriver).Off()
         }
 
         func checkTravis(robot *gobot.Robot) {
@@ -51,7 +56,7 @@ active_menu_docs: true
         	name := "gobot"
         	//name := "broken-arrow"
         	fmt.Printf("Checking repo %s/%s\n", user, name)
-        	gobot.Call(robot.Device("blue").Driver, "On")
+        	turnOn(robot, "blue")
         	resp, err := http.Get(fmt.Sprintf("https://api.travis-ci.org/repos/%s/%s.json", user, name))
         	defer resp.Body.Close()
         	if err != nil {
@@ -65,29 +70,35 @@ active_menu_docs: true
         	json.Unmarshal(body, &travis)
         	resetLeds(robot)
         	if travis.LastBuildStatus == 0 {
-        		gobot.Call(robot.Device("green").Driver, "On")
+        		turnOn(robot, "green")
         	} else {
-        		gobot.Call(robot.Device("red").Driver, "On")
+        		turnOn(robot, "red")
         	}
         }
 
         func main() {
-        	master := gobot.NewGobot()
+        	gbot := gobot.NewGobot()
+
         	firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
         	red := gpio.NewLedDriver(firmataAdaptor, "red", "7")
         	green := gpio.NewLedDriver(firmataAdaptor, "green", "6")
         	blue := gpio.NewLedDriver(firmataAdaptor, "blue", "5")
 
         	work := func() {
-        		checkTravis(master.Robot("travis"))
+        		checkTravis(gbot.Robot("travis"))
         		gobot.Every(10*time.Second, func() {
-        			checkTravis(master.Robot("travis"))
+        			checkTravis(gbot.Robot("travis"))
         		})
         	}
 
-        	master.Robots = append(master.Robots,
-        		gobot.NewRobot("travis", []gobot.Connection{firmataAdaptor}, []gobot.Device{red, green, blue}, work))
+        	robot := gobot.NewRobot("travis",
+        		[]gobot.Connection{firmataAdaptor},
+        		[]gobot.Device{red, green, blue},
+        		work,
+        	)
 
-        	master.Start()
+        	gbot.AddRobot(robot)
+
+        	gbot.Start()
         }
 

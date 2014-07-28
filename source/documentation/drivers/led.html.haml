@@ -2,7 +2,7 @@
 title: Gobot - LED Driver
 author: The Hybrid Group
 page_title: Drivers
-page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
 page_title_docs: LED
 page_subtitle_docs: Driver
 page_title_show: true
@@ -33,7 +33,7 @@ spark_platform: true
   %h2 How To Connect
   :markdown
     Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/gpio`
-  %h3 For Firmata:
+  %h3 For Arduino:
   :markdown
         :::go
         package main
@@ -61,24 +61,34 @@ spark_platform: true
         package main
 
         import (
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-          "time"
+            "time"
+
+            "github.com/hybridgroup/gobot"
+            "github.com/hybridgroup/gobot/platforms/firmata"
+            "github.com/hybridgroup/gobot/platforms/gpio"
         )
 
         func main() {
-          gbot := gobot.NewGobot()
-          firmataAdaptor := firmata.NewFirmataAdaptor("myFirmata", "/dev/ttyACM0")
-          led := gpio.NewLedDriver(firmataAdaptor, "myLed", "13")
-          work := func() {
-            gobot.Every(1*time.Second, func() {
-              led.Toggle()
-            })
-          }
-          gbot.Robots = append(gbot.Robots,
-            gobot.NewRobot("blinkBot", []gobot.Connection{firmataAdaptor}, []gobot.Device{led}, work))
-          gbot.Start()
+            gbot := gobot.NewGobot()
+
+            firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
+            led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
+
+            work := func() {
+                gobot.Every(1*time.Second, func() {
+                    led.Toggle()
+                })
+            }
+
+            robot := gobot.NewRobot("bot",
+                []gobot.Connection{firmataAdaptor},
+                []gobot.Device{led},
+                work,
+            )
+
+            gbot.AddRobot(robot)
+
+            gbot.Start()
         }
 
 %section.public-methods
