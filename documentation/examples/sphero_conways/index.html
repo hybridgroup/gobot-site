@@ -70,9 +70,10 @@
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">type</span> conway <span class="keyword">struct</span> {
@@ -83,7 +84,7 @@
 }
 
 <span class="keyword">func</span> main() {
-        master := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
         spheros := []<span class="predefined-type">string</span>{
                 <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>,
@@ -91,19 +92,18 @@
                 <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm2</span><span class="delimiter">"</span></span>,
         }
 
-        <span class="keyword">for</span> s := <span class="keyword">range</span> spheros {
-                spheroAdaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>, spheros[s])
+        <span class="keyword">for</span> _, port := <span class="keyword">range</span> spheros {
+                spheroAdaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>, port)
 
-                cell := sphero.NewSpheroDriver(spheroAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>+spheros[s])
+                cell := sphero.NewSpheroDriver(spheroAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>+port)
 
                 work := <span class="keyword">func</span>() {
-
                         conway := <span class="predefined">new</span>(conway)
                         conway.cell = cell
 
                         conway.birth()
 
-                        gobot.On(cell.Events[<span class="string"><span class="delimiter">"</span><span class="content">Collision</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        gobot.On(cell.Event(<span class="string"><span class="delimiter">"</span><span class="content">collision</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                                 conway.contact()
                         })
 
@@ -120,11 +120,15 @@
                         })
                 }
 
-                master.Robots = <span class="predefined">append</span>(master.Robots,
-                        gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">conway</span><span class="delimiter">"</span></span>, []gobot.Connection{spheroAdaptor}, []gobot.Device{cell}, work))
+                robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">conway</span><span class="delimiter">"</span></span>,
+                        []gobot.Connection{spheroAdaptor},
+                        []gobot.Device{cell},
+                        work,
+                )
+                gbot.AddRobot(robot)
         }
 
-        master.Start()
+        gbot.Start()
 }
 
 <span class="keyword">func</span> (c *conway) resetContacts() {

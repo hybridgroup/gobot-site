@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta name="description">
+<meta content="A Gobot code example" name="description">
 <meta content="The Hybrid Group" name="author">
-<title>Raspberry Pi with Artroo</title>
+<title>Gobot Example - beaglebone_direct_pin</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><script src="/hybridpages/assets/javascript/subnav.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
 <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
 <script type="text/javascript">
 
@@ -46,8 +46,8 @@
             </span>
           </div>
           <span class="menu">
-            <a href="/documentation" class="item">Docs</a>
-            <a class="active" href="/documentation/platforms">Platforms</a>
+            <a class="active" href="/documentation">Docs</a>
+            <a href="/documentation/platforms" class="item">Platforms</a>
             <a href="/videos" class="item">Videos</a>
             <a href="/blog" class="item">Blog</a>
             <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
@@ -56,93 +56,56 @@
 </div>
       <div class="page-title">
         <div class="w">
-          <h1 class="title">Platforms</h1>
-          <h2 class="subtitle">Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.</h2>
+          <h1 class="title">Example: beaglebone_direct_pin</h1>
+          <h2 class="subtitle"><a href="https://github.com/hybridgroup/gobot/tree/master/examples" target="_blank">View In Repo</a></h2>
         </div>
       </div>
       <div class="container">
         <div class="main" role="main">
           <section class="content full"><div class="documentation">
               <div class="container-documentation">
-                <div class="page-title-docs">
-                  <div class="w">
-                    <h1 class="title">Raspberry Pi</h1>
-                    <h2 class="subtitle">
-<a href="https://github.com/hybridgroup/gobot-raspi" class="repository">Repository</a> <a class href="https://github.com/hybridgroup/gobot-raspi/issues">Issues</a>
-</h2>
-                  </div>
+                
+                <div class="example">
+                  <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/beaglebone</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        gbot := gobot.NewGobot()
+
+        beagleboneAdaptor := beaglebone.NewBeagleboneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span>)
+        led := gpio.NewDirectPinDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">P8_10</span><span class="delimiter">"</span></span>)
+        button := gpio.NewDirectPinDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">P8_9</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                gobot.Every(<span class="integer">500</span>*time.Millisecond, <span class="keyword">func</span>() {
+                        <span class="keyword">if</span> button.DigitalRead() == <span class="integer">1</span> {
+                                led.DigitalWrite(<span class="integer">1</span>)
+                        } <span class="keyword">else</span> {
+                                led.DigitalWrite(<span class="integer">0</span>)
+                        }
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">pinBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{beagleboneAdaptor},
+                []gobot.Device{led},
+                work,
+        )
+
+        gbot.AddRobot(robot)
+
+        gbot.Start()
+}
+</pre>
                 </div>
-                <section class="intro"><img class="display" src="/images/devices/raspi.jpg"><div class="info-intro">
-                    <p>The Raspberry Pi is an inexpensive and popular ARM based single board computer with digital &amp; PWM GPIO, and i2c interfaces built in.</p>
-                    <p>
-                      For more info about the Raspberry Pi platform go to
-                      <a target="blank" href="http://www.raspberrypi.org/">http://www.raspberrypi.org/</a>.
-                    </p>
-                  </div>
-                  <div class="clear"></div>
-                </section><section class="how-to"><h2>How to install</h2>
-                  <p>If you do not have ruby installed, you'll need to do that first.</p>
-                  <p>
-                    Then install the gobot-raspi gem:
-                  </p>
-                  <pre class="CodeRay">sudo gem install gobot-raspi
-</pre>
-                  <h2>How to use</h2>
-                  <p>
-                    This small program causes an LED to blink.
-                  </p>
-                  <pre class="CodeRay">require <span class="char">'g</span>obot<span class="char">'</span>
-
-connection :raspi, :adaptor =&gt; :raspi
-device :led, :driver =&gt; :led, :pin =&gt; <span class="integer">11</span>
-
-work do
-  every <span class="float">1.</span>second do
-    led.toggle
-  end
-end
-</pre>
-                  <p>To run the examples, requires sudo access on the Raspberry Pi:</p>
-                  <pre class="CodeRay">sudo ruby examples/raspi_led.rb
-</pre>
-                  <h2>How to connect</h2>
-                  <h3>Connecting to Raspberry Pi GPIO</h3>
-                  <p>
-                    This gem only works on a real Raspberry Pi. Do not bother trying on any other kind of
-                    computer it will not work. Also note you will need to connect actual circuits to the Raspberry Pi's
-                    GPIO pins.
-                  </p>
-                  <h3>Enabling the Raspberry Pi i2c on raspbian</h3>
-                  <p>You must add these two entries in your /etc/modules</p>
-                  <pre class="CodeRay">i2c-bcm2708
-i2c-dev
-</pre>
-                  <p>You must also ensure that these entries are commented in your /etc/modprobe.d/raspi-blacklist.conf</p>
-                  <pre class="CodeRay">#blacklist spi-bcm2708
-#blacklist i2c-bcm2708
-</pre>
-                  <p>Now restart your raspberry pi.</p>
-                  <h3>Enabling PWM output on GPIO pins.</h3>
-                  <p>
-                    You need to install and have pi-blaster running in the raspberry-pi, you can follow
-                    the instructions for pi-blaster install on our repo here:
-                  </p>
-                  <a href="https://github.com/hybridgroup/pi-blaster">https://github.com/hybridgroup/pi-blaster</a>
-                </section><section class="drivers"><h2>Drivers</h2>
-                  <p>All gobot digital and PWM GPIO, and i2c drivers listed below should work with the Raspberry Pi:</p>
-                  <div class="hardware">
-                    <h2>GPIO Drivers</h2>
-                    <div class="devices">
-                      <!-- / TODO: Update drivers list at the top of the page. -->
-                      
-                    </div>
-                    <h2>i2c Drivers</h2>
-                    <div class="devices">
-                      
-                    </div>
-                  </div>
-                </section>
-</div>
+              </div>
               <div class="side-documentation">
                 <div class="mobile-menu">
                   <a href="#" id="menu-docs">

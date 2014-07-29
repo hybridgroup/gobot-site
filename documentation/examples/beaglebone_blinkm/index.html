@@ -70,10 +70,11 @@
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/beaglebone</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/i2c</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
@@ -91,8 +92,14 @@
                 })
         }
 
-        gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">blinkmBot</span><span class="delimiter">"</span></span>, []gobot.Connection{beagleboneAdaptor}, []gobot.Device{blinkm}, work))
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">blinkmBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{beagleboneAdaptor},
+                []gobot.Device{blinkm},
+                work,
+        )
+
+        gbot.AddRobot(robot)
+
         gbot.Start()
 }
 </pre>

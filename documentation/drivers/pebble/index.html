@@ -102,81 +102,102 @@
 ...
 </pre>
                 </section><section class="how-to" id="HowToUse"><h2>How to Use</h2>
+                  <h3>Example receiving button events from a Pebble smart watch.</h3>
                   <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
   <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/api</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/pebble</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-  master := gobot.NewGobot()
-  api.NewAPI(master).Start()
+  gbot := gobot.NewGobot()
+  api.NewAPI(gbot).Start()
 
   pebbleAdaptor := pebble.NewPebbleAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>)
   pebbleDriver := pebble.NewPebbleDriver(pebbleAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>)
 
   work := <span class="keyword">func</span>() {
     pebbleDriver.SendNotification(<span class="string"><span class="delimiter">"</span><span class="content">Hello Pebble!</span><span class="delimiter">"</span></span>)
-    gobot.On(pebbleDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+    gobot.On(pebbleDriver.Event(<span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
       fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Button pushed: </span><span class="delimiter">"</span></span> + data.(<span class="predefined-type">string</span>))
     })
 
-    gobot.On(pebbleDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">tap</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+    gobot.On(pebbleDriver.Event(<span class="string"><span class="delimiter">"</span><span class="content">tap</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
       fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Tap event detected</span><span class="delimiter">"</span></span>)
     })
   }
 
-  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>, []gobot.Connection{pebbleAdaptor}, []gobot.Device{pebbleDriver}, work)
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{pebbleAdaptor},
+    []gobot.Device{pebbleDriver},
+    work,
+  )
 
-  master.Robots = <span class="predefined">append</span>(master.Robots, robot)
-  master.Start()
+  gbot.AddRobot(robot)
+
+  gbot.Start()
 }
 </pre>
                 </section><section class="public-methods"><div class="commands-api" id="Commands">
-                    <h1>Functions</h1>
-                    <p>no commands</p>
+                    <h1 id="functions">Functions</h1>
+                    
+                    <h2 id="publisheventname-string-data-string">PublishEvent(name string, data string)</h2>
+                    
+                    <p>It publishes an event.</p>
+                    
+                    <h4 id="params">Params</h4>
+                    
+                    <ul>
+<li>
+<strong>name</strong> - <strong>string</strong> - event name</li>
+                      <li>
+<strong>data</strong> - <strong>string</strong> - value</li>
+                    </ul>
+<h4 id="api-command">API Command</h4>
+                    
+                    <p><strong>PublishEventC</strong></p>
+                    
+                    <h2 id="pendingmessage">PendingMessage()</h2>
+                    
+                    <p>It returns messages to be sent as notifications to pebble (Not recommended to be used directly)</p>
+                    
+                    <h4 id="api-command-1">API Command</h4>
+                    
+                    <p><strong>PendingMessageC</strong></p>
+                    
+                    <h2 id="sendnotificationmessage-string">SendNotification(message string)</h2>
+                    
+                    <p>Sends notification to watch.</p>
+                    
+                    <h4 id="params-1">Params</h4>
+                    
+                    <ul>
+<li>
+<strong>message</strong> - <strong>string</strong> - notification text</li>
+                    </ul>
+<h4 id="api-command-2">API Command</h4>
+                    
+                    <p><strong>SendNotification</strong></p>
                   </div>
                   <div class="commands-api" id="Events">
+                    <h1 id="events">Events</h1>
                     
+                    <h2 id="button">button</h2>
+                    
+                    <p>Sent when a pebble button is pressed.</p>
+                    
+                    <h2 id="accel">accel</h2>
+                    
+                    <p>Pebble watch acceleromenter data.</p>
+                    
+                    <h2 id="tap">tap</h2>
+                    
+                    <p>When a pebble watch tap event is detected.</p>
                   </div>
-                </section><section class="how-to" id="HowToUse"><h2>How to use</h2>
-                  <h3>Example receiving button events from a Pebble smart watch.</h3>
-                  <pre class="CodeRay"><span class="keyword">package</span> main
-
-<span class="keyword">import</span> (
-    <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/api</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/pebble</span><span class="delimiter">"</span></span>
-)
-
-<span class="keyword">func</span> main() {
-    master := gobot.NewGobot()
-    api.NewAPI(master).Start()
-
-    pebbleAdaptor := pebble.NewPebbleAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>)
-    pebbleDriver := pebble.NewPebbleDriver(pebbleAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>)
-
-    work := <span class="keyword">func</span>() {
-        pebbleDriver.SendNotification(<span class="string"><span class="delimiter">"</span><span class="content">Hello Pebble!</span><span class="delimiter">"</span></span>)
-        gobot.On(pebbleDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Button pushed: </span><span class="delimiter">"</span></span> + data.(<span class="predefined-type">string</span>))
-        })
-
-        gobot.On(pebbleDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">tap</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Tap event detected</span><span class="delimiter">"</span></span>)
-        })
-    }
-
-    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>, []gobot.Connection{pebbleAdaptor}, []gobot.Device{pebbleDriver}, work)
-
-    master.Robots = <span class="predefined">append</span>(master.Robots, robot)
-    master.Start()
-}
-</pre>
                 </section><section class="compatability hardware"><h2>Works with:</h2>
                   <div class="devices">
                     <!-- // Pebble -->

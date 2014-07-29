@@ -113,27 +113,34 @@ $ ssh -t root@192.168.7.2 "./beaglebone_blink"
                   <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/beaglebone</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/beaglebone</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
+    gbot := gobot.NewGobot()
 
-        adaptor := beaglebone.NewBeagleboneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span>)
-        led := gpio.NewLedDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">P9_12</span><span class="delimiter">"</span></span>)
+    beagleboneAdaptor := beaglebone.NewBeagleboneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span>)
+    led := gpio.NewLedDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">P9_12</span><span class="delimiter">"</span></span>)
 
-        work := <span class="keyword">func</span>() {
-                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
-                        led.Toggle()
-                })
-        }
+    work := <span class="keyword">func</span>() {
+        gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+            led.Toggle()
+        })
+    }
 
-        gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">blinkBot</span><span class="delimiter">"</span></span>, []gobot.Connection{adaptor}, []gobot.Device{led}, work))
-        gbot.Start()
+    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">blinkBot</span><span class="delimiter">"</span></span>,
+        []gobot.Connection{beagleboneAdaptor},
+        []gobot.Device{led},
+        work,
+    )
+
+    gbot.AddRobot(robot)
+
+    gbot.Start()
 }
 </pre>
                 </section><section class="drivers" id="Drivers"><h2>Drivers</h2>

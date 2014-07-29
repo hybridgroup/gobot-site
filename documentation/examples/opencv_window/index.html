@@ -81,13 +81,17 @@
         camera := opencv.NewCameraDriver(<span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>, <span class="integer">0</span>)
 
         work := <span class="keyword">func</span>() {
-                gobot.On(camera.Events[<span class="string"><span class="delimiter">"</span><span class="content">Frame</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(camera.Event(<span class="string"><span class="delimiter">"</span><span class="content">frame</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         window.ShowImage(data.(*cv.IplImage))
                 })
         }
 
-        gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">cameraBot</span><span class="delimiter">"</span></span>, []gobot.Connection{}, []gobot.Device{window, camera}, work))
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">cameraBot</span><span class="delimiter">"</span></span>,
+                []gobot.Device{window, camera},
+                work,
+        )
+
+        gbot.AddRobot(robot)
 
         gbot.Start()
 }

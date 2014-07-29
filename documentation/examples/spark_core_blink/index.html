@@ -69,14 +69,15 @@
                   <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/spark</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        master := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
         sparkCore := spark.NewSparkCoreAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">spark</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">device_id</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">access_token</span><span class="delimiter">"</span></span>)
         led := gpio.NewLedDriver(sparkCore, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">D7</span><span class="delimiter">"</span></span>)
@@ -87,10 +88,15 @@
                 })
         }
 
-        master.Robots = <span class="predefined">append</span>(master.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">spark</span><span class="delimiter">"</span></span>, []gobot.Connection{sparkCore}, []gobot.Device{led}, work))
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">spark</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{sparkCore},
+                []gobot.Device{led},
+                work,
+        )
 
-        master.Start()
+        gbot.AddRobot(robot)
+
+        gbot.Start()
 }
 </pre>
                 </div>

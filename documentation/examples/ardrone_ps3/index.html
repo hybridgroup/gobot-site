@@ -69,11 +69,12 @@
                   <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">math</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/ardrone</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/joystick</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">math</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">type</span> pair <span class="keyword">struct</span> {
@@ -85,7 +86,10 @@
         gbot := gobot.NewGobot()
 
         joystickAdaptor := joystick.NewJoystickAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>)
-        joystick := joystick.NewJoystickDriver(joystickAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">./platforms/joystick/configs/dualshock3.json</span><span class="delimiter">"</span></span>)
+        joystick := joystick.NewJoystickDriver(joystickAdaptor,
+                <span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>,
+                <span class="string"><span class="delimiter">"</span><span class="content">./platforms/joystick/configs/dualshock3.json</span><span class="delimiter">"</span></span>,
+        )
 
         ardroneAdaptor := ardrone.NewArdroneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
         drone := ardrone.NewArdroneDriver(ardroneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
@@ -95,34 +99,34 @@
                 rightStick := pair{x: <span class="integer">0</span>, y: <span class="integer">0</span>}
                 leftStick := pair{x: <span class="integer">0</span>, y: <span class="integer">0</span>}
 
-                gobot.On(joystick.Events[<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         drone.TakeOff()
                 })
-                gobot.On(joystick.Events[<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         drone.Hover()
                 })
-                gobot.On(joystick.Events[<span class="string"><span class="delimiter">"</span><span class="content">x_press</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">x_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         drone.Land()
                 })
-                gobot.On(joystick.Events[<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         val := <span class="predefined-type">float64</span>(data.(<span class="predefined-type">int16</span>))
                         <span class="keyword">if</span> leftStick.x != val {
                                 leftStick.x = val
                         }
                 })
-                gobot.On(joystick.Events[<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         val := <span class="predefined-type">float64</span>(data.(<span class="predefined-type">int16</span>))
                         <span class="keyword">if</span> leftStick.y != val {
                                 leftStick.y = val
                         }
                 })
-                gobot.On(joystick.Events[<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         val := <span class="predefined-type">float64</span>(data.(<span class="predefined-type">int16</span>))
                         <span class="keyword">if</span> rightStick.x != val {
                                 rightStick.x = val
                         }
                 })
-                gobot.On(joystick.Events[<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         val := <span class="predefined-type">float64</span>(data.(<span class="predefined-type">int16</span>))
                         <span class="keyword">if</span> rightStick.y != val {
                                 rightStick.y = val
@@ -168,8 +172,13 @@
                 })
         }
 
-        gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span>, []gobot.Connection{joystickAdaptor, ardroneAdaptor}, []gobot.Device{joystick, drone}, work))
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{joystickAdaptor, ardroneAdaptor},
+                []gobot.Device{joystick, drone},
+                work,
+        )
+
+        gbot.AddRobot(robot)
 
         gbot.Start()
 }

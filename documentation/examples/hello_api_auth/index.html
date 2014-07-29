@@ -70,29 +70,37 @@
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">html</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">net/http</span><span class="delimiter">"</span></span>
+
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/api</span><span class="delimiter">"</span></span>
 )
 
-<span class="keyword">func</span> Hello(params <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="keyword">interface</span>{}) <span class="predefined-type">string</span> {
-        name := params[<span class="string"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>].(<span class="predefined-type">string</span>)
-        <span class="keyword">return</span> fmt.Sprintf(<span class="string"><span class="delimiter">"</span><span class="content">hi %v</span><span class="delimiter">"</span></span>, name)
-}
-
 <span class="keyword">func</span> main() {
-        master := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
-        server := api.NewAPI(master)
-        server.Username = <span class="string"><span class="delimiter">"</span><span class="content">gort</span><span class="delimiter">"</span></span>
-        server.Password = <span class="string"><span class="delimiter">"</span><span class="content">klatuu</span><span class="delimiter">"</span></span>
-        server.Start()
+        a := api.NewAPI(gbot)
+        a.SetBasicAuth(<span class="string"><span class="delimiter">"</span><span class="content">gort</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">klatuu</span><span class="delimiter">"</span></span>)
+        a.SetDebug()
 
-        hello := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>, <span class="predefined-constant">nil</span>, <span class="predefined-constant">nil</span>, <span class="predefined-constant">nil</span>)
-        hello.Commands = <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="keyword">interface</span>{}{<span class="string"><span class="delimiter">"</span><span class="content">Hello</span><span class="delimiter">"</span></span>: Hello}
+        a.AddHandler(<span class="keyword">func</span>(w http.ResponseWriter, r *http.Request) {
+                fmt.Fprintf(w, <span class="string"><span class="delimiter">"</span><span class="content">Hello, %q </span><span class="char">\n</span><span class="delimiter">"</span></span>, html.EscapeString(r.URL.Path))
+        })
+        a.Start()
 
-        master.Robots = <span class="predefined">append</span>(master.Robots, hello)
+        gbot.AddCommand(<span class="string"><span class="delimiter">"</span><span class="content">custom_gobot_command</span><span class="delimiter">"</span></span>,
+                <span class="keyword">func</span>(params <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="keyword">interface</span>{}) <span class="keyword">interface</span>{} {
+                        <span class="keyword">return</span> <span class="string"><span class="delimiter">"</span><span class="content">This command is attached to the mcp!</span><span class="delimiter">"</span></span>
+                })
 
-        master.Start()
+        hello := gbot.AddRobot(gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>))
+
+        hello.AddCommand(<span class="string"><span class="delimiter">"</span><span class="content">hi_there</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(params <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="keyword">interface</span>{}) <span class="keyword">interface</span>{} {
+                <span class="keyword">return</span> fmt.Sprintf(<span class="string"><span class="delimiter">"</span><span class="content">This command is attached to the robot %v</span><span class="delimiter">"</span></span>, hello.Name)
+        })
+
+        gbot.Start()
 }
 </pre>
                 </div>

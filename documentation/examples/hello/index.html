@@ -70,8 +70,9 @@
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
@@ -79,14 +80,13 @@
 
         robot := gobot.NewRobot(
                 <span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>,
-                <span class="predefined-constant">nil</span>,
-                <span class="predefined-constant">nil</span>,
                 <span class="keyword">func</span>() {
                         gobot.Every(<span class="integer">500</span>*time.Millisecond, <span class="keyword">func</span>() { fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Greetings human</span><span class="delimiter">"</span></span>) })
                 },
         )
 
-        gbot.Robots = <span class="predefined">append</span>(gbot.Robots, robot)
+        gbot.AddRobot(robot)
+
         gbot.Start()
 }
 </pre>

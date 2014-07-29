@@ -69,7 +69,6 @@
                   <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
@@ -84,17 +83,21 @@
         led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">myLed</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
-                gobot.On(button.Events[<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         led.On()
                 })
-                gobot.On(button.Events[<span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         led.Off()
                 })
         }
 
-        gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">buttonBot</span><span class="delimiter">"</span></span>, []gobot.Connection{firmataAdaptor}, []gobot.Device{button, led}, work),
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">buttonBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{firmataAdaptor},
+                []gobot.Device{button, led},
+                work,
         )
+
+        gbot.AddRobot(robot)
 
         gbot.Start()
 }

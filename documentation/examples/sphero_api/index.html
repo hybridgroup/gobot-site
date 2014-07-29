@@ -74,17 +74,9 @@
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
 )
 
-<span class="keyword">var</span> Master *gobot.Gobot
-
-<span class="keyword">func</span> TurnBlue(params <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="keyword">interface</span>{}) <span class="predefined-type">bool</span> {
-        s := Master.Robot(params[<span class="string"><span class="delimiter">"</span><span class="content">robotname</span><span class="delimiter">"</span></span>].(<span class="predefined-type">string</span>)).Device(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
-        gobot.Call(s.Driver, <span class="string"><span class="delimiter">"</span><span class="content">SetRGB</span><span class="delimiter">"</span></span>, <span class="predefined-type">uint8</span>(<span class="integer">0</span>), <span class="predefined-type">uint8</span>(<span class="integer">0</span>), <span class="predefined-type">uint8</span>(<span class="integer">255</span>))
-        <span class="keyword">return</span> <span class="predefined-constant">true</span>
-}
-
 <span class="keyword">func</span> main() {
-        Master = gobot.NewGobot()
-        api.NewAPI(Master).Start()
+        gbot := gobot.NewGobot()
+        api.NewAPI(gbot).Start()
 
         spheros := <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="predefined-type">string</span>{
                 <span class="string"><span class="delimiter">"</span><span class="content">Sphero-BPO</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>,
@@ -99,13 +91,20 @@
                         spheroDriver.SetRGB(<span class="predefined-type">uint8</span>(<span class="integer">255</span>), <span class="predefined-type">uint8</span>(<span class="integer">0</span>), <span class="predefined-type">uint8</span>(<span class="integer">0</span>))
                 }
 
-                robot := gobot.NewRobot(name, []gobot.Connection{spheroAdaptor}, []gobot.Device{spheroDriver}, work)
-                robot.Commands = <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="keyword">interface</span>{}{<span class="string"><span class="delimiter">"</span><span class="content">TurnBlue</span><span class="delimiter">"</span></span>: TurnBlue}
+                robot := gobot.NewRobot(name,
+                        []gobot.Connection{spheroAdaptor},
+                        []gobot.Device{spheroDriver},
+                        work,
+                )
+                robot.AddCommand(<span class="string"><span class="delimiter">"</span><span class="content">turn_blue</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(params <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="keyword">interface</span>{}) <span class="keyword">interface</span>{} {
+                        spheroDriver.SetRGB(<span class="predefined-type">uint8</span>(<span class="integer">0</span>), <span class="predefined-type">uint8</span>(<span class="integer">0</span>), <span class="predefined-type">uint8</span>(<span class="integer">255</span>))
+                        <span class="keyword">return</span> <span class="predefined-constant">nil</span>
+                })
 
-                Master.Robots = <span class="predefined">append</span>(Master.Robots, robot)
+                gbot.AddRobot(robot)
         }
 
-        Master.Start()
+        gbot.Start()
 }
 </pre>
                 </div>

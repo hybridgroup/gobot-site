@@ -168,6 +168,63 @@
 </pre>
                   <h3>Windows</h3>
                   <p>You should be able to pair your Mindwave using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as <code>COM3</code>.</p>
+                  <h2>Examples</h2>
+                  <pre class="CodeRay"><span class="keyword">import</span> (
+    <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
+    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/neurosky</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+    gbot := gobot.NewGobot()
+
+    adaptor := neurosky.NewNeuroskyAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">neurosky</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>)
+    neuro := neurosky.NewNeuroskyDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">neuro</span><span class="delimiter">"</span></span>)
+
+    work := <span class="keyword">func</span>() {
+        gobot.On(neuro.Event(<span class="string"><span class="delimiter">"</span><span class="content">extended</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Extended</span><span class="delimiter">"</span></span>, data)
+        })
+        gobot.On(neuro.Event(<span class="string"><span class="delimiter">"</span><span class="content">signal</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Signal</span><span class="delimiter">"</span></span>, data)
+        })
+        gobot.On(neuro.Event(<span class="string"><span class="delimiter">"</span><span class="content">attention</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Attention</span><span class="delimiter">"</span></span>, data)
+        })
+        gobot.On(neuro.Event(<span class="string"><span class="delimiter">"</span><span class="content">meditation</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Meditation</span><span class="delimiter">"</span></span>, data)
+        })
+        gobot.On(neuro.Event(<span class="string"><span class="delimiter">"</span><span class="content">blink</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Blink</span><span class="delimiter">"</span></span>, data)
+        })
+        gobot.On(neuro.Event(<span class="string"><span class="delimiter">"</span><span class="content">wave</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Wave</span><span class="delimiter">"</span></span>, data)
+        })
+        gobot.On(neuro.Event(<span class="string"><span class="delimiter">"</span><span class="content">eeg</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+            eeg := data.(neurosky.EEG)
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Delta</span><span class="delimiter">"</span></span>, eeg.Delta)
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Theta</span><span class="delimiter">"</span></span>, eeg.Theta)
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">LoAlpha</span><span class="delimiter">"</span></span>, eeg.LoAlpha)
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">HiAlpha</span><span class="delimiter">"</span></span>, eeg.HiAlpha)
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">LoBeta</span><span class="delimiter">"</span></span>, eeg.LoBeta)
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">HiBeta</span><span class="delimiter">"</span></span>, eeg.HiBeta)
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">LoGamma</span><span class="delimiter">"</span></span>, eeg.LoGamma)
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">MidGamma</span><span class="delimiter">"</span></span>, eeg.MidGamma)
+            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="char">\n</span><span class="delimiter">"</span></span>)
+        })
+    }
+
+    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">brainBot</span><span class="delimiter">"</span></span>,
+        []gobot.Connection{adaptor},
+        []gobot.Device{neuro},
+        work,
+    )
+
+    gbot.AddRobot(robot)
+    gbot.Start()
+}
+</pre>
                 </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
                   <p>Available drivers for the Neurosky Mindwave platform are listed below.</p>
                   <div class="hardware">

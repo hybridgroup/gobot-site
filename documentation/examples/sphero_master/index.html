@@ -69,13 +69,14 @@
                   <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        master := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
         spheros := <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="predefined-type">string</span>{
                 <span class="string"><span class="delimiter">"</span><span class="content">Sphero-BPO</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>,
@@ -90,22 +91,30 @@
                         spheroDriver.SetRGB(<span class="predefined-type">uint8</span>(<span class="integer">255</span>), <span class="predefined-type">uint8</span>(<span class="integer">0</span>), <span class="predefined-type">uint8</span>(<span class="integer">0</span>))
                 }
 
-                master.Robots = <span class="predefined">append</span>(master.Robots,
-                        gobot.NewRobot(name, []gobot.Connection{spheroAdaptor}, []gobot.Device{spheroDriver}, work))
+                robot := gobot.NewRobot(name,
+                        []gobot.Connection{spheroAdaptor},
+                        []gobot.Device{spheroDriver},
+                        work,
+                )
+
+                gbot.AddRobot(robot)
         }
 
-        master.Robots = <span class="predefined">append</span>(master.Robots, gobot.NewRobot(
-                <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>,
-                <span class="predefined-constant">nil</span>,
-                <span class="predefined-constant">nil</span>,
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>,
                 <span class="keyword">func</span>() {
                         gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
-                                gobot.Call(master.Robot(<span class="string"><span class="delimiter">"</span><span class="content">Sphero-BPO</span><span class="delimiter">"</span></span>).Device(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">SetRGB</span><span class="delimiter">"</span></span>, <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)), <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)), <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)))
+                                sphero := gbot.Robot(<span class="string"><span class="delimiter">"</span><span class="content">Sphero-BPO</span><span class="delimiter">"</span></span>).Device(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>).(*sphero.SpheroDriver)
+                                sphero.SetRGB(<span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
+                                        <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
+                                        <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
+                                )
                         })
                 },
-        ))
+        )
 
-        master.Start()
+        gbot.AddRobot(robot)
+
+        gbot.Start()
 }
 </pre>
                 </div>

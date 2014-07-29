@@ -70,14 +70,16 @@
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
         gbot := gobot.NewGobot()
+
         firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
         servo := gpio.NewServoDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">servo</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">3</span><span class="delimiter">"</span></span>)
 
@@ -89,9 +91,13 @@
                 })
         }
 
-        gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">servoBot</span><span class="delimiter">"</span></span>, []gobot.Connection{firmataAdaptor}, []gobot.Device{servo}, work))
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">servoBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{firmataAdaptor},
+                []gobot.Device{servo},
+                work,
+        )
 
+        gbot.AddRobot(robot)
         gbot.Start()
 }
 </pre>

@@ -7,7 +7,7 @@
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta content="A Gobot code example" name="description">
 <meta content="The Hybrid Group" name="author">
-<title>Gobot Example - ardrone</title>
+<title>Gobot Example - beaglebone_button</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
 <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
@@ -56,7 +56,7 @@
 </div>
       <div class="page-title">
         <div class="w">
-          <h1 class="title">Example: ardrone</h1>
+          <h1 class="title">Example: beaglebone_button</h1>
           <h2 class="subtitle"><a href="https://github.com/hybridgroup/gobot/tree/master/examples" target="_blank">View In Repo</a></h2>
         </div>
       </div>
@@ -69,34 +69,35 @@
                   <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
 
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/ardrone</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/beaglebone</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
         gbot := gobot.NewGobot()
 
-        ardroneAdaptor := ardrone.NewArdroneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
-        drone := ardrone.NewArdroneDriver(ardroneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
+        beagleboneAdaptor := beaglebone.NewBeagleboneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span>)
+        button := gpio.NewButtonDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">P8_9</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
-                drone.TakeOff()
-                gobot.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        gobot.After(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
-                                drone.Land()
-                        })
+                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">button pressed</span><span class="delimiter">"</span></span>)
+                })
+
+                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">button released</span><span class="delimiter">"</span></span>)
                 })
         }
 
-        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
-                []gobot.Connection{ardroneAdaptor},
-                []gobot.Device{drone},
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">buttonBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{beagleboneAdaptor},
+                []gobot.Device{button},
                 work,
         )
         gbot.AddRobot(robot)
-
         gbot.Start()
 }
 </pre>

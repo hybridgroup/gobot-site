@@ -75,26 +75,31 @@
 )
 
 <span class="keyword">func</span> main() {
-        master := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
         sparkCore := spark.NewSparkCoreAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">spark</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">device_id</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">access_token</span><span class="delimiter">"</span></span>)
         led := gpio.NewLedDriver(sparkCore, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">D7</span><span class="delimiter">"</span></span>)
         button := gpio.NewButtonDriver(sparkCore, <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">D5</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
-                gobot.On(button.Events[<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         led.On()
                 })
 
-                gobot.On(button.Events[<span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         led.Off()
                 })
         }
 
-        master.Robots = <span class="predefined">append</span>(master.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">spark</span><span class="delimiter">"</span></span>, []gobot.Connection{sparkCore}, []gobot.Device{button, led}, work))
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">spark</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{sparkCore},
+                []gobot.Device{button, led},
+                work,
+        )
 
-        master.Start()
+        gbot.AddRobot(robot)
+
+        gbot.Start()
 }
 </pre>
                 </div>

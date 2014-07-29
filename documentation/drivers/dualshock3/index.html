@@ -104,44 +104,54 @@
 
 <span class="keyword">import</span> (
     <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
     <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
     <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/joystick</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
     gbot := gobot.NewGobot()
+
     joystickAdaptor := joystick.NewJoystickAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>)
-    joystickDriver := joystick.NewJoystickDriver(joystickAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">./platforms/joystick/configs/dualshock3.json</span><span class="delimiter">"</span></span>)
+    joystick := joystick.NewJoystickDriver(joystickAdaptor,
+        <span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>,
+        <span class="string"><span class="delimiter">"</span><span class="content">./platforms/joystick/configs/dualshock3.json</span><span class="delimiter">"</span></span>,
+    )
 
     work := <span class="keyword">func</span>() {
-        gobot.On(joystickDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
             fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>)
         })
-        gobot.On(joystickDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">square_release</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">square_release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
             fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">square_release</span><span class="delimiter">"</span></span>)
         })
-        gobot.On(joystickDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
             fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>)
         })
-        gobot.On(joystickDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">triangle_release</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">triangle_release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
             fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">triangle_release</span><span class="delimiter">"</span></span>)
         })
-        gobot.On(joystickDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
             fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>, data)
         })
-        gobot.On(joystickDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
             fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>, data)
         })
-        gobot.On(joystickDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
             fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>, data)
         })
-        gobot.On(joystickDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
             fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>, data)
         })
     }
 
-    gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-        gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">joystickBot</span><span class="delimiter">"</span></span>, []gobot.Connection{joystickAdaptor}, []gobot.Device{joystickDriver}, work))
+    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">joystickBot</span><span class="delimiter">"</span></span>,
+        []gobot.Connection{joystickAdaptor},
+        []gobot.Device{joystick},
+        work,
+    )
+
+    gbot.AddRobot(robot)
 
     gbot.Start()
 }

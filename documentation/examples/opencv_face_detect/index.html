@@ -69,12 +69,13 @@
                   <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        cv <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/go-opencv/opencv</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/opencv</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">path</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">runtime</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        cv <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/go-opencv/opencv</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/opencv</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
@@ -89,7 +90,7 @@
         work := <span class="keyword">func</span>() {
                 <span class="keyword">var</span> image *cv.IplImage
 
-                gobot.On(camera.Events[<span class="string"><span class="delimiter">"</span><span class="content">Frame</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                gobot.On(camera.Event(<span class="string"><span class="delimiter">"</span><span class="content">frame</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         image = data.(*cv.IplImage)
                 })
 
@@ -104,8 +105,13 @@
                 })
         }
 
-        gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">faceBot</span><span class="delimiter">"</span></span>, []gobot.Connection{}, []gobot.Device{window, camera}, work))
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">faceBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{},
+                []gobot.Device{window, camera},
+                work,
+        )
+
+        gbot.AddRobot(robot)
 
         gbot.Start()
 }

@@ -77,13 +77,19 @@
 
 <span class="keyword">func</span> main() {
         gbot := gobot.NewGobot()
+
         api.NewAPI(gbot).Start()
 
         digisparkAdaptor := digispark.NewDigisparkAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Digispark</span><span class="delimiter">"</span></span>)
         led := gpio.NewLedDriver(digisparkAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">0</span><span class="delimiter">"</span></span>)
 
-        gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">digispark</span><span class="delimiter">"</span></span>, []gobot.Connection{digisparkAdaptor}, []gobot.Device{led}, <span class="predefined-constant">nil</span>))
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">digispark</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{digisparkAdaptor},
+                []gobot.Device{led},
+        )
+
+        gbot.AddRobot(robot)
+
         gbot.Start()
 }
 </pre>

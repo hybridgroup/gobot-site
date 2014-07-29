@@ -71,12 +71,13 @@
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">encoding/json</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">io/ioutil</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">net/http</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">type</span> TravisResponse <span class="keyword">struct</span> {
@@ -94,10 +95,14 @@
         LastBuildFinishedAt <span class="predefined-type">string</span> <span class="shell"><span class="delimiter">`</span><span class="content">json:"last_build_finished_at"</span><span class="delimiter">`</span></span>
 }
 
+<span class="keyword">func</span> turnOn(robot *gobot.Robot, device <span class="predefined-type">string</span>) {
+        robot.Device(device).(*gpio.LedDriver).On()
+}
+
 <span class="keyword">func</span> resetLeds(robot *gobot.Robot) {
-        gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">red</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">Off</span><span class="delimiter">"</span></span>)
-        gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">green</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">Off</span><span class="delimiter">"</span></span>)
-        gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">Off</span><span class="delimiter">"</span></span>)
+        robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">red</span><span class="delimiter">"</span></span>).(*gpio.LedDriver).Off()
+        robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">green</span><span class="delimiter">"</span></span>).(*gpio.LedDriver).Off()
+        robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>).(*gpio.LedDriver).Off()
 }
 
 <span class="keyword">func</span> checkTravis(robot *gobot.Robot) {
@@ -106,7 +111,7 @@
         name := <span class="string"><span class="delimiter">"</span><span class="content">gobot</span><span class="delimiter">"</span></span>
         <span class="comment">//name := "broken-arrow"</span>
         fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">Checking repo %s/%s</span><span class="char">\n</span><span class="delimiter">"</span></span>, user, name)
-        gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">On</span><span class="delimiter">"</span></span>)
+        turnOn(robot, <span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>)
         resp, err := http.Get(fmt.Sprintf(<span class="string"><span class="delimiter">"</span><span class="content">https://api.travis-ci.org/repos/%s/%s.json</span><span class="delimiter">"</span></span>, user, name))
         <span class="keyword">defer</span> resp.Body.Close()
         <span class="keyword">if</span> err != <span class="predefined-constant">nil</span> {
@@ -120,30 +125,36 @@
         json.Unmarshal(body, &amp;travis)
         resetLeds(robot)
         <span class="keyword">if</span> travis.LastBuildStatus == <span class="integer">0</span> {
-                gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">green</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">On</span><span class="delimiter">"</span></span>)
+                turnOn(robot, <span class="string"><span class="delimiter">"</span><span class="content">green</span><span class="delimiter">"</span></span>)
         } <span class="keyword">else</span> {
-                gobot.Call(robot.Device(<span class="string"><span class="delimiter">"</span><span class="content">red</span><span class="delimiter">"</span></span>).Driver, <span class="string"><span class="delimiter">"</span><span class="content">On</span><span class="delimiter">"</span></span>)
+                turnOn(robot, <span class="string"><span class="delimiter">"</span><span class="content">red</span><span class="delimiter">"</span></span>)
         }
 }
 
 <span class="keyword">func</span> main() {
-        master := gobot.NewGobot()
+        gbot := gobot.NewGobot()
+
         firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
         red := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">red</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">7</span><span class="delimiter">"</span></span>)
         green := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">green</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">6</span><span class="delimiter">"</span></span>)
         blue := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">5</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
-                checkTravis(master.Robot(<span class="string"><span class="delimiter">"</span><span class="content">travis</span><span class="delimiter">"</span></span>))
+                checkTravis(gbot.Robot(<span class="string"><span class="delimiter">"</span><span class="content">travis</span><span class="delimiter">"</span></span>))
                 gobot.Every(<span class="integer">10</span>*time.Second, <span class="keyword">func</span>() {
-                        checkTravis(master.Robot(<span class="string"><span class="delimiter">"</span><span class="content">travis</span><span class="delimiter">"</span></span>))
+                        checkTravis(gbot.Robot(<span class="string"><span class="delimiter">"</span><span class="content">travis</span><span class="delimiter">"</span></span>))
                 })
         }
 
-        master.Robots = <span class="predefined">append</span>(master.Robots,
-                gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">travis</span><span class="delimiter">"</span></span>, []gobot.Connection{firmataAdaptor}, []gobot.Device{red, green, blue}, work))
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">travis</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{firmataAdaptor},
+                []gobot.Device{red, green, blue},
+                work,
+        )
 
-        master.Start()
+        gbot.AddRobot(robot)
+
+        gbot.Start()
 }
 </pre>
                 </div>

@@ -70,13 +70,14 @@
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        master := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
         spheros := []<span class="predefined-type">string</span>{
                 <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>,
@@ -85,15 +86,14 @@
                 <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm3</span><span class="delimiter">"</span></span>,
         }
 
-        <span class="keyword">for</span> s := <span class="keyword">range</span> spheros {
-                spheroAdaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>, spheros[s])
-
-                spheroDriver := sphero.NewSpheroDriver(spheroAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>+spheros[s])
+        <span class="keyword">for</span> _, port := <span class="keyword">range</span> spheros {
+                spheroAdaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>, port)
+                spheroDriver := sphero.NewSpheroDriver(spheroAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>+port)
 
                 work := <span class="keyword">func</span>() {
                         spheroDriver.Stop()
 
-                        gobot.On(spheroDriver.Events[<span class="string"><span class="delimiter">"</span><span class="content">Collision</span><span class="delimiter">"</span></span>], <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        gobot.On(spheroDriver.Event(<span class="string"><span class="delimiter">"</span><span class="content">collision</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                                 fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Collision Detected!</span><span class="delimiter">"</span></span>)
                         })
 
@@ -101,15 +101,22 @@
                                 spheroDriver.Roll(<span class="integer">100</span>, <span class="predefined-type">uint16</span>(gobot.Rand(<span class="integer">360</span>)))
                         })
                         gobot.Every(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
-                                spheroDriver.SetRGB(<span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)), <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)), <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)))
+                                spheroDriver.SetRGB(<span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
+                                        <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
+                                        <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
+                                )
                         })
                 }
 
-                master.Robots = <span class="predefined">append</span>(master.Robots,
-                        gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, []gobot.Connection{spheroAdaptor}, []gobot.Device{spheroDriver}, work))
+                robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>,
+                        []gobot.Connection{spheroAdaptor},
+                        []gobot.Device{spheroDriver},
+                        work,
+                )
+                gbot.AddRobot(robot)
         }
 
-        master.Start()
+        gbot.Start()
 }
 </pre>
                 </div>

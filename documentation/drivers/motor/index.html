@@ -57,7 +57,7 @@
       <div class="page-title">
         <div class="w">
           <h1 class="title">Drivers</h1>
-          <h2 class="subtitle">Cylon has a extensible system for connecting to hardware devices.</h2>
+          <h2 class="subtitle">Gobot has a extensible system for connecting to hardware devices.</h2>
         </div>
       </div>
       <div class="container">
@@ -110,14 +110,16 @@
                   <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
   gbot := gobot.NewGobot()
+
   firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
   motor := gpio.NewMotorDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">motor</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">3</span><span class="delimiter">"</span></span>)
 
@@ -134,8 +136,13 @@
     })
   }
 
-  gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-    gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">motorBot</span><span class="delimiter">"</span></span>, []gobot.Connection{firmataAdaptor}, []gobot.Device{motor}, work))
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">motorBot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{firmataAdaptor},
+    []gobot.Device{motor},
+    work,
+  )
+
+  gbot.AddRobot(robot)
 
   gbot.Start()
 }
@@ -143,20 +150,117 @@
                 </section><section class="public-methods"><div class="commands-api" id="Commands">
                     <h1 id="functions">Functions</h1>
                     
-                    <h2 id="read">Read</h2>
+                    <h2 id="on">On</h2>
                     
-                    <p>Returns an integer value that represents the analog read from the sensor.</p>
+                    <p>Starts the motor.</p>
                     
                     <h4 id="returns">Returns</h4>
                     
                     <ul>
 <li>
-<strong>int</strong> - integer value</li>
+<strong>CurrentSpeed</strong> - current speed value</li>
                     </ul>
-<h4 id="api-command">API Command</h4>
+<h2 id="off">Off</h2>
                     
-                    <p><strong>ReadC</strong></p>
-                  </div>
+                    <p>Stops the motor.</p>
+                    
+                    <h4 id="returns-1">Returns</h4>
+                    
+                    <ul>
+<li>
+<strong>Speed</strong> - speed value</li>
+                    </ul>
+<h2 id="ison">IsOn</h2>
+                    
+                    <p>Returns true if the motor is on</p>
+                    
+                    <h4 id="returns-2">Returns</h4>
+                    
+                    <ul>
+<li>
+<strong>bool</strong> </li>
+                    </ul>
+<h2 id="isoff">IsOff</h2>
+                    
+                    <p>Returns true if the motor is off</p>
+                    
+                    <h4 id="returns-3">Returns</h4>
+                    
+                    <ul>
+<li><strong>bool</strong></li>
+                    </ul>
+<h2 id="toggle">Toggle</h2>
+                    
+                    <p>Sets the state of the motor to the oposite of the current state, if motor is on then sets it to off.</p>
+                    
+                    <h2 id="speedvalue-byte">Speed(value byte)</h2>
+                    
+                    <p>Sets the speed of the motor to the value provided in the speed param, speed value must be an integer between 0 and 255.</p>
+                    
+                    <h4 id="params">Params</h4>
+                    
+                    <ul>
+<li>
+<strong>value</strong> - <strong>byte</strong>
+</li>
+                    </ul>
+<h4 id="returns-4">Returns</h4>
+                    
+                    <ul>
+<li><strong>SpeedPin value</strong></li>
+                    </ul>
+<h2 id="min">Min</h2>
+                    
+                    <p>Sets the motor to it's minimum speed.</p>
+                    
+                    <h2 id="max">Max</h2>
+                    
+                    <p>Sets the motor to it's max speed.</p>
+                    
+                    <h2 id="forwardspeed-byte">Forward(speed byte)</h2>
+                    
+                    <p>Sets the motor to a forward direction at the specified speed.</p>
+                    
+                    <h4 id="params-1">Params</h4>
+                    
+                    <ul>
+<li>
+<strong>speed</strong> - <strong>byte</strong>
+</li>
+                    </ul>
+<h4 id="returns-5">Returns</h4>
+                    
+                    <ul>
+<li><strong>speed</strong></li>
+                    </ul>
+<h2 id="backwardspeed-byte">Backward(speed byte)</h2>
+                    
+                    <p>Sets the motor to a backward direction at the specified speed.</p>
+                    
+                    <h4 id="params-2">Params</h4>
+                    
+                    <ul>
+<li>
+<strong>speed</strong> - <strong>byte</strong>
+</li>
+                    </ul>
+<h4 id="returns-6">Returns</h4>
+                    
+                    <ul>
+<li><strong>speed</strong></li>
+                    </ul>
+<h2 id="directiondirection-string">Direction(direction string)</h2>
+                    
+                    <p>Sets the direction of the motor</p>
+                    
+                    <h4 id="params-3">Params</h4>
+                    
+                    <ul>
+<li>
+<strong>direction</strong> - <strong>string</strong>
+</li>
+                    </ul>
+</div>
                   <div class="commands-api" id="Events">
                     <h1 id="events">Events</h1>
                     
