@@ -53,25 +53,32 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
       package main
 
       import (
+        "fmt"
+        "time"
+
         "github.com/hybridgroup/gobot"
         "github.com/hybridgroup/gobot/platforms/sphero"
-        "time"
       )
 
       func main() {
         gbot := gobot.NewGobot()
 
         adaptor := sphero.NewSpheroAdaptor("Sphero", "/dev/rfcomm0")
-        ball := sphero.NewSpheroDriver(adaptor, "sphero")
+        spheroDriver := sphero.NewSpheroDriver(adaptor, "sphero")
 
         work := func() {
           gobot.Every(3*time.Second, func() {
-            ball.Roll(30, uint16(gobot.Rand(360)))
+            spheroDriver.Roll(30, uint16(gobot.Rand(360)))
           })
         }
 
-        gbot.Robots = append(gbot.Robots,
-          gobot.NewRobot("sphero", []gobot.Connection{adaptor}, []gobot.Device{ball}, work))
+        robot := gobot.NewRobot("sphero",
+          []gobot.Connection{adaptor},
+          []gobot.Device{spheroDriver},
+          work,
+        )
+
+        gbot.AddRobot(robot)
 
         gbot.Start()
       }
@@ -82,17 +89,18 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
       package main
 
       import (
+        "time"
+
         "github.com/hybridgroup/gobot"
         "github.com/hybridgroup/gobot/platforms/firmata"
         "github.com/hybridgroup/gobot/platforms/gpio"
-        "time"
       )
 
       func main() {
         gbot := gobot.NewGobot()
 
-        adaptor := firmata.NewFirmataAdaptor("myFirmata", "/dev/ttyACM0")
-        led := gpio.NewLedDriver(adaptor, "myLed", "13")
+        firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
+        led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
 
         work := func() {
           gobot.Every(1*time.Second, func() {
@@ -100,8 +108,13 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
           })
         }
 
-        gbot.Robots = append(gbot.Robots,
-          gobot.NewRobot("blink", []gobot.Connection{adaptor}, []gobot.Device{led}, work))
+        robot := gobot.NewRobot("bot",
+          []gobot.Connection{firmataAdaptor},
+          []gobot.Device{led},
+          work,
+        )
+
+        gbot.AddRobot(robot)
 
         gbot.Start()
       }
