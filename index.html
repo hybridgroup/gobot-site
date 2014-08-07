@@ -112,25 +112,32 @@
             <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
   gbot := gobot.NewGobot()
 
   adaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>)
-  ball := sphero.NewSpheroDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
+  spheroDriver := sphero.NewSpheroDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
 
   work := <span class="keyword">func</span>() {
     gobot.Every(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
-      ball.Roll(<span class="integer">30</span>, <span class="predefined-type">uint16</span>(gobot.Rand(<span class="integer">360</span>)))
+      spheroDriver.Roll(<span class="integer">30</span>, <span class="predefined-type">uint16</span>(gobot.Rand(<span class="integer">360</span>)))
     })
   }
 
-  gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-    gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, []gobot.Connection{adaptor}, []gobot.Device{ball}, work))
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{adaptor},
+    []gobot.Device{spheroDriver},
+    work,
+  )
+
+  gbot.AddRobot(robot)
 
   gbot.Start()
 }
@@ -139,17 +146,18 @@
             <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
   gbot := gobot.NewGobot()
 
-  adaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">myFirmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
-  led := gpio.NewLedDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">myLed</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
+  firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+  led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
 
   work := <span class="keyword">func</span>() {
     gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
@@ -157,8 +165,13 @@
     })
   }
 
-  gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-    gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">blink</span><span class="delimiter">"</span></span>, []gobot.Connection{adaptor}, []gobot.Device{led}, work))
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{firmataAdaptor},
+    []gobot.Device{led},
+    work,
+  )
+
+  gbot.AddRobot(robot)
 
   gbot.Start()
 }
