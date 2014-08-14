@@ -1,0 +1,148 @@
+---
+title: Gobot Guides
+author: The Hybrid Group
+page_title: Gobot on the ARDrone 2.0
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#guides-panel").addClass("active-panel");
+    $("#guides-panel ul li:nth-child(5)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(5) a:nth-child(2) img").addClass("rotate");
+
+:markdown
+  # Running Gobot on the ARDrone
+
+  Most users of it don't know this, but the ARDrone 2.0 runs a Linux distro (BusyBox Linux).
+  This means we can run code on it, and connect to it over telnet, FTP, and SSH.
+
+  For this example, we'll be trying to get an ARDrone to talk to a Digispark plugged into the drone's USB port.
+  Unfortunately, since the ARDrone doesn't have much in the way of resources on-board, we can't compile directly on it.
+  It's an ARM-based processor though, so we can easily substitute another Single-Board Linux Computer.
+
+  ## What You'll Need
+
+  To get this done you will need:
+
+  - a BeagleBone Black
+  - an ARDrone 2.0
+  - a Digispark
+
+  Your BeagleBone will need to be running at least Ubuntu 13.10 or Arch Linux, as the default Debian install won't be able to do what we need.
+
+  This guide also assumes you're using a UNIX-y OS (Linux or OS X).
+  With that in mind, let's get started.
+
+  ## Building the Binary
+
+  First, connect to the BeagleBone over SSH, and install the GCC-based Go compiler:
+
+      $ sudo apt-get install gccgo
+
+  For this example, we just want the Digispark to blink so we can verify it's working, so we're using the following example code:
+
+      :::go
+      package main
+
+      import (
+      	"time"
+
+      	"github.com/hybridgroup/gobot"
+      	"github.com/hybridgroup/gobot/platforms/digispark"
+      	"github.com/hybridgroup/gobot/platforms/gpio"
+      )
+
+      func main() {
+      	gbot := gobot.NewGobot()
+
+      	digisparkAdaptor := digispark.NewDigisparkAdaptor("Digispark")
+      	led := gpio.NewLedDriver(digisparkAdaptor, "led", "0")
+
+      	work := func() {
+      		gobot.Every(1*time.Second, func() {
+      			led.Toggle()
+      		})
+      	}
+
+      	robot := gobot.NewRobot("blinkBot",
+      		[]gobot.Connection{digisparkAdaptor},
+      		[]gobot.Device{led},
+      		work,
+      	)
+
+      	gbot.AddRobot(robot)
+
+      	gbot.Start()
+      }
+
+  Either write this file to your computer and copy it to the BBB, or write it directly on the BeagleBone, but once you've got it there, compile it:
+
+      $ go build -compiler=gccgo -gccgoflags='-static' digispark_blink.go
+
+  And once you've built the binary, move it to `/tmp`:
+
+      $ mv digispark_blink /tmp/
+
+  ## Configuring the ARDrone
+
+  Now, connect to your ARDrone's WiFi, and telnet into it:
+
+      $ telnet 192.168.1.1
+
+  Once you're in, edit `/etc/usb.ids`:
+
+      $ vi /etc/usb.ids
+
+  And add the following lines:
+
+      1781 digispark
+      	0c9f digispark
+      16d0 digispark
+      	0753 digispark
+
+  Next up, edit the `/etc/init.d/rcS` file:
+
+      $ vi /etc/init.d/rcS
+
+  And replace
+
+      echo 2 > /proc/sys/vm/overcommit_memory
+      # with
+      echo 1 > /proc/sys/vm/overcommit_memory
+
+  Once that's done, restart the drone.
+
+  ## Copy and Run
+
+  Now, on your host computer, move to your `tmp` directory:
+
+      $ cd /tmp
+
+  And copy over the compiled `digispark_blink` binary from your BeagleBone Black:
+
+      $ scp ubuntu@192.168.7.2:/tmp/digispark_blink .
+
+  Now, connect your computer again to the ARDrone's WiFi and plug the Digispark into it.
+
+  Once that's done, use FTP to move the `digispark_blink` binary over:
+
+      $ ftp 192.168.1.1
+      ftp> put digispark_blink
+
+  The FTP utility will copy the binary to the video folder on the drone, so telnet back into it and move to that directory:
+
+      $ telnet 192.168.1.1
+      # cd data/video
+
+  Once in that directory, you can set the executible flag on the binary and run it:
+
+      # chmod +x digispark_blink
+      # ./digispark_blink
+
+  At this point your Digispark's connected LED should be blinking.
+
+  Congratulations!
+  You've now got Gobot programs running directly on the ARDrone.
+  From here, the sky's the limit.
