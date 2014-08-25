@@ -1,7 +1,7 @@
 @mixin title-font($size, $color) {
 
   font-family: $page-title-font;
-  font-weight: 700;
+  font-weight: 600;
   font-size: $size;
   color: $color;
 }
@@ -9,13 +9,14 @@
 @mixin margin-not-last-child {
 
   &:not(:last-child) {
+
     margin-bottom: 20px;
   }
 }
 
-@mixin tiny-screen($width: "", $height: "") {
+@mixin extra-small-screen($width: "", $height: "") {
 
-  @media only screen and (max-width: 400) {
+  @media only screen and (max-width: 560px) {
 
     @if $width != "" {
 
@@ -52,6 +53,24 @@
 @mixin medium-screen($width: "", $height: "") {
 
   @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
+
+    @if $width != "" {
+
+      width: $width;
+    }
+
+    @if $height != "" {
+
+      height: $height;
+    }
+
+    @content;
+  }
+}
+
+@mixin large-screen($width: "", $height: "") {
+
+  @media only screen and(min-width: $big-screen) {
 
     @if $width != "" {
 

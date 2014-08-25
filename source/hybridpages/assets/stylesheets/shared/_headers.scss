@@ -14,13 +14,17 @@
 
   background: url($header-logo-src) left top no-repeat;
   text-indent: -99999px;
-  height: 27px;
+  height: 30px;
 }
 
 .app-header {
 
-  @include outer-container;
-  margin: 9px 0 15px 0;
+  background-color: $hero-section-nav;
+  height: 54px;
+
+  @include small-screen{
+    height: 100px;
+  }
 
   .display, .subtitle, .menu, h1 {
 
@@ -32,7 +36,7 @@
   .display {
 
     @include span-columns(5);
-    margin: -1px 0 0 0;
+    margin: 1px 0 0 0;
   }
 
   .subtitle {
@@ -42,57 +46,33 @@
     width: 190px;
   }
 
-  .easter {
-
-    display: none;
-  }
-
-  .heart {
-
-    color: red;
-    font-size: 20px;
-    vertical-align: middle;
-    margin-top: -2px;
-    display: inline-block;
-    width: 38px;
-    text-align: center;
-  }
-
   .menu {
 
     @include span-columns(7);
     text-align: right;
     display: inline-block;
-    margin: 13px 0 0 0;
+    margin: 18px 0 0 0;
+    position: relative;
+    z-index: 1;
+
+    ul{
+      list-style: none;
+      margin-left: 0;
+    }
+
+    li{
+      display: inline-block;
+    }
 
     .active {
 
-      color: $blog-title-color; 
-      font-size: 15px;
-      font-weight: bold;
+      color: $cta-color;
+      font-weight: 600;
       margin: 10px;
       padding: 8px 4px;
     }
 
-    .item {
-
-      font-size: 15px;
-      font-weight: bold;
-      margin: 10px;
-      padding: 8px 4px;
-
-      &, &:visited, &:active {
-
-        color: $header-subtitle-color;
-      }
-
-      &:hover, &:focus {
-
-        color: $blog-title-color;
-      }
-    }
-
-    @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
+    @include medium-screen {
 
       @include span-columns(6);
       padding: 0;
@@ -105,7 +85,7 @@
     }
   }
 
-  @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
+  @include medium-screen {
 
     .display {
 
@@ -113,7 +93,7 @@
     }
   }
 
-  @media only screen and (max-width: $medium-screen) {
+  @include small-screen {
 
     .subtitle, .menu {
 
@@ -157,10 +137,29 @@
       @include span-columns(12);
 
       .item {
-      
+
         margin: 0;
         padding: 0 2px;
       }
     }
   }
 }
+
+.item {
+
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px;
+  padding: 8px 4px;
+
+  &, &:visited, &:active {
+
+    color: $menu-item-color;
+  }
+
+  &:hover, &:focus {
+
+    color: $cta-color;
+  }
+}
+ 

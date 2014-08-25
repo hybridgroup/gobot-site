@@ -1,6 +1,18 @@
 .repository {
 
-  margin-right: 10px;
+  margin-right: 5px;
+}
+
+.doc-platform {
+  @extend .homepage-platform;
+  text-align: left;
+
+  li{
+    width: 24%; 
+    @include small-screen  {
+      width: 49%;
+    }
+  }
 }
 
 .documentation {
@@ -9,11 +21,28 @@
 
     .info-intro {
 
-      float: left;
+      float: right;
       width: 60%;
       margin: 0;
 
-      @media only screen and (max-width: $medium-screen) {
+      p:last-of-type {
+
+        background: $info-color;
+        color: $doc-active-color;
+        padding: 10px;
+
+        a {
+
+          color: $doc-active-color;
+
+          &:hover {
+
+            color: $link-hover-color;
+          }
+        }
+      }
+
+      @include small-screen  {
 
         width: 100%;
       }
@@ -23,21 +52,15 @@
   .index {
 
     @include outer-container;
-    padding-left: 30px;
 
     section {
 
       margin: 0 auto;
       @include span-columns(3 of 9.5);
-      background: $color-background-subnav-drivers;
+      background: darken($cta-color, 5);
       height: 130px;
       margin-bottom: 20px;
       border-radius: 2px;
-
-      @media only screen and (max-width: $medium-screen) {
-
-        @include span-columns(12);
-      }
 
       a {
 
@@ -48,40 +71,36 @@
 
       &:hover {
 
-        background: darken($color-background-subnav-drivers, 5);
+        background: darken($cta-color, 10);
       }
 
       .title {
 
-        color: #EFECE5;
+        color: white;
         font-weight: bold;
-        background: darken($color-background-subnav-drivers, 4);
+        background: darken($cta-color, 10);
         padding: 5px 10px;
       }
 
       .description {
 
-        color: $hero-subtitle-color;
+        color: white;
         font-size: 10pt;
       }
+    }
+    @include small-screen  {
+
+      padding-top: 50px;
+      section { @include span-columns(12);}
     }
   }
 }
 
-
 .documentation {
 
   @include span-columns(12);
-
-  .index {
-
-    padding: 0 0 0 8px;
-
-    li {
-
-      margin: 8px 0;
-    }
-  }
+  margin-top: 90px;
+  font-family: Lato, open sans, sans-serif;
 
   .link {
 
@@ -99,15 +118,19 @@
   .display {
 
     width: 35%;
-    float: right;
-    border: 1px solid rgba($hero-color, 0.14);
+    float: left;
     margin: 0 0 19px 20px;
 
-    @media only screen and (max-width: $medium-screen) {
+    @include small-screen {
 
         width: 100%;
     }
   }
+}
+
+.clear {
+
+  clear: both;
 }
 
 .circuit {
@@ -122,7 +145,6 @@
       height: 300px;
     }
   }
-
   .description-circuit {
 
     width: 50%;
@@ -130,11 +152,16 @@
   }
 }
 
+.image-size-300 {
+
+  width: 200px;
+}
+
 .commands-api {
 
   h2 {
 
-    background: $title-color;
+    background: $cta-color;
     color: white !important;
     padding: 5px 10px;
     font-size: 12pt;
@@ -147,15 +174,6 @@
     background: transparent;
     font-size: 11pt;
     font-weight: normal;
-    margin-left: 10px;
-  }
-
-  h5 {
-
-    background: white;
-    padding: 10px;
-    margin: 0;
-    font-size: 11pt;
   }
 
   h3 {
@@ -164,7 +182,14 @@
     padding: 10px;
     margin: 0;
     font-size: 11pt;
-    color: $title-color;
+  }
+
+  h5 {
+
+    background: white;
+    padding: 10px;
+    margin: 0;
+    font-size: 10pt;
   }
 
   pre {
@@ -236,16 +261,6 @@
   }
 }
 
-.clear {
-
-  clear: both;
-}
-
-.image-size-300 {
-
-  width: 200px;
-}
-
 .methods {
 
   dt {
@@ -276,7 +291,7 @@
 
   @include span-columns(3);
 
-  @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
+  @include medium-screen{
 
     @include span-columns(3);
 
@@ -285,12 +300,12 @@
       font-size: 10px
     }
   }
-  
-  @media only screen and (max-width: $medium-screen) {
+
+  @include small-screen {
 
     @include span-columns(12);
   }
-    
+
   dt {
 
     font-weight: bold;
@@ -308,7 +323,7 @@
     display: block;
 
     p {
-    
+
       margin: 0;
       line-height: 50px;
     }

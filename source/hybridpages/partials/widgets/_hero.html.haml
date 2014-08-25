@@ -1,10 +1,25 @@
 - unless current_page.data.hero.nil?
   .hero
+    .clouds 
     .container
-      %h1.title
-        = current_page.data.hero_title
-        
-      %h2.subtitle
-        = current_page.data.hero_subtitle
-        
-      = current_page.data.getting_started_button
+      .left-side
+        %h1.title
+          = current_page.data.hero_title
+
+        %p
+          = current_page.data.hero_subtitle
+
+        = current_page.data.getting_started_button
+
+
+      .gobot
+        %img{src: "/images/elements/gopher.png"}/
+
+    .grass
+      - if current_page.data.social == true
+        = partial "/hybridpages/partials/widgets/social"
+
+      .hill
+  .about
+    .container
+      %h2 Gobot is a framework for robotics, physical computing, and the Internet of Things, written in <span>the Go programming language</span>

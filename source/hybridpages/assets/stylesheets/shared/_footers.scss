@@ -1,38 +1,113 @@
 .app-footer {
 
-  @include title-font(12px, $footer-text-color);
-  line-height: 39px;
-  background: $hero-color;
-  font-weight: normal;
-  margin-top: 40px;
+  background: $footer-bg-color;
+  color: white;
+  margin-top: 20px;
+  position: relative;
 
-  a {
-  
-    @extend .hero-anchors;
+  .frameworks {
+
+    background: url(/images/elements/ground.png) top center repeat;
+    padding: 50px 0;
+
+    p {
+      color: $footer-text-color;
+      height: 85px;
+    }
+
+    .column-footer {
+
+      .img {
+        height: 150px;
+      }
+
+      text-align: center;
+      width: 33%;
+      float: left;
+      padding: 20px;
+
+      .button {
+
+        background: black;
+        border: none;
+        float: right;
+        a {
+          color: white;
+        }
+        &:hover {
+
+          background: $cta-color;
+        }
+      }
+
+      @include small-screen {
+
+        @include span-columns(12);
+      }
+    }
+  }
+
+  .copyright {
+
+    clear: both;
+    padding: 10px 0;
+    position: relative;
+    z-index: 0;
+
+    .left-side {
+
+      float: left;
+      
+      span{
+        vertical-align: text-top;
+      }
+
+    }
+
+    .hybrid-group{
+      float: left
+    }
+
+    .right-side {
+
+      float: right;
+      text-align: right;
+
+      a {
+
+        color: $footer-text-color;
+
+        p {
+          text-align: center;
+          margin: 0;
+
+        }
+
+        &:hover {
+
+          color: darken($footer-text-color,5);
+        }
+      }
+    }
   }
 }
 
-.copyright {
-	
-	clear: both;
-	
-	.left-side {
+.footer-button{
+  background-color: $button-footer-color;
+  height: 35px;
+  width: 115px;
 
-		float: left;
-	}	
+  a{
+    color:$footer-bg-color;
+    line-height: 35px;
+  }
+  
+  @include small-screen{
+    margin: 0 auto;
+  }
+}
 
-	.right-side {
-
-		float: right;
-		text-align: right;
-
-		a {
-
-			color: $footer-text-color;
-			&:hover {
-
-				color: darken($footer-text-color,5);
-			}
-		}
-	}
+.grass-footer{
+  background: url(/images/elements/grass-short.png) top center repeat-x;
+  height: 60px;
 }
