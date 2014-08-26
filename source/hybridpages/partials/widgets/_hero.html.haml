@@ -2,7 +2,7 @@
   .hero
     .clouds 
     .container
-      .left-side
+      .description
         %h1.title
           = current_page.data.hero_title
 
@@ -16,8 +16,7 @@
         %img{src: "/images/elements/gopher.png"}/
 
     .grass
-      - if current_page.data.social == true
-        = partial "/hybridpages/partials/widgets/social"
+      = partial "/hybridpages/partials/widgets/social"
 
       .hill
   .about

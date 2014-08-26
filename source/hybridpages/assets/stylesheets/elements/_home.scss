@@ -5,20 +5,17 @@
   position: relative;
   z-index: 0;
 
-  @include small-screen {
-
-    margin-top: -8px;
-  }
-
   .container {
 
       @include outer-container;
   }
 
   .gobot {
+
     @include span-columns(4);
 
     img {
+
       margin: 54px 0px 0 -274px;
     }
 
@@ -41,7 +38,7 @@
   }
 }
 
-.left-side {
+.description {
 
   @include span-columns(8);
   margin-top: 45px;
@@ -57,16 +54,17 @@
     color: $menu-background-color;
     font-weight: 400;
     font-size: 41px;
-    line-height: 50px;
 
     span{
 
       font-size: 73px;
       white-space: nowrap;
+      line-height: 70px;
 
       @include small-screen {
 
         font-size: 50px;
+        line-height: 40px;
       }
     }
 
@@ -90,14 +88,19 @@
   }
 }
 
+.title > a{
+  @include title-font(16px, $menu-background-color);
+}
+
 .social {
 
   line-height: 0;
-  padding: 20px 0;
-    @media only screen and (max-width: $big-screen) {
+  padding: 55px 0 20px;
 
-      margin-bottom: 85px;
-    }
+  @media only screen and (max-width: $big-screen) {
+
+    margin-bottom: 85px;
+  }
 
   .container{
     @include medium-screen {
@@ -228,15 +231,15 @@
   top: -15px;
 
   @include small-screen{
-    top:72px;
+    top:62px;
   }
 
   @include extra-small-screen{
     top: 25px;
-  }
 
-  .social{
-    padding-top: 55px;
+    .social{
+      padding-top: 40px;
+    }
   }
 } 
 
@@ -254,10 +257,6 @@
     color: $hero-link-color;
   }
 
-}
-
-.title > a{
-  @include title-font(16px, $menu-background-color);
 }
 
 h2.homepage{
