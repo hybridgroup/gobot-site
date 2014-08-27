@@ -5,7 +5,7 @@ html {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
-  font-family: open sans, sans-serif; 
+  font-family: open sans, sans-serif;
 }
 
 #THG-logo {
@@ -16,6 +16,7 @@ html {
     width: 150px;
     padding: 5px;
 
+  }
 }
 
 .container, .w {
@@ -113,7 +114,7 @@ html {
     }
 
     &:last-child{
-    
+
       padding-bottom: 40px;
     }
   }
