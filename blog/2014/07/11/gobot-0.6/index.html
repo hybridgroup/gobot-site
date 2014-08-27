@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html>
+<html ng-app="cylon">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
@@ -9,8 +9,7 @@
 <meta content="Adrian Zankich" name="author">
 <title>Gobot 0.6 is out!</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
-<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/javascripts/vendor/angular.min.js"></script><script src="/javascripts/app.js"></script>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -33,155 +32,193 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script></head>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet" type="text/css">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
 <body>
     
     <div class="app">
-      <div class="w">
-        <header class="app-header" role="banner"><div class="display">
-            <h1 class="app-logo">
+      <header class="app-header" role="banner"><div class="container">
+          <div class="display">
+            <div class="app-logo">
               <a href="/">Gobot</a>
-            </h1>
-            <span class="subtitle">
-              <div class="main"></div>
-            </span>
+            </div>
           </div>
-          <span class="menu">
-            <a href="/documentation" class="item">Docs</a>
-            <a href="/documentation/platforms" class="item">Platforms</a>
-            <a href="/videos" class="item">Videos</a>
-            <a href="/blog" class="item">Blog</a>
-            <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
-          </span>
-        </header>
+          <nav class="menu"><ul>
+<li>
+                <a href="/documentation" class="item">Docs</a>
+              </li>
+              <li>
+                <a href="/documentation/platforms" class="item">Platforms</a>
+              </li>
+              <li>
+                <a href="/videos" class="item">Videos</a>
+              </li>
+              <li>
+                <a href="/blog" class="item">Blog</a>
+              </li>
+              <li>
+                <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
+              </li>
+            </ul></nav>
 </div>
-      <div class="page-title">
+      </header><div class="page-title">
         <div class="w">
           <h1 class="title">Blog</h1>
         </div>
       </div>
-      <div class="container">
-        
-        <div class="main blog" role="main">
-          <div class="articles">
-            <div class="article">
-              <header class="header"><div class="date">
-                  <div class="blue">
-                    <div class="month">
-                      Jul
-                    </div>
-                    <div class="day">
-                      11
-                    </div>
+      
+      <div class="main blog" role="main">
+        <div class="articles">
+          <div class="article">
+            <header class="header"><div class="date">
+                <div class="blue">
+                  <div class="month">
+                    Jul
                   </div>
-                  <div class="red">
-                    <div class="year">
-                      2014
-                    </div>
+                  <div class="day">
+                    11
                   </div>
                 </div>
-                <div class="data">
-                  <h3>
-                    <a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a>
-                  </h3>
-                  <div class="author">
-                    by Adrian Zankich
+                <div class="red">
+                  <div class="year">
+                    2014
                   </div>
                 </div>
-              </header><p>Here's a overview of the changes, but if you want to see more check out the compare view on <a href="https://github.com/hybridgroup/gobot/compare/0.5.2...0.6">GitHub</a>.</p>
-              
-              <p>Changelog  </p>
-              
-              <ul>
+              </div>
+              <div class="data">
+                <h3>
+                  <a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a>
+                </h3>
+                <div class="author">
+                  by Adrian Zankich
+                </div>
+              </div>
+            </header><p>Here's a overview of the changes, but if you want to see more check out the compare view on <a href="https://github.com/hybridgroup/gobot/compare/0.5.2...0.6">GitHub</a>.</p>
+            
+            <p>Changelog  </p>
+            
+            <ul>
 <li>
 <strong>api</strong>
-                  <ul>
+                <ul>
 <li>
 <strong>Robeaux support</strong>: <a href="https://github.com/hybridgroup/robeaux">Robeaux</a> is now included with the <code>api</code> package thanks to <a href="https://github.com/jteeuwen/go-bindata">go-bindata</a>. For more information check out the <a href="https://github.com/hybridgroup/gobot#api">README</a>
 </li>
-                  </ul>
+                </ul>
 </li>
-                <li>
+              <li>
 <strong>core</strong>
-                  <ul>
+                <ul>
 <li>
 <strong>Refactor <code>Connection</code> and <code>Device</code></strong>:<br><ul>
 <li>Connections are now a collection of Adaptors</li>
-                        <li>Devices are now a collection of Drivers</li>
-                      </ul>
+                      <li>Devices are now a collection of Drivers</li>
+                    </ul>
 </li>
-                    <li>
+                  <li>
 <strong>events</strong>:
-                      <ul>
+                    <ul>
 <li>Add <code>Event(string)</code> function instead of <code>Events[string]</code> for retrieving Driver event</li>
-                        <li>Add <code>AddEvent(string)</code> function to register an event on a Driver</li>
-                      </ul>
+                      <li>Add <code>AddEvent(string)</code> function to register an event on a Driver</li>
+                    </ul>
 </li>
-                  </ul>
+                </ul>
 </li>
-                <li>
+              <li>
 <strong>firmata</strong>
-                  <ul>
+                <ul>
 <li>Fix slice bounds out of range error</li>
-                  </ul>
+                </ul>
 </li>
-                <li>
+              <li>
 <strong>sphero</strong>
-                  <ul>
+                <ul>
 <li>Fix issue where the driver would not halt correctly on OSX</li>
-                  </ul>
+                </ul>
 </li>
-              </ul>
+            </ul>
 <h2 id="contributors">Contributors</h2>
-              
-              <p>A huge thanks to our contributors who made this release possible.   </p>
-              
-              <h2 id="documentation">Documentation</h2>
-              
-              <p>We're constantly updating the Gobot docs to keep them up-to-date. You can find the latest info on the <a href="http://gobot.io/documentation/">docs page</a>.  </p>
-              
-              <h2 id="issues">Issues</h2>
-              
-              <p>If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a <a href="https://github.com/hybridgroup/gobot/issues">GitHub issue</a> and we'll get back to you as soon as possible.</p>
-            </div>
+            
+            <p>A huge thanks to our contributors who made this release possible.   </p>
+            
+            <h2 id="documentation">Documentation</h2>
+            
+            <p>We're constantly updating the Gobot docs to keep them up-to-date. You can find the latest info on the <a href="http://gobot.io/documentation/">docs page</a>.  </p>
+            
+            <h2 id="issues">Issues</h2>
+            
+            <p>If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a <a href="https://github.com/hybridgroup/gobot/issues">GitHub issue</a> and we'll get back to you as soon as possible.</p>
           </div>
-          <div class="side-column">
-            <div class="categories">
-              <h4>Tags</h4>
-              <ul>
+        </div>
+        <div class="side-column">
+          <div class="categories">
+            <h4>Tags</h4>
+            <ul>
 <li><a href="/blog/tags/robots/">Robots</a></li>
-                <li><a href="/blog/tags/events/">Events</a></li>
-              </ul>
+              <li><a href="/blog/tags/events/">Events</a></li>
+            </ul>
 </div>
-            <div class="network">
-              <h4>Network</h4>
-              <div class="network-links">
-                <a href="https://twitter.com/gobotio"><img src="/images/elements/twitter.png"></a>
-                <a href="https://github.com/hybridgroup/gobot"><img src="/images/elements/github.png"></a>
-              </div>
+          <div class="network">
+            <h4>Network</h4>
+            <div class="network-links">
+              <a href="https://twitter.com/gobotio"><img src="/images/elements/twitter.png"></a>
+              <a href="https://github.com/hybridgroup/gobot"><img src="/images/elements/github.png"></a>
             </div>
-            <div class="titles">
-              <h4>Posts</h4>
-              <ul>
-<li><a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a></li>
-                <li><a href="/blog/2014/06/18/gobot-0.5/">Gobot 0.5 is out!</a></li>
-                <li><a href="/blog/2014/04/29/taking-the-stage-at-gophercon/">Taking The Stage At GopherCon</a></li>
-                <li><a href="/blog/2014/04/10/national-robotics-week-at-boston-golang/">National Robotics Week at Boston Golang</a></li>
-                <li><a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a></li>
-              </ul>
-</div>
           </div>
+          <div class="titles">
+            <h4>Posts</h4>
+            <ul>
+<li><a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a></li>
+              <li><a href="/blog/2014/06/18/gobot-0.5/">Gobot 0.5 is out!</a></li>
+              <li><a href="/blog/2014/04/29/taking-the-stage-at-gophercon/">Taking The Stage At GopherCon</a></li>
+              <li><a href="/blog/2014/04/10/national-robotics-week-at-boston-golang/">National Robotics Week at Boston Golang</a></li>
+              <li><a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a></li>
+            </ul>
+</div>
         </div>
       </div>
     </div>
-    <footer class="app-footer"><div class="w">
-        <div class="copyright">
-          <div class="left-side">
-            © Copyright 2012-2014
+    <footer class="app-footer"><div class="grass-footer"></div>
+      <div class="frameworks">
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/gobot-home.png">
+</div>
+            <p>Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/artoo.png">
+</div>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="footer-button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/cylon.png">
+</div>
+            <p>Want to use Javascript to power your robots? Check out our sister project Cylon.js</p>
+            <div class="footer-button">
+              <a target="blank" href="http://cylonjs.com">View Project</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
           </div>
           <div class="right-side">
-            <a href="#top">Top</a>
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg"><p>Top</p>
+            </a>
           </div>
           <div class="clear"></div>
         </div>

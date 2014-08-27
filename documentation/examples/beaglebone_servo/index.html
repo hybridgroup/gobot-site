@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html>
+<html ng-app="cylon">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
@@ -9,8 +9,7 @@
 <meta content="The Hybrid Group" name="author">
 <title>Gobot Example - beaglebone_servo</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
-<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/javascripts/vendor/angular.min.js"></script><script src="/javascripts/app.js"></script>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -33,40 +32,119 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script></head>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet" type="text/css">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
 <body>
     
     <div class="app">
-      <div class="w">
-        <header class="app-header" role="banner"><div class="display">
-            <h1 class="app-logo">
+      <header class="app-header" role="banner"><div class="container">
+          <div class="display">
+            <div class="app-logo">
               <a href="/">Gobot</a>
-            </h1>
-            <span class="subtitle">
-              <div class="main"></div>
-            </span>
+            </div>
           </div>
-          <span class="menu">
-            <a class="active" href="/documentation">Docs</a>
-            <a href="/documentation/platforms" class="item">Platforms</a>
-            <a href="/videos" class="item">Videos</a>
-            <a href="/blog" class="item">Blog</a>
-            <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
-          </span>
-        </header>
+          <nav class="menu"><ul>
+<li>
+                <a class="active" href="/documentation">Docs</a>
+              </li>
+              <li>
+                <a href="/documentation/platforms" class="item">Platforms</a>
+              </li>
+              <li>
+                <a href="/videos" class="item">Videos</a>
+              </li>
+              <li>
+                <a href="/blog" class="item">Blog</a>
+              </li>
+              <li>
+                <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
+              </li>
+            </ul></nav>
 </div>
-      <div class="page-title">
-        <div class="w">
-          <h1 class="title">Example: beaglebone_servo</h1>
-          <h2 class="subtitle"><a href="https://github.com/hybridgroup/gobot/tree/master/examples" target="_blank">View In Repo</a></h2>
-        </div>
-      </div>
-      <div class="container">
-        <div class="main" role="main">
-          <section class="content full"><div class="documentation">
-              <div class="container-documentation">
-                
-                <div class="example">
-                  <pre class="CodeRay"><span class="keyword">package</span> main
+      </header><div class="main" role="main">
+        <section class="content full"><div class="documentation">
+            <div class="side-documentation">
+              <div class="sidebar-header">
+                <img src="/images/elements/gobot-docs.png">
+</div>
+              <div class="mobile-menu">
+                <a id="docs-menu">
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                </a>
+              </div>
+              <nav class="docs-sidebar" ng-controller="SidebarCtrl"><a href="/documentation/getting-started">Getting Started</a>
+                <div class="section" ng-class="{active: active('Guides')}">
+                  <div class="name" ng-click="show('Guides')">Guides</div>
+                  <div class="links" ng-show="active('Guides')">
+                    <a href="/documentation/guides/what_is_gobot">About Gobot</a>
+                    <a href="/documentation/guides/api">API</a>
+                    <a href="/documentation/guides/cli">CLI</a>
+                    <a href="/documentation/guides/helpers">Helper Methods</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Platforms')}">
+                  <div class="name" ng-click="show('Platforms')">Platforms</div>
+                  <div class="links" ng-show="active('Platforms')">
+                    <a href="/documentation/platforms/ardrone">Ardrone</a>
+                    <a href="/documentation/platforms/arduino">Arduino</a>
+                    <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                    <a href="/documentation/platforms/digispark">Digispark</a>
+                    <a href="/documentation/platforms/joystick">Joystick</a>
+                    <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                    <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
+                    <a href="/documentation/platforms/spark">Spark</a>
+                    <a href="/documentation/platforms/sphero">Sphero</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Drivers')}">
+                  <div class="name" ng-click="show('Drivers')">Drivers</div>
+                  <div class="links" ng-show="active('Drivers')">
+                    <div class="sub-section">
+                      <div class="name">GPIO</div>
+                      <div class="links">
+                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                        <a href="/documentation/drivers/button">Button</a>
+                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                        <a href="/documentation/drivers/led">LED</a>
+                        <a href="/documentation/drivers/makey">Makey Button</a>
+                        <a href="/documentation/drivers/motor">Motor</a>
+                        <a href="/documentation/drivers/servo">Servo</a>
+                      </div>
+                    </div>
+                    <div class="sub-section">
+                      <div class="name">I2C</div>
+                      <div class="links">
+                        <a href="/documentation/drivers/bmp180">BPM180</a>
+                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                        <a href="/documentation/drivers/wiichuck">Wiichuck</a>
+                      </div>
+                    </div>
+                    <a href="/documentation/drivers/ardrone">Ardrone - Flight</a>
+                    <a href="/documentation/drivers/dualshock3">Joystick - DualShock 3</a>
+                    <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                    <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                    <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/drivers/sphero">Sphero</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Contribute')}">
+                  <div class="name" ng-click="show('Contribute')">Contribute</div>
+                  <div class="links" ng-show="active('Contribute')">
+                    <a href="/documentation/contribute/guidelines">Guidelines</a>
+                    <a href="/documentation/contribute/contact-us">Contact Us</a>
+                  </div>
+                </div>
+                <a href="/documentation/examples">Examples</a>
+              </nav>
+</div>
+            <div class="container-documentation">
+              
+              <div class="example">
+                <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
@@ -101,237 +179,53 @@
         gbot.Start()
 }
 </pre>
-                </div>
               </div>
-              <div class="side-documentation">
-                <div class="mobile-menu">
-                  <a href="#" id="menu-docs">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                  </a>
-                </div>
-                <dl class="accordion-docs hide">
-<h5 class="doc-button">
-                    <a href="/documentation">Docs</a>
-                  </h5>
-                  <span></span>
-                  <dt>
-                    <a href="">Getting Started</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
-                  </dt>
-                  <dd id="getting-panel">
-                    <ul>
-<li>
-                        <a href="/documentation/getting-started">Setup your environment</a>
-                      </li>
-                    </ul>
-</dd>
-                  <dt>
-                    <a href="">Guides</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
-                  </dt>
-                  <dd id="guides-panel">
-                    <ul>
-<li>
-                        <a href="/documentation/guides/what_is_gobot">
-                          About Gobot
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/guides/api">
-                          API
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/guides/cli">
-                          CLI
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/guides/helpers">Helper Methods</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/guides/gobot-on-ardrone">
-                          Gobot on the ARDrone 2.0
-                        </a>
-                      </li>
-                    </ul>
-</dd>
-                  <dt>
-                    <a href="">Platforms</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
-                  </dt>
-                  <dd id="platform-panel">
-                    <ul>
-<li>
-                        <a href="/documentation/platforms/ardrone">Ardrone</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/arduino">Arduino</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/digispark">Digispark</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/joystick">Joystick</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/leapmotion">Leap Motion</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/opencv">OpenCV</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/pebble">Pebble</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/spark">Spark</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/sphero">Sphero</a>
-                      </li>
-                    </ul>
-</dd>
-                  <dt>
-                    <a href="">Drivers</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
-                  </dt>
-                  <dd id="driver-panel">
-                    GPIO
-                    <ul id="gpio">
-<li>
-                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/button">Button</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/led">LED</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/makey">Makey Button</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/motor">Motor</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/servo">Servo</a>
-                      </li>
-                    </ul>
-                    I2C
-                    <ul id="i2c">
-<li>
-                        <a href="/documentation/drivers/blinkm">Blinkm</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/wiichuck">Wiichuck</a>
-                      </li>
-                    </ul>
-                    ARDrone
-                    <ul id="ardrone">
-<li>
-                        <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
-                      </li>
-                    </ul>
-                    Joystick
-                    <ul id="joystick">
-<li>
-                        <a href="/documentation/drivers/dualshock3">Dualshock3 Controller</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/xbox360">XBox360 Controller</a>
-                      </li>
-                    </ul>
-                    Other Drivers
-                    <ul id="others">
-<li>
-                        <a href="/documentation/drivers/leapmotion">Leap Motion</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/pebble">Pebble</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/drivers/sphero">Sphero</a>
-                      </li>
-                    </ul>
-</dd>
-                  <dt>
-                    <a href="">Contribute</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
-                  </dt>
-                  <dd id="contribute-panel">
-                    <ul>
-<li>
-                        <a href="/documentation/contribute/guidelines">Guidelines</a>
-                      </li>
-                      <li>
-                        <a href="/documentation/contribute/contact-us">Contact us</a>
-                      </li>
-                    </ul>
-</dd>
-                  <dt>
-                    <a href="">Examples</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
-                  </dt>
-                  <dd id="example-panel">
-                    <ul>
-<li>
-                        <a href="/documentation/examples">All examples</a>
-                      </li>
-                    </ul>
-</dd>
-                </dl>
-<script>
-                    $(document).ready(function(){
-                      $("#menu-docs").click(function(){
-                        $(".accordion-docs").removeClass("hide");
-                        $(this).addClass("active");
-                      });
-                    });
-                </script>
-</div>
             </div>
-          </section>
+          </div>
+        </section>
 </div>
-      </div>
     </div>
-    <footer class="app-footer"><div class="w">
-        <div class="copyright">
-          <div class="left-side">
-            © Copyright 2012-2014
+    <footer class="app-footer"><div class="grass-footer"></div>
+      <div class="frameworks">
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/gobot-home.png">
+</div>
+            <p>Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/artoo.png">
+</div>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="footer-button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/cylon.png">
+</div>
+            <p>Want to use Javascript to power your robots? Check out our sister project Cylon.js</p>
+            <div class="footer-button">
+              <a target="blank" href="http://cylonjs.com">View Project</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
           </div>
           <div class="right-side">
-            <a href="#top">Top</a>
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg"><p>Top</p>
+            </a>
           </div>
           <div class="clear"></div>
         </div>

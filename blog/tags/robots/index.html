@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html>
+<html ng-app="cylon">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
@@ -9,8 +9,7 @@
 <meta content="The Hybrid Group" name="author">
 <title>Gobot Blog</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
-<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/javascripts/vendor/angular.min.js"></script><script src="/javascripts/app.js"></script>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -33,108 +32,146 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script></head>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet" type="text/css">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
 <body>
     
     <div class="app">
-      <div class="w">
-        <header class="app-header" role="banner"><div class="display">
-            <h1 class="app-logo">
+      <header class="app-header" role="banner"><div class="container">
+          <div class="display">
+            <div class="app-logo">
               <a href="/">Gobot</a>
-            </h1>
-            <span class="subtitle">
-              <div class="main"></div>
-            </span>
+            </div>
           </div>
-          <span class="menu">
-            <a href="/documentation" class="item">Docs</a>
-            <a href="/documentation/platforms" class="item">Platforms</a>
-            <a href="/videos" class="item">Videos</a>
-            <a class="active" href="/blog">Blog</a>
-            <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
-          </span>
-        </header>
+          <nav class="menu"><ul>
+<li>
+                <a href="/documentation" class="item">Docs</a>
+              </li>
+              <li>
+                <a href="/documentation/platforms" class="item">Platforms</a>
+              </li>
+              <li>
+                <a href="/videos" class="item">Videos</a>
+              </li>
+              <li>
+                <a class="active" href="/blog">Blog</a>
+              </li>
+              <li>
+                <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
+              </li>
+            </ul></nav>
 </div>
-      <div class="page-title">
+      </header><div class="page-title">
         <div class="w">
           <h1 class="title">Blog</h1>
           <h2 class="subtitle">Articles tagged with “robots”</h2>
         </div>
       </div>
-      <div class="container">
-        
-        <div class="main blog" role="main">
-          <div class="articles">
+      
+      <div class="main blog" role="main">
+        <div class="articles">
+          <div class="article">
             <div class="article">
-              <div class="article">
-                <header class="header"><div class="date">
-                    <div class="blue">
-                      <div class="month">
-                        Oct
-                      </div>
-                      <div class="day">
-                        21
-                      </div>
+              <header class="header"><div class="date">
+                  <div class="blue">
+                    <div class="month">
+                      Oct
                     </div>
-                    <div class="red">
-                      <div class="year">
-                        2013
-                      </div>
+                    <div class="day">
+                      21
                     </div>
                   </div>
-                  <div class="data">
-                    <h3>
-                      <a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a>
-                    </h3>
-                    <div class="author">
-                      by Ron Evans
+                  <div class="red">
+                    <div class="year">
+                      2013
                     </div>
                   </div>
-                </header><p>We are very excited to introduce Gobot (<a href="http://gobot.io" target="blank">http://gobot.io</a>), a new and powerful open source robotics platform written using the Go programming language. Go has remarkable abilities when it comes to massive concurrency with only modest use of system resources. In addition, the expressive nature of the programming language makes it really nice code to work with.</p>
-                
-                <p>Our team will post here with all our exciting developments, as well as anything else of interest to the robot community. We've got a lot of plans in store for all of you, our dear users, so please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a> to follow our progress.</p>
-                <div class="tags">
-                  <div class="img">
-                    <img src="/images/elements/tag.png">
-</div>
-                  <a href="/blog/tags/robots/">robots</a>
                 </div>
+                <div class="data">
+                  <h3>
+                    <a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a>
+                  </h3>
+                  <div class="author">
+                    by Ron Evans
+                  </div>
+                </div>
+              </header><p>We are very excited to introduce Gobot (<a href="http://gobot.io" target="blank">http://gobot.io</a>), a new and powerful open source robotics platform written using the Go programming language. Go has remarkable abilities when it comes to massive concurrency with only modest use of system resources. In addition, the expressive nature of the programming language makes it really nice code to work with.</p>
+              
+              <p>Our team will post here with all our exciting developments, as well as anything else of interest to the robot community. We've got a lot of plans in store for all of you, our dear users, so please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a> to follow our progress.</p>
+              <div class="tags">
+                <div class="img">
+                  <img src="/images/elements/tag.png">
+</div>
+                <a href="/blog/tags/robots/">robots</a>
               </div>
             </div>
           </div>
-          <div class="side-column">
-            <div class="categories">
-              <h4>Tags</h4>
-              <ul>
+        </div>
+        <div class="side-column">
+          <div class="categories">
+            <h4>Tags</h4>
+            <ul>
 <li><a href="/blog/tags/robots/">Robots</a></li>
-                <li><a href="/blog/tags/events/">Events</a></li>
-              </ul>
+              <li><a href="/blog/tags/events/">Events</a></li>
+            </ul>
 </div>
-            <div class="network">
-              <h4>Network</h4>
-              <div class="network-links">
-                <a href="https://twitter.com/gobotio"><img src="/images/elements/twitter.png"></a>
-                <a href="https://github.com/hybridgroup/gobot"><img src="/images/elements/github.png"></a>
-              </div>
+          <div class="network">
+            <h4>Network</h4>
+            <div class="network-links">
+              <a href="https://twitter.com/gobotio"><img src="/images/elements/twitter.png"></a>
+              <a href="https://github.com/hybridgroup/gobot"><img src="/images/elements/github.png"></a>
             </div>
-            <div class="titles">
-              <h4>Posts</h4>
-              <ul>
-<li><a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a></li>
-              </ul>
-</div>
           </div>
+          <div class="titles">
+            <h4>Posts</h4>
+            <ul>
+<li><a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a></li>
+            </ul>
+</div>
         </div>
       </div>
     </div>
-    <footer class="app-footer"><div class="w">
-        <div class="copyright">
-          <div class="left-side">
-            © Copyright 2012-2014
+    <footer class="app-footer"><div class="grass-footer"></div>
+      <div class="frameworks">
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/gobot-home.png">
+</div>
+            <p>Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/artoo.png">
+</div>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="footer-button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/cylon.png">
+</div>
+            <p>Want to use Javascript to power your robots? Check out our sister project Cylon.js</p>
+            <div class="footer-button">
+              <a target="blank" href="http://cylonjs.com">View Project</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
           </div>
           <div class="right-side">
-            <a href="#top">Top</a>
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg"><p>Top</p>
+            </a>
           </div>
           <div class="clear"></div>
         </div>
