@@ -1,147 +1,113 @@
-.important-title {
-  
-  color: $hero-title-color;
-  background: $title-color;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 20px 0;
+.hero {
 
-  a {
+  background: url($header-background-src) $hero-color top center no-repeat;
+  height: 455px;
+  position: relative;
+  z-index: 0;
 
-    color: $hero-subtitle-color;
+  .container {
+
+      @include outer-container;
   }
-}
 
+  .gobot {
 
-.homepage-platform {
-
-  list-style: none !important;
-  margin: 0;
-  text-align: center;
-
-  li {
-
-    display: inline-block;
-    width: 19%;
-    padding: 10px;
-
-    @include small-screen {
-      width: 100%;
-      float: none;
-    }
+    @include span-columns(4);
 
     img {
 
-      &:hover {
-
-        opacity: .8;
-      }
+      margin: 54px 0px 0 -274px;
     }
 
+    @include small-screen {
 
-    .title {
+      display: none;
+    }
+    @media only screen and (min-width: $small-screen) and (max-width: $medium-screen) {
 
-      a {
-
-        color: $hero-title-color;
-        background: $title-color;
-        padding:10px;
-        color: $hero-title-color;
-        display: block;
-        width: 100%;
-
-        &:hover {
-
-          background: darken( $title-color ,5 );
-        }
-
+      img {
+        width: 80%;
+        margin-top: 15px;
       }
     }
-    .repo {
+  }
 
-      a {
+  a.cta {
 
-        color: $title-color;
-        background: $hero-subtitle-color;
-        padding:10px;
-        display: block;
-        width: 100%;
-
-        &:hover {
-
-          background: darken( $hero-subtitle-color ,5 );
-        }
-      }
-    }
+    @extend .cta;
   }
 }
 
-.hero {
+.description {
 
-  margin: 15px 0 0 0;
-  background: $hero-color;
-  padding: 25px 0;
+  @include span-columns(8);
+  margin-top: 45px;
+
   @include small-screen {
-    margin-top: -8px;
+
+    @include span-columns(12);
+    text-align: center;
   }
 
-  .title {
+  .title,a {
 
-    @include title-font(47px, $hero-title-color);
-    line-height: 54px;
-    width: 100%;
-    clear: both;
-    opacity: 0.94;
-    margin: 0;
+    color: $menu-background-color;
+    font-weight: 400;
+    font-size: 41px;
+
+    span{
+
+      font-size: 73px;
+      white-space: nowrap;
+      line-height: 70px;
+
+      @include small-screen {
+
+        font-size: 50px;
+        line-height: 40px;
+      }
+    }
 
     @include small-screen {
 
       font-size: 23px;
       line-height: 27px;
       padding: 0;
-
-      br {
-
-        display: none;
-      }
     }
 
     @include medium-screen {
 
       font-size: 33px;
-      line-height: 42px;
     }
   }
 
-  .subtitle {
+  p,a {
 
-    @include title-font(24px, $hero-subtitle-color);
-    font-weight: 550;
-    opacity: 0.94;
-    margin: 0;
-    line-height: 36px;
-    margin-top: 3px;
-
-    @include small-screen {
-
-      font-size: 18px;
-      line-height: 22px;
-      margin-top: 4px;
-      padding: 0;
-    }
+    font-size: 22px;
+    line-height: 30px;
   }
+}
 
-  a {
-
-    @extend .hero-anchors;
-  }
+.title > a{
+  @include title-font(16px, $menu-background-color);
 }
 
 .social {
 
   line-height: 0;
-  padding: 10px 0;
-  background: $social-catcher-background-color;
+  padding: 55px 0 20px;
+
+  @media only screen and (max-width: $big-screen) {
+
+    margin-bottom: 85px;
+  }
+
+  .container{
+    @include medium-screen {
+
+      padding-left: 0;
+    }
+  }
 
   .twitter-follow-button {
 
@@ -153,35 +119,60 @@
     display: inline-block;
     height: 21px;
   }
-  
+
   @include small-screen {
+    text-align: center;
 
     .splitter {
+      margin-bottom: 10px;
+    }
 
+    #twitter-widget-1{
+
+      display: none;
+    }
+
+    #twitter-widget-0{
+      
+      width: 99px !important;
+    }
+
+    .fork{
+
+      display: none;
+    }
+  }
+  @include extra-small-screen{
+    .splitter{
       display: block;
-      margin-bottom: 5px;
     }
   }
 }
 
 .cta {
 
+  border-radius: 7px;
+  height: 57px;
+  width:  175px;
+  box-shadow: inset 0px -5px $button-shadow-color;
+  border: 1px solid $button-border-color;
   padding: 10px 20px;
   display: inline-block;
   margin: 17px 0 0 0;
-  font-size: 19px;
   font-weight: bold;
+  text-align: center;
 
   &, &:visited, &:active {
 
-    background: $cta-color;
-    color: $cta-text-color;
+    background: $button-color;
+    color: $menu-background-color;
+
   }
 
   &:hover, &:focus {
 
-    background: $cta-hover-color;
-    color: $cta-text-hover-color;
+    background: darken($button-color, 5%);
+    box-shadow: inset 0px -5px darken($button-shadow-color, 5%);
   }
 
   @include small-screen {
@@ -191,25 +182,119 @@
   }
 }
 
-.hero {
+.homepage-platform {
 
-  a.cta {
+  list-style: none !important;
+  margin: 0;
 
-    @extend .cta;
+  li {
+
+    @include small-screen {
+
+      width: 49%;
+      float: none;
+    }
+
+    display: inline-block;
+    width: 19%;
+    text-align: center;
+
+    img {
+
+      &:hover {
+
+        opacity: .8;
+      }
+    }
+
+    a {
+
+      p.title {
+        color: $lesser-title-color;
+        font-size: 18px;
+        padding:10px;
+        display: block;
+        width: 100%;
+      }
+      &:hover p.title {
+        color: $cta-color;
+      }
+      
+    }
   }
 }
 
-.catcher {
+.grass{
+  background: url(/images/elements/grass.png) top center repeat-x;
+  position: relative;
+  height: 100px;
+  top: -15px;
 
-  margin: 0 0 38px 0;
-  background: $social-catcher-background-color;
-  padding: 20px;
-  .phrase {
-
-    margin: 0;
+  @include small-screen{
+    top:62px;
   }
-  .cta {
-  
-    margin-top: 8px;
+
+  @include extra-small-screen{
+    top: 25px;
+
+    .social{
+      padding-top: 40px;
+    }
+  }
+} 
+
+.about{
+  background: url(/images/elements/ground.png) top center repeat;
+  margin: -11px 0 0px 0;
+  text-align: center;
+
+  h2{
+    padding: 57px 0;
+    color: $hero-subtitle-color; 
+  }
+
+  span{
+    color: $hero-link-color;
+  }
+
+}
+
+h2.homepage{
+  color: $cta-color;
+  margin-top: 60px;
+}
+
+h2.platforms {
+  margin-top: 0;
+  padding: 25px 0 0 15px;
+}
+
+.hill{
+  @include large-screen{
+    background: #83C74E;
+    position: relative;
+    height: 100px;
+    top: -165px;
+    padding-bottom: 75px;
+    z-index: -1;
+  }
+}
+
+.clouds{ 
+  position: absolute;
+  width: 100%; 
+  height: 167px;
+  background-image: url(/images/elements/clouds.png);
+  background-position: 0px;
+  background-repeat: repeat-x;
+  @include animation(cloud 25s infinite linear);
+}
+
+@include keyframes(cloud) {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: 1400px;
   }
 }

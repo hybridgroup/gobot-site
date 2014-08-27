@@ -1,9 +1,8 @@
 body {
 
   background-color: $body-bg-color;
-  background-image: url($body-background-src);
-  background-repeat: no-repeat;
-  background-position: top;
+  margin: 0;
+  padding: 0;
 }
 
 .app {
@@ -21,7 +20,7 @@ a {
 
   &, &:visited {
 
-    color: $link-color;
+    color: $cta-color;
   }
 
   &:hover, &:focus {
@@ -33,19 +32,6 @@ a {
 pre {
 
   @include medium-screen-pre;
-}
-
-.hero-anchors {
-
-  &, &:active, &:visited {
-
-    color: $hero-link-color;
-  }
-
-  &:hover, &:focus {
-
-    color: $hero-link-hover-color;
-  }
 }
 
 .notice {
