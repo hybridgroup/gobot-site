@@ -114,30 +114,37 @@
 
 <span class="keyword">import</span> (
   <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
   gbot := gobot.NewGobot()
+
   firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
   sensor := gpio.NewAnalogSensorDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">0</span><span class="delimiter">"</span></span>)
   led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">3</span><span class="delimiter">"</span></span>)
 
   work := <span class="keyword">func</span>() {
-    gobot.Every(<span class="integer">100</span>*time.Millisecond, <span class="keyword">func</span>() {
-      val := sensor.Read()
-      brightness := <span class="predefined-type">uint8</span>(gobot.ToScale(gobot.FromScale(<span class="predefined-type">float64</span>(val), <span class="integer">0</span>, <span class="integer">1024</span>), <span class="integer">0</span>, <span class="integer">255</span>))
-      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, val)
+    gobot.On(sensor.Event(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+      brightness := <span class="predefined-type">uint8</span>(
+        gobot.ToScale(gobot.FromScale(<span class="predefined-type">float64</span>(data.(<span class="predefined-type">int</span>)), <span class="integer">0</span>, <span class="integer">1024</span>), <span class="integer">0</span>, <span class="integer">255</span>),
+      )
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, data)
       fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">brightness</span><span class="delimiter">"</span></span>, brightness)
       led.Brightness(brightness)
     })
   }
 
-  gbot.Robots = <span class="predefined">append</span>(gbot.Robots,
-    gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sensorBot</span><span class="delimiter">"</span></span>, []gobot.Connection{firmataAdaptor}, []gobot.Device{sensor, led}, work))
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sensorBot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{firmataAdaptor},
+    []gobot.Device{sensor, led},
+    work,
+  )
+
+  gbot.AddRobot(robot)
 
   gbot.Start()
 }
@@ -237,6 +244,11 @@
                       </li>
                       <li>
                         <a href="/documentation/guides/helpers">Helper Methods</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/gobot-on-ardrone">
+                          Gobot on the ARDrone 2.0
+                        </a>
                       </li>
                     </ul>
 </dd>
