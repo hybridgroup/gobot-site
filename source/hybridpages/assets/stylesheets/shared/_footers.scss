@@ -66,6 +66,15 @@
 
     .hybrid-group{
       float: left
+      float: left;
+
+      a {
+        opacity: 0.8;
+
+        &:hover {
+          opacity: 1.0;
+        }
+      }
     }
 
     .right-side {
