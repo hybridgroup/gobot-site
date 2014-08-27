@@ -269,23 +269,32 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
         api.Username = "Gort"
         api.Password = "klaatu"
 
-  %img{src:"/images/screenshots/robeaux.png", style: "margin-top: 15px; width: 100%"}
-
   %p
     :markdown
       In order to use the
       [robeaux](https://github.com/hybridgroup/robeaux)
       AngularJS interface with Gobot you simply clone the robeaux repo and place it in the directory of your Gobot program. The robeaux assets must be in a folder called
       `robeaux`.
+
+      Then visit `https://localhost:3000/#/robots` and you are ready to control your robots from a web browser!
+
+      <img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%">
+
+      You can check out more information on the Gobot API in the docs [here][api-docs].
+
+      [api-docs]: /documentation/guides/api/
+
 %section.cli
   %h2.homepage CLI
-  %p 
-    Gort
-    = link_to "(http://gort.io)","http://gort.io", target: :blank
-    is a Command Line Toolkit for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more. It works well with Gobot.
+  %script{type:"text/javascript", src:"https://asciinema.org/a/10306.js", id:"asciicast-10306", "data-autoplay" => "1",  "data-loop" => "true"}
+  :markdown
+    [Gort][] is a Command Line Toolkit (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and it works perfectly with Gobot. Also included with Gobot is a CLI for generating new robots and adaptors. 
 
-  %p 
-    Gobot also includes a Command Line Interface (CLI) for generating new robots and adaptors.
+    You can can learn more about Gobot's CLI in the docs [here][cli-docs].
+
+    [Gort]: http://gort.io
+    [cli-docs]: /documentation/guides/cli
+
 
   %h2.homepage Be Part Of The Robot Evolution
   :markdown
