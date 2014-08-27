@@ -2,7 +2,7 @@
   "Getting Started": "/documentation/getting-started",
 
   "Guides": {
-    "About Cylon": "/documentation/guides/what_is_gobot",
+    "About Gobot": "/documentation/guides/what_is_gobot",
     "API": "/documentation/guides/api",
     "CLI": "/documentation/guides/cli",
     "Helper Methods": "/documentation/guides/helpers"
@@ -52,7 +52,5 @@
     "Contact Us": "/documentation/contribute/contact-us"
   },
 
-  "Examples": "/documentation/examples",
-  "Tutorials": "/documentation/tutorials",
-  "Chat": "/documentation/chat"
+  "Examples": "/documentation/examples"
 }
