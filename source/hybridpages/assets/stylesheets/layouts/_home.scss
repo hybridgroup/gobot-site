@@ -16,11 +16,6 @@ html {
     width: 150px;
     padding: 5px;
 
-    &:hover {
-
-      background: darken($cta-color, 5);
-    }
-  } 
 }
 
 .container, .w {
