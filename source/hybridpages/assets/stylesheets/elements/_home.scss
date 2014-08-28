@@ -41,7 +41,7 @@
 .description {
 
   @include span-columns(8);
-  margin-top: 45px;
+  margin-top: 35px;
 
   @include small-screen {
 
@@ -85,6 +85,10 @@
 
     font-size: 22px;
     line-height: 30px;
+    
+    @include large-screen{
+      max-width: 520px;
+    }
   }
 }
 
