@@ -1880,7 +1880,7 @@
         display: block;
         margin-right: 2.35765%;
         width: 65.88078%;
-        margin-top: 45px; }
+        margin-top: 35px; }
         /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
         .description:last-child {
           margin-right: 0; }
@@ -1924,55 +1924,59 @@
         .description p, .description a {
           font-size: 22px;
           line-height: 30px; }
+          @media only screen and (min-width: 960px) {
+            /* line 84, ../hybridpages/assets/stylesheets/elements/_home.scss */
+            .description p, .description a {
+              max-width: 520px; } }
       
-      /* line 91, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 95, ../hybridpages/assets/stylesheets/elements/_home.scss */
       .title > a {
         font-family: "Montserrat", sans-serif;
         font-weight: 600;
         font-size: 16px;
         color: #514b47; }
       
-      /* line 95, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 99, ../hybridpages/assets/stylesheets/elements/_home.scss */
       .social {
         line-height: 0;
         padding: 55px 0 20px; }
         @media only screen and (max-width: 960px) {
-          /* line 95, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 99, ../hybridpages/assets/stylesheets/elements/_home.scss */
           .social {
             margin-bottom: 85px; } }
         @media only screen and (min-width: 767px) and (max-width: 960px) {
-          /* line 105, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 109, ../hybridpages/assets/stylesheets/elements/_home.scss */
           .social .container, .social .main {
             padding-left: 0; } }
-        /* line 112, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 116, ../hybridpages/assets/stylesheets/elements/_home.scss */
         .social .twitter-follow-button {
           vertical-align: top; }
-        /* line 117, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 121, ../hybridpages/assets/stylesheets/elements/_home.scss */
         .social .splitter {
           display: inline-block;
           height: 21px; }
         @media only screen and (max-width: 767px) {
-          /* line 95, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 99, ../hybridpages/assets/stylesheets/elements/_home.scss */
           .social {
             text-align: center; }
-            /* line 126, ../hybridpages/assets/stylesheets/elements/_home.scss */
+            /* line 130, ../hybridpages/assets/stylesheets/elements/_home.scss */
             .social .splitter {
               margin-bottom: 10px; }
-            /* line 130, ../hybridpages/assets/stylesheets/elements/_home.scss */
+            /* line 134, ../hybridpages/assets/stylesheets/elements/_home.scss */
             .social #twitter-widget-1 {
               display: none; }
-            /* line 135, ../hybridpages/assets/stylesheets/elements/_home.scss */
+            /* line 139, ../hybridpages/assets/stylesheets/elements/_home.scss */
             .social #twitter-widget-0 {
               width: 99px !important; }
-            /* line 140, ../hybridpages/assets/stylesheets/elements/_home.scss */
+            /* line 144, ../hybridpages/assets/stylesheets/elements/_home.scss */
             .social .fork {
               display: none; } }
         @media only screen and (max-width: 560px) {
-          /* line 146, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 150, ../hybridpages/assets/stylesheets/elements/_home.scss */
           .social .splitter {
             display: block; } }
       
-      /* line 152, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 156, ../hybridpages/assets/stylesheets/elements/_home.scss */
       .cta, .hero a.cta {
         border-radius: 7px;
         height: 57px;
@@ -1984,91 +1988,91 @@
         margin: 17px 0 0 0;
         font-weight: bold;
         text-align: center; }
-        /* line 165, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 169, ../hybridpages/assets/stylesheets/elements/_home.scss */
         .cta, .hero a.cta, .cta:visited, .hero a.cta:visited, .cta:active, .hero a.cta:active {
           background: #fff441;
           color: #514b47; }
-        /* line 172, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 176, ../hybridpages/assets/stylesheets/elements/_home.scss */
         .cta:hover, .hero a.cta:hover, .cta:focus, .hero a.cta:focus {
           background: #fff327;
           box-shadow: inset 0px -5px #ffcb2c; }
         @media only screen and (max-width: 767px) {
-          /* line 152, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 156, ../hybridpages/assets/stylesheets/elements/_home.scss */
           .cta, .hero a.cta {
             font-size: 16px;
             padding: 8px 15px; } }
       
-      /* line 185, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 189, ../hybridpages/assets/stylesheets/elements/_home.scss */
       .homepage-platform, .doc-platform {
         list-style: none !important;
         margin: 0; }
-        /* line 190, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 194, ../hybridpages/assets/stylesheets/elements/_home.scss */
         .homepage-platform li, .doc-platform li {
           display: inline-block;
           width: 19%;
           text-align: center; }
           @media only screen and (max-width: 767px) {
-            /* line 190, ../hybridpages/assets/stylesheets/elements/_home.scss */
+            /* line 194, ../hybridpages/assets/stylesheets/elements/_home.scss */
             .homepage-platform li, .doc-platform li {
               width: 49%;
               float: none; } }
-          /* line 204, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 208, ../hybridpages/assets/stylesheets/elements/_home.scss */
           .homepage-platform li img:hover, .doc-platform li img:hover {
             opacity: .8; }
-          /* line 212, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 216, ../hybridpages/assets/stylesheets/elements/_home.scss */
           .homepage-platform li a p.title, .doc-platform li a p.title {
             color: #3e3e3e;
             font-size: 18px;
             padding: 10px;
             display: block;
             width: 100%; }
-          /* line 219, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 223, ../hybridpages/assets/stylesheets/elements/_home.scss */
           .homepage-platform li a:hover p.title, .doc-platform li a:hover p.title {
             color: #77b547; }
       
-      /* line 227, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 231, ../hybridpages/assets/stylesheets/elements/_home.scss */
       .grass {
         background: url(/images/elements/grass.png) top center repeat-x;
         position: relative;
         height: 100px;
         top: -15px; }
         @media only screen and (max-width: 767px) {
-          /* line 227, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 231, ../hybridpages/assets/stylesheets/elements/_home.scss */
           .grass {
             top: 62px; } }
         @media only screen and (max-width: 560px) {
-          /* line 227, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 231, ../hybridpages/assets/stylesheets/elements/_home.scss */
           .grass {
             top: 25px; }
-            /* line 240, ../hybridpages/assets/stylesheets/elements/_home.scss */
+            /* line 244, ../hybridpages/assets/stylesheets/elements/_home.scss */
             .grass .social {
               padding-top: 40px; } }
       
-      /* line 246, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 250, ../hybridpages/assets/stylesheets/elements/_home.scss */
       .about {
         background: url(/images/elements/ground.png) top center repeat;
         margin: -11px 0 0px 0;
         text-align: center; }
-        /* line 251, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 255, ../hybridpages/assets/stylesheets/elements/_home.scss */
         .about h2 {
           padding: 57px 0;
           color: #ebfdff; }
-        /* line 256, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 260, ../hybridpages/assets/stylesheets/elements/_home.scss */
         .about span {
           color: #83c74e; }
       
-      /* line 262, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 266, ../hybridpages/assets/stylesheets/elements/_home.scss */
       h2.homepage {
         color: #77b547;
         margin-top: 60px; }
       
-      /* line 267, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 271, ../hybridpages/assets/stylesheets/elements/_home.scss */
       h2.platforms {
         margin-top: 0;
         padding: 25px 0 0 15px; }
       
       @media only screen and (min-width: 960px) {
-        /* line 272, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 276, ../hybridpages/assets/stylesheets/elements/_home.scss */
         .hill {
           background: #83C74E;
           position: relative;
@@ -2077,7 +2081,7 @@
           padding-bottom: 75px;
           z-index: -1; } }
       
-      /* line 283, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 287, ../hybridpages/assets/stylesheets/elements/_home.scss */
       .clouds {
         position: absolute;
         width: 100%;
@@ -2090,38 +2094,38 @@
         animation: cloud 25s infinite linear; }
       
       @-webkit-keyframes cloud {
-        /* line 294, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 298, ../hybridpages/assets/stylesheets/elements/_home.scss */
         from {
           background-position: 0px; }
       
-        /* line 297, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 301, ../hybridpages/assets/stylesheets/elements/_home.scss */
         to {
           background-position: 1400px; } }
       
       @-moz-keyframes cloud {
-        /* line 294, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 298, ../hybridpages/assets/stylesheets/elements/_home.scss */
         from {
           background-position: 0px; }
       
-        /* line 297, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 301, ../hybridpages/assets/stylesheets/elements/_home.scss */
         to {
           background-position: 1400px; } }
       
       @-o-keyframes cloud {
-        /* line 294, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 298, ../hybridpages/assets/stylesheets/elements/_home.scss */
         from {
           background-position: 0px; }
       
-        /* line 297, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 301, ../hybridpages/assets/stylesheets/elements/_home.scss */
         to {
           background-position: 1400px; } }
       
       @keyframes cloud {
-        /* line 294, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 298, ../hybridpages/assets/stylesheets/elements/_home.scss */
         from {
           background-position: 0px; }
       
-        /* line 297, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 301, ../hybridpages/assets/stylesheets/elements/_home.scss */
         to {
           background-position: 1400px; } }
       
