@@ -1,0 +1,29 @@
+{
+  "GPIO": {
+    "Analog Sensor": "analog-sensor",
+    "Button": "button",
+    "Direct Pin": "direct-pin",
+    "LED": "led",
+    "Makey Button": "makey-button",
+    "Motor": "motor",
+    "Servo": "servo"
+  },
+
+  "I2C": {
+    "BlinkM": "blinkm",
+    "HMC6352 Compass": "hmc6352-compass",
+    "Wiimote Nunchuk": "wiimote-nunchuk"
+  },
+
+  "ARDrone - Flight": "ardrone-flight",
+  "ARDrone - Navigation": "ardrone-navigation",
+  "Crazyflie": "crazyflie",
+  "Joystick - DualShock 3": "dualshock3",
+  "Joystick - Xbox 360": "xbox360",
+  "Keyboard": "keyboard",
+  "Leap Motion": "leapmotion",
+  "Neurosky Mindwave": "neurosky",
+  "Pebble": "pebble",
+  "Roomba": "roomba",
+  "Sphero": "sphero"
+}

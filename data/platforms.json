@@ -1,0 +1,61 @@
+{
+  "ARDrone": {
+    "slug": "ardrone",
+    "url": "http://ardrone2.parrot.com/",
+    "drivers": ["ARDrone - Flight", "ARDrone - Navigation"]
+  },
+
+  "Arduino": {
+    "slug": "arduino",
+    "url": "http://www.arduino.cc/",
+    "drivers": ["GPIO", "I2C"]
+  },
+
+  "Beaglebone Black": {
+    "slug": "beaglebone",
+    "url": "http://beagleboard.org/Products/BeagleBone+Black/",
+    "drivers": ["GPIO", "I2C"]
+  },
+
+  "Digispark": {
+    "slug": "digispark",
+    "url": "http://digistump.com/category/1",
+    "drivers": ["GPIO", "I2C"]
+  },
+
+  "Joystick": {
+    "slug": "joystick",
+    "url": "http://en.wikipedia.org/wiki/Joystick",
+    "drivers": ["Joystick - DualShock 3", "Joystick - Xbox 360"]
+  },
+
+  "Leap Motion": {
+    "slug": "leapmotion",
+    "url": "https://www.leapmotion.com/",
+    "drivers": ["Leap Motion"]
+  },
+
+  "Neurosky": {
+    "slug": "neurosky",
+    "url": "http://neurosky.com/products-markets/eeg-biosensors/hardware/",
+    "drivers": ["Neurosky Mindwave"]
+  },
+
+  "OpenCV": {
+    "slug": "opencv",
+    "url": "http://opencv.org/",
+    "drivers": []
+  },
+
+  "Spark": {
+    "slug": "spark",
+    "url": "https://www.spark.io/",
+    "drivers": ["GPIO"]
+  },
+
+  "Sphero": {
+    "slug": "sphero",
+    "url": "http://www.gosphero.com/",
+    "drivers": ["Sphero"]
+  }
+}
