@@ -307,11 +307,10 @@ h2.platforms {
   @include animation(wave 1s infinite linear);
   background: url(/images/elements/wave.png) top center no-repeat;
   background-size: 50%;
+  height: 112px;
   position: absolute;
   right: 155px;
-  height: 112px;
   top: 83px;
-  z-index: 0;
   width: 112px;
 
   @include medium-screen{
