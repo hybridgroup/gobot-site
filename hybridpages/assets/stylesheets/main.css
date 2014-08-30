@@ -2129,6 +2129,100 @@
         to {
           background-position: 1400px; } }
       
+      /* line 306, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      .inner, .outer {
+        -webkit-animation: wave 1s infinite linear;
+        -moz-animation: wave 1s infinite linear;
+        animation: wave 1s infinite linear;
+        background: url(/images/elements/wave.png) top center no-repeat;
+        background-size: 50%;
+        height: 112px;
+        position: absolute;
+        right: 155px;
+        top: 83px;
+        width: 112px; }
+        @media only screen and (min-width: 767px) and (max-width: 960px) {
+          /* line 306, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          .inner, .outer {
+            right: 99px; } }
+      
+      /* line 321, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      .outer {
+        -webkit-animation: wave 1s infinite linear;
+        -moz-animation: wave 1s infinite linear;
+        animation: wave 1s infinite linear;
+        -webkit-animation-delay: 0.5s;
+        -moz-animation-delay: 0.5s;
+        animation-delay: 0.5s; }
+      
+      @-webkit-keyframes wave {
+        /* line 328, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        0% {
+          background-size: 50%;
+          top: 83px;
+          opacity: 1; }
+      
+        /* line 333, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        50% {
+          opacity: .75; }
+      
+        /* line 336, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        100% {
+          background-size: 130%;
+          top: 38px;
+          opacity: 0; } }
+      
+      @-moz-keyframes wave {
+        /* line 328, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        0% {
+          background-size: 50%;
+          top: 83px;
+          opacity: 1; }
+      
+        /* line 333, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        50% {
+          opacity: .75; }
+      
+        /* line 336, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        100% {
+          background-size: 130%;
+          top: 38px;
+          opacity: 0; } }
+      
+      @-o-keyframes wave {
+        /* line 328, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        0% {
+          background-size: 50%;
+          top: 83px;
+          opacity: 1; }
+      
+        /* line 333, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        50% {
+          opacity: .75; }
+      
+        /* line 336, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        100% {
+          background-size: 130%;
+          top: 38px;
+          opacity: 0; } }
+      
+      @keyframes wave {
+        /* line 328, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        0% {
+          background-size: 50%;
+          top: 83px;
+          opacity: 1; }
+      
+        /* line 333, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        50% {
+          opacity: .75; }
+      
+        /* line 336, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        100% {
+          background-size: 130%;
+          top: 38px;
+          opacity: 0; } }
+      
       /* line 1, ../hybridpages/assets/stylesheets/elements/_blog.scss */
       .articles {
         float: left;
