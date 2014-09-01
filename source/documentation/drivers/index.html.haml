@@ -7,23 +7,16 @@ page_subtitle: All Drivers
 page_title_show: true
 layout: documentation
 active_menu_docs: true
-
-button_driver: true
-led_driver: true
-servo_driver: true
-motor_driver: true
-analog_sensor_driver: true
-wiichuck_driver: true
-hmc6352_compass_driver: true
-blinkm_driver: true
-leapmotion_driver: true
-sphero_driver: true
-dualshock3_driver: true
-xbox360_driver: true
-ardrone_flight_driver: true
-direct_pin_driver: true
-makey_driver: true
-neurosky_driver: true
 ---
+%section.hardware
+  .devices
+    - data.drivers.reject { |k, v| v.is_a?(Hash) }.each do |name, val|
+      %a.device{href: "/documentation/drivers/#{val}", title: name}
+        %img{src: "/images/devices/#{val}.jpg"}
 
-= partial "../drivers"
+    - data.drivers.select { |k, v| v.is_a?(Hash) }.each do |name, val|
+      .group
+        %h2= "#{name} Drivers"
+        - val.each do |name, val|
+          %a.device{href: "/documentation/drivers/#{val}", title: name}
+            %img{src: "/images/devices/#{val}.jpg"}

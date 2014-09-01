@@ -10,11 +10,6 @@ layout: documentation
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-
-button_driver: true
-led_driver: true
-servo_driver: true
 ---
 
 %section.intro
@@ -113,12 +108,5 @@ servo_driver: true
     physical computing (using Gobot and Go) you could be doing:
 
   .hardware
-    %h2 GPIO Drivers
     .devices
-      // TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_gpio_drivers"
-    -#%h2 i2c Drivers
-    -#.devices
-      = partial "documentation/partials/devices_i2c_drivers"
-      
-
+      = partial "/partials/devices_for_platform", locals: { platform: "Arduino" }

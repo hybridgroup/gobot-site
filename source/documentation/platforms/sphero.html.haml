@@ -10,8 +10,6 @@ layout: documentation
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-sphero_driver: true
 ---
 
 %section.intro
@@ -110,4 +108,4 @@ sphero_driver: true
 
   .hardware
     .devices
-      = partial "documentation/partials/devices_sphero_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Sphero" }

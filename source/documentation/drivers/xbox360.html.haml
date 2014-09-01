@@ -10,8 +10,6 @@ layout: documentation
 subnav_driver: true
 active_menu_docs: true
 subnavjs: true
-
-joystick_platform: true
 ---
 
 %section.intro
@@ -122,5 +120,4 @@ joystick_platform: true
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
-    =# TODO: Update platform list at the top of the page.
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Joystick - Xbox 360" }

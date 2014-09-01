@@ -11,9 +11,6 @@ subnav_driver: true
 subnav_circuit_driver: true
 active_menu_docs: true
 subnavjs: true
-
-arduino_platform: true
-spark_platform: true
 ---
 %section.intro
   = image_tag "/images/devices/analog-sensor.jpg", class: "display"
@@ -109,6 +106,5 @@ spark_platform: true
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
-  =# TODO: Update platform list with all that work with this driver in gobot.
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Analog Sensor" }

@@ -9,8 +9,6 @@ page_title_show: true
 layout: documentation
 active_menu_docs: true
 subnavjs: true
-
-arduino_platform: true
 ---
 
 %section.intro
@@ -69,6 +67,5 @@ arduino_platform: true
 
 %section.compatability.hardware
   %h2 Works with:
-  =# TODO: Update platform list with all that work with this driver in gobot.
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Maxbotix" }

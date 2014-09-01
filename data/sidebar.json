@@ -16,7 +16,6 @@
     "Joystick": "/documentation/platforms/joystick",
     "Leap Motion": "/documentation/platforms/leapmotion",
     "Neurosky Mindwave": "/documentation/platforms/neurosky",
-    "Pebble": "/documentation/platforms/pebble",
     "Spark": "/documentation/platforms/spark",
     "Sphero": "/documentation/platforms/sphero"
   },
@@ -43,7 +42,6 @@
     "Joystick - Xbox 360": "/documentation/drivers/xbox360",
     "Leap Motion": "/documentation/drivers/leapmotion",
     "Neurosky Mindwave": "/documentation/drivers/neurosky",
-    "Pebble": "/documentation/drivers/pebble",
     "Sphero": "/documentation/drivers/sphero"
   },
 

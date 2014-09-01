@@ -10,14 +10,10 @@ layout: documentation
 subnav_driver: true
 active_menu_docs: true
 subnavjs: true
-
-arduino_platform: true
-beaglebone_platform: true
-digispark_platform: true
 ---
 
 %section.intro
-  =image_tag "/images/devices/wii-chuck.jpg", class: "display"
+  =image_tag "/images/devices/wiimote-nunchuk.jpg", class: "display"
   .info-intro
     %p Allows user to use a Nintendo Wii Nunchuck controller via i2c interface
   .clear
@@ -101,4 +97,4 @@ digispark_platform: true
 %section.compatability.hardware#Compatability
   %h2 Compatability
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Wiimote - Nunchuk" }
