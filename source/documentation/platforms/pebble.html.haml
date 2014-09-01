@@ -11,9 +11,6 @@ active_menu_platforms: true
 page_title_show: true
 subnav_platform: true
 subnavjs: true
-
-pebble_driver: true
-
 ---
 
 %section.intro
@@ -157,4 +154,5 @@ pebble_driver: true
 
   .hardware
     .devices
-      = partial "documentation/partials/devices_pebble_drivers"
+      -# Un-comment once Pebble page should go live
+      -# = partial "/partials/devices_for_platform", locals: { platform: "Pebble" }

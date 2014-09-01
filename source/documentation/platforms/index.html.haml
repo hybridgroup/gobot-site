@@ -8,18 +8,11 @@ page_title_show: true
 layout: documentation
 active_menu_platforms: true
 main_nav: true
-
-arduino_platform: true
-beaglebone_platform: true
-digispark_platform: true
-leapmotion_platform: true
-spark_platform: true
-sphero_platform: true
-ardrone_platform: true
-joystick_platform: true
-opencv_platform: true
-neurosky_platform: true
-pebble_platform: true
 ---
 
-= partial "../platforms"
+%ul.doc-platform
+  - data.platforms.each do |name, info|
+    %li
+      %a{:href => "/documentation/platforms/#{info.slug}"}
+        %p.title= name
+        %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}

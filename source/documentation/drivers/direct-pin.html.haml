@@ -10,11 +10,6 @@ layout: documentation
 subnav_driver: true
 active_menu_docs: true
 subnavjs: true
-
-arduino_platform: true
-beaglebone_platform: true
-digispark_platform: true
-spark_platform: true
 ---
 
 %section.intro
@@ -89,6 +84,5 @@ spark_platform: true
   
 %section.compatability.hardware#Compatability
   %h2 Compatability
-  =# TODO: Update platform list with all that work with this driver in gobot.
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Direct Pin" }

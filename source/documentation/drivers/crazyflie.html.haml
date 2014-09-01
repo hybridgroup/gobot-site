@@ -10,8 +10,6 @@ layout: documentation
 subnav_driver: true
 active_menu_docs: true
 subnavjs: true
-
-crazyflie_platform: true
 ---
 
 %section.intro
@@ -108,4 +106,4 @@ crazyflie_platform: true
 %section.compatability.hardware#Compatability
   %h2 Compatability
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Crazyflie" }

@@ -10,10 +10,6 @@ layout: documentation
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-button_driver: true
-led_driver: true
-servo_driver: true
 ---
 
 %section.intro
@@ -79,8 +75,5 @@ servo_driver: true
   %p Available drivers for the spark platform are listed below, the drivers contain detailed documentation and examples of what kinds of physical computing (using Gobot and Golang) you can be doing:
 
   .hardware
-    %h2 GPIO Drivers
     .devices 
-      = partial "documentation/partials/devices_gpio_drivers"
-
-
+      = partial "/partials/devices_for_platform", locals: { platform: "Spark" }

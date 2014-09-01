@@ -11,8 +11,6 @@ subnav_driver: true
 sphero_colors_driver: true
 active_menu_docs: true
 subnavjs: true
-
-sphero_platform: true
 ---
 
 %section.intro
@@ -892,6 +890,5 @@ sphero_platform: true
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility:
-  =# TODO: Update platform list with all that work with this driver in gobot.
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Sphero" }

@@ -10,9 +10,6 @@ layout: documentation
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-dualshock3_driver: true
-xbox360_driver: true
 ---
 
 %section.intro
@@ -213,4 +210,4 @@ xbox360_driver: true
 
   .hardware
     .devices
-      = partial "documentation/partials/devices_joystick_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Joystick" }

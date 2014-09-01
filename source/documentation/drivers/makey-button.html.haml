@@ -11,16 +11,10 @@ subnav_driver: true
 subnav_circuit_driver: true
 active_menu_docs: true
 subnavjs: true
-
-arduino_platform: true
-beaglebone_platform: true
-digispark_platform: true
-spark_platform: true
-
 ---
 
 %section.intro
-  = image_tag "/images/devices/makey.jpg", class: "display"
+  = image_tag "/images/devices/makey-button.jpg", class: "display"
   .info-intro
     %p
       Inspired by the awesome MakeyMakey (<a href='http://makeymakey.com'>http://makeymakey.com</a>), this GPIO driver allows you to connect a 10 MOhm resistor to a digital pin on your Arduino to control your robots with bananas, clay, or drawable circuitry.
@@ -110,7 +104,5 @@ spark_platform: true
   
 %section.compatability.hardware#Compatability
   %h2 Compatability
-  =# TODO: Update platform list with all that work with this driver in gobot.
   .devices
-    = partial "documentation/partials/devices_platforms"
-   
+    = partial "/partials/platforms_for_driver", locals: { driver: "Makey Button" }

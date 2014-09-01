@@ -2,7 +2,7 @@
   "ARDrone": {
     "slug": "ardrone",
     "url": "http://ardrone2.parrot.com/",
-    "drivers": ["ARDrone - Flight", "ARDrone - Navigation"]
+    "drivers": ["ARDrone - Flight"]
   },
 
   "Arduino": {

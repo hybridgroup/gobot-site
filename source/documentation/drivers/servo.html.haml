@@ -11,10 +11,6 @@ subnav_driver: true
 subnav_circuit_driver: true
 active_menu_docs: true
 subnavjs: true
-
-arduino_platform: true
-spark_platform: true
-digispark_platform: true
 ---
 
 %section.intro
@@ -106,6 +102,4 @@ digispark_platform: true
 %section.compatability.hardware#Compatability
   %h2 Compatability
   .devices
-    = partial "documentation/partials/devices_platforms"
-
-
+    = partial "/partials/platforms_for_driver", locals: { driver: "Servo" }
