@@ -7,4 +7,6 @@
         .container-documentation
           - if current_page.data.page_title_show == true
             = partial "/hybridpages/partials/widgets/page_subtitle"
+          .edit
+            = link_to "Edit this page", edit_link
           = yield

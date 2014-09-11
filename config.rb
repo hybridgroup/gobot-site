@@ -32,5 +32,11 @@ helpers do
 
     properties
   end
+
+  def edit_link
+    github_path = 'https://github.com/hybridgroup/gobot-site/edit/master/source/'
+
+    github_path + current_page.path + '.haml'
+  end
 end
 
