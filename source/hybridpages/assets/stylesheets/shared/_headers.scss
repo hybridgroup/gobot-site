@@ -64,6 +64,26 @@
       display: inline-block;
     }
 
+    .edit {
+      margin-top: -5px;
+      float: right;
+      border-radius: 25px;
+      background: $cta-color;
+      padding: 5px 20px;
+
+      a {
+        color: white;
+      }
+
+      &:hover {
+        background: darken($cta-color, 5);
+      }
+
+      &:active {
+        background: darken($cta-color, 10);
+      }
+    }
+
     .active {
 
       color: $cta-color;
