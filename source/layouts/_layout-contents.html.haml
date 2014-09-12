@@ -8,25 +8,25 @@
   %ul
 
     %li
-      - if current_page.data.active_menu_docs == true
+      - if current_page.data.active_menu_docs
         = link_to "Docs", "/documentation", (menu_item("documentation")), class: "active"
       - else
         = link_to "Docs", "", (menu_item("documentation"))
 
     %li
-      - if current_page.data.active_menu_platforms == true
+      - if current_page.data.active_menu_platforms
         = link_to "Platforms", "/documentation/platforms", (menu_item("documentation/platforms")), class: "active"
       - else
         = link_to "Platforms", "", (menu_item("documentation/platforms"))
 
     %li
-      - if current_page.data.active_menu_videos == true
+      - if current_page.data.active_menu_videos
         = link_to "Videos", "/videos", (menu_item("videos")), class: "active"
       - else
         = link_to "Videos", "", (menu_item("videos"))
 
     %li
-      - if current_page.data.active_menu_blog == true
+      - if current_page.data.active_menu_blog
         = link_to "Blog", "/blog", (menu_item("blog")), class: "active"
       - else
         = link_to "Blog", "", (menu_item("blog"))
@@ -34,7 +34,7 @@
     %li
       = link_to "Github", "https://github.com/hybridgroup/gobot/", class: "item", target: "blank"
 
-    - if current_page.data.active_menu_docs == true
+    - if current_page.data.edit_this_page
       %li.edit= link_to "Edit this page", edit_link
 
 - content_for :social_links do
