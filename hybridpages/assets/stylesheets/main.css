@@ -1346,7 +1346,7 @@
       .CodeRay .head .head {
         color: #f4f; }
       
-      /* line 2, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_grid.scss */
+      /* line 2, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_grid.scss */
       * {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -1421,7 +1421,7 @@
           margin-right: 2.35765%;
           width: 40.29137%;
           margin: 1px 0 0 0; }
-          /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
           .app-header .display:last-child {
             margin-right: 0; }
         /* line 42, ../hybridpages/assets/stylesheets/shared/_headers.scss */
@@ -1443,7 +1443,7 @@
           margin: 18px 0 0 0;
           position: relative;
           z-index: 1; }
-          /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
           .app-header .menu:last-child {
             margin-right: 0; }
           /* line 58, ../hybridpages/assets/stylesheets/shared/_headers.scss */
@@ -1467,7 +1467,7 @@
               margin-right: 2.35765%;
               width: 48.82117%;
               padding: 0; }
-              /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+              /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
               .app-header .menu:last-child {
                 margin-right: 0; }
               /* line 80, ../hybridpages/assets/stylesheets/shared/_headers.scss */
@@ -1481,7 +1481,7 @@
             display: block;
             margin-right: 2.35765%;
             width: 48.82117%; }
-            /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+            /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .app-header .display:last-child {
               margin-right: 0; } }
         @media only screen and (max-width: 767px) {
@@ -1503,7 +1503,7 @@
             width: 100%;
             text-align: center;
             margin: -1px 0 0; }
-            /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+            /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .app-header .display:last-child {
               margin-right: 0; }
           /* line 121, ../hybridpages/assets/stylesheets/shared/_headers.scss */
@@ -1522,7 +1522,7 @@
             display: block;
             margin-right: 2.35765%;
             width: 100%; }
-            /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+            /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .app-header .menu:last-child {
               margin-right: 0; }
             /* line 139, ../hybridpages/assets/stylesheets/shared/_headers.scss */
@@ -1584,7 +1584,7 @@
                 display: block;
                 margin-right: 2.35765%;
                 width: 100%; }
-                /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+                /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
                 .app-footer .frameworks .column-footer:last-child {
                   margin-right: 0; } }
         /* line 50, ../hybridpages/assets/stylesheets/shared/_footers.scss */
@@ -1689,11 +1689,11 @@
         max-width: 68em;
         margin-left: auto;
         margin-right: auto; }
-        /* line 18, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+        /* line 18, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
         .main:before, .main:after {
           content: " ";
           display: table; }
-        /* line 23, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+        /* line 23, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
         .main:after {
           clear: both; }
         /* line 46, ../hybridpages/assets/stylesheets/layouts/_home.scss */
@@ -1703,7 +1703,7 @@
           margin-right: 2.35765%;
           width: 48.82117%;
           margin: .5%; }
-          /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
           .main .videos .video:last-child {
             margin-right: 0; }
           /* line 51, ../hybridpages/assets/stylesheets/layouts/_home.scss */
@@ -1724,7 +1724,7 @@
               display: block;
               margin-right: 2.35765%;
               width: 100%; }
-              /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+              /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
               .main .videos .video:last-child {
                 margin-right: 0; }
               /* line 72, ../hybridpages/assets/stylesheets/layouts/_home.scss */
@@ -1743,7 +1743,7 @@
           display: block;
           margin-right: 2.35765%;
           width: 82.94039%; }
-          /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
           .main .videos .video-index:last-child {
             margin-right: 0; }
           /* line 93, ../hybridpages/assets/stylesheets/layouts/_home.scss */
@@ -1784,7 +1784,7 @@
           width: 23.23176%;
           padding-top: 0px;
           text-align: right; }
-          /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
           .main .aside.right:last-child {
             margin-right: 0; }
           /* line 149, ../hybridpages/assets/stylesheets/layouts/_home.scss */
@@ -1801,7 +1801,7 @@
           /* line 11, ../hybridpages/assets/stylesheets/_mixins.scss */
           .main section.content .index-content:not(:last-child) {
             margin-bottom: 20px; }
-          /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
           .main section.content .index-content:last-child {
             margin-right: 0; }
       
@@ -1812,11 +1812,11 @@
         margin-left: auto;
         margin-right: auto;
         text-align: center; }
-        /* line 18, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+        /* line 18, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
         .hardware .devices:before, .hardware .devices:after {
           content: " ";
           display: table; }
-        /* line 23, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+        /* line 23, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
         .hardware .devices:after {
           clear: both; }
         /* line 8, ../hybridpages/assets/stylesheets/layouts/_hardware.scss */
@@ -1845,11 +1845,11 @@
           max-width: 68em;
           margin-left: auto;
           margin-right: auto; }
-          /* line 18, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+          /* line 18, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
           .hero .container:before, .hero .main:before, .hero .container:after, .hero .main:after {
             content: " ";
             display: table; }
-          /* line 23, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+          /* line 23, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
           .hero .container:after, .hero .main:after {
             clear: both; }
         /* line 13, ../hybridpages/assets/stylesheets/elements/_home.scss */
@@ -1858,7 +1858,7 @@
           display: block;
           margin-right: 2.35765%;
           width: 31.76157%; }
-          /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
           .hero .gobot:last-child {
             margin-right: 0; }
           /* line 17, ../hybridpages/assets/stylesheets/elements/_home.scss */
@@ -1881,7 +1881,7 @@
         margin-right: 2.35765%;
         width: 65.88078%;
         margin-top: 35px; }
-        /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
         .description:last-child {
           margin-right: 0; }
         @media only screen and (max-width: 767px) {
@@ -1892,7 +1892,7 @@
             margin-right: 2.35765%;
             width: 100%;
             text-align: center; }
-            /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+            /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .description:last-child {
               margin-right: 0; } }
         /* line 52, ../hybridpages/assets/stylesheets/elements/_home.scss */
@@ -2230,7 +2230,7 @@
         margin-right: 2.35765%;
         width: 65.88078%;
         padding-top: 20px; }
-        /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
         .articles:last-child {
           margin-right: 0; }
         @media only screen and (max-width: 767px) {
@@ -2241,7 +2241,7 @@
             margin-right: 2.35765%;
             width: 100%;
             margin-right: 0; }
-            /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+            /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .articles:last-child {
               margin-right: 0; } }
         /* line 12, ../hybridpages/assets/stylesheets/elements/_blog.scss */
@@ -2321,7 +2321,7 @@
         display: block;
         margin-right: 2.35765%;
         width: 23.23176%; }
-        /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
         .side-column:last-child {
           margin-right: 0; }
         @media only screen and (max-width: 767px) {
@@ -2331,7 +2331,7 @@
             display: block;
             margin-right: 2.35765%;
             width: 100%; }
-            /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+            /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .side-column:last-child {
               margin-right: 0; } }
         /* line 126, ../hybridpages/assets/stylesheets/elements/_blog.scss */
@@ -2504,7 +2504,7 @@
           float: left;
           margin: 15px 0;
           white-space: nowrap; }
-          /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
           .subNavfixed h5:last-child {
             margin-right: 0; }
           @media only screen and (min-width: 767px) and (max-width: 960px) {
@@ -2519,7 +2519,7 @@
           width: 74.41059%;
           float: left;
           margin: 15px 0 15px 10px; }
-          /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
           .subNavfixed nav:last-child {
             margin-right: 0; }
           /* line 163, ../hybridpages/assets/stylesheets/elements/_page.scss */
@@ -2585,11 +2585,11 @@
         max-width: 68em;
         margin-left: auto;
         margin-right: auto; }
-        /* line 18, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+        /* line 18, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
         .documentation .index:before, .documentation .index:after {
           content: " ";
           display: table; }
-        /* line 23, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+        /* line 23, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
         .documentation .index:after {
           clear: both; }
         /* line 57, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
@@ -2603,7 +2603,7 @@
           height: 130px;
           margin-bottom: 20px;
           border-radius: 2px; }
-          /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
           .documentation .index section:last-child {
             margin-right: 0; }
           /* line 66, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
@@ -2634,7 +2634,7 @@
               display: block;
               margin-right: 2.35765%;
               width: 100%; }
-              /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+              /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
               .documentation .index section:last-child {
                 margin-right: 0; } }
       
@@ -2646,7 +2646,7 @@
         width: 100%;
         margin-top: 90px;
         font-family: Lato, open sans, sans-serif; }
-        /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
         .documentation:last-child {
           margin-right: 0; }
         /* line 106, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
@@ -2782,7 +2782,7 @@
         display: block;
         margin-right: 2.35765%;
         width: 23.23176%; }
-        /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
         .colors:last-child {
           margin-right: 0; }
         @media only screen and (min-width: 767px) and (max-width: 960px) {
@@ -2792,7 +2792,7 @@
             display: block;
             margin-right: 2.35765%;
             width: 23.23176%; }
-            /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+            /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .colors:last-child {
               margin-right: 0; }
             /* line 299, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
@@ -2805,7 +2805,7 @@
             display: block;
             margin-right: 2.35765%;
             width: 100%; }
-            /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+            /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .colors:last-child {
               margin-right: 0; } }
         /* line 310, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
@@ -3404,7 +3404,7 @@
         margin-top: 20px;
         border-radius: 5px;
         padding: 0 10px; }
-        /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
         .side-documentation:last-child {
           margin-right: 0; }
         @media only screen and (max-width: 767px) {
@@ -3417,7 +3417,7 @@
             height: auto !important;
             position: absolute;
             left: 0; }
-            /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+            /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .side-documentation:last-child {
               margin-right: 0; } }
         /* line 15, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
@@ -3526,7 +3526,7 @@
         display: block;
         margin-right: 2.35765%;
         width: 74.41059%; }
-        /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
         .container-documentation:last-child {
           margin-right: 0; }
         @media only screen and (max-width: 767px) {
@@ -3537,7 +3537,7 @@
             margin-right: 2.35765%;
             width: 100%;
             margin-top: 50px; }
-            /* line 40, ../../../../../../../.rvm/gems/ruby-2.1.2/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+            /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .container-documentation:last-child {
               margin-right: 0; } }
       
