@@ -102,7 +102,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
     Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported:
 
     %h2.homepage.platforms
-      10 Platforms
+      = "#{ data.platforms.length } Platforms"
 
     %ul.homepage-platform
       - data.platforms.each do |name, data|
@@ -117,7 +117,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
   %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provded using the gobot-gpio module:
 
   %h2.platforms
-    = link_to "7 GPIO drivers", "https://en.wikipedia.org/wiki/General_Purpose_Input/Output" , target:"_blank"
+    = link_to "#{data.drivers.GPIO.length} GPIO drivers", "https://en.wikipedia.org/wiki/General_Purpose_Input/Output" , target:"_blank"
 
   %ul.homepage-platform
     - data.drivers.GPIO.each do |name, slug|
@@ -130,7 +130,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
   %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the gobot-i2c module:
 
   %h2.platforms
-    = link_to "3 I2C drivers", "https://en.wikipedia.org/wiki/I%C2%B2C", target:"_blank"
+    = link_to "#{data.drivers.I2C.length} I2C drivers", "https://en.wikipedia.org/wiki/I%C2%B2C", target:"_blank"
 
   %ul.homepage-platform
     - data.drivers.I2C.each do |name, slug|

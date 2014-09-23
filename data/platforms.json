@@ -23,6 +23,12 @@
     "drivers": ["GPIO", "I2C"]
   },
 
+  "Intel Edison": {
+    "slug": "edison",
+    "url": "http://www.intel.com/content/www/us/en/do-it-yourself/edison.html",
+    "drivers": ["GPIO", "I2C"]
+  },
+
   "Joystick": {
     "slug": "joystick",
     "url": "http://en.wikipedia.org/wiki/Joystick",
