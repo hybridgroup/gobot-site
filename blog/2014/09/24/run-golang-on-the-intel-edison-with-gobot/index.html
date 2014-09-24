@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="cylon">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="description">
+<meta content="Ron Evans &amp; Adrian Zankich" name="author">
+<title>Run Golang On The Intel Edison With Gobot</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/javascripts/vendor/angular.min.js"></script><script src="/javascripts/app.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+
+  _gaq.push(['_setAccount', "UA-46433484-3"]);
+
+
+
+
+
+
+
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet" type="text/css">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<body>
+    
+    <div class="app">
+      <header class="app-header" role="banner"><div class="container">
+          <div class="display">
+            <div class="app-logo">
+              <a href="/">Gobot</a>
+            </div>
+          </div>
+          <nav class="menu"><ul>
+<li>
+                <a href="/documentation" class="item">Docs</a>
+              </li>
+              <li>
+                <a href="/documentation/platforms" class="item">Platforms</a>
+              </li>
+              <li>
+                <a href="/videos" class="item">Videos</a>
+              </li>
+              <li>
+                <a href="/blog" class="item">Blog</a>
+              </li>
+              <li>
+                <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
+              </li>
+            </ul></nav>
+</div>
+      </header><div class="page-title">
+        <div class="w">
+          <h1 class="title">Blog</h1>
+        </div>
+      </div>
+      
+      <div class="main blog" role="main">
+        <div class="articles">
+          <div class="article">
+            <header class="header"><div class="date">
+                <div class="blue">
+                  <div class="month">
+                    Sep
+                  </div>
+                  <div class="day">
+                    24
+                  </div>
+                </div>
+                <div class="red">
+                  <div class="year">
+                    2014
+                  </div>
+                </div>
+              </div>
+              <div class="data">
+                <h3>
+                  <a href="/blog/2014/09/24/run-golang-on-the-intel-edison-with-gobot/">Run Golang On The Intel Edison With Gobot</a>
+                </h3>
+                <div class="author">
+                  by Ron Evans &amp; Adrian Zankich
+                </div>
+              </div>
+            </header><p>The Gobot team was in attendance at the recent <a href="http://www.intel.com/content/www/us/en/intel-developer-forum-idf/san-francisco/2014/idf-2014-san-francisco.html">Intel Developer Forum</a> in San Francisco, and we were able to get one of the new <a href="http://www.intel.com/content/www/us/en/do-it-yourself/edison.html">Intel Edison</a> single board computers.
+            Our mission: get <a href="http://golang.org/">Golang</a> running on the Edison, so we can use it with Gobot for robotics or connected devices.</p>
+            
+            <p>The Edison is a very small System-on-Chip (SoC) single board Linux computer.
+            Its dual-core Atom processor, 1GB of RAM, and built-in WiFi/Bluetooth LE all make it a very powerful machine in a very tiny package.
+            The base Edison itself requires that at least one of the Edison's breakout boards, known as "blocks", be connected via the 70-pin Hirose connector.
+            This is rather different from most other single-board computers.
+            This extreme modularity is a very interesting design approach, and Sparkfun has an entire line of blocks that will be coming out in the coming weeks.</p>
+            
+            <p>We had previously tried running Golang code on the <a href="http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html">Intel Galileo</a> when we first got our Gen1 board a few months ago, but were unable to run anything compiled in Golang on it at all, due to the <a href="https://groups.google.com/forum/#!topic/golang-nuts/ogkhcggIqlU">Galileo not supporting the MMX instruction set</a>.</p>
+            
+            <p>Once we got ahold of the Edison, we immediately retired to a corner of the conference, and set to work putting the new board through its paces.
+            The results were successful!
+            The Edison is able to run Go code.</p>
+            
+            <p><img src="/images/blog/edison.png" alt="" style="margin: 10px 0;"></p>
+            
+            <p>Of course, for us running Golang was just the beginning.
+            We wanted to use the Edison's many bult-in GPIO &amp; i2c pins, so we can communicate with many devices.</p>
+            
+            <p>So we rolled up our sleeves, and got to work.
+            In many cases, we made good progress from reading the code helpfully provided by the Intel IoT team's <a href="https://github.com/intel-iot-devkit/mraa">MRAA library</a>.
+            In others, we were simply blazing a trail of code.</p>
+            
+            <p>With that, we now present to you <a href="https://github.com/hybridgroup/gobot/tree/dev/platforms/intel-iot/edison">gobot-intel-iot</a>, our support in Gobot for the Edison board's wonderful capabilities.</p>
+            
+            <p>Here is a short video using Gobot to control the Edison's GPIO for reading analog input, and then using PWM output to turn on the LED:</p>
+            
+            <iframe width="560" height="315" src="//www.youtube.com/embed/X1ZmNHg0G30" frameborder="0" allowfullscreen=""></iframe>
+            
+            <p>Here is the code we used to run the above sample:</p>
+            
+            <pre class="CodeRay"><span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/intel-iot/edison</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+  gbot := gobot.NewGobot()
+
+  edisonAdaptor := edison.NewEdisonAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">edison</span><span class="delimiter">"</span></span>)
+  sensor := gpio.NewAnalogSensorDriver(edisonAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">0</span><span class="delimiter">"</span></span>)
+  led := gpio.NewLedDriver(edisonAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">3</span><span class="delimiter">"</span></span>)
+
+  work := <span class="keyword">func</span>() {
+    gobot.On(sensor.Event(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+      brightness := <span class="predefined-type">uint8</span>(
+              gobot.ToScale(gobot.FromScale(<span class="predefined-type">float64</span>(data.(<span class="predefined-type">int</span>)), <span class="integer">0</span>, <span class="integer">4096</span>), <span class="integer">0</span>, <span class="integer">255</span>),
+      )
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, data)
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">brightness</span><span class="delimiter">"</span></span>, brightness)
+      led.Brightness(brightness)
+    })
+  }
+
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sensorBot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{edisonAdaptor},
+    []gobot.Device{sensor, led},
+    work,
+  )
+
+  gbot.AddRobot(robot)
+
+  gbot.Start()
+}
+</pre>
+            
+            <p>We also have implemented i2c support.
+            In the following video, we are showing an Edison, running Gobot, reading analog input, and then communicating via i2c with a <a href="http://thingm.com/products/blinkm/">BlinkM</a>.</p>
+            
+            <iframe width="560" height="315" src="//www.youtube.com/embed/tQX34zQGPtw" frameborder="0" allowfullscreen=""></iframe>
+            
+            <p>Here is the code:</p>
+            
+            <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/intel-iot/edison</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/zankich/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/zankich/gobot/platforms/i2c</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+  gbot := gobot.NewGobot()
+
+  edisonAdaptor := edison.NewEdisonAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">edison</span><span class="delimiter">"</span></span>)
+  blinkm := i2c.NewBlinkMDriver(edisonAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">blinkm</span><span class="delimiter">"</span></span>)
+  sensor := gpio.NewAnalogSensorDriver(edisonAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">0</span><span class="delimiter">"</span></span>)
+
+  work := <span class="keyword">func</span>() {
+    gobot.On(sensor.Event(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+      brightness := <span class="predefined-type">uint8</span>(
+        gobot.ToScale(gobot.FromScale(<span class="predefined-type">float64</span>(data.(<span class="predefined-type">int</span>)), <span class="integer">0</span>, <span class="integer">4096</span>), <span class="integer">0</span>, <span class="integer">255</span>),
+      )
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, data)
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">brightness</span><span class="delimiter">"</span></span>, brightness)
+      blinkm.Rgb(<span class="integer">0</span>, brightness, <span class="integer">0</span>)
+    })
+  }
+
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sensorBot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{edisonAdaptor},
+    []gobot.Device{blinkm, sensor},
+    work,
+  )
+
+  gbot.AddRobot(robot)
+
+  gbot.Start()
+}
+</pre>
+            
+            <p>Here is how we got it "go"-ing, if you will.
+            You must first configure your local Go environment for 386 linux cross compiling:</p>
+            
+            <pre class="CodeRay">$ cd $GOROOT/src
+$ GOOS=linux GOARCH=386 ./make.bash --no-clean
+</pre>
+            
+            <p>Then compile your Go program, like this:</p>
+            
+            <pre class="CodeRay">$ GOARCH=386 GOOS=linux go build edison_blink.go
+</pre>
+            
+            <p>Then you can simply upload your program over the network from your host computer to the Edison</p>
+            
+            <pre class="CodeRay">$ scp edison_blink root@192.168.1.xxx:/home/root/
+</pre>
+            
+            <p>and execute it on your Edison itself, by SSHing in, and running it</p>
+            
+            <pre class="CodeRay">$ ./edison_blink
+</pre>
+            
+            <p>We are very excited about the possibilities of this new board from Intel, now that we can run Golang and Gobot on it!</p>
+            
+            <p>Please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a> to keep up to date on the latest news and information about Golang powered robotics using Gobot.</p>
+          </div>
+        </div>
+        <div class="side-column">
+          <div class="categories">
+            <h4>Tags</h4>
+            <ul>
+<li><a href="/blog/tags/robots/">Robots</a></li>
+              <li><a href="/blog/tags/events/">Events</a></li>
+            </ul>
+</div>
+          <div class="network">
+            <h4>Network</h4>
+            <div class="network-links">
+              <a href="https://twitter.com/gobotio"><img src="/images/elements/twitter.png"></a>
+              <a href="https://github.com/hybridgroup/gobot"><img src="/images/elements/github.png"></a>
+            </div>
+          </div>
+          <div class="titles">
+            <h4>Posts</h4>
+            <ul>
+<li><a href="/blog/2014/09/24/run-golang-on-the-intel-edison-with-gobot/">Run Golang On The Intel Edison With Gobot</a></li>
+              <li><a href="/blog/2014/08/08/flying-iris-at-distill-2014/">Flying Iris At Distill 2014</a></li>
+              <li><a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a></li>
+              <li><a href="/blog/2014/06/18/gobot-0.5/">Gobot 0.5 is out!</a></li>
+              <li><a href="/blog/2014/04/29/taking-the-stage-at-gophercon/">Taking The Stage At GopherCon</a></li>
+              <li><a href="/blog/2014/04/10/national-robotics-week-at-boston-golang/">National Robotics Week at Boston Golang</a></li>
+              <li><a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a></li>
+            </ul>
+</div>
+        </div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="grass-footer"></div>
+      <div class="frameworks">
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/gobot-home.png">
+</div>
+            <p>Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/artoo.png">
+</div>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="footer-button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/cylon.png">
+</div>
+            <p>Want to use Javascript to power your robots? Check out our sister project Cylon.js</p>
+            <div class="footer-button">
+              <a target="blank" href="http://cylonjs.com">View Project</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg"><p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

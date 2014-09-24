@@ -74,6 +74,352 @@
               <header class="header"><div class="date">
                   <div class="blue">
                     <div class="month">
+                      Sep
+                    </div>
+                    <div class="day">
+                      24
+                    </div>
+                  </div>
+                  <div class="red">
+                    <div class="year">
+                      2014
+                    </div>
+                  </div>
+                </div>
+                <div class="data">
+                  <h3>
+                    <a href="/blog/2014/09/24/run-golang-on-the-intel-edison-with-gobot/">Run Golang On The Intel Edison With Gobot</a>
+                  </h3>
+                  <div class="author">
+                    by Ron Evans &amp; Adrian Zankich
+                  </div>
+                </div>
+              </header><p>The Gobot team was in attendance at the recent <a href="http://www.intel.com/content/www/us/en/intel-developer-forum-idf/san-francisco/2014/idf-2014-san-francisco.html">Intel Developer Forum</a> in San Francisco, and we were able to get one of the new <a href="http://www.intel.com/content/www/us/en/do-it-yourself/edison.html">Intel Edison</a> single board computers.
+              Our mission: get <a href="http://golang.org/">Golang</a> running on the Edison, so we can use it with Gobot for robotics or connected devices.</p>
+              
+              <p>The Edison is a very small System-on-Chip (SoC) single board Linux computer.
+              Its dual-core Atom processor, 1GB of RAM, and built-in WiFi/Bluetooth LE all make it a very powerful machine in a very tiny package.
+              The base Edison itself requires that at least one of the Edison's breakout boards, known as "blocks", be connected via the 70-pin Hirose connector.
+              This is rather different from most other single-board computers.
+              This extreme modularity is a very interesting design approach, and Sparkfun has an entire line of blocks that will be coming out in the coming weeks.</p>
+              
+              <p>We had previously tried running Golang code on the <a href="http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html">Intel Galileo</a> when we first got our Gen1 board a few months ago, but were unable to run anything compiled in Golang on it at all, due to the <a href="https://groups.google.com/forum/#!topic/golang-nuts/ogkhcggIqlU">Galileo not supporting the MMX instruction set</a>.</p>
+              
+              <p>Once we got ahold of the Edison, we immediately retired to a corner of the conference, and set to work putting the new board through its paces.
+              The results were successful!
+              The Edison is able to run Go code.</p>
+              
+              <p><img src="/images/blog/edison.png" alt="" style="margin: 10px 0;"></p>
+              
+              <p>Of course, for us running Golang was just the beginning.
+              We wanted to use the Edison's many bult-in GPIO &amp; i2c pins, so we can communicate with many devices.</p>
+              
+              <p>So we rolled up our sleeves, and got to work.
+              In many cases, we made good progress from reading the code helpfully provided by the Intel IoT team's <a href="https://github.com/intel-iot-devkit/mraa">MRAA library</a>.
+              In others, we were simply blazing a trail of code.</p>
+              
+              <p>With that, we now present to you <a href="https://github.com/hybridgroup/gobot/tree/dev/platforms/intel-iot/edison">gobot-intel-iot</a>, our support in Gobot for the Edison board's wonderful capabilities.</p>
+              
+              <p>Here is a short video using Gobot to control the Edison's GPIO for reading analog input, and then using PWM output to turn on the LED:</p>
+              
+              <iframe width="560" height="315" src="//www.youtube.com/embed/X1ZmNHg0G30" frameborder="0" allowfullscreen=""></iframe>
+              
+              <p>Here is the code we used to run the above sample:</p>
+              
+              <pre class="CodeRay"><span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/intel-iot/edison</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+  gbot := gobot.NewGobot()
+
+  edisonAdaptor := edison.NewEdisonAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">edison</span><span class="delimiter">"</span></span>)
+  sensor := gpio.NewAnalogSensorDriver(edisonAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">0</span><span class="delimiter">"</span></span>)
+  led := gpio.NewLedDriver(edisonAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">3</span><span class="delimiter">"</span></span>)
+
+  work := <span class="keyword">func</span>() {
+    gobot.On(sensor.Event(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+      brightness := <span class="predefined-type">uint8</span>(
+              gobot.ToScale(gobot.FromScale(<span class="predefined-type">float64</span>(data.(<span class="predefined-type">int</span>)), <span class="integer">0</span>, <span class="integer">4096</span>), <span class="integer">0</span>, <span class="integer">255</span>),
+      )
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, data)
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">brightness</span><span class="delimiter">"</span></span>, brightness)
+      led.Brightness(brightness)
+    })
+  }
+
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sensorBot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{edisonAdaptor},
+    []gobot.Device{sensor, led},
+    work,
+  )
+
+  gbot.AddRobot(robot)
+
+  gbot.Start()
+}
+</pre>
+              
+              <p>We also have implemented i2c support.
+              In the following video, we are showing an Edison, running Gobot, reading analog input, and then communicating via i2c with a <a href="http://thingm.com/products/blinkm/">BlinkM</a>.</p>
+              
+              <iframe width="560" height="315" src="//www.youtube.com/embed/tQX34zQGPtw" frameborder="0" allowfullscreen=""></iframe>
+              
+              <p>Here is the code:</p>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/intel-iot/edison</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/zankich/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/zankich/gobot/platforms/i2c</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+  gbot := gobot.NewGobot()
+
+  edisonAdaptor := edison.NewEdisonAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">edison</span><span class="delimiter">"</span></span>)
+  blinkm := i2c.NewBlinkMDriver(edisonAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">blinkm</span><span class="delimiter">"</span></span>)
+  sensor := gpio.NewAnalogSensorDriver(edisonAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">0</span><span class="delimiter">"</span></span>)
+
+  work := <span class="keyword">func</span>() {
+    gobot.On(sensor.Event(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+      brightness := <span class="predefined-type">uint8</span>(
+        gobot.ToScale(gobot.FromScale(<span class="predefined-type">float64</span>(data.(<span class="predefined-type">int</span>)), <span class="integer">0</span>, <span class="integer">4096</span>), <span class="integer">0</span>, <span class="integer">255</span>),
+      )
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, data)
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">brightness</span><span class="delimiter">"</span></span>, brightness)
+      blinkm.Rgb(<span class="integer">0</span>, brightness, <span class="integer">0</span>)
+    })
+  }
+
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sensorBot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{edisonAdaptor},
+    []gobot.Device{blinkm, sensor},
+    work,
+  )
+
+  gbot.AddRobot(robot)
+
+  gbot.Start()
+}
+</pre>
+              
+              <p>Here is how we got it "go"-ing, if you will.
+              You must first configure your local Go environment for 386 linux cross compiling:</p>
+              
+              <pre class="CodeRay">$ cd $GOROOT/src
+$ GOOS=linux GOARCH=386 ./make.bash --no-clean
+</pre>
+              
+              <p>Then compile your Go program, like this:</p>
+              
+              <pre class="CodeRay">$ GOARCH=386 GOOS=linux go build edison_blink.go
+</pre>
+              
+              <p>Then you can simply upload your program over the network from your host computer to the Edison</p>
+              
+              <pre class="CodeRay">$ scp edison_blink root@192.168.1.xxx:/home/root/
+</pre>
+              
+              <p>and execute it on your Edison itself, by SSHing in, and running it</p>
+              
+              <pre class="CodeRay">$ ./edison_blink
+</pre>
+              
+              <p>We are very excited about the possibilities of this new board from Intel, now that we can run Golang and Gobot on it!</p>
+              
+              <p>Please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a> to keep up to date on the latest news and information about Golang powered robotics using Gobot.</p>
+              <div class="tags">
+                <div class="img">
+                  <img src="/images/elements/tag.png">
+</div>
+                <a href="/blog/tags/events/">events</a>
+              </div>
+            </div>
+            <div class="article">
+              <header class="header"><div class="date">
+                  <div class="blue">
+                    <div class="month">
+                      Aug
+                    </div>
+                    <div class="day">
+                      08
+                    </div>
+                  </div>
+                  <div class="red">
+                    <div class="year">
+                      2014
+                    </div>
+                  </div>
+                </div>
+                <div class="data">
+                  <h3>
+                    <a href="/blog/2014/08/08/flying-iris-at-distill-2014/">Flying Iris At Distill 2014</a>
+                  </h3>
+                  <div class="author">
+                    by Ron Evans
+                  </div>
+                </div>
+              </header><p>Team Gobot was speaking at the <a href="https://distill.engineyard.com/">Distill 2014</a> conference in San Francisco this week. Held at the <a href="http://en.wikipedia.org/wiki/Palace_of_Fine_Arts">Palace of Fine Arts</a>, we were very lucky to fly a <a href="http://3drobotics.com/iris/">3DRobotics Iris</a> around using a pre-release of our new support of the <a href="http://en.wikipedia.org/wiki/MAVLink">Mavlink protocol</a> for Unmanned Aerial Vehicles (UAVs).</p>
+              
+              <iframe width="560" height="315" src="//www.youtube.com/embed/t9iUGJ3KIa0" frameborder="0" allowfullscreen=""></iframe>
+              
+              <p>During a group photo that took place the day after our talk about <a href="http://robotops.com">"The 10 Rules of RobotOps"</a>, we had a golden opportunity to fly around a little inside the facility, and captured some rather unique footage, as you can see above.</p>
+              
+              <p>We will be releasing our code for the Golang MAVLINK generator, along with gobot-mavlink itself, very soon. Here is a little taste of what we can do:</p>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">net/http</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">strings</span><span class="delimiter">"</span></span>
+
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/api</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/mavlink</span><span class="delimiter">"</span></span>
+  common <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/mavlink/common</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">type</span> telemetry <span class="keyword">struct</span> {
+  Status    <span class="predefined-type">string</span>
+  Roll      <span class="predefined-type">float32</span>
+  Yaw       <span class="predefined-type">float32</span>
+  Pitch     <span class="predefined-type">float32</span>
+  Latitude  <span class="predefined-type">float32</span>
+  Longitude <span class="predefined-type">float32</span>
+  Altitude  <span class="predefined-type">int32</span>
+  Heading   <span class="predefined-type">float32</span>
+}
+
+<span class="keyword">func</span> main() {
+  <span class="keyword">if</span> gobot.Version() != <span class="string"><span class="delimiter">"</span><span class="content">0.7.dev</span><span class="delimiter">"</span></span> {
+    <span class="predefined">panic</span>(<span class="string"><span class="delimiter">"</span><span class="content">this requires the dev branch!</span><span class="delimiter">"</span></span>)
+  }
+
+  summary := &amp;telemetry{Status: <span class="string"><span class="delimiter">"</span><span class="content">STANDBY</span><span class="delimiter">"</span></span>}
+  gbot := gobot.NewGobot()
+
+  a := api.NewAPI(gbot)
+
+  a.Get(<span class="string"><span class="delimiter">"</span><span class="content">/mavlink/:a</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(res http.ResponseWriter, req *http.Request) {
+    path := req.URL.Path
+    t := strings.Split(path, <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>)
+    buf, err := Asset(<span class="string"><span class="delimiter">"</span><span class="content">assets/</span><span class="delimiter">"</span></span> + t[<span class="integer">2</span>])
+    <span class="keyword">if</span> err != <span class="predefined-constant">nil</span> {
+      http.Error(res, err.Error(), http.StatusNotFound)
+      <span class="keyword">return</span>
+    }
+    t = strings.Split(path, <span class="string"><span class="delimiter">"</span><span class="content">.</span><span class="delimiter">"</span></span>)
+    <span class="keyword">if</span> t[<span class="predefined">len</span>(t)<span class="integer">-1</span>] == <span class="string"><span class="delimiter">"</span><span class="content">js</span><span class="delimiter">"</span></span> {
+      res.Header().Set(<span class="string"><span class="delimiter">"</span><span class="content">Content-Type</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">text/javascript; charset=utf-8</span><span class="delimiter">"</span></span>)
+    } <span class="keyword">else</span> <span class="keyword">if</span> t[<span class="predefined">len</span>(t)<span class="integer">-1</span>] == <span class="string"><span class="delimiter">"</span><span class="content">css</span><span class="delimiter">"</span></span> {
+      res.Header().Set(<span class="string"><span class="delimiter">"</span><span class="content">Content-Type</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">text/css; charset=utf-8</span><span class="delimiter">"</span></span>)
+    }
+    res.Write(buf)
+  })
+
+  adaptor := mavlink.NewMavlinkAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">iris</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+  iris := mavlink.NewMavlinkDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">iris</span><span class="delimiter">"</span></span>)
+
+  work := <span class="keyword">func</span>() {
+
+    iris.AddEvent(<span class="string"><span class="delimiter">"</span><span class="content">telemetry</span><span class="delimiter">"</span></span>)
+
+    gobot.Once(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">packet</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+      fmt.Println(data)
+      packet := data.(*common.MAVLinkPacket)
+
+      dataStream := common.NewRequestDataStream(<span class="integer">10</span>,
+        packet.SystemID,
+        packet.ComponentID,
+        <span class="integer">0</span>,
+        <span class="integer">1</span>,
+      )
+      iris.SendPacket(common.CraftMAVLinkPacket(packet.SystemID,
+        packet.ComponentID,
+        dataStream,
+      ))
+    })
+
+    gobot.On(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">message: </span><span class="delimiter">"</span></span>, data.(common.MAVLinkMessage).Id())
+      <span class="keyword">if</span> data.(common.MAVLinkMessage).Id() == <span class="integer">0</span> {
+        statusCodes := <span class="keyword">map</span>[<span class="predefined-type">uint8</span>]<span class="predefined-type">string</span>{
+          <span class="integer">1</span>: <span class="string"><span class="delimiter">"</span><span class="content">BOOT</span><span class="delimiter">"</span></span>,
+          <span class="integer">2</span>: <span class="string"><span class="delimiter">"</span><span class="content">CALIBRATING</span><span class="delimiter">"</span></span>,
+          <span class="integer">3</span>: <span class="string"><span class="delimiter">"</span><span class="content">STANDBY</span><span class="delimiter">"</span></span>,
+          <span class="integer">4</span>: <span class="string"><span class="delimiter">"</span><span class="content">ACTIVE</span><span class="delimiter">"</span></span>,
+          <span class="integer">5</span>: <span class="string"><span class="delimiter">"</span><span class="content">CRITICAL</span><span class="delimiter">"</span></span>,
+          <span class="integer">6</span>: <span class="string"><span class="delimiter">"</span><span class="content">EMERGENCY</span><span class="delimiter">"</span></span>,
+          <span class="integer">7</span>: <span class="string"><span class="delimiter">"</span><span class="content">POWEROFF</span><span class="delimiter">"</span></span>,
+          <span class="integer">8</span>: <span class="string"><span class="delimiter">"</span><span class="content">ENUM_END</span><span class="delimiter">"</span></span>,
+        }
+        summary.Status = statusCodes[data.(*common.Heartbeat).SYSTEM_STATUS]
+        <span class="keyword">if</span> summary.Status != <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> {
+          gobot.Publish(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">telemetry</span><span class="delimiter">"</span></span>), summary)
+        }
+      }
+
+      <span class="keyword">if</span> data.(common.MAVLinkMessage).Id() == <span class="integer">30</span> {
+        roll := data.(*common.Attitude).ROLL
+        pitch := data.(*common.Attitude).PITCH
+        yaw := data.(*common.Attitude).YAW
+
+        <span class="keyword">if</span> roll &lt; <span class="integer">4</span> || roll &gt; <span class="integer">-4</span> {
+          summary.Roll = (roll * <span class="integer">180</span> / <span class="float">3.14</span>)
+        }
+        <span class="keyword">if</span> yaw &lt; <span class="integer">4</span> || roll &gt; <span class="integer">-4</span> {
+          summary.Yaw = (yaw * <span class="integer">180</span> / <span class="float">3.14</span>)
+        }
+        <span class="keyword">if</span> pitch &lt; <span class="integer">4</span> || roll &gt; <span class="integer">-4</span> {
+          summary.Pitch = (pitch * <span class="integer">180</span> / <span class="float">3.14</span>)
+        }
+        gobot.Publish(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">telemetry</span><span class="delimiter">"</span></span>), summary)
+      }
+
+      <span class="keyword">if</span> data.(common.MAVLinkMessage).Id() == <span class="integer">33</span> {
+        summary.Latitude = <span class="predefined-type">float32</span>(data.(*common.GlobalPositionInt).LAT) / <span class="float">10000000.0</span>
+        summary.Longitude = <span class="predefined-type">float32</span>(data.(*common.GlobalPositionInt).LON) / <span class="float">10000000.0</span>
+        summary.Altitude = data.(*common.GlobalPositionInt).ALT
+        summary.Heading = <span class="predefined-type">float32</span>(data.(*common.GlobalPositionInt).HDG) / <span class="integer">100</span>
+        gobot.Publish(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">telemetry</span><span class="delimiter">"</span></span>), summary)
+      }
+    })
+  }
+
+  gbot.AddRobot(gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">irisBot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{adaptor},
+    []gobot.Device{iris},
+    work,
+  ))
+
+  a.Start()
+  gbot.Start()
+}
+</pre>
+              
+              <p>Want to keep up to date on the latest news and information about Gobot? Please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a>!</p>
+              <div class="tags">
+                <div class="img">
+                  <img src="/images/elements/tag.png">
+</div>
+                <a href="/blog/tags/events/">events</a>
+              </div>
+            </div>
+            <div class="article">
+              <header class="header"><div class="date">
+                  <div class="blue">
+                    <div class="month">
                       Jul
                     </div>
                     <div class="day">
@@ -384,7 +730,9 @@
           <div class="titles">
             <h4>Posts</h4>
             <ul>
-<li><a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a></li>
+<li><a href="/blog/2014/09/24/run-golang-on-the-intel-edison-with-gobot/">Run Golang On The Intel Edison With Gobot</a></li>
+              <li><a href="/blog/2014/08/08/flying-iris-at-distill-2014/">Flying Iris At Distill 2014</a></li>
+              <li><a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a></li>
               <li><a href="/blog/2014/06/18/gobot-0.5/">Gobot 0.5 is out!</a></li>
               <li><a href="/blog/2014/04/29/taking-the-stage-at-gophercon/">Taking The Stage At GopherCon</a></li>
               <li><a href="/blog/2014/04/10/national-robotics-week-at-boston-golang/">National Robotics Week at Boston Golang</a></li>

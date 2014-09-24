@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="cylon">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="description">
+<meta content="Ron Evans" name="author">
+<title>Flying Iris At Distill 2014</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/javascripts/vendor/angular.min.js"></script><script src="/javascripts/app.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+
+  _gaq.push(['_setAccount', "UA-46433484-3"]);
+
+
+
+
+
+
+
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet" type="text/css">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<body>
+    
+    <div class="app">
+      <header class="app-header" role="banner"><div class="container">
+          <div class="display">
+            <div class="app-logo">
+              <a href="/">Gobot</a>
+            </div>
+          </div>
+          <nav class="menu"><ul>
+<li>
+                <a href="/documentation" class="item">Docs</a>
+              </li>
+              <li>
+                <a href="/documentation/platforms" class="item">Platforms</a>
+              </li>
+              <li>
+                <a href="/videos" class="item">Videos</a>
+              </li>
+              <li>
+                <a href="/blog" class="item">Blog</a>
+              </li>
+              <li>
+                <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
+              </li>
+            </ul></nav>
+</div>
+      </header><div class="page-title">
+        <div class="w">
+          <h1 class="title">Blog</h1>
+        </div>
+      </div>
+      
+      <div class="main blog" role="main">
+        <div class="articles">
+          <div class="article">
+            <header class="header"><div class="date">
+                <div class="blue">
+                  <div class="month">
+                    Aug
+                  </div>
+                  <div class="day">
+                    08
+                  </div>
+                </div>
+                <div class="red">
+                  <div class="year">
+                    2014
+                  </div>
+                </div>
+              </div>
+              <div class="data">
+                <h3>
+                  <a href="/blog/2014/08/08/flying-iris-at-distill-2014/">Flying Iris At Distill 2014</a>
+                </h3>
+                <div class="author">
+                  by Ron Evans
+                </div>
+              </div>
+            </header><p>Team Gobot was speaking at the <a href="https://distill.engineyard.com/">Distill 2014</a> conference in San Francisco this week. Held at the <a href="http://en.wikipedia.org/wiki/Palace_of_Fine_Arts">Palace of Fine Arts</a>, we were very lucky to fly a <a href="http://3drobotics.com/iris/">3DRobotics Iris</a> around using a pre-release of our new support of the <a href="http://en.wikipedia.org/wiki/MAVLink">Mavlink protocol</a> for Unmanned Aerial Vehicles (UAVs).</p>
+            
+            <iframe width="560" height="315" src="//www.youtube.com/embed/t9iUGJ3KIa0" frameborder="0" allowfullscreen=""></iframe>
+            
+            <p>During a group photo that took place the day after our talk about <a href="http://robotops.com">"The 10 Rules of RobotOps"</a>, we had a golden opportunity to fly around a little inside the facility, and captured some rather unique footage, as you can see above.</p>
+            
+            <p>We will be releasing our code for the Golang MAVLINK generator, along with gobot-mavlink itself, very soon. Here is a little taste of what we can do:</p>
+            
+            <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">net/http</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">strings</span><span class="delimiter">"</span></span>
+
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/api</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/mavlink</span><span class="delimiter">"</span></span>
+  common <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/mavlink/common</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">type</span> telemetry <span class="keyword">struct</span> {
+  Status    <span class="predefined-type">string</span>
+  Roll      <span class="predefined-type">float32</span>
+  Yaw       <span class="predefined-type">float32</span>
+  Pitch     <span class="predefined-type">float32</span>
+  Latitude  <span class="predefined-type">float32</span>
+  Longitude <span class="predefined-type">float32</span>
+  Altitude  <span class="predefined-type">int32</span>
+  Heading   <span class="predefined-type">float32</span>
+}
+
+<span class="keyword">func</span> main() {
+  <span class="keyword">if</span> gobot.Version() != <span class="string"><span class="delimiter">"</span><span class="content">0.7.dev</span><span class="delimiter">"</span></span> {
+    <span class="predefined">panic</span>(<span class="string"><span class="delimiter">"</span><span class="content">this requires the dev branch!</span><span class="delimiter">"</span></span>)
+  }
+
+  summary := &amp;telemetry{Status: <span class="string"><span class="delimiter">"</span><span class="content">STANDBY</span><span class="delimiter">"</span></span>}
+  gbot := gobot.NewGobot()
+
+  a := api.NewAPI(gbot)
+
+  a.Get(<span class="string"><span class="delimiter">"</span><span class="content">/mavlink/:a</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(res http.ResponseWriter, req *http.Request) {
+    path := req.URL.Path
+    t := strings.Split(path, <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>)
+    buf, err := Asset(<span class="string"><span class="delimiter">"</span><span class="content">assets/</span><span class="delimiter">"</span></span> + t[<span class="integer">2</span>])
+    <span class="keyword">if</span> err != <span class="predefined-constant">nil</span> {
+      http.Error(res, err.Error(), http.StatusNotFound)
+      <span class="keyword">return</span>
+    }
+    t = strings.Split(path, <span class="string"><span class="delimiter">"</span><span class="content">.</span><span class="delimiter">"</span></span>)
+    <span class="keyword">if</span> t[<span class="predefined">len</span>(t)<span class="integer">-1</span>] == <span class="string"><span class="delimiter">"</span><span class="content">js</span><span class="delimiter">"</span></span> {
+      res.Header().Set(<span class="string"><span class="delimiter">"</span><span class="content">Content-Type</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">text/javascript; charset=utf-8</span><span class="delimiter">"</span></span>)
+    } <span class="keyword">else</span> <span class="keyword">if</span> t[<span class="predefined">len</span>(t)<span class="integer">-1</span>] == <span class="string"><span class="delimiter">"</span><span class="content">css</span><span class="delimiter">"</span></span> {
+      res.Header().Set(<span class="string"><span class="delimiter">"</span><span class="content">Content-Type</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">text/css; charset=utf-8</span><span class="delimiter">"</span></span>)
+    }
+    res.Write(buf)
+  })
+
+  adaptor := mavlink.NewMavlinkAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">iris</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+  iris := mavlink.NewMavlinkDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">iris</span><span class="delimiter">"</span></span>)
+
+  work := <span class="keyword">func</span>() {
+
+    iris.AddEvent(<span class="string"><span class="delimiter">"</span><span class="content">telemetry</span><span class="delimiter">"</span></span>)
+
+    gobot.Once(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">packet</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+      fmt.Println(data)
+      packet := data.(*common.MAVLinkPacket)
+
+      dataStream := common.NewRequestDataStream(<span class="integer">10</span>,
+        packet.SystemID,
+        packet.ComponentID,
+        <span class="integer">0</span>,
+        <span class="integer">1</span>,
+      )
+      iris.SendPacket(common.CraftMAVLinkPacket(packet.SystemID,
+        packet.ComponentID,
+        dataStream,
+      ))
+    })
+
+    gobot.On(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">message: </span><span class="delimiter">"</span></span>, data.(common.MAVLinkMessage).Id())
+      <span class="keyword">if</span> data.(common.MAVLinkMessage).Id() == <span class="integer">0</span> {
+        statusCodes := <span class="keyword">map</span>[<span class="predefined-type">uint8</span>]<span class="predefined-type">string</span>{
+          <span class="integer">1</span>: <span class="string"><span class="delimiter">"</span><span class="content">BOOT</span><span class="delimiter">"</span></span>,
+          <span class="integer">2</span>: <span class="string"><span class="delimiter">"</span><span class="content">CALIBRATING</span><span class="delimiter">"</span></span>,
+          <span class="integer">3</span>: <span class="string"><span class="delimiter">"</span><span class="content">STANDBY</span><span class="delimiter">"</span></span>,
+          <span class="integer">4</span>: <span class="string"><span class="delimiter">"</span><span class="content">ACTIVE</span><span class="delimiter">"</span></span>,
+          <span class="integer">5</span>: <span class="string"><span class="delimiter">"</span><span class="content">CRITICAL</span><span class="delimiter">"</span></span>,
+          <span class="integer">6</span>: <span class="string"><span class="delimiter">"</span><span class="content">EMERGENCY</span><span class="delimiter">"</span></span>,
+          <span class="integer">7</span>: <span class="string"><span class="delimiter">"</span><span class="content">POWEROFF</span><span class="delimiter">"</span></span>,
+          <span class="integer">8</span>: <span class="string"><span class="delimiter">"</span><span class="content">ENUM_END</span><span class="delimiter">"</span></span>,
+        }
+        summary.Status = statusCodes[data.(*common.Heartbeat).SYSTEM_STATUS]
+        <span class="keyword">if</span> summary.Status != <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> {
+          gobot.Publish(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">telemetry</span><span class="delimiter">"</span></span>), summary)
+        }
+      }
+
+      <span class="keyword">if</span> data.(common.MAVLinkMessage).Id() == <span class="integer">30</span> {
+        roll := data.(*common.Attitude).ROLL
+        pitch := data.(*common.Attitude).PITCH
+        yaw := data.(*common.Attitude).YAW
+
+        <span class="keyword">if</span> roll &lt; <span class="integer">4</span> || roll &gt; <span class="integer">-4</span> {
+          summary.Roll = (roll * <span class="integer">180</span> / <span class="float">3.14</span>)
+        }
+        <span class="keyword">if</span> yaw &lt; <span class="integer">4</span> || roll &gt; <span class="integer">-4</span> {
+          summary.Yaw = (yaw * <span class="integer">180</span> / <span class="float">3.14</span>)
+        }
+        <span class="keyword">if</span> pitch &lt; <span class="integer">4</span> || roll &gt; <span class="integer">-4</span> {
+          summary.Pitch = (pitch * <span class="integer">180</span> / <span class="float">3.14</span>)
+        }
+        gobot.Publish(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">telemetry</span><span class="delimiter">"</span></span>), summary)
+      }
+
+      <span class="keyword">if</span> data.(common.MAVLinkMessage).Id() == <span class="integer">33</span> {
+        summary.Latitude = <span class="predefined-type">float32</span>(data.(*common.GlobalPositionInt).LAT) / <span class="float">10000000.0</span>
+        summary.Longitude = <span class="predefined-type">float32</span>(data.(*common.GlobalPositionInt).LON) / <span class="float">10000000.0</span>
+        summary.Altitude = data.(*common.GlobalPositionInt).ALT
+        summary.Heading = <span class="predefined-type">float32</span>(data.(*common.GlobalPositionInt).HDG) / <span class="integer">100</span>
+        gobot.Publish(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">telemetry</span><span class="delimiter">"</span></span>), summary)
+      }
+    })
+  }
+
+  gbot.AddRobot(gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">irisBot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{adaptor},
+    []gobot.Device{iris},
+    work,
+  ))
+
+  a.Start()
+  gbot.Start()
+}
+</pre>
+            
+            <p>Want to keep up to date on the latest news and information about Gobot? Please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a>!</p>
+          </div>
+        </div>
+        <div class="side-column">
+          <div class="categories">
+            <h4>Tags</h4>
+            <ul>
+<li><a href="/blog/tags/robots/">Robots</a></li>
+              <li><a href="/blog/tags/events/">Events</a></li>
+            </ul>
+</div>
+          <div class="network">
+            <h4>Network</h4>
+            <div class="network-links">
+              <a href="https://twitter.com/gobotio"><img src="/images/elements/twitter.png"></a>
+              <a href="https://github.com/hybridgroup/gobot"><img src="/images/elements/github.png"></a>
+            </div>
+          </div>
+          <div class="titles">
+            <h4>Posts</h4>
+            <ul>
+<li><a href="/blog/2014/09/24/run-golang-on-the-intel-edison-with-gobot/">Run Golang On The Intel Edison With Gobot</a></li>
+              <li><a href="/blog/2014/08/08/flying-iris-at-distill-2014/">Flying Iris At Distill 2014</a></li>
+              <li><a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a></li>
+              <li><a href="/blog/2014/06/18/gobot-0.5/">Gobot 0.5 is out!</a></li>
+              <li><a href="/blog/2014/04/29/taking-the-stage-at-gophercon/">Taking The Stage At GopherCon</a></li>
+              <li><a href="/blog/2014/04/10/national-robotics-week-at-boston-golang/">National Robotics Week at Boston Golang</a></li>
+              <li><a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a></li>
+            </ul>
+</div>
+        </div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="grass-footer"></div>
+      <div class="frameworks">
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/gobot-home.png">
+</div>
+            <p>Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/artoo.png">
+</div>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="footer-button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/cylon.png">
+</div>
+            <p>Want to use Javascript to power your robots? Check out our sister project Cylon.js</p>
+            <div class="footer-button">
+              <a target="blank" href="http://cylonjs.com">View Project</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg"><p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

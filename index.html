@@ -69,7 +69,7 @@
               <span>Go, Robot, Go!</span> <br> Golang Powered Robotics
             </h1>
             <p>
-              Next generation robotics framework with support for <a href="#platforms">10 different platforms</a>
+              Next generation robotics framework with support for <a href="#platforms">11 different platforms</a>
             </p>
             <a href="/documentation/getting-started" class="cta">Start Now</a>
           </div>
@@ -112,7 +112,7 @@
         <section class="the-code"><h2 class="homepage">Meet The Code</h2>
           <p>Gobot makes commanding robots incredibly simple and fun.</p>
           <p>All you need to get started is install the library with :</p>
-          <p><code>go get -u github.com/hybridgroup/gobot</code>.</p>
+          <p><code>go install -u github.com/hybridgroup/gobot</code>.</p>
           <h2 class="homepage">Gobot with Sphero</h2>
           <pre class="CodeRay"><span class="keyword">package</span> main
 
@@ -186,7 +186,7 @@
             Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported:
             </p>
 <h2 class="homepage platforms">
-              10 Platforms
+              11 Platforms
             </h2>
             <ul class="homepage-platform">
 <li>
@@ -216,6 +216,13 @@
                 </div>
                 <a href="/documentation/platforms/digispark">
                   <img src="/images/devices/digispark.jpg" style="width: 90%"></a>
+              </li>
+              <li>
+                <div class="title">
+                  <a target="_blank" href="http://www.intel.com/content/www/us/en/do-it-yourself/edison.html">Intel Edison</a>
+                </div>
+                <a href="/documentation/platforms/edison">
+                  <img src="/images/devices/edison.jpg" style="width: 90%"></a>
               </li>
               <li>
                 <div class="title">
@@ -335,32 +342,28 @@
           <p>Then install additional libraries for whatever hardware support you want to use from your robot. For example, <code>go get -u github.com/hybridgroup/gobot-sphero</code> to use Gobot with a Sphero.</p>
           <p>
             Ready to build Go robots with Gobot?
-            <a href="/documentation/getting-started" class="item">Get Started Here!</a>
+            <a href="documentation/getting-started">Get Started Here!</a>
           </p>
         </section><section class="api"><h2 class="homepage">API</h2>
           <p>Gobot includes a RESTful API to query the status of any robot running within a group, including the connection and device status, and execute device commands.</p>
-          <p>To activate the API, use the <code>Api</code> command like this:</p>
+          <p>To activate the API, require the <code>github.com/hybridgroup/gobot/api</code> package and instantiate the <code>API</code> like this:</p>
           
-          <pre class="CodeRay">master := gobot.GobotMaster()
-gobot.Api(master)
+          <pre class="CodeRay">gbot := gobot.NewGobot()
+gobot.NewAPI(gbot).Start()
 </pre>
           
           <p>You can also specify the api host and port, and turn on authentication:</p>
           
-          <pre class="CodeRay">master := gobot.GobotMaster()
-api := gobot.Api(master)
-api.Port = <span class="string"><span class="delimiter">"</span><span class="content">3000</span><span class="delimiter">"</span></span>
-api.Username = <span class="string"><span class="delimiter">"</span><span class="content">Gort</span><span class="delimiter">"</span></span>
-api.Password = <span class="string"><span class="delimiter">"</span><span class="content">klaatu</span><span class="delimiter">"</span></span>
+          <pre class="CodeRay">gbot := gobot.NewGobot()
+server := api.NewAPI(gbot)
+server.Port = <span class="string"><span class="delimiter">"</span><span class="content">4000</span><span class="delimiter">"</span></span>
+server.Username = <span class="string"><span class="delimiter">"</span><span class="content">Gort</span><span class="delimiter">"</span></span>
+server.Password = <span class="string"><span class="delimiter">"</span><span class="content">klaatu</span><span class="delimiter">"</span></span>
+server.Start()
 </pre>
           <p>
             </p>
-<p>In order to use the
-            <a href="https://github.com/hybridgroup/robeaux">robeaux</a>
-            AngularJS interface with Gobot you simply clone the robeaux repo and place it in the directory of your Gobot program. The robeaux assets must be in a folder called
-            <code>robeaux</code>.</p>
-            
-            <p>Then visit <code>https://localhost:3000/#/robots</code> and you are ready to control your robots from a web browser!</p>
+<p>You may access the <a href="https://github.com/hybridgroup/robeaux">robeaux</a> AngularJS interface with Gobot by navigating to <code>http://localhost:3000/index.html</code>.</p>
             
             <p><img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%"></p>
             
