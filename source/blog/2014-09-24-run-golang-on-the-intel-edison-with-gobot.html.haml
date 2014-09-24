@@ -43,8 +43,6 @@ author: Ron Evans & Adrian Zankich
   Here is the code we used to run the above sample:
 
       :::go
-      package main
-
       import (
         "fmt"
 
@@ -56,14 +54,14 @@ author: Ron Evans & Adrian Zankich
       func main() {
         gbot := gobot.NewGobot()
 
-        e := edison.NewEdisonAdaptor("edison")
-        sensor := gpio.NewAnalogSensorDriver(e, "sensor", "0")
-        led := gpio.NewLedDriver(e, "led", "3")
+        edisonAdaptor := edison.NewEdisonAdaptor("edison")
+        sensor := gpio.NewAnalogSensorDriver(edisonAdaptor, "sensor", "0")
+        led := gpio.NewLedDriver(edisonAdaptor, "led", "3")
 
         work := func() {
           gobot.On(sensor.Event("data"), func(data interface{}) {
             brightness := uint8(
-              gobot.ToScale(gobot.FromScale(float64(data.(int)), 0, 4096), 0, 255),
+                    gobot.ToScale(gobot.FromScale(float64(data.(int)), 0, 4096), 0, 255),
             )
             fmt.Println("sensor", data)
             fmt.Println("brightness", brightness)
@@ -72,7 +70,7 @@ author: Ron Evans & Adrian Zankich
         }
 
         robot := gobot.NewRobot("sensorBot",
-          []gobot.Connection{e},
+          []gobot.Connection{edisonAdaptor},
           []gobot.Device{sensor, led},
           work,
         )
@@ -89,8 +87,46 @@ author: Ron Evans & Adrian Zankich
 
   Here is the code:
 
-      :::golang
-      // code here...
+      :::go
+      package main
+
+      import (
+        "fmt"
+
+        "github.com/hybridgroup/gobot"
+        "github.com/hybridgroup/gobot/platforms/intel-iot/edison"
+        "github.com/zankich/gobot/platforms/gpio"
+        "github.com/zankich/gobot/platforms/i2c"
+      )
+
+      func main() {
+        gbot := gobot.NewGobot()
+
+        edisonAdaptor := edison.NewEdisonAdaptor("edison")
+        blinkm := i2c.NewBlinkMDriver(edisonAdaptor, "blinkm")
+        sensor := gpio.NewAnalogSensorDriver(edisonAdaptor, "sensor", "0")
+
+        work := func() {
+          gobot.On(sensor.Event("data"), func(data interface{}) {
+            brightness := uint8(
+              gobot.ToScale(gobot.FromScale(float64(data.(int)), 0, 4096), 0, 255),
+            )
+            fmt.Println("sensor", data)
+            fmt.Println("brightness", brightness)
+            blinkm.Rgb(0, brightness, 0)
+          })
+        }
+
+        robot := gobot.NewRobot("sensorBot",
+          []gobot.Connection{edisonAdaptor},
+          []gobot.Device{blinkm, sensor},
+          work,
+        )
+
+        gbot.AddRobot(robot)
+
+        gbot.Start()
+      }
 
   Here is how we got it "go"-ing, if you will.
   You must first configure your local Go environment for 386 linux cross compiling:
