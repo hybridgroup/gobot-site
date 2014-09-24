@@ -159,29 +159,25 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
   %p Gobot includes a RESTful API to query the status of any robot running within a group, including the connection and device status, and execute device commands.
 
   :markdown
-    To activate the API, use the `Api` command like this:
+    To activate the API, require the `github.com/hybridgroup/gobot/api` package and instantiate the `API` like this:
 
         :::go
-        master := gobot.GobotMaster()
-        gobot.Api(master)
+        gbot := gobot.NewGobot()
+        gobot.NewAPI(gbot).Start()
 
     You can also specify the api host and port, and turn on authentication:
 
         :::go
-        master := gobot.GobotMaster()
-        api := gobot.Api(master)
-        api.Port = "3000"
-        api.Username = "Gort"
-        api.Password = "klaatu"
+        gbot := gobot.NewGobot()
+        server := api.NewAPI(gbot)
+        server.Port = "4000"
+        server.Username = "Gort"
+        server.Password = "klaatu"
+        server.Start()
 
   %p
     :markdown
-      In order to use the
-      [robeaux](https://github.com/hybridgroup/robeaux)
-      AngularJS interface with Gobot you simply clone the robeaux repo and place it in the directory of your Gobot program. The robeaux assets must be in a folder called
-      `robeaux`.
-
-      Then visit `https://localhost:3000/#/robots` and you are ready to control your robots from a web browser!
+      You may access the [robeaux](https://github.com/hybridgroup/robeaux) AngularJS interface with Gobot by navigating to `http://localhost:3000/index.html`.
 
       <img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%">
 
