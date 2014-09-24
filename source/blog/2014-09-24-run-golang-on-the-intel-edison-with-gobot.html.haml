@@ -11,7 +11,7 @@ author: Ron Evans & Adrian Zankich
 :markdown
 
   The Gobot team was in attendance at the recent [Intel Developer Forum](http://www.intel.com/content/www/us/en/intel-developer-forum-idf/san-francisco/2014/idf-2014-san-francisco.html) in San Francisco, and we were able to get one of the new [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html) single board computers.
-  Our mission: get [Golang](http://golang.org/) running on the Edison.
+  Our mission: get [Golang](http://golang.org/) running on the Edison, so we can use it with Gobot for robotics or connected devices.
 
   The Edison is a very small System-on-Chip (SoC) single board Linux computer.
   Its dual-core Atom processor, 1GB of RAM, and built-in WiFi/Bluetooth LE all make it a very powerful machine in a very tiny package.
@@ -21,7 +21,7 @@ author: Ron Evans & Adrian Zankich
 
   We had previously tried running Golang code on the [Intel Galileo](http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html) when we first got our Gen1 board a few months ago, but were unable to run anything compiled in Golang on it at all, due to the [Galileo not supporting the MMX instruction set](https://groups.google.com/forum/#!topic/golang-nuts/ogkhcggIqlU).
 
-  Once we got ahold of the Edison, we immediately retired to a corner of the conference, and set to work putting the new board through it's paces.
+  Once we got ahold of the Edison, we immediately retired to a corner of the conference, and set to work putting the new board through its paces.
   The results were successful!
   The Edison is able to run Go code.
 
@@ -30,26 +30,29 @@ author: Ron Evans & Adrian Zankich
   Here is how we got it "go"-ing, if you will.
   Basic workflow for cross-compilation here...
 
-  Of course, for us running Golang is just the beginning.
-  We want to use the Edison's many bult-in GPIO & i2c pins, so we can communicate with many devices.
+  Of course, for us running Golang was just the beginning.
+  We wanted to use the Edison's many bult-in GPIO & i2c pins, so we can communicate with many devices.
 
   So we rolled up our sleeves, and got to work.
   In many cases, we made good progress from reading the code helpfully provided by the Intel IoT team's [MRAA library](https://github.com/intel-iot-devkit/mraa).
   In others, we were simply blazing a trail of code.
 
-  With that, we now present to you [gobot-edison](), our support in Gobot for the Edison board's wonderful capabilities.
+  With that, we now present to you [gobot-intel-iot](https://github.com/hybridgroup/gobot/tree/dev/platforms/intel-iot), our support in Gobot for the Edison board's wonderful capabilities.
+
+  Here is a short video using Gobot to control the Edison's GPIO for reading analog input, and then using PWM output to turn on the LED:
 
   <iframe width="560" height="315" src="//www.youtube.com/embed/yi3b51fQ6c4" frameborder="0" allowfullscreen></iframe>
 
-  Here is the code we used to run the above sample, using Gobot to control the Edison's GPIO for reading analog input, and then PWM output via the LED.
+  Here is the code we used to run the above sample:
 
       :::golang
       // code here...
 
+  We also have implemented i2c support.
+  In the following video, we are showing an Edison, running Gobot, reading analog input, and then communicating via i2c with a [BlinkM](http://thingm.com/products/blinkm/).
+
   <iframe width="560" height="315" src="//www.youtube.com/embed/yi3b51fQ6c4" frameborder="0" allowfullscreen></iframe>
 
-  We also have implemented i2c support.
-  In the above video, we are showing an Edison, running Gobot, communicating with a BlinkM.
   Here is the code:
 
       :::golang
