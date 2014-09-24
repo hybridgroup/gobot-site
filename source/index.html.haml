@@ -23,7 +23,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
 
   %p All you need to get started is install the library with :
   :markdown
-    `go get -u github.com/hybridgroup/gobot`.
+    `go install -u github.com/hybridgroup/gobot`.
 
   %h2.homepage  Gobot with Sphero
   :markdown
@@ -153,7 +153,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
     Then install additional libraries for whatever hardware support you want to use from your robot. For example, `go get -u github.com/hybridgroup/gobot-sphero` to use Gobot with a Sphero.
   %p
     Ready to build Go robots with Gobot?
-    =link_to "Get Started Here!", "", (menu_item("documentation/getting-started"))
+    = link_to "Get Started Here!", "documentation/getting-started"
 %section.api
   %h2.homepage API
   %p Gobot includes a RESTful API to query the status of any robot running within a group, including the connection and device status, and execute device commands.
