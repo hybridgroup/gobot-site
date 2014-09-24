@@ -10,21 +10,32 @@ author: Ron Evans & Adrian Zankich
 
 :markdown
 
-  The Gobot team was in attendance at the recent [Intel Developer Forum](http://www.intel.com/content/www/us/en/intel-developer-forum-idf/san-francisco/2014/idf-2014-san-francisco.html) in San Francisco, and we were able to get one of the new [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html) single board computers. Our mission: get [Golang](http://golang.org/) running on the Edison.
+  The Gobot team was in attendance at the recent [Intel Developer Forum](http://www.intel.com/content/www/us/en/intel-developer-forum-idf/san-francisco/2014/idf-2014-san-francisco.html) in San Francisco, and we were able to get one of the new [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html) single board computers.
+  Our mission: get [Golang](http://golang.org/) running on the Edison.
 
-  The Edison is a very small System on Chip (SoC) single board Linux computer. Its dual-core Atom processor, 1GB of RAM, and built-in WiFi/Bluetooth LE, all make it a very powerful machine in a very tiny package. The base Edison itself requires that at least one of the Edison's breakout boards, known as "blocks", be connected via the 70-pin Hirose connector. This is rather different from most other single-board computers. This extreme modularity is a very interesting design approach, and Sparkfun has an entire line of blocks that will be coming out in the coming weeks.
+  The Edison is a very small System-on-Chip (SoC) single board Linux computer.
+  Its dual-core Atom processor, 1GB of RAM, and built-in WiFi/Bluetooth LE all make it a very powerful machine in a very tiny package.
+  The base Edison itself requires that at least one of the Edison's breakout boards, known as "blocks", be connected via the 70-pin Hirose connector.
+  This is rather different from most other single-board computers.
+  This extreme modularity is a very interesting design approach, and Sparkfun has an entire line of blocks that will be coming out in the coming weeks.
 
   We had previously tried running Golang code on the [Intel Galileo](http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html) when we first got our Gen1 board a few months ago, but were unable to run anything compiled in Golang on it at all, due to the [Galileo not supporting the MMX instruction set](https://groups.google.com/forum/#!topic/golang-nuts/ogkhcggIqlU).
 
-  Once we got ahold of the Edison, we immediately retired to a corner there at the conference to put the new board thru its paces. The results were successful! The Edison is able to run Go code.
+  Once we got ahold of the Edison, we immediately retired to a corner of the conference, and set to work putting the new board through it's paces.
+  The results were successful!
+  The Edison is able to run Go code.
 
   <img src="/images/blog/edison.png" alt="" style="margin: 10px 0;">
 
-  Here is how we got it "go"-ing, if you will. Basic workflow for cross-compilation here...
+  Here is how we got it "go"-ing, if you will.
+  Basic workflow for cross-compilation here...
 
-  Of course, for us running Golang is just the beginning. We want to use the Edison's many bult-in GPIO & i2c pins, so we can communicate with many devices. 
+  Of course, for us running Golang is just the beginning.
+  We want to use the Edison's many bult-in GPIO & i2c pins, so we can communicate with many devices.
 
-  So we rolled up our sleeves, and got to work. In many cases, we made good progress from reading the code helpfully provided by the Intel IoT team's [MRAA library](https://github.com/intel-iot-devkit/mraa). In others, we were simply blazing a trail of code.
+  So we rolled up our sleeves, and got to work.
+  In many cases, we made good progress from reading the code helpfully provided by the Intel IoT team's [MRAA library](https://github.com/intel-iot-devkit/mraa).
+  In others, we were simply blazing a trail of code.
 
   With that, we now present to you [gobot-edison](), our support in Gobot for the Edison board's wonderful capabilities.
 
@@ -37,7 +48,9 @@ author: Ron Evans & Adrian Zankich
 
   <iframe width="560" height="315" src="//www.youtube.com/embed/yi3b51fQ6c4" frameborder="0" allowfullscreen></iframe>
 
-  We also have implemented i2c support. In the above video, we are showing an Edison, running Gobot, communicating with a BlinkM. Here is the code:
+  We also have implemented i2c support.
+  In the above video, we are showing an Edison, running Gobot, communicating with a BlinkM.
+  Here is the code:
 
       :::golang
       // code here...
