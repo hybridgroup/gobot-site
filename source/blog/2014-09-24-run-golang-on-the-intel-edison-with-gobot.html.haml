@@ -27,9 +27,6 @@ author: Ron Evans & Adrian Zankich
 
   <img src="/images/blog/edison.png" alt="" style="margin: 10px 0;">
 
-  Here is how we got it "go"-ing, if you will.
-  Basic workflow for cross-compilation here...
-
   Of course, for us running Golang was just the beginning.
   We wanted to use the Edison's many bult-in GPIO & i2c pins, so we can communicate with many devices.
 
@@ -37,7 +34,7 @@ author: Ron Evans & Adrian Zankich
   In many cases, we made good progress from reading the code helpfully provided by the Intel IoT team's [MRAA library](https://github.com/intel-iot-devkit/mraa).
   In others, we were simply blazing a trail of code.
 
-  With that, we now present to you [gobot-intel-iot](https://github.com/hybridgroup/gobot/tree/dev/platforms/intel-iot), our support in Gobot for the Edison board's wonderful capabilities.
+  With that, we now present to you [gobot-intel-iot](https://github.com/hybridgroup/gobot/tree/dev/platforms/intel-iot/edison), our support in Gobot for the Edison board's wonderful capabilities.
 
   Here is a short video using Gobot to control the Edison's GPIO for reading analog input, and then using PWM output to turn on the LED:
 
@@ -57,6 +54,24 @@ author: Ron Evans & Adrian Zankich
 
       :::golang
       // code here...
+
+  Here is how we got it "go"-ing, if you will.
+  You must first configure your local Go environment for 386 linux cross compiling:
+
+      $ cd $GOROOT/src
+      $ GOOS=linux GOARCH=386 ./make.bash --no-clean
+
+  Then compile your Go program, like this:
+
+      $ GOARCH=386 GOOS=linux go build edison_blink.go
+
+  Then you can simply upload your program over the network from your host computer to the Edison
+
+      $ scp edison_blink root@192.168.1.xxx:/home/root/
+
+  and execute it on your Edison itself, by SSHing in, and running it
+
+      $ ./edison_blink
 
   We are very excited about the possibilities of this new board from Intel, now that we can run Golang and Gobot on it!
 
