@@ -31,40 +31,39 @@ subnavjs: true
 
     First you must install the appropriate Go packages
 
-  :markdown
-    :::bash
-      go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/intel-iot/edison
+  
+        :::bash
+        go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/intel-iot/edison
 
-    #### Setting up your Intel Edison
+    ### Setting up your Intel Edison
 
     Everything you need to get started with the Edison is in the Intel Getting Started Guide
     located [here](https://communities.intel.com/docs/DOC-23147). Don't forget to
     configure your Edison's wifi connection and [flash](https://communities.intel.com/docs/DOC-23192)
     your Edison with the latest firmware image!
 
-    #### Cross compiling for the Intel Edison
+    ### Cross compiling for the Intel Edison
     You must first configure your Go environment for 386 linux cross compiling
 
-  :markdown
-    :::bash
-      $ cd $GOROOT/src
-      $ GOOS=linux GOARCH=386 ./make.bash --no-clean
+        :::bash
+        $ cd $GOROOT/src
+        $ GOOS=linux GOARCH=386 ./make.bash --no-clean
 
     Then compile your Gobot program with
-    :markdown
-      :::bash
-      $ GOARCH=386 GOOS=linux go build examples/edison_blink.go
+  
+        :::bash
+        $ GOARCH=386 GOOS=linux go build examples/edison_blink.go
 
     Then you can simply upload your program over the network from your host computer to the Edison 
-  :markdown
-    :::bash
-      $ scp edison_blink root@192.168.1.xxx:/home/root/
+
+        :::bash
+        $ scp edison_blink root@192.168.1.xxx:/home/root/
 
 
     and execute it on your Edison with
-  :markdown
-    :::bash
-      $ ./edison_blink
+
+        :::bash
+        $ ./edison_blink
 
 %section.how-to#HowToUse
   :markdown
