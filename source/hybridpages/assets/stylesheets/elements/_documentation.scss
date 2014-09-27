@@ -59,10 +59,9 @@
       margin: 0 auto;
       @include span-columns(3 of 9.5);
       background: darken($cta-color, 5);
-      min-height: 130px;
+      height: 165px;
       margin-bottom: 20px;
       border-radius: 2px;
-
 
       a {
 
@@ -93,7 +92,16 @@
     @include small-screen  {
 
       padding-top: 50px;
-      section { @include span-columns(12);}
+      section { 
+        @include span-columns(12);
+        max-height: 100px;
+
+        .description {
+
+          color: white;
+          font-size: 14pt;
+        }
+      }
     }
   }
 }
