@@ -27,18 +27,18 @@
       "Button": "/documentation/drivers/button",
       "Direct Pin": "/documentation/drivers/direct-pin",
       "LED": "/documentation/drivers/led",
-      "Makey Button": "/documentation/drivers/makey",
+      "Makey Button": "/documentation/drivers/makey-button",
       "Motor": "/documentation/drivers/motor",
       "Servo": "/documentation/drivers/servo"
     },
 
     "I2C": {
-      "BPM180": "/documentation/drivers/bmp180",
+      "BlinkM": "/documentation/drivers/blinkm",
       "HMC6352 Compass": "/documentation/drivers/hmc6352-compass",
-      "Wiichuck": "/documentation/drivers/wiichuck"
+      "Wiichuck": "/documentation/drivers/wiimote-nunchuk"
     },
 
-    "Ardrone - Flight": "/documentation/drivers/ardrone",
+    "Ardrone - Flight": "/documentation/drivers/ardrone-flight",
     "Joystick - DualShock 3": "/documentation/drivers/dualshock3",
     "Joystick - Xbox 360": "/documentation/drivers/xbox360",
     "Leap Motion": "/documentation/drivers/leapmotion",
