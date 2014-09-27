@@ -59,9 +59,10 @@
       margin: 0 auto;
       @include span-columns(3 of 9.5);
       background: darken($cta-color, 5);
-      height: 130px;
+      min-height: 130px;
       margin-bottom: 20px;
       border-radius: 2px;
+
 
       a {
 
