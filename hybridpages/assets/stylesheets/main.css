@@ -2600,7 +2600,7 @@
           margin-right: 2.99668%;
           width: 29.52859%;
           background: #6ba340;
-          height: 130px;
+          height: 165px;
           margin-bottom: 20px;
           border-radius: 2px; }
           /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
@@ -2633,12 +2633,18 @@
               float: left;
               display: block;
               margin-right: 2.35765%;
-              width: 100%; }
+              width: 100%;
+              max-height: 100px; }
               /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
               .documentation .index section:last-child {
-                margin-right: 0; } }
+                margin-right: 0; }
+              /* line 99, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+              .documentation .index section .description {
+                color: white;
+                font-size: 14pt;
+                padding-right: 22px; } }
       
-      /* line 100, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 110, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .documentation {
         float: left;
         display: block;
@@ -2649,89 +2655,89 @@
         /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
         .documentation:last-child {
           margin-right: 0; }
-        /* line 106, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 116, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .documentation .link {
           font-size: 20px; }
-        /* line 111, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 121, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .documentation .description {
           color: gray;
           font-size: 14px;
           line-height: 21px;
           margin: 10px; }
-        /* line 119, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 129, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .documentation .display {
           width: 35%;
           float: left;
           margin: 0 0 19px 20px; }
           @media only screen and (max-width: 767px) {
-            /* line 119, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+            /* line 129, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
             .documentation .display {
               width: 100%; } }
       
-      /* line 132, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 142, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .clear {
         clear: both; }
       
-      /* line 139, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 149, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .circuit .image-circuit {
         width: 50%;
         float: left; }
-        /* line 144, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 154, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .circuit .image-circuit img {
           height: 300px; }
-      /* line 149, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 159, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .circuit .description-circuit {
         width: 50%;
         float: right; }
       
-      /* line 156, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 166, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .image-size-300 {
         width: 200px; }
       
-      /* line 163, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 173, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .commands-api h2 {
         background: #77b547;
         color: white !important;
         padding: 5px 10px;
         font-size: 12pt;
         margin: 20px 0 0 0; }
-      /* line 173, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 183, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .commands-api h4 {
         background: transparent;
         font-size: 11pt;
         font-weight: normal; }
-      /* line 180, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 190, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .commands-api h3 {
         background: white;
         padding: 10px;
         margin: 0;
         font-size: 11pt; }
-      /* line 188, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 198, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .commands-api h5 {
         background: white;
         padding: 10px;
         margin: 0;
         font-size: 10pt; }
-      /* line 196, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 206, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .commands-api pre {
         background: white;
         margin: 0; }
-      /* line 202, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 212, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .commands-api p, .commands-api ul {
         background: white;
         font-size: 10.5pt;
         margin: 0;
         padding: 10px;
         font-family: Inconsolata,Menlo,Monaco,"Bitstream Vera Sans Mono","Courier New",monospace; }
-      /* line 211, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 221, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .commands-api li {
         margin-left: 20px; }
       
-      /* line 217, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 227, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .commands {
         background: white;
         font-size: 10.5pt; }
-        /* line 222, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 232, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .commands span {
           font-family: Inconsolata,Menlo,Monaco,"Bitstream Vera Sans Mono","Courier New",monospace;
           font-size: 14px;
@@ -2740,25 +2746,25 @@
           border: 1px solid #ccc;
           color: #444;
           padding: 5px; }
-        /* line 233, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 243, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .commands th {
           background: #3e3e3e;
           color: white; }
-        /* line 239, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 249, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .commands td {
           border-bottom: 1px solid #d4d4d4; }
-        /* line 244, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 254, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .commands .command {
           font-family: Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace;
           font-weight: bold;
           font-size: 11pt; }
-        /* line 255, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 265, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .commands .param .markdown span {
           background: none;
           border: none;
           padding: 0; }
       
-      /* line 267, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 277, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .methods dt {
         font-weight: bold;
         background: white;
@@ -2768,15 +2774,15 @@
         font-family: Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace;
         font-size: 17px;
         border: aliceblue; }
-      /* line 279, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 289, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .methods dd {
         margin-bottom: 29px;
         padding-left: 10px; }
-      /* line 285, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 295, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .methods li {
         font-family: Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace; }
       
-      /* line 291, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 301, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .colors {
         float: left;
         display: block;
@@ -2786,7 +2792,7 @@
         .colors:last-child {
           margin-right: 0; }
         @media only screen and (min-width: 767px) and (max-width: 960px) {
-          /* line 291, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+          /* line 301, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
           .colors {
             float: left;
             display: block;
@@ -2795,11 +2801,11 @@
             /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .colors:last-child {
               margin-right: 0; }
-            /* line 299, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+            /* line 309, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
             .colors p {
               font-size: 10px; } }
         @media only screen and (max-width: 767px) {
-          /* line 291, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+          /* line 301, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
           .colors {
             float: left;
             display: block;
@@ -2808,7 +2814,7 @@
             /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .colors:last-child {
               margin-right: 0; } }
-        /* line 310, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 320, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .colors dt {
           font-weight: bold;
           padding: 5px;
@@ -2817,11 +2823,11 @@
           font-size: 15px;
           border: aliceblue;
           margin-top: 15px; }
-        /* line 321, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+        /* line 331, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
         .colors dd {
           margin-bottom: 20px;
           display: block; }
-          /* line 326, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+          /* line 336, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
           .colors dd p {
             margin: 0;
             line-height: 50px; }
