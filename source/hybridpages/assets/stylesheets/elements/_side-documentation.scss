@@ -10,6 +10,7 @@
     height: auto !important;
     position: absolute;
     left: 0;
+    top: 50px;
   }
 
   .mobile-menu {
@@ -30,13 +31,16 @@
     }
 
     a {
-      border: solid 2px white;
-      padding: 10px;
-      width: 55px;
+      border-radius: em(13);
+      padding: em(10) em(12);
+      margin: em(5);
       display: inline-block;
+      width: 55px;
+      background: #5f9039;
 
       &:hover {
         background: white;
+        cursor: pointer;
 
         .line {
           background: $cta-color;
@@ -44,10 +48,9 @@
       }
 
       .line {
-        height: 2px;
-        width: 30px;
-        margin: 5px 0;
+        height: 6px;
         background: white;
+        margin: em(5) 0 em(5);
       }
     }
   }
@@ -95,7 +98,6 @@
     .links a {
       font-size: 10pt;
       color: #333;
-
       padding: 5px 10px;
 
       &:hover {
@@ -147,12 +149,14 @@
   margin: -22px -5px 0;
   text-align: center;
 
-  @include small-screen{
+  @include small-screen {
     background-size: 15%;
   }
 
   img{
     margin-top: -60px;
+    @include small-screen {
+      margin-top: -40px;
+    }
   }
 }
-
