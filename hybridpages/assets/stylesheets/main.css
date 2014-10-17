@@ -2641,7 +2641,7 @@
               /* line 99, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
               .documentation .index section .description {
                 color: white;
-                font-size: 14pt;
+                font-size: 12pt;
                 padding-right: 22px; } }
       
       /* line 110, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
@@ -3422,99 +3422,102 @@
             width: 100%;
             height: auto !important;
             position: absolute;
-            left: 0; }
+            left: 0;
+            top: 50px; }
             /* line 40, ../../../../../.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
             .side-documentation:last-child {
               margin-right: 0; } }
-        /* line 15, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+        /* line 16, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
         .side-documentation .mobile-menu {
           background: #77b547;
           text-align: right;
           display: none; }
           @media only screen and (max-width: 767px) {
-            /* line 15, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+            /* line 16, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
             .side-documentation .mobile-menu {
               display: block; } }
-          /* line 24, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 25, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .mobile-menu .active {
             background: white; }
-            /* line 27, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+            /* line 28, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
             .side-documentation .mobile-menu .active .line {
               background: #77b547; }
-          /* line 32, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 33, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .mobile-menu a {
-            border: solid 2px white;
-            padding: 10px;
+            border-radius: 0.8125em;
+            padding: 0.625em 0.75em;
+            margin: 0.3125em;
+            display: inline-block;
             width: 55px;
-            display: inline-block; }
-            /* line 38, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+            background: #5f9039; }
+            /* line 41, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
             .side-documentation .mobile-menu a:hover {
-              background: white; }
-              /* line 41, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+              background: white;
+              cursor: pointer; }
+              /* line 45, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
               .side-documentation .mobile-menu a:hover .line {
                 background: #77b547; }
-            /* line 46, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+            /* line 50, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
             .side-documentation .mobile-menu a .line {
-              height: 2px;
-              width: 30px;
-              margin: 5px 0;
-              background: white; }
-        /* line 55, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+              height: 6px;
+              background: white;
+              margin: 0.3125em 0 0.3125em; }
+        /* line 58, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
         .side-documentation .docs-sidebar {
           padding-top: 30px; }
           @media only screen and (max-width: 767px) {
-            /* line 55, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+            /* line 58, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
             .side-documentation .docs-sidebar {
               padding-top: 0;
               margin: 0;
               display: none;
               font-size: 18px; } }
-          /* line 64, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 67, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .docs-sidebar.show {
             display: block; }
           @media only screen and (max-width: 767px) {
-            /* line 55, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+            /* line 58, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
             .side-documentation .docs-sidebar {
               width: 100%;
               z-index: 1;
               position: relative; } }
-          /* line 73, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 76, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .docs-sidebar > a, .side-documentation .docs-sidebar .section .name {
             font-size: 0.875em;
             font-weight: 600;
             border-bottom: 1px solid #89cd54; }
-            /* line 78, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+            /* line 81, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
             .side-documentation .docs-sidebar > a:last-of-type, .side-documentation .docs-sidebar .section .name:last-of-type {
               border-bottom: none; }
-          /* line 83, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 86, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .docs-sidebar a, .side-documentation .docs-sidebar .name {
             width: 100%;
             display: block;
             padding: 10px;
             cursor: pointer;
             color: #514b47; }
-            /* line 90, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+            /* line 93, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
             .side-documentation .docs-sidebar a:hover, .side-documentation .docs-sidebar .name:hover {
               color: #eeeaec; }
-          /* line 95, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 98, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .docs-sidebar .links a {
             font-size: 10pt;
             color: #333;
             padding: 5px 10px; }
-            /* line 101, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+            /* line 103, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
             .side-documentation .docs-sidebar .links a:hover {
               color: #eeeaec; }
-          /* line 106, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 108, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .docs-sidebar a.active {
             color: #e8e8e8; }
-          /* line 110, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 112, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .docs-sidebar .section .links {
             padding-left: 15px;
             padding-top: 10px; }
-          /* line 115, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 117, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .docs-sidebar .sub-section .links {
             padding-left: 20px; }
-          /* line 119, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 121, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .docs-sidebar .section:before {
             content: '▶';
             float: right;
@@ -3522,11 +3525,11 @@
             margin-right: 10px;
             color: #514b47;
             font-size: 11px; }
-          /* line 128, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 130, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .side-documentation .docs-sidebar .section.active:before {
             content: '▼'; }
       
-      /* line 134, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      /* line 136, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
       .container-documentation {
         float: left;
         display: block;
@@ -3536,7 +3539,7 @@
         .container-documentation:last-child {
           margin-right: 0; }
         @media only screen and (max-width: 767px) {
-          /* line 134, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 136, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .container-documentation {
             float: left;
             display: block;
@@ -3547,7 +3550,7 @@
             .container-documentation:last-child {
               margin-right: 0; } }
       
-      /* line 143, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      /* line 145, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
       .sidebar-header {
         background: url(/images/elements/grass-short.png) top center repeat-x;
         background-size: 42%;
@@ -3555,12 +3558,16 @@
         margin: -22px -5px 0;
         text-align: center; }
         @media only screen and (max-width: 767px) {
-          /* line 143, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+          /* line 145, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
           .sidebar-header {
             background-size: 15%; } }
-        /* line 154, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+        /* line 156, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
         .sidebar-header img {
           margin-top: -60px; }
+          @media only screen and (max-width: 767px) {
+            /* line 156, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+            .sidebar-header img {
+              margin-top: -40px; } }
     </div>
     <footer class='app-footer'>
       <div class='grass-footer'></div>
