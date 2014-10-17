@@ -35,6 +35,7 @@ $blog-title-color: #77b547;
 $blog-date-top-color: #b39f89;
 
 $doc-description-color:  #808080;
+$doc-color: darken($cta-color, 10);
 $doc-border: #89cd54;
 $doc-active-color: #e8e8e8;
 
@@ -47,7 +48,7 @@ $small-screen: 479px;
 $medium-screen: 767px;
 $big-screen: 960px;
 
-$mq-big: "only screen and (min-width: 960px)"; 
+$mq-big: "only screen and (min-width: 960px)";
 $mq-medium-small: "only screen and (max-width: 767px) and (min-width: 1px)";
 $mq-medium: "only screen and (max-width: 767px) and (min-width: 479px)";
 $mq-small: "only screen and (max-width : 479px) and (min-width : 1px)";

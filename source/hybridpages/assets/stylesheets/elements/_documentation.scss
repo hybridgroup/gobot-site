@@ -79,7 +79,7 @@
 
         color: white;
         font-weight: bold;
-        background: darken($cta-color, 10);
+        background: $doc-color;
         padding: 5px 10px;
       }
 
@@ -92,14 +92,14 @@
     @include small-screen  {
 
       padding-top: 50px;
-      section { 
+      section {
         @include span-columns(12);
         max-height: 100px;
 
         .description {
 
           color: white;
-          font-size: 14pt;
+          font-size: 12pt;
           padding-right: 22px;
         }
       }
