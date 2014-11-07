@@ -26,21 +26,7 @@
       margin: 0;
 
       p:last-of-type {
-
-        background: $info-color;
-        color: $doc-active-color;
-        padding: 10px 20px;
         line-height: 22px;
-
-        a {
-
-          color: $doc-active-color;
-
-          &:hover {
-
-            color: $link-hover-color;
-          }
-        }
       }
 
       @include small-screen  {
@@ -49,16 +35,10 @@
       }
 
       .api-link{
-        background: #A7EF6F;
-        color: #514b47;
-        border: 1px solid rgba(119, 181, 71, 0.52);
-        padding: 10px 20px;
-        display: inline-block;
-        margin: 6px 0 0 0;
-        font-weight: bold;
-        text-align: center;
-        font-size: 20px;
-        line-height: 28px;
+        @extend .cta;
+
+        line-height: 31px;
+        display: block;
         width: 100%;
       }
     }
