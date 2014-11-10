@@ -1,0 +1,54 @@
+---
+title: Gobot - MPU6050 Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: MPU6050 Digital Compass
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/mpu6050.jpg", class: "display"
+  .info-intro
+    %p
+      The MPU-6050 is a serious little piece of motion processing tech!
+      By combining a MEMS 3-axis gyroscope and a 3-axis accelerometer on the same silicon die together with an onboard Digital Motion Processor™ capable of processing complex 9-axis MotionFusion algorithms, the MPU-6050 does away with the cross-axis alignment problems that can creep up on discrete parts. For more information click
+      = link_to "here.", "http://playground.arduino.cc/Main/MPU-6050", taget: :blank
+
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#MPU6050Driver", :class => "api-link", :target => "_blank"} API Reference
+  .clear
+  
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/i2c`
+  :markdown
+        :::go
+        
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %h3 Example using a MPU6050.
+  :markdown
+        :::go
+        
+
+
+%section.circuit#Circuit
+  %h2 Circuit
+  .description-circuit
+    %p
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/i2c/mpu6050_bb.png", :alt => ""}/
+  .clear
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "HMC6352 Compass" }

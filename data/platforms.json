@@ -60,7 +60,7 @@
   },
 
   "Raspberry Pi": {
-    "slug": "rapi",
+    "slug": "raspi",
     "url": "http://www.raspberrypi.org/",
     "drivers": ["GPIO", "I2C"]
   },
