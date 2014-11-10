@@ -53,6 +53,12 @@
     "drivers": []
   },
 
+  "Raspberry Pi": {
+    "slug": "rapi",
+    "url": "http://www.raspberrypi.org/",
+    "drivers": ["GPIO", "I2C"]
+  },
+
   "Spark": {
     "slug": "spark",
     "url": "https://www.spark.io/",
