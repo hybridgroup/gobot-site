@@ -19,6 +19,7 @@
   "Joystick - DualShock 3": "dualshock3",
   "Joystick - Xbox 360": "xbox360",
   "Leap Motion": "leapmotion",
+  "MQTT": "mqtt",
   "Neurosky Mindwave": "neurosky",
   "Sphero": "sphero"
 }

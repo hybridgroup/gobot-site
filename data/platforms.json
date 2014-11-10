@@ -41,6 +41,12 @@
     "drivers": ["Leap Motion"]
   },
 
+  "MQTT": {
+    "slug": "mqtt",
+    "url": "http://www.mqtt.org/",
+    "drivers": ["MQTT"]
+  },
+
   "Neurosky": {
     "slug": "neurosky",
     "url": "http://neurosky.com/products-markets/eeg-biosensors/hardware/",

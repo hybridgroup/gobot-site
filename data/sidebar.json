@@ -16,6 +16,7 @@
     "Intel Edison": "/documentation/platforms/edison",
     "Joystick": "/documentation/platforms/joystick",
     "Leap Motion": "/documentation/platforms/leapmotion",
+    "MQTT": "/documentation/platforms/mqtt",
     "Neurosky Mindwave": "/documentation/platforms/neurosky",
     "Raspberry Pi": "/documentation/platforms/raspi",
     "Spark": "/documentation/platforms/spark",
@@ -43,6 +44,7 @@
     "Joystick - DualShock 3": "/documentation/drivers/dualshock3",
     "Joystick - Xbox 360": "/documentation/drivers/xbox360",
     "Leap Motion": "/documentation/drivers/leapmotion",
+    "MQTT": "/documentation/drivers/mqtt",
     "Neurosky Mindwave": "/documentation/drivers/neurosky",
     "Raspberry Pi": "/documentation/drivers/raspi",
     "Sphero": "/documentation/drivers/sphero"
