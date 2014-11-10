@@ -17,6 +17,7 @@ subnavjs: true
   =image_tag "/images/devices/led.jpg", class: "display"
   .info-intro
     %p  Allows user to interact with LEDs through digital output and PWM (Pulse Width Modulation)
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#LedDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
   
 %section.how-to#HowToConnect
@@ -80,13 +81,6 @@ subnavjs: true
 
             gbot.Start()
         }
-
-%section.public-methods
-  .commands-api#Commands
-    = partial "/documentation/drivers/partials/gpio/commands_led"
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/gpio/events_led"   
-
 
 %section.circuit#Circuit
   %h2 Circuit 

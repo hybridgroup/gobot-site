@@ -18,6 +18,7 @@ subnavjs: true
   .info-intro
     %p
       Provides motor manipulation tools for gobot like on/off, speed modulation using PWM,use of bidirectional motors using forward/backward pins.
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#MotorDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
   
 %section.how-to#HowToConnect
@@ -86,12 +87,6 @@ subnavjs: true
 
           gbot.Start()
         }
-        
-%section.public-methods
-  .commands-api#Commands
-    = partial "/documentation/drivers/partials/gpio/commands_motor"
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/gpio/events_motor" 
 
 %section.circuit#Circuit
   %h2 Circuit

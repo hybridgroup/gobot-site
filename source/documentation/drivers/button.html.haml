@@ -17,8 +17,9 @@ subnavjs: true
   = image_tag "/images/devices/button.jpg", class: "display"
   .info-intro
     %p Simple interface that makes it possible to register clicks through physical input.
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#ButtonDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
-  
+
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -86,13 +87,6 @@ subnavjs: true
           gbot.Start()
         }
 
-%section.public-methods
-  .commands-api#Commands
-    %h1 Functions
-    %p No commands
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/gpio/events_button"   
-
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
@@ -100,7 +94,7 @@ subnavjs: true
   .image-circuit
     %img{:src => "/documentation/drivers/breadboards/gpio/button_bb.png", :alt => ""}/ 
   .clear
-  
+
 %section.compatability.hardware#Compatability
   %h2 Compatability
   .devices

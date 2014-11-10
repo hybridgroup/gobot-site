@@ -15,11 +15,12 @@ subnavjs: true
 
 %section.intro
   =image_tag "/images/devices/blinkm.jpg", class: "display"
-  .info-intro  
+  .info-intro
     %p
       Allows user to control BlinkM RGB LED via i2c interface.
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#BlinkMDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -84,12 +85,6 @@ subnavjs: true
           gbot.AddRobot(robot)
           gbot.Start()
         }
-  
-%section.public-methods
-  .commands-api#Commands
-    = partial "/documentation/drivers/partials/i2c/commands_blinkm"
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/i2c/events_blinkm"   
 
 %section.circuit#Circuit
   %h2 Circuit 

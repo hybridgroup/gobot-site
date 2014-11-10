@@ -16,6 +16,7 @@ subnavjs: true
   =image_tag "/images/devices/direct-pin.jpg", class: "display"
   .info-intro
     %p This a prototyping driver.
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#DirectPinDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
   
 %section.how-to#HowToConnect
@@ -75,13 +76,6 @@ subnavjs: true
           gbot.Start()
         }
 
-%section.public-methods
-  .commands-api#Commands
-    = partial "/documentation/drivers/partials/gpio/commands_direct_pin"
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/gpio/events_direct_pin"   
-
-  
 %section.compatability.hardware#Compatability
   %h2 Compatability
   .devices

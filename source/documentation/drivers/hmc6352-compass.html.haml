@@ -17,6 +17,7 @@ subnavjs: true
   =image_tag "/images/devices/hmc6352-compass.jpg", class: "display"
   .info-intro  
     %p Allows user to read heading from HMC6352 Digital Compass via i2c interface
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#HMC6352Driver", :class => "api-link", :target => "_blank"} API Reference
   .clear
   
 %section.how-to#HowToConnect
@@ -81,11 +82,6 @@ subnavjs: true
           gbot.Start()
         }
 
-%section.public-methods
-  .commands-api#Commands
-    = partial "/documentation/drivers/partials/i2c/commands_hmc6352"
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/i2c/events_hmc6352"
 
 %section.circuit#Circuit
   %h2 Circuit

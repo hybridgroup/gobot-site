@@ -17,10 +17,9 @@ subnavjs: true
   = image_tag "/images/devices/makey-button.jpg", class: "display"
   .info-intro
     %p
-      Inspired by the awesome MakeyMakey (<a href='http://makeymakey.com'>http://makeymakey.com</a>), this GPIO driver allows you to connect a 10 MOhm resistor to a digital pin on your Arduino to control your robots with bananas, clay, or drawable circuitry.
-    %p 
-      For more information click
+      Inspired by the awesome <a href='http://makeymakey.com'> MakeyMakey</a>, this GPIO driver allows you to connect a 10 MOhm resistor to a digital pin on your Arduino to control your robots with bananas, clay, or drawable circuitry. For more information click
       = link_to "here.", "https://learn.sparkfun.com/tutorials/makey-makey-quickstart-guide", target: "_blank"
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#MakeyButtonDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
   
 %section.how_to#HowToConnect
@@ -87,12 +86,6 @@ subnavjs: true
 
           gbot.Start()
         }
-
-%section.public-methods
-  .commands-api#Commands
-    = partial "/documentation/drivers/partials/gpio/commands_makey"   
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/gpio/events_makey"   
 
 %section.circuit#Circuit
   %h2 Circuit

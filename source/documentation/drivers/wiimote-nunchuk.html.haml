@@ -16,8 +16,9 @@ subnavjs: true
   =image_tag "/images/devices/wiimote-nunchuk.jpg", class: "display"
   .info-intro
     %p Allows user to use a Nintendo Wii Nunchuck controller via i2c interface
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#WiichuckDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -87,14 +88,7 @@ subnavjs: true
           gbot.Start()
         }
 
-%section.public-methods
-  .commands-api#Commands
-    %h1 Functions
-    %p No commands
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/i2c/events_wiichuck"   
-
 %section.compatability.hardware#Compatability
   %h2 Compatability
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "Wiimote - Nunchuk" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "Wiimote Nunchuk" }
