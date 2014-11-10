@@ -37,6 +37,7 @@
     "I2C": {
       "BlinkM": "/documentation/drivers/blinkm",
       "HMC6352 Compass": "/documentation/drivers/hmc6352-compass",
+      "MPU6050": "/documentation/drivers/mpu6050",
       "Wiichuck": "/documentation/drivers/wiimote-nunchuk"
     },
 
