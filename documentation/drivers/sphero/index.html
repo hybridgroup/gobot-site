@@ -79,9 +79,8 @@
                   <div class="name" ng-click="show('Guides')">Guides</div>
                   <div class="links" ng-show="active('Guides')">
                     <a href="/documentation/guides/what_is_gobot">About Gobot</a>
-                    <a href="/documentation/guides/api">API</a>
                     <a href="/documentation/guides/cli">CLI</a>
-                    <a href="/documentation/guides/helpers">Helper Methods</a>
+                    <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Platforms')}">
@@ -94,7 +93,11 @@
                     <a href="/documentation/platforms/edison">Intel Edison</a>
                     <a href="/documentation/platforms/joystick">Joystick</a>
                     <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                    <a href="/documentation/platforms/mavlink">Mavlink</a>
+                    <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/platforms/opencv">OpenCV</a>
+                    <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
                   </div>
@@ -119,6 +122,8 @@
                       <div class="links">
                         <a href="/documentation/drivers/blinkm">BlinkM</a>
                         <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
                         <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
                       </div>
                     </div>
@@ -126,8 +131,18 @@
                     <a href="/documentation/drivers/dualshock3">Joystick - DualShock 3</a>
                     <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
                     <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                    <a href="/documentation/drivers/mavlink">Mavlink</a>
                     <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/drivers/pebble">Pebble</a>
                     <a href="/documentation/drivers/sphero">Sphero</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Core')}">
+                  <div class="name" ng-click="show('Core')">Core</div>
+                  <div class="links" ng-show="active('Core')">
+                    <a href="/documentation/core/api">API</a>
+                    <a href="/documentation/core/helpers">Helper Methods</a>
+                    <a href="/documentation/core/sysfs">sysfs</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Contribute')}">
@@ -150,8 +165,6 @@
                   <h5>Sphero</h5>
                   <nav><a href="#HowToConnect">How to Connect</a>
                     <a href="#HowToUse">How To Use</a>
-                    <a href="#Commands">Commands</a>
-                    <a href="#Events">Events</a>
                     <a href="#SpheroColors">Sphero Colors</a>
                     <a href="#Compatability">Compatibility</a>
                     <a href="#top">Top</a>
@@ -159,6 +172,7 @@
 </div>
               </section><br><section class="intro"><img class="display" src="/images/devices/sphero.jpg"><div class="info-intro">
                   <p>Allows user to interact with the Sphero robotic sphero using Gobot.</p>
+                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/sphero#SpheroDriver" target="_blank">API Reference</a>
                 </div>
                 <div class="clear"></div>
               </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
@@ -166,7 +180,7 @@
                   That is pretty simple once the Sphero is ready (connected and listening), you just need three lines of code and you are set,
                   Gobot and the Sphero driver take care of the rest.
                   </p>
-<p>Install the library with: 
+<p>Install the library with:
                   <code>go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/platforms/sphero</code></p>
                   
                   <pre class="CodeRay"><span class="keyword">package</span> main
@@ -234,116 +248,6 @@
 }
 </pre>
                 
-              </section><section class="public-methods"><div class="commands-api" id="Commands">
-                  <h1 id="functions">Functions</h1>
-                  
-                  <h2 id="rollspeed-uint8-heading-uint16">Roll(speed uint8, heading uint16)</h2>
-                  
-                  <p>This commands Sphero to roll along the provided vector. Both a speed
-                  and a heading are required; the latter is considered relative to the last
-                  calibrated direction.</p>
-                  
-                  <h4 id="params">Params</h4>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>uint8</strong> - rotation speed</li>
-                    <li>
-<strong>heading</strong> - <strong>uint16</strong> - direction</li>
-                  </ul>
-<h4 id="api-command">API Command</h4>
-                  
-                  <p><strong>RollC</strong></p>
-                  
-                  <h2 id="stop">Stop</h2>
-                  
-                  <p>Stops the Sphero from rolling around.</p>
-                  
-                  <h4 id="api-command-1">API Command</h4>
-                  
-                  <p><strong>StopC</strong></p>
-                  
-                  <h2 id="setbackledlevel-uint8">SetBackLED(level uint8)</h2>
-                  
-                  <p>This allows you to control the brightness of the back LED. The value does
-                  not persist across power cycles.</p>
-                  
-                  <h4 id="params-1">Params</h4>
-                  
-                  <ul>
-<li>
-<strong>level</strong> - <strong>uint8</strong> - brightness of back lED</li>
-                  </ul>
-<h4 id="api-command-2">API Command</h4>
-                  
-                  <p><strong>SetBackLEDC</strong></p>
-                  
-                  <h2 id="setrgbr-uint8-g-uint8-b-uint8">SetRGB(r uint8, g uint8, b uint8)</h2>
-                  
-                  <p>Sets the sphero's LED color</p>
-                  
-                  <h4 id="params-2">Params</h4>
-                  
-                  <ul>
-<li>
-<strong>r</strong> - <strong>uint8</strong> - Red</li>
-                    <li>
-<strong>g</strong> - <strong>uint8</strong> - Green</li>
-                    <li>
-<strong>b</strong> - <strong>uintu</strong> - Blue</li>
-                  </ul>
-<h4 id="api-command-3">API Command</h4>
-                  
-                  <p><strong>SetRGBC</strong></p>
-                  
-                  <h2 id="getrgb">GetRGB()</h2>
-                  
-                  <p>This retrieves the "user LED color" which is stored in the config block.</p>
-                  
-                  <h4 id="returns">Returns</h4>
-                  
-                  <ul>
-<li>
-<strong>[]uint8</strong> - the sphero's LED color</li>
-                  </ul>
-<h4 id="api-command-4">API Command</h4>
-                  
-                  <p><strong>GetRGBC</strong></p>
-                  
-                  <h2 id="setstabalisationon-bool">SetStabalisation(on bool)</h2>
-                  
-                  <p>Sets whether the Sphero should have stabilization enabled</p>
-                  
-                  <ul>
-<li>
-<strong>on</strong> - <strong>bool</strong> - whether or not the sphero should have stabilization</li>
-                  </ul>
-<h4 id="api-command-5">API Command</h4>
-                  
-                  <p><strong>SetStabalisationC</strong></p>
-                  
-                  <h2 id="setheadingheading-uint16">SetHeading(heading uint16)</h2>
-                  
-                  <p>This allows the client to adjust the orientation of Sphero
-                  by commanding a new reference heading in degrees, which ranges from 0 to 359.</p>
-                  
-                  <h4 id="params-3">Params</h4>
-                  
-                  <ul>
-<li>
-<strong>heading</strong> - <strong>uint16</strong> - heading</li>
-                  </ul>
-<h4 id="api-command-6">API Command</h4>
-                  
-                  <p><strong>SetHeadingC</strong></p>
-                </div>
-                <div class="commands-api" id="Events">
-                  <h1 id="events">Events</h1>
-                  
-                  <h2 id="collision">Collision</h2>
-                  
-                  <p>Emitted when the sphero hits something, falls from a step, or otherwise detects a collision.</p>
-                </div>
               </section><section id="SpheroColors"><h2>Sphero Colors (R,G,B)</h2>
                 <table class="commands">
 <tr>

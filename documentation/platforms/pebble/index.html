@@ -79,9 +79,8 @@
                   <div class="name" ng-click="show('Guides')">Guides</div>
                   <div class="links" ng-show="active('Guides')">
                     <a href="/documentation/guides/what_is_gobot">About Gobot</a>
-                    <a href="/documentation/guides/api">API</a>
                     <a href="/documentation/guides/cli">CLI</a>
-                    <a href="/documentation/guides/helpers">Helper Methods</a>
+                    <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Platforms')}">
@@ -94,7 +93,11 @@
                     <a href="/documentation/platforms/edison">Intel Edison</a>
                     <a href="/documentation/platforms/joystick">Joystick</a>
                     <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                    <a href="/documentation/platforms/mavlink">Mavlink</a>
+                    <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/platforms/opencv">OpenCV</a>
+                    <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
                   </div>
@@ -119,6 +122,8 @@
                       <div class="links">
                         <a href="/documentation/drivers/blinkm">BlinkM</a>
                         <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
                         <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
                       </div>
                     </div>
@@ -126,8 +131,18 @@
                     <a href="/documentation/drivers/dualshock3">Joystick - DualShock 3</a>
                     <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
                     <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                    <a href="/documentation/drivers/mavlink">Mavlink</a>
                     <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/drivers/pebble">Pebble</a>
                     <a href="/documentation/drivers/sphero">Sphero</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Core')}">
+                  <div class="name" ng-click="show('Core')">Core</div>
+                  <div class="links" ng-show="active('Core')">
+                    <a href="/documentation/core/api">API</a>
+                    <a href="/documentation/core/helpers">Helper Methods</a>
+                    <a href="/documentation/core/sysfs">sysfs</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Contribute')}">
@@ -157,123 +172,29 @@
 </div>
               </section><br><section class="intro"><img class="display" src="/images/devices/pebble.jpg"><div class="info-intro">
                   <p>
-                    This repository contains the Gobot adaptor for Pebble smart watch
-                    <a target="blank" href="http://getpebble.com/">(http://getpebble.com/).</a>
+                    This repository contains the Gobot adaptor for the
+                    <a target="blank" href="http://getpebble.com/">Pebble smart watch</a>
+                    It uses the Pebble 2.0 SDK, and requires the 2.0 iOS or Android app, and that the
+                    <a target="blank" href="ttps://github.com/hybridgroup/watchbot">watchbot app</a>
+                    has been installed on the Pebble watch.
                   </p>
                   <p>
-                    It uses the Pebble 2.0 SDK, and requires the 2.0 iOS or Android app, and that the "watchbot" app
-                    <a target="blank" href="ttps://github.com/hybridgroup/watchbot">(https://github.com/hybridgroup/watchbot) </a>
-                    has been installed on the Pebble watch
+                    Information on how to set up your Pebble with gobot can be found
+                    <a target="blank" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/pebble">here.</a>
                   </p>
                   <p>
-                    For more information about Gobot, check out the github repo at
-                    <a target="blank" href="https://github.com/hybridgroup/gobot">https://github.com/hybridgroup/gobot</a>
+                    More docs coming soon..
                   </p>
                 </div>
                 <div class="clear"></div>
-              </section><section class="how-to"><h2>How to install</h2>
-                <ul>
-<li>
-                    Installing gobot with pebble support is pretty easy using ruby gems.
-                  </li>
-                  </ul>
-<pre class="CodeRay">go get github.com/hybridgroup/gobot-pebble
-</pre>
-                  <li>Install Pebble 2.0 iOS or Android app. (If you haven't already)</li>
-                  <li>
-                    Follow README to install and configure "watchbot" on your watch:
-                    <a target="blank" href="https://github.com/hybridgroup/watchbot">https://github.com/hybridgroup/watchbot</a>
-                  </li>
-                
-                <h2>How to use</h2>
-                <p>Before running the example, make sure configuration settings match with your program, in example, api host is your computer IP, robot name is 'pebble', robot api port is 8080</p>
-                <p>
-                  This small program receives button press events from a Pebble smart watch.
-                </p>
-                <pre class="CodeRay"><span class="keyword">package</span> main
-
-<span class="keyword">import</span> (
-    <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
-
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/api</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/pebble</span><span class="delimiter">"</span></span>
-)
-
-<span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
-    api.NewAPI(gbot).Start()
-
-    pebbleAdaptor := pebble.NewPebbleAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>)
-    pebbleDriver := pebble.NewPebbleDriver(pebbleAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>)
-
-    work := <span class="keyword">func</span>() {
-        pebbleDriver.SendNotification(<span class="string"><span class="delimiter">"</span><span class="content">Hello Pebble!</span><span class="delimiter">"</span></span>)
-        gobot.On(pebbleDriver.Event(<span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Button pushed: </span><span class="delimiter">"</span></span> + data.(<span class="predefined-type">string</span>))
-        })
-
-        gobot.On(pebbleDriver.Event(<span class="string"><span class="delimiter">"</span><span class="content">tap</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Tap event detected</span><span class="delimiter">"</span></span>)
-        })
-    }
-
-    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>,
-        []gobot.Connection{pebbleAdaptor},
-        []gobot.Device{pebbleDriver},
-        work,
-    )
-
-    gbot.AddRobot(robot)
-
-    gbot.Start()
-}
-</pre>
-                <h3>Supported Features</h3>
-                <ul>
-<li>We support event detection of 3 main pebble buttons.</li>
-                  <li>Accelerometer events</li>
-                  <li>Pushing data to pebble watch</li>
-                </ul>
-<h2>How to connect</h2>
-                <p>This software requires version 1.12.0 of the Pebble watch firmware.</p>
-                <h3>OSX</h3>
-                <p>The main steps are:</p>
-                <ul>
-<li>Pair your computer and the Pebble</li>
-                  <li>Use a socket to serial connection to map a TCP socket to the local port</li>
-                  <li>Connect to the device via gobot</li>
-                  <li>To figure out which port your pebble is connected to, use the gobot connect scan command:</li>
-                </ul>
-<pre class="CodeRay">$ gobot connect scan
-</pre>
-                <p>Now you are ready to connect to the Sphero using the socket, in this example port 4567:</p>
-                <pre class="CodeRay">gobot connect serial 4567 pebble
-</pre>
-                <h3>Ubuntu</h3>
-                <p>The main steps are:</p>
-                <ul>
-<li>Pair your computer and the Pebble</li>
-                  <li>Map your device to a port</li>
-                  <li>Use a socket to serial connection to map a TCP socket to the local port</li>
-                  <li>Connect to the device via gobot</li>
-                  <li>You will need to pair with the Pebble, entering any needed password.</li>
-                </ul>
-<p>Then you can find the Bluetooth address, for example 00:18:33:86:37:8B, by using the gobot connect scan command:</p>
-                <pre class="CodeRay">$ gobot connect scan
-</pre>
-                <p>Once you know the address, you can use the gobot connect bind command to map a port to the device:</p>
-                <pre class="CodeRay">gobot connect bind 00:18:33:86:37:8B pebble
-</pre>
-                <p>Now you are ready to connect to the Pebble using a socket, in this example port 4567:</p>
-                <pre class="CodeRay">gobot connect socat pebble 4567
-</pre>
               </section><section class="drivers"><h2>Drivers</h2>
                 <p>
                   There is only one driver for the Pebble platform, as listed below.
                 </p>
                 <div class="hardware">
                   <div class="devices">
+                    <a class="device" href="/documentation/drivers/pebble" title="Pebble">
+                      <img src="/images/devices/pebble.jpg"></a>
                   </div>
                 </div>
               </section>

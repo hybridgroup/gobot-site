@@ -79,9 +79,8 @@
                   <div class="name" ng-click="show('Guides')">Guides</div>
                   <div class="links" ng-show="active('Guides')">
                     <a href="/documentation/guides/what_is_gobot">About Gobot</a>
-                    <a href="/documentation/guides/api">API</a>
                     <a href="/documentation/guides/cli">CLI</a>
-                    <a href="/documentation/guides/helpers">Helper Methods</a>
+                    <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Platforms')}">
@@ -94,7 +93,11 @@
                     <a href="/documentation/platforms/edison">Intel Edison</a>
                     <a href="/documentation/platforms/joystick">Joystick</a>
                     <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                    <a href="/documentation/platforms/mavlink">Mavlink</a>
+                    <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/platforms/opencv">OpenCV</a>
+                    <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
                   </div>
@@ -119,6 +122,8 @@
                       <div class="links">
                         <a href="/documentation/drivers/blinkm">BlinkM</a>
                         <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
                         <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
                       </div>
                     </div>
@@ -126,8 +131,18 @@
                     <a href="/documentation/drivers/dualshock3">Joystick - DualShock 3</a>
                     <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
                     <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                    <a href="/documentation/drivers/mavlink">Mavlink</a>
                     <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/drivers/pebble">Pebble</a>
                     <a href="/documentation/drivers/sphero">Sphero</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Core')}">
+                  <div class="name" ng-click="show('Core')">Core</div>
+                  <div class="links" ng-show="active('Core')">
+                    <a href="/documentation/core/api">API</a>
+                    <a href="/documentation/core/helpers">Helper Methods</a>
+                    <a href="/documentation/core/sysfs">sysfs</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Contribute')}">
@@ -150,14 +165,13 @@
                   <h5>Pebble</h5>
                   <nav><a href="#HowToConnect">How to Connect</a>
                     <a href="#HowToUse">How To Use</a>
-                    <a href="#Commands">Commands</a>
-                    <a href="#Events">Events</a>
                     <a href="#Compatability">Compatibility</a>
                     <a href="#top">Top</a>
                   </nav>
 </div>
               </section><br><section class="intro"><img class="display" src="/images/devices/pebble.jpg"><div class="info-intro">
                   <p>Allows user to interact with gobot devices using a Pebble smart watch.</p>
+                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/pebble#PebbleDriver" target="_blank">API Reference</a>
                 </div>
                 <div class="clear"></div>
               </section><section class="how-to" id="HowToConnect"><h2>How to Connect</h2>
@@ -219,65 +233,16 @@
   gbot.Start()
 }
 </pre>
-              </section><section class="public-methods"><div class="commands-api" id="Commands">
-                  <h1 id="functions">Functions</h1>
-                  
-                  <h2 id="publisheventname-string-data-string">PublishEvent(name string, data string)</h2>
-                  
-                  <p>It publishes an event.</p>
-                  
-                  <h4 id="params">Params</h4>
-                  
-                  <ul>
-<li>
-<strong>name</strong> - <strong>string</strong> - event name</li>
-                    <li>
-<strong>data</strong> - <strong>string</strong> - value</li>
-                  </ul>
-<h4 id="api-command">API Command</h4>
-                  
-                  <p><strong>PublishEventC</strong></p>
-                  
-                  <h2 id="pendingmessage">PendingMessage()</h2>
-                  
-                  <p>It returns messages to be sent as notifications to pebble (Not recommended to be used directly)</p>
-                  
-                  <h4 id="api-command-1">API Command</h4>
-                  
-                  <p><strong>PendingMessageC</strong></p>
-                  
-                  <h2 id="sendnotificationmessage-string">SendNotification(message string)</h2>
-                  
-                  <p>Sends notification to watch.</p>
-                  
-                  <h4 id="params-1">Params</h4>
-                  
-                  <ul>
-<li>
-<strong>message</strong> - <strong>string</strong> - notification text</li>
-                  </ul>
-<h4 id="api-command-2">API Command</h4>
-                  
-                  <p><strong>SendNotification</strong></p>
-                </div>
-                <div class="commands-api" id="Events">
-                  <h1 id="events">Events</h1>
-                  
-                  <h2 id="button">button</h2>
-                  
-                  <p>Sent when a pebble button is pressed.</p>
-                  
-                  <h2 id="accel">accel</h2>
-                  
-                  <p>Pebble watch acceleromenter data.</p>
-                  
-                  <h2 id="tap">tap</h2>
-                  
-                  <p>When a pebble watch tap event is detected.</p>
-                </div>
               </section><section class="compatability hardware"><h2>Works with:</h2>
                 <div class="devices">
-                </div>
+                  <ul class="doc-platform">
+<li>
+                      <a href="/documentation/platforms/pebble">
+                        <p class="title">Pebble</p>
+                        <img src="/images/devices/pebble.jpg" style="width: 90%"></a>
+                    </li>
+                  </ul>
+</div>
               </section>
 </div>
           </div>

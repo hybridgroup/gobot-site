@@ -79,9 +79,8 @@
                   <div class="name" ng-click="show('Guides')">Guides</div>
                   <div class="links" ng-show="active('Guides')">
                     <a href="/documentation/guides/what_is_gobot">About Gobot</a>
-                    <a href="/documentation/guides/api">API</a>
                     <a href="/documentation/guides/cli">CLI</a>
-                    <a href="/documentation/guides/helpers">Helper Methods</a>
+                    <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Platforms')}">
@@ -94,7 +93,11 @@
                     <a href="/documentation/platforms/edison">Intel Edison</a>
                     <a href="/documentation/platforms/joystick">Joystick</a>
                     <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                    <a href="/documentation/platforms/mavlink">Mavlink</a>
+                    <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/platforms/opencv">OpenCV</a>
+                    <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
                   </div>
@@ -119,6 +122,8 @@
                       <div class="links">
                         <a href="/documentation/drivers/blinkm">BlinkM</a>
                         <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
                         <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
                       </div>
                     </div>
@@ -126,8 +131,18 @@
                     <a href="/documentation/drivers/dualshock3">Joystick - DualShock 3</a>
                     <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
                     <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                    <a href="/documentation/drivers/mavlink">Mavlink</a>
                     <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/drivers/pebble">Pebble</a>
                     <a href="/documentation/drivers/sphero">Sphero</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Core')}">
+                  <div class="name" ng-click="show('Core')">Core</div>
+                  <div class="links" ng-show="active('Core')">
+                    <a href="/documentation/core/api">API</a>
+                    <a href="/documentation/core/helpers">Helper Methods</a>
+                    <a href="/documentation/core/sysfs">sysfs</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Contribute')}">
@@ -150,8 +165,6 @@
                   <h5>Button</h5>
                   <nav><a href="#HowToConnect">How to Connect</a>
                     <a href="#HowToUse">How To Use</a>
-                    <a href="#Commands">Commands</a>
-                    <a href="#Events">Events</a>
                     <a href="#Circuit">Circuit</a>
                     <a href="#Compatability">Compatibility</a>
                     <a href="#top">Top</a>
@@ -159,6 +172,7 @@
 </div>
               </section><br><section class="intro"><img class="display" src="/images/devices/button.jpg"><div class="info-intro">
                   <p>Simple interface that makes it possible to register clicks through physical input.</p>
+                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#ButtonDriver" target="_blank">API Reference</a>
                 </div>
                 <div class="clear"></div>
               </section><section class="how_to" id="HowToConnect"><h2>How To Connect</h2>
@@ -219,21 +233,6 @@
   gbot.Start()
 }
 </pre>
-              </section><section class="public-methods"><div class="commands-api" id="Commands">
-                  <h1>Functions</h1>
-                  <p>No commands</p>
-                </div>
-                <div class="commands-api" id="Events">
-                  <h1 id="events">Events</h1>
-                  
-                  <h2 id="push">push</h2>
-                  
-                  <p>This event gets triggered when the button changes state from released to pushed.</p>
-                  
-                  <h2 id="release">release</h2>
-                  
-                  <p>This event gets triggered when the button changes state from pushed to released.</p>
-                </div>
               </section><section class="circuit" id="Circuit"><h2>Circuit</h2>
                 <div class="description-circuit">
                   <p></p>
@@ -264,6 +263,11 @@
                       <a href="/documentation/platforms/edison">
                         <p class="title">Intel Edison</p>
                         <img src="/images/devices/edison.jpg" style="width: 90%"></a>
+                    </li>
+                    <li>
+                      <a href="/documentation/platforms/raspi">
+                        <p class="title">Raspberry Pi</p>
+                        <img src="/images/devices/raspi.jpg" style="width: 90%"></a>
                     </li>
                     <li>
                       <a href="/documentation/platforms/spark">

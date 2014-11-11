@@ -79,9 +79,8 @@
                   <div class="name" ng-click="show('Guides')">Guides</div>
                   <div class="links" ng-show="active('Guides')">
                     <a href="/documentation/guides/what_is_gobot">About Gobot</a>
-                    <a href="/documentation/guides/api">API</a>
                     <a href="/documentation/guides/cli">CLI</a>
-                    <a href="/documentation/guides/helpers">Helper Methods</a>
+                    <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Platforms')}">
@@ -94,7 +93,11 @@
                     <a href="/documentation/platforms/edison">Intel Edison</a>
                     <a href="/documentation/platforms/joystick">Joystick</a>
                     <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                    <a href="/documentation/platforms/mavlink">Mavlink</a>
+                    <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/platforms/opencv">OpenCV</a>
+                    <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
                   </div>
@@ -119,6 +122,8 @@
                       <div class="links">
                         <a href="/documentation/drivers/blinkm">BlinkM</a>
                         <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
                         <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
                       </div>
                     </div>
@@ -126,8 +131,18 @@
                     <a href="/documentation/drivers/dualshock3">Joystick - DualShock 3</a>
                     <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
                     <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                    <a href="/documentation/drivers/mavlink">Mavlink</a>
                     <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/drivers/pebble">Pebble</a>
                     <a href="/documentation/drivers/sphero">Sphero</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Core')}">
+                  <div class="name" ng-click="show('Core')">Core</div>
+                  <div class="links" ng-show="active('Core')">
+                    <a href="/documentation/core/api">API</a>
+                    <a href="/documentation/core/helpers">Helper Methods</a>
+                    <a href="/documentation/core/sysfs">sysfs</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Contribute')}">
@@ -150,8 +165,6 @@
                   <h5>ARDrone - Flight</h5>
                   <nav><a href="#HowToConnect">How to Connect</a>
                     <a href="#HowToUse">How To Use</a>
-                    <a href="#Commands">Commands</a>
-                    <a href="#Events">Events</a>
                     <a href="#Compatability">Compatibility</a>
                     <a href="#top">Top</a>
                   </nav>
@@ -160,6 +173,7 @@
                   <p>
                     Allows user to send flight control commands to an ARDrone. Flight control commands are those used to tell the ARDrone to take off, land, and or any number of other autonomous flight manuvers.
                   </p>
+                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/ardrone#ArdroneDriver" target="_blank">API Reference</a>
                 </div>
                 <div class="clear"></div>
               </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
@@ -218,118 +232,6 @@
   gbot.Start()
 }
 </pre>
-              </section><section class="public-methods"><div class="commands-api" id="Commands">
-                  <h1 id="commands">Commands</h1>
-                  
-                  <h2 id="takeoff">TakeOff</h2>
-                  
-                  <p>Sets the internal <code>fly</code> state to <code>true</code>.</p>
-                  
-                  <h2 id="land">Land</h2>
-                  
-                  <p>Sets the internal <code>fly</code> state to <code>false</code>.</p>
-                  
-                  <h2 id="upspeed-float64">Up(speed float64)</h2>
-                  
-                  <p>Makes the drone gain altitude. 
-                  speed can be a value from <code>0.0</code> to <code>1.0</code>.</p>
-                  
-                  <h5 id="params">Params</h5>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>float64</strong> - The speed at which the drone moves</li>
-                  </ul>
-<h2 id="downspeed-float64">Down(speed float64)</h2>
-                  
-                  <p>Makes the drone reduce altitude. 
-                  speed can be a value from <code>0.0</code> to <code>1.0</code>.</p>
-                  
-                  <h5 id="params-1">Params</h5>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>float64</strong> - The speed at which the drone moves</li>
-                  </ul>
-<h2 id="leftspeed-float64">Left(speed float64)</h2>
-                  
-                  <p>Causes the drone to bank to the left, controls the roll, which is 
-                  a horizontal movement using the camera as a reference point.
-                  speed can be a value from <code>0.0</code> to <code>1.0</code>.</p>
-                  
-                  <h5 id="params-2">Params</h5>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>float64</strong> - The speed at which the drone moves</li>
-                  </ul>
-<h2 id="rightspeed-float64">Right(speed float64)</h2>
-                  
-                  <p>Causes the drone to bank to the right, controls the roll, which is 
-                  a horizontal movement using the camera as a reference point.
-                  speed can be a value from <code>0.0</code> to <code>1.0</code>.</p>
-                  
-                  <h5 id="params-3">Params</h5>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>float64</strong> - The speed at which the drone moves</li>
-                  </ul>
-<h2 id="forwardspeed-float64">Forward(speed float64)</h2>
-                  
-                  <p>Causes the drone go forward, controls the pitch.
-                  speed can be a value from <code>0.0</code> to <code>1.0</code>.</p>
-                  
-                  <h5 id="params-4">Params</h5>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>float64</strong> - The speed at which the drone moves</li>
-                  </ul>
-<h2 id="backwardspeed-float64">Backward(speed float64)</h2>
-                  
-                  <p>Causes the drone go backward, controls the pitch.
-                  speed can be a value from <code>0.0</code> to <code>1.0</code>.</p>
-                  
-                  <h5 id="params-5">Params</h5>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>float64</strong> - The speed at which the drone moves</li>
-                  </ul>
-<h2 id="clockwisespeed-float64">Clockwise(speed float64)</h2>
-                  
-                  <p>Causes the drone to spin.
-                  speed can be a value from <code>0.0</code> to <code>1.0</code>.</p>
-                  
-                  <h5 id="params-6">Params</h5>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>float64</strong> - The speed at which the drone moves</li>
-                  </ul>
-<h2 id="counterclockwisespeed-float64">CounterClockwise(speed float64)</h2>
-                  
-                  <p>Causes the drone to spin.
-                  speed can be a value from <code>0.0</code> to <code>1.0</code>.</p>
-                  
-                  <h5 id="params-7">Params</h5>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>float64</strong> - The speed at which the drone moves</li>
-                  </ul>
-<h2 id="hover">Hover</h2>
-                  
-                  <p>Causes the drone to hover in place.</p>
-                </div>
-                <div class="commands-api" id="Events">
-                  <h1 id="events">Events</h1>
-                  
-                  <h2 id="flying">Flying</h2>
-                  
-                  <p>Sent when the device has taken off.</p>
-                </div>
               </section><section class="compatability hardware" id="Compatability"><h2>Compatibility</h2>
                 <div class="devices">
                   <ul class="doc-platform">

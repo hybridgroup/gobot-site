@@ -79,9 +79,8 @@
                   <div class="name" ng-click="show('Guides')">Guides</div>
                   <div class="links" ng-show="active('Guides')">
                     <a href="/documentation/guides/what_is_gobot">About Gobot</a>
-                    <a href="/documentation/guides/api">API</a>
                     <a href="/documentation/guides/cli">CLI</a>
-                    <a href="/documentation/guides/helpers">Helper Methods</a>
+                    <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Platforms')}">
@@ -94,7 +93,11 @@
                     <a href="/documentation/platforms/edison">Intel Edison</a>
                     <a href="/documentation/platforms/joystick">Joystick</a>
                     <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                    <a href="/documentation/platforms/mavlink">Mavlink</a>
+                    <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/platforms/opencv">OpenCV</a>
+                    <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
                   </div>
@@ -119,6 +122,8 @@
                       <div class="links">
                         <a href="/documentation/drivers/blinkm">BlinkM</a>
                         <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
                         <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
                       </div>
                     </div>
@@ -126,8 +131,18 @@
                     <a href="/documentation/drivers/dualshock3">Joystick - DualShock 3</a>
                     <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
                     <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                    <a href="/documentation/drivers/mavlink">Mavlink</a>
                     <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/drivers/pebble">Pebble</a>
                     <a href="/documentation/drivers/sphero">Sphero</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Core')}">
+                  <div class="name" ng-click="show('Core')">Core</div>
+                  <div class="links" ng-show="active('Core')">
+                    <a href="/documentation/core/api">API</a>
+                    <a href="/documentation/core/helpers">Helper Methods</a>
+                    <a href="/documentation/core/sysfs">sysfs</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Contribute')}">
@@ -150,8 +165,6 @@
                   <h5>Leap Motion</h5>
                   <nav><a href="#HowToConnect">How to Connect</a>
                     <a href="#HowToUse">How To Use</a>
-                    <a href="#Commands">Commands</a>
-                    <a href="#Events">Events</a>
                     <a href="#Compatability">Compatibility</a>
                     <a href="#top">Top</a>
                   </nav>
@@ -160,6 +173,7 @@
                   <p>
                     Allows user to interact with Gobot devices using a Leap Motion controller. The Leap Motion uses its built in cameras to track the user's hand motions, and translations those to events that Gobot can use to trigger actions or control hardware.
                   </p>
+                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/leap#LeapMotionDriver" target="_blank">API Reference</a>
                 </div>
                 <div class="clear"></div>
               </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
@@ -211,190 +225,6 @@
   gbot.Start()
 }
 </pre>
-              </section><section class="public-methods"><div class="commands-api" id="Commands">
-                  <h1>Functions</h1>
-                  <p>No commands</p>
-                </div>
-                <div class="commands-api" id="Events">
-                  <h1 id="events">Events</h1>
-                  
-                  <h2 id="hand">hand</h2>
-                  
-                  <p>Gets triggered when doing a hand motion, makes hand input available.</p>
-                  
-                  <p>Leap Hand contains:</p>
-                  
-                  <ul>
-<li>
-<strong>position</strong> (palm x-y-z coords)</li>
-                    <li>
-<strong>wrist rotation</strong> (axis,angle,matrix)</li>
-                  </ul>
-<h5 id="example-json">Example JSON</h5>
-                  
-                  <pre class="CodeRay">  {
-      "direction": [
-        0.772435,
-        0.520335,
-        -0.364136
-      ],
-      "id": 57,
-      "palmNormal": [
-        -0.0100593,
-        -0.563263,
-        -0.826217
-      ],
-      "palmPosition": [
-        117.546,
-        236.007,
-        76.3394
-      ],
-      "palmVelocity": [
-        -866.196,
-        -100.749,
-        275.692
-      ],
-      "r": [
-        [
-          0.999844,
-          0.0142022,
-          0.0105289
-        ],
-        [
-          -0.0141201,
-          0.99987,
-          -0.00783186
-        ],
-        [
-          -0.0106388,
-          0.00768197,
-          0.999914
-        ]
-      ],
-      "s": 0.992511,
-      "sphereCenter": [
-        156.775,
-        227.378,
-        48.3453
-      ],
-      "sphereRadius": 75.3216,
-      "stabilizedPalmPosition": [
-        119.009,
-        236.071,
-        75.951
-      ],
-      "t": [
-        -38.0468,
-        28.2341,
-        -21.3291
-      ],
-      "timeVisible": 0.051952
-    }
-</pre>
-                  
-                  <h2 id="gesture">gesture</h2>
-                  
-                  <p>Gets triggered when doing a gesture motion, makes hand input available.</p>
-                  
-                  <p>There is 4 Gesture types :</p>
-                  
-                  <ul>
-<li>
-<strong>Circle</strong> - A circular movement by a finger.</li>
-                    <li>
-<strong>Swipe</strong> - A straight line movement by the hand with fingers extended.</li>
-                    <li>
-<strong>KeyTap</strong> -  A downward tapping movement by a finger.</li>
-                    <li>
-<strong>ScreenTap</strong> - A forward tapping movement by a finger.</li>
-                  </ul>
-<h5 id="example-json-1">Example JSON</h5>
-                  
-                  <pre class="CodeRay">  {
-      "direction": [
-        -0.647384,
-        0.750476,
-        -0.132964
-      ],
-      "duration": 0,
-      "handIds": [
-        57
-      ],
-      "id": 72,
-      "pointableIds": [
-        14
-      ],
-      "position": [
-        117.665,
-        313.471,
-        27.2095
-      ],
-      "speed": 1050.66,
-      "startPosition": [
-        195.438,
-        223.313,
-        43.183
-      ],
-      "state": "start",
-      "type": "swipe"
-    }
-</pre>
-                  
-                  <h2 id="pointable">pointable</h2>
-                  
-                  <p>Gets triggered when doing a pointable motion, makes hand input available.</p>
-                  
-                  <p>Leap Pointable contains:</p>
-                  
-                  <ul>
-<li>
-<strong>length</strong> </li>
-                    <li>
-<strong>touch zone</strong> </li>
-                  </ul>
-<h5 id="example-json-2"> Example JSON</h5>
-                  
-                  <pre class="CodeRay">  {
-      "direction": [
-        0.54044,
-        0.174084,
-        -0.823176
-      ],
-      "handId": 57,
-      "id": 1,
-      "length": 48.393,
-      "stabilizedTipPosition": [
-        194.714,
-        291.812,
-        20.6219
-      ],
-      "timeVisible": 0.13873,
-      "tipPosition": [
-        194.714,
-        291.812,
-        20.6219
-      ],
-      "tipVelocity": [
-        -716.414,
-        686.468,
-        -427.914
-      ],
-      "tool": false,
-      "touchDistance": 0.333333,
-      "touchZone": "hovering"
-    }
-</pre>
-                  
-                  <h2 id="frame">frame</h2>
-                  
-                  <p>Gets triggered with every motion detected, makes frame input available.</p>
-                  
-                  <h2 id="message">Message</h2>
-                  
-                  <p>Gets triggered when receiving a message.</p>
-                  
-                  <p>More information abour the parser <a href="https://github.com/hybridgroup/gobot-leapmotion/blob/master/parser.go">https://github.com/hybridgroup/gobot-leapmotion/blob/master/parser.go</a>.</p>
-                </div>
               </section><section class="compatability hardware" id="Compatability"><h2>Compatibility</h2>
                 <div class="devices">
                   <ul class="doc-platform">

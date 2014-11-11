@@ -79,9 +79,8 @@
                   <div class="name" ng-click="show('Guides')">Guides</div>
                   <div class="links" ng-show="active('Guides')">
                     <a href="/documentation/guides/what_is_gobot">About Gobot</a>
-                    <a href="/documentation/guides/api">API</a>
                     <a href="/documentation/guides/cli">CLI</a>
-                    <a href="/documentation/guides/helpers">Helper Methods</a>
+                    <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Platforms')}">
@@ -94,7 +93,11 @@
                     <a href="/documentation/platforms/edison">Intel Edison</a>
                     <a href="/documentation/platforms/joystick">Joystick</a>
                     <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                    <a href="/documentation/platforms/mavlink">Mavlink</a>
+                    <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/platforms/opencv">OpenCV</a>
+                    <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
                   </div>
@@ -119,6 +122,8 @@
                       <div class="links">
                         <a href="/documentation/drivers/blinkm">BlinkM</a>
                         <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
                         <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
                       </div>
                     </div>
@@ -126,8 +131,18 @@
                     <a href="/documentation/drivers/dualshock3">Joystick - DualShock 3</a>
                     <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
                     <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                    <a href="/documentation/drivers/mavlink">Mavlink</a>
                     <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/drivers/pebble">Pebble</a>
                     <a href="/documentation/drivers/sphero">Sphero</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Core')}">
+                  <div class="name" ng-click="show('Core')">Core</div>
+                  <div class="links" ng-show="active('Core')">
+                    <a href="/documentation/core/api">API</a>
+                    <a href="/documentation/core/helpers">Helper Methods</a>
+                    <a href="/documentation/core/sysfs">sysfs</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Contribute')}">
@@ -150,8 +165,6 @@
                   <h5>Motor</h5>
                   <nav><a href="#HowToConnect">How to Connect</a>
                     <a href="#HowToUse">How To Use</a>
-                    <a href="#Commands">Commands</a>
-                    <a href="#Events">Events</a>
                     <a href="#Circuit">Circuit</a>
                     <a href="#Compatability">Compatibility</a>
                     <a href="#top">Top</a>
@@ -161,6 +174,7 @@
                   <p>
                     Provides motor manipulation tools for gobot like on/off, speed modulation using PWM,use of bidirectional motors using forward/backward pins.
                   </p>
+                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#MotorDriver" target="_blank">API Reference</a>
                 </div>
                 <div class="clear"></div>
               </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
@@ -224,125 +238,6 @@
   gbot.Start()
 }
 </pre>
-              </section><section class="public-methods"><div class="commands-api" id="Commands">
-                  <h1 id="functions">Functions</h1>
-                  
-                  <h2 id="on">On</h2>
-                  
-                  <p>Starts the motor.</p>
-                  
-                  <h4 id="returns">Returns</h4>
-                  
-                  <ul>
-<li>
-<strong>CurrentSpeed</strong> - current speed value</li>
-                  </ul>
-<h2 id="off">Off</h2>
-                  
-                  <p>Stops the motor.</p>
-                  
-                  <h4 id="returns-1">Returns</h4>
-                  
-                  <ul>
-<li>
-<strong>Speed</strong> - speed value</li>
-                  </ul>
-<h2 id="ison">IsOn</h2>
-                  
-                  <p>Returns true if the motor is on</p>
-                  
-                  <h4 id="returns-2">Returns</h4>
-                  
-                  <ul>
-<li>
-<strong>bool</strong> </li>
-                  </ul>
-<h2 id="isoff">IsOff</h2>
-                  
-                  <p>Returns true if the motor is off</p>
-                  
-                  <h4 id="returns-3">Returns</h4>
-                  
-                  <ul>
-<li><strong>bool</strong></li>
-                  </ul>
-<h2 id="toggle">Toggle</h2>
-                  
-                  <p>Sets the state of the motor to the oposite of the current state, if motor is on then sets it to off.</p>
-                  
-                  <h2 id="speedvalue-byte">Speed(value byte)</h2>
-                  
-                  <p>Sets the speed of the motor to the value provided in the speed param, speed value must be an integer between 0 and 255.</p>
-                  
-                  <h4 id="params">Params</h4>
-                  
-                  <ul>
-<li>
-<strong>value</strong> - <strong>byte</strong>
-</li>
-                  </ul>
-<h4 id="returns-4">Returns</h4>
-                  
-                  <ul>
-<li><strong>SpeedPin value</strong></li>
-                  </ul>
-<h2 id="min">Min</h2>
-                  
-                  <p>Sets the motor to it's minimum speed.</p>
-                  
-                  <h2 id="max">Max</h2>
-                  
-                  <p>Sets the motor to it's max speed.</p>
-                  
-                  <h2 id="forwardspeed-byte">Forward(speed byte)</h2>
-                  
-                  <p>Sets the motor to a forward direction at the specified speed.</p>
-                  
-                  <h4 id="params-1">Params</h4>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>byte</strong>
-</li>
-                  </ul>
-<h4 id="returns-5">Returns</h4>
-                  
-                  <ul>
-<li><strong>speed</strong></li>
-                  </ul>
-<h2 id="backwardspeed-byte">Backward(speed byte)</h2>
-                  
-                  <p>Sets the motor to a backward direction at the specified speed.</p>
-                  
-                  <h4 id="params-2">Params</h4>
-                  
-                  <ul>
-<li>
-<strong>speed</strong> - <strong>byte</strong>
-</li>
-                  </ul>
-<h4 id="returns-6">Returns</h4>
-                  
-                  <ul>
-<li><strong>speed</strong></li>
-                  </ul>
-<h2 id="directiondirection-string">Direction(direction string)</h2>
-                  
-                  <p>Sets the direction of the motor</p>
-                  
-                  <h4 id="params-3">Params</h4>
-                  
-                  <ul>
-<li>
-<strong>direction</strong> - <strong>string</strong>
-</li>
-                  </ul>
-</div>
-                <div class="commands-api" id="Events">
-                  <h1 id="events">Events</h1>
-                  
-                  <p>no events</p>
-                </div>
               </section><section class="circuit" id="Circuit"><h2>Circuit</h2>
                 <div class="description-circuit">
                   <p></p>
@@ -373,6 +268,11 @@
                       <a href="/documentation/platforms/edison">
                         <p class="title">Intel Edison</p>
                         <img src="/images/devices/edison.jpg" style="width: 90%"></a>
+                    </li>
+                    <li>
+                      <a href="/documentation/platforms/raspi">
+                        <p class="title">Raspberry Pi</p>
+                        <img src="/images/devices/raspi.jpg" style="width: 90%"></a>
                     </li>
                     <li>
                       <a href="/documentation/platforms/spark">

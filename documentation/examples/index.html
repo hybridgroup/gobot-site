@@ -79,9 +79,8 @@
                   <div class="name" ng-click="show('Guides')">Guides</div>
                   <div class="links" ng-show="active('Guides')">
                     <a href="/documentation/guides/what_is_gobot">About Gobot</a>
-                    <a href="/documentation/guides/api">API</a>
                     <a href="/documentation/guides/cli">CLI</a>
-                    <a href="/documentation/guides/helpers">Helper Methods</a>
+                    <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Platforms')}">
@@ -94,7 +93,11 @@
                     <a href="/documentation/platforms/edison">Intel Edison</a>
                     <a href="/documentation/platforms/joystick">Joystick</a>
                     <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                    <a href="/documentation/platforms/mavlink">Mavlink</a>
+                    <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/platforms/opencv">OpenCV</a>
+                    <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
                   </div>
@@ -119,6 +122,8 @@
                       <div class="links">
                         <a href="/documentation/drivers/blinkm">BlinkM</a>
                         <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
                         <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
                       </div>
                     </div>
@@ -126,8 +131,18 @@
                     <a href="/documentation/drivers/dualshock3">Joystick - DualShock 3</a>
                     <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
                     <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                    <a href="/documentation/drivers/mavlink">Mavlink</a>
                     <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                    <a href="/documentation/drivers/pebble">Pebble</a>
                     <a href="/documentation/drivers/sphero">Sphero</a>
+                  </div>
+                </div>
+                <div class="section" ng-class="{active: active('Core')}">
+                  <div class="name" ng-click="show('Core')">Core</div>
+                  <div class="links" ng-show="active('Core')">
+                    <a href="/documentation/core/api">API</a>
+                    <a href="/documentation/core/helpers">Helper Methods</a>
+                    <a href="/documentation/core/sysfs">sysfs</a>
                   </div>
                 </div>
                 <div class="section" ng-class="{active: active('Contribute')}">
@@ -187,12 +202,20 @@
                       <td class="links"><a href="/documentation/examples/beaglebone_led_brightness_with_analog_input">Code</a></td>
                     </tr>
 <tr>
+<td>edison_led_brightness</td>
+                      <td class="links"><a href="/documentation/examples/edison_led_brightness">Code</a></td>
+                    </tr>
+<tr>
 <td>hello_api_auth</td>
                       <td class="links"><a href="/documentation/examples/hello_api_auth">Code</a></td>
                     </tr>
 <tr>
 <td>leap_motion_hands</td>
                       <td class="links"><a href="/documentation/examples/leap_motion_hands">Code</a></td>
+                    </tr>
+<tr>
+<td>edison_button</td>
+                      <td class="links"><a href="/documentation/examples/edison_button">Code</a></td>
                     </tr>
 <tr>
 <td>sphero_multiple</td>
@@ -205,6 +228,10 @@
 <tr>
 <td>beaglebone_servo</td>
                       <td class="links"><a href="/documentation/examples/beaglebone_servo">Code</a></td>
+                    </tr>
+<tr>
+<td>edison_blink</td>
+                      <td class="links"><a href="/documentation/examples/edison_blink">Code</a></td>
                     </tr>
 <tr>
 <td>firmata_motor</td>
@@ -243,6 +270,10 @@
                       <td class="links"><a href="/documentation/examples/spark_core_button">Code</a></td>
                     </tr>
 <tr>
+<td>beaglebone_basic_direct_pin</td>
+                      <td class="links"><a href="/documentation/examples/beaglebone_basic_direct_pin">Code</a></td>
+                    </tr>
+<tr>
 <td>firmata_cat_toy</td>
                       <td class="links"><a href="/documentation/examples/firmata_cat_toy">Code</a></td>
                     </tr>
@@ -251,8 +282,24 @@
                       <td class="links"><a href="/documentation/examples/hello">Code</a></td>
                     </tr>
 <tr>
+<td>mqtt_ping</td>
+                      <td class="links"><a href="/documentation/examples/mqtt_ping">Code</a></td>
+                    </tr>
+<tr>
+<td>edison_blinkm</td>
+                      <td class="links"><a href="/documentation/examples/edison_blinkm">Code</a></td>
+                    </tr>
+<tr>
 <td>ardrone</td>
                       <td class="links"><a href="/documentation/examples/ardrone">Code</a></td>
+                    </tr>
+<tr>
+<td>raspi_blink</td>
+                      <td class="links"><a href="/documentation/examples/raspi_blink">Code</a></td>
+                    </tr>
+<tr>
+<td>mavlink</td>
+                      <td class="links"><a href="/documentation/examples/mavlink">Code</a></td>
                     </tr>
 <tr>
 <td>opencv_window</td>
@@ -271,6 +318,10 @@
                       <td class="links"><a href="/documentation/examples/neurosky">Code</a></td>
                     </tr>
 <tr>
+<td>leap_sphero</td>
+                      <td class="links"><a href="/documentation/examples/leap_sphero">Code</a></td>
+                    </tr>
+<tr>
 <td>hello_api</td>
                       <td class="links"><a href="/documentation/examples/hello_api">Code</a></td>
                     </tr>
@@ -283,6 +334,14 @@
                       <td class="links"><a href="/documentation/examples/digispark_servo">Code</a></td>
                     </tr>
 <tr>
+<td>beaglebone_blink_usr_led</td>
+                      <td class="links"><a href="/documentation/examples/beaglebone_blink_usr_led">Code</a></td>
+                    </tr>
+<tr>
+<td>leap_servos</td>
+                      <td class="links"><a href="/documentation/examples/leap_servos">Code</a></td>
+                    </tr>
+<tr>
 <td>sphero_master</td>
                       <td class="links"><a href="/documentation/examples/sphero_master">Code</a></td>
                     </tr>
@@ -293,6 +352,10 @@
 <tr>
 <td>firmata_led_brightness</td>
                       <td class="links"><a href="/documentation/examples/firmata_led_brightness">Code</a></td>
+                    </tr>
+<tr>
+<td>firmata_mpl115a2</td>
+                      <td class="links"><a href="/documentation/examples/firmata_mpl115a2">Code</a></td>
                     </tr>
 <tr>
 <td>sphero_api</td>
@@ -327,8 +390,20 @@
                       <td class="links"><a href="/documentation/examples/beaglebone_blinkm">Code</a></td>
                     </tr>
 <tr>
+<td>mqtt_firmata_blink</td>
+                      <td class="links"><a href="/documentation/examples/mqtt_firmata_blink">Code</a></td>
+                    </tr>
+<tr>
 <td>beaglebone_makey_button</td>
                       <td class="links"><a href="/documentation/examples/beaglebone_makey_button">Code</a></td>
+                    </tr>
+<tr>
+<td>raspi_blinkm</td>
+                      <td class="links"><a href="/documentation/examples/raspi_blinkm">Code</a></td>
+                    </tr>
+<tr>
+<td>edison_led_brightness_with_analog_input</td>
+                      <td class="links"><a href="/documentation/examples/edison_led_brightness_with_analog_input">Code</a></td>
                     </tr>
 <tr>
 <td>digispark_api</td>
@@ -337,6 +412,14 @@
 <tr>
 <td>leap_motion</td>
                       <td class="links"><a href="/documentation/examples/leap_motion">Code</a></td>
+                    </tr>
+<tr>
+<td>firmata_mpu6050</td>
+                      <td class="links"><a href="/documentation/examples/firmata_mpu6050">Code</a></td>
+                    </tr>
+<tr>
+<td>raspi_button</td>
+                      <td class="links"><a href="/documentation/examples/raspi_button">Code</a></td>
                     </tr>
 <tr>
 <td>joystick_xbox360</td>
