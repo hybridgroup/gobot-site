@@ -15,6 +15,7 @@
     "Intel Edison": "/documentation/platforms/edison",
     "Joystick": "/documentation/platforms/joystick",
     "Leap Motion": "/documentation/platforms/leapmotion",
+    "Mavlink": "/documentation/platforms/mavlink",
     "MQTT": "/documentation/platforms/mqtt",
     "Neurosky Mindwave": "/documentation/platforms/neurosky",
     "OpenCV": "/documentation/platforms/opencv",
@@ -46,7 +47,9 @@
     "Joystick - DualShock 3": "/documentation/drivers/dualshock3",
     "Joystick - Xbox 360": "/documentation/drivers/xbox360",
     "Leap Motion": "/documentation/drivers/leapmotion",
+    "Mavlink": "/documentation/drivers/mavlink",
     "Neurosky Mindwave": "/documentation/drivers/neurosky",
+    "Pebble": "/documentation/drivers/pebble",
     "Sphero": "/documentation/drivers/sphero"
   },
 
