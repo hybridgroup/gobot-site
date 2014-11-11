@@ -17,77 +17,22 @@ subnavjs: true
   = image_tag "/images/devices/pebble.jpg", class: "display"
   .info-intro
     %p
-      This repository contains the Gobot adaptor for Pebble smart watch 
-      = link_to "(http://getpebble.com/).", "http://getpebble.com/", target: :blank
+      This repository contains the Gobot adaptor for the 
+      = link_to "Pebble smart watch", "http://getpebble.com/", target: :blank
+
+      It uses the Pebble 2.0 SDK, and requires the 2.0 iOS or Android app, and that the 
+      = link_to "watchbot app", "ttps://github.com/hybridgroup/watchbot", target: :blank
+      has been installed on the Pebble watch.
 
     %p 
-      It uses the Pebble 2.0 SDK, and requires the 2.0 iOS or Android app, and that the "watchbot" app 
-      = link_to "(https://github.com/hybridgroup/watchbot) ", "ttps://github.com/hybridgroup/watchbot", target: :blank
-      has been installed on the Pebble watch
+      Information on how to set up your Pebble with gobot can be found 
+      = link_to "here.", "http://godoc.org/github.com/hybridgroup/gobot/platforms/pebble", target: :blank
+    %p
+      More docs coming soon..
 
-    %p 
-      For more information about Gobot, check out the github repo at 
-      = link_to "https://github.com/hybridgroup/gobot", "https://github.com/hybridgroup/gobot", target: :blank
   .clear
+
   
-%section.how-to
-  %h2 How to install
-  %p 
-    Information on how to set up your Pebble with gobot can be found 
-    = link_to "here.", "http://godoc.org/github.com/hybridgroup/gobot/platforms/pebble", target: :blank
-
-  %h2 How to connect
-  %p This software requires version 1.12.0 of the Pebble watch firmware.
-
-  %h3 OSX
-
-  %p The main steps are:
-
-  %ul
-    %li Pair your computer and the Pebble
-    %li Use a socket to serial connection to map a TCP socket to the local port
-    %li Connect to the device via gobot
-    %li To figure out which port your pebble is connected to, use the gobot connect scan command:
-
-  :markdown
-        :::bash
-        $ gobot connect scan
-
-  %p Now you are ready to connect to the Sphero using the socket, in this example port 4567:
-
-  :markdown
-        :::bash
-        gobot connect serial 4567 pebble
-
-  %h3 Ubuntu
-
-  %p The main steps are:
-
-  %ul
-    %li Pair your computer and the Pebble
-    %li Map your device to a port
-    %li Use a socket to serial connection to map a TCP socket to the local port
-    %li Connect to the device via gobot
-    %li You will need to pair with the Pebble, entering any needed password.
-
-  %p Then you can find the Bluetooth address, for example 00:18:33:86:37:8B, by using the gobot connect scan command:
-
-  :markdown
-        :::bash
-        $ gobot connect scan
-
-  %p Once you know the address, you can use the gobot connect bind command to map a port to the device:
-
-  :markdown
-        :::bash
-        gobot connect bind 00:18:33:86:37:8B pebble
-
-  %p Now you are ready to connect to the Pebble using a socket, in this example port 4567:
-
-  :markdown
-        :::bash
-        gobot connect socat pebble 4567
-
 %section.drivers
   %h2 Drivers
   %p
