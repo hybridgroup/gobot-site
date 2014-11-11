@@ -17,6 +17,7 @@
     "Leap Motion": "/documentation/platforms/leapmotion",
     "MQTT": "/documentation/platforms/mqtt",
     "Neurosky Mindwave": "/documentation/platforms/neurosky",
+    "OpenCV": "/documentation/platforms/opencv",
     "Raspberry Pi": "/documentation/platforms/raspi",
     "Spark": "/documentation/platforms/spark",
     "Sphero": "/documentation/platforms/sphero"
