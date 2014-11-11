@@ -1,15 +1,17 @@
 ---
 page_title_show: true
-title: Gobot 0.7 is out!
+title: Gobot 0.7 - The Big Release
 page_title: Blog
 date: 2014-11-11
 tags: releases
 author: Adrian Zankich
 ---
 
+We've been quietly (and not so quietly) working these last couple of months, and we've just released Gobot 0.7! This is a very big release, that adds a lot of new capabilities, adds a lot of test coverage, refactors code, and adds support for a while bunch of new hardware platforms too.
+
 Here's a overview of the changes, but if you want to see more check out the compare view on [GitHub](https://github.com/hybridgroup/gobot/compare/0.6.3...0.7).
 
-Changelog  
+## Changelog  
 
 * **Dramatically increased test coverage and documentation**
 * **api**
@@ -39,12 +41,16 @@ Changelog
 
 ## Contributors  
 
-A very special thanks to [strongh](https://github.com/strongh), [tangsoft](https://github.com/tangsoft), [derailed](https://github.com/derailed), [trevrosen](https://github.com/trevrosen), [nathany](https://github.com/nathany), [zmichaelh](https://github.com/nzmichaelh), and everyone else who made this release possible.   
+A very special thanks to [strongh](https://github.com/strongh), [tangsoft](https://github.com/tangsoft), [derailed](https://github.com/derailed), [trevrosen](https://github.com/trevrosen), [nathany](https://github.com/nathany), [zmichaelh](https://github.com/nzmichaelh), and everyone else who made this release possible. 
 
 ## Documentation
 
-We're constantly updating the Gobot docs to keep them up-to-date. You can find the latest info on the [docs page](http://gobot.io/documentation/).  
+We are now generating proper godoc docs from our code. In addition, we're constantly updating the Gobot docs site with additional info to keep them up-to-date. You can find the latest info on the [docs page](http://gobot.io/documentation/).
 
 ## Issues
 
 If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a [GitHub issue](https://github.com/hybridgroup/gobot/issues) and we'll get back to you as soon as possible.
+
+## Stay In Touch
+
+Please follow us on Twitter at [@gobotio](http://twitter.com/gobotio) for the latest updates, as we continue to work on this amazing platform.
