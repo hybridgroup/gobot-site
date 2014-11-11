@@ -41,6 +41,12 @@
     "drivers": ["Leap Motion"]
   },
 
+  "MQTT": {
+    "slug": "mqtt",
+    "url": "http://www.mqtt.org/",
+    "drivers": ["MQTT"]
+  },
+
   "Neurosky": {
     "slug": "neurosky",
     "url": "http://neurosky.com/products-markets/eeg-biosensors/hardware/",
@@ -51,6 +57,12 @@
     "slug": "opencv",
     "url": "http://opencv.org/",
     "drivers": []
+  },
+
+  "Raspberry Pi": {
+    "slug": "raspi",
+    "url": "http://www.raspberrypi.org/",
+    "drivers": ["GPIO", "I2C"]
   },
 
   "Spark": {

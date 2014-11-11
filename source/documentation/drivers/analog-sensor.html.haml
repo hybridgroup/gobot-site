@@ -18,6 +18,7 @@ subnavjs: true
     %p
       Makes it possible to interact with analog inputs on your device and obtain values that represent the analog input send by the sensors.
       The value received from an analog input read from the sensor goes from 0 to 1027.
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#AnalogSensorDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
 
 %section.how_to#HowToConnect
@@ -87,13 +88,7 @@ subnavjs: true
           gbot.AddRobot(robot)
 
           gbot.Start()
-        }
-
-%section.public-methods
-  .commands-api#Commands
-    = partial "/documentation/drivers/partials/gpio/commands_analog_sensor"
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/gpio/events_analog_sensor"   
+        } 
 
 %section.circuit#Circuit
   %h2 Circuit 

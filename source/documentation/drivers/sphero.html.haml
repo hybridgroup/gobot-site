@@ -17,6 +17,7 @@ subnavjs: true
   =image_tag "/images/devices/sphero.jpg", class: "display"
   .info-intro
     %p  Allows user to interact with the Sphero robotic sphero using Gobot.
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/sphero#SpheroDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
 
 %section.how-to#HowToConnect
@@ -26,7 +27,7 @@ subnavjs: true
     Gobot and the Sphero driver take care of the rest.
 
     :markdown
-      Install the library with: 
+      Install the library with:
       `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/sphero`
 
           :::go
@@ -48,7 +49,7 @@ subnavjs: true
 
 %section.how-to#HowToUse
   %h2 How To Use
-  %p 
+  %p
     This example rolls the sphero in a random direction and change direction every 2 seconds.
 
     :markdown
@@ -96,19 +97,11 @@ subnavjs: true
 
             gbot.Start()
           }
-                    
-
-%section.public-methods
-  .commands-api#Commands
-    = partial "/documentation/drivers/partials/sphero/commands"
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/sphero/events"   
-
 
 %section#SpheroColors
   %h2 Sphero Colors (R,G,B)
-  
-  %table.commands 
+
+  %table.commands
     %tr 
       %th Example
       %th Name

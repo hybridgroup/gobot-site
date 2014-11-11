@@ -16,8 +16,9 @@ subnavjs: true
   =image_tag "/images/devices/dualshock3.jpg", class: "display"
   .info-intro
     %p Allows user to interact with Artoo devices using a Dualshock3 game controller.
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/joystick#JoystickDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
-  
+
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -96,15 +97,6 @@ subnavjs: true
 
             gbot.Start()
         }
-        
-%section.public-events
-  .commands-api#Commands
-    %h1 Functions
-    %p No commands
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/joystick/events_dualshock3"
-
-  
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

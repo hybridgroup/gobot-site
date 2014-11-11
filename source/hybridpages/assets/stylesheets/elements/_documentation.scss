@@ -26,25 +26,19 @@
       margin: 0;
 
       p:last-of-type {
-
-        background: $info-color;
-        color: $doc-active-color;
-        padding: 10px 20px;
         line-height: 22px;
-
-        a {
-
-          color: $doc-active-color;
-
-          &:hover {
-
-            color: $link-hover-color;
-          }
-        }
       }
 
       @include small-screen  {
 
+        width: 100%;
+      }
+
+      .api-link{
+        @extend .cta;
+
+        line-height: 31px;
+        display: block;
         width: 100%;
       }
     }

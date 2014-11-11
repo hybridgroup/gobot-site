@@ -175,8 +175,8 @@
 
   &:hover, &:focus {
 
-    background: darken($button-color, 5%);
-    box-shadow: inset 0px -5px darken($button-shadow-color, 5%);
+    background: darken($button-color, 10%);
+    box-shadow: inset 0px -5px darken($button-shadow-color, 10%);
   }
 
   @include small-screen {

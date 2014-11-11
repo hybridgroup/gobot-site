@@ -17,7 +17,7 @@ subnavjs: true
   .info-intro
     %p
       The MindWave headset turns your computer into a brain activity monitor. The headset safely measures brainwave signals and monitors the attention levels of individuals as they interact with math, memory and pattern recognition applications. 
-    
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/neurosky#NeuroskyDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
   
 %section.how_to#HowToConnect
@@ -103,14 +103,6 @@ subnavjs: true
           gbot.Start()
         }
 
-%section.public-methods
-  .commands-api#Commands
-    %h1 Functions
-    %p no commands
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/neurosky/events"
-  
-    
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   .devices

@@ -1,0 +1,46 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - edison_blink"
+page_title: "Example: edison_blink"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/gpio"
+        	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
+        )
+
+        func main() {
+        	gbot := gobot.NewGobot()
+
+        	e := edison.NewEdisonAdaptor("edison")
+        	led := gpio.NewLedDriver(e, "led", "13")
+
+        	work := func() {
+        		gobot.Every(1*time.Second, func() {
+        			led.Toggle()
+        		})
+        	}
+
+        	robot := gobot.NewRobot("blinkBot",
+        		[]gobot.Connection{e},
+        		[]gobot.Device{led},
+        		work,
+        	)
+
+        	gbot.AddRobot(robot)
+
+        	gbot.Start()
+        }
+

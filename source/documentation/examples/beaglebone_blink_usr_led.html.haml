@@ -1,0 +1,46 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - beaglebone_blink_usr_led"
+page_title: "Example: beaglebone_blink_usr_led"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/beaglebone"
+        	"github.com/hybridgroup/gobot/platforms/gpio"
+        )
+
+        func main() {
+        	gbot := gobot.NewGobot()
+
+        	beagleboneAdaptor := beaglebone.NewBeagleboneAdaptor("beaglebone")
+        	led := gpio.NewLedDriver(beagleboneAdaptor, "led", "usr0")
+
+        	work := func() {
+        		gobot.Every(1*time.Second, func() {
+        			led.Toggle()
+        		})
+        	}
+
+        	robot := gobot.NewRobot("blinkBot",
+        		[]gobot.Connection{beagleboneAdaptor},
+        		[]gobot.Device{led},
+        		work,
+        	)
+
+        	gbot.AddRobot(robot)
+
+        	gbot.Start()
+        }
+
