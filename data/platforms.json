@@ -41,6 +41,12 @@
     "drivers": ["Leap Motion"]
   },
 
+  "Mavlink": {
+    "slug": "mavlink",
+    "url": "",
+    "drivers": ["Mavlink"]
+  },
+
   "MQTT": {
     "slug": "mqtt",
     "url": "http://www.mqtt.org/",
@@ -57,6 +63,12 @@
     "slug": "opencv",
     "url": "http://opencv.org/",
     "drivers": []
+  },
+
+  "Pebble": {
+    "slug": "pebble",
+    "url": "https://getpebble.com/",
+    "drivers": ["Pebble"]
   },
 
   "Raspberry Pi": {

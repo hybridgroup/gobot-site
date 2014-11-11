@@ -17,6 +17,7 @@ subnavjs: true
   =image_tag "/images/devices/pebble.jpg", class: "display"
   .info-intro
     %p Allows user to interact with gobot devices using a Pebble smart watch.
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/pebble#PebbleDriver", :class => "api-link", :target => "_blank"} API Reference
   .clear
 
   
@@ -85,14 +86,7 @@ subnavjs: true
           gbot.Start()
         }
 
-%section.public-methods
-  .commands-api#Commands
-    = partial "/documentation/drivers/partials/pebble/commands"
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/pebble/events"
-
-
 %section.compatability.hardware
   %h2 Works with:
   .devices
-    -# = partial "/partials/platforms_for_driver", locals: { driver: "Pebble" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "Pebble" }

@@ -21,6 +21,8 @@
   "Joystick - DualShock 3": "dualshock3",
   "Joystick - Xbox 360": "xbox360",
   "Leap Motion": "leapmotion",
+  "Mavlink": "mavlink",
   "Neurosky Mindwave": "neurosky",
+  "Pebble": "pebble",
   "Sphero": "sphero"
 }
