@@ -1,9 +1,9 @@
 ---
-title: Gobot - MPU6050 Driver
+title: Gobot - MPL115A2 Driver
 author: The Hybrid Group
 page_title: Drivers
-page_subtitle: Gobot has a extensible system for connecting to hardware devices.
-page_title_docs: MPU6050
+page_subtitle: Gobot has an extensible system for connecting to hardware devices.
+page_title_docs: MPL115A2
 page_subtitle_docs: Driver
 page_title_show: true
 layout: documentation
@@ -14,14 +14,14 @@ subnavjs: true
 ---
 
 %section.intro
-  =image_tag "/images/devices/mpu6050.jpg", class: "display"
+  =image_tag "/images/devices/mpl115a2.jpg", class: "display"
   .info-intro
     %p
-      The MPU-6050 is a serious little piece of motion processing tech!
-      By combining a MEMS 3-axis gyroscope and a 3-axis accelerometer on the same silicon die together with an onboard Digital Motion Processor™ capable of processing complex 9-axis MotionFusion algorithms, the MPU-6050 does away with the cross-axis alignment problems that can creep up on discrete parts. For more information click
-      = link_to "here.", "http://playground.arduino.cc/Main/MPU-6050", taget: :blank
+      This is the MPL115A2 driver, used for measuring barometric pressure.
+      For more information click
+      = link_to "here.", "https://www.adafruit.com/products/992", taget: :blank
 
-    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#MPU6050Driver", :class => "api-link", :target => "_blank"} API Reference
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#MPL115A2Driver", :class => "api-link", :target => "_blank"} API Reference
   .clear
   
 %section.how-to#HowToConnect
@@ -49,7 +49,7 @@ subnavjs: true
 
 %section.how-to#HowToUse
   %h2 How To Use
-  %h3 Example using a MPU6050.
+  %h3 Example using a MPL115A2.
   :markdown
         :::go
         package main
@@ -67,19 +67,18 @@ subnavjs: true
           gbot := gobot.NewGobot()
 
           firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          mpu6050 := i2c.NewMPU6050Driver(firmataAdaptor, "mpu6050")
+          mpl115a2 := i2c.NewMPL115A2Driver(firmataAdaptor, "mpl115a2")
 
           work := func() {
-            gobot.Every(100*time.Millisecond, func() {
-              fmt.Println("Accelerometer", mpu6050.Accelerometer)
-              fmt.Println("Gyroscope", mpu6050.Gyroscope)
-              fmt.Println("Temperature", mpu6050.Temperature)
+            gobot.Every(1*time.Second, func() {
+              fmt.Println("Pressure", mpl115a2.Pressure)
+              fmt.Println("Temperature", mpl115a2.Temperature)
             })
           }
 
-          robot := gobot.NewRobot("mpu6050Bot",
+          robot := gobot.NewRobot("mpl115a2Bot",
             []gobot.Connection{firmataAdaptor},
-            []gobot.Device{mpu6050},
+            []gobot.Device{mpl115a2},
             work,
           )
 
@@ -94,10 +93,10 @@ subnavjs: true
   .description-circuit
     %p
   .image-circuit
-    %img{:src => "/documentation/drivers/breadboards/i2c/mpu6050_bb.png", :alt => ""}/
+    %img{:src => "/documentation/drivers/breadboards/i2c/mpl115a2_bb.png", :alt => "MPL115A2 Breadboard"}/
   .clear
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "MPU6050" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "MPL115A2" }

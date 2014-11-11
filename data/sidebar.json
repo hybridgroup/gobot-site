@@ -36,6 +36,7 @@
     "I2C": {
       "BlinkM": "/documentation/drivers/blinkm",
       "HMC6352 Compass": "/documentation/drivers/hmc6352-compass",
+      "MPL115A2": "/documentation/drivers/mpl115a2",
       "MPU6050": "/documentation/drivers/mpu6050",
       "Wiichuck": "/documentation/drivers/wiimote-nunchuk"
     },
@@ -44,9 +45,7 @@
     "Joystick - DualShock 3": "/documentation/drivers/dualshock3",
     "Joystick - Xbox 360": "/documentation/drivers/xbox360",
     "Leap Motion": "/documentation/drivers/leapmotion",
-    "MQTT": "/documentation/drivers/mqtt",
     "Neurosky Mindwave": "/documentation/drivers/neurosky",
-    "Raspberry Pi": "/documentation/drivers/raspi",
     "Sphero": "/documentation/drivers/sphero"
   },
 

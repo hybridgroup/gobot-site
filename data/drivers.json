@@ -13,6 +13,7 @@
     "BlinkM": "blinkm",
     "HMC6352 Compass": "hmc6352-compass",
     "MPU6050": "mpu6050",
+    "MPL115A2": "mpl115a2",
     "Wiimote Nunchuk": "wiimote-nunchuk"
   },
 
@@ -20,7 +21,6 @@
   "Joystick - DualShock 3": "dualshock3",
   "Joystick - Xbox 360": "xbox360",
   "Leap Motion": "leapmotion",
-  "MQTT": "mqtt",
   "Neurosky Mindwave": "neurosky",
   "Sphero": "sphero"
 }
