@@ -1,40 +1,43 @@
--content_for :logo do
+- content_for :logo do
   %a{:href => "/"} Gobot
 
--content_for :logo_subtitle do
+- content_for :logo_subtitle do
   .main
 
--content_for :menu do
-  
+- content_for :menu do
   %ul
-    %li  
-      - if current_page.data.active_menu_docs == true
+
+    %li
+      - if current_page.data.active_menu_docs
         = link_to "Docs", "/documentation", (menu_item("documentation")), class: "active"
-      -else
+      - else
         = link_to "Docs", "", (menu_item("documentation"))
 
-    %li  
-      - if current_page.data.active_menu_platforms == true
+    %li
+      - if current_page.data.active_menu_platforms
         = link_to "Platforms", "/documentation/platforms", (menu_item("documentation/platforms")), class: "active"
-      -else
+      - else
         = link_to "Platforms", "", (menu_item("documentation/platforms"))
 
-    %li  
-      - if current_page.data.active_menu_videos == true
+    %li
+      - if current_page.data.active_menu_videos
         = link_to "Videos", "/videos", (menu_item("videos")), class: "active"
-      -else
+      - else
         = link_to "Videos", "", (menu_item("videos"))
 
-    %li  
-      - if current_page.data.active_menu_blog == true
+    %li
+      - if current_page.data.active_menu_blog
         = link_to "Blog", "/blog", (menu_item("blog")), class: "active"
-      -else
+      - else
         = link_to "Blog", "", (menu_item("blog"))
 
-    %li  
-      =  link_to "Github", "https://github.com/hybridgroup/gobot/", class: "item", target: "blanck"
+    %li
+      = link_to "Github", "https://github.com/hybridgroup/gobot/", class: "item", target: "blank"
 
--content_for :social_links do
+    - if current_page.data.edit_this_page
+      %li.edit= link_to "Edit this page", edit_link
+
+- content_for :social_links do
   .splitter
     %iframe{:allowtransparency => "true", :frameborder => "0", :height => "20", :scrolling => "0", :src => "http://ghbtns.com/github-btn.html?user=hybridgroup&repo=gobot&type=watch&count=true", :width => "95"}
     %iframe.fork{:allowtransparency => "true", :frameborder => "0", :height => "20", :scrolling => "0", :src => "http://ghbtns.com/github-btn.html?user=hybridgroup&repo=gobot&type=fork&count=true", :width => "95"}
