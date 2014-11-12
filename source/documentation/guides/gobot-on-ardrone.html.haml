@@ -9,12 +9,16 @@ active_menu_docs: true
 :markdown
   # Running Gobot on the ARDrone
 
-  Most users of it don't know this, but the ARDrone 2.0 runs a Linux distro (BusyBox Linux).
-  This means we can run code on it, and connect to it over telnet, FTP, and SSH.
+  Most users of it don't know this, but the ARDrone 2.0 runs a BusyBox Linux 
+  distro.This means we can execute code on the drone itself, and connect to it over 
+  telnet and FTP.
 
-  For this example, we'll be trying to get an ARDrone to talk to a Digispark plugged into the drone's USB port.
-  Unfortunately, since the ARDrone doesn't have much in the way of resources on-board, we can't compile directly on it.
-  It's an ARM-based processor though, so we can easily substitute another Single-Board Linux Computer.
+  For this example, we'll get an [ARDrone](/documentation/platforms/ardrone) to 
+  talk to a [Digispark](/documentation/platforms/digispark) plugged into the 
+  drone's USB port. Unfortunately, since the ARDrone doesn't have much in the 
+  way of resources on-board, we can't compile directly on the drone, but
+  it has an ARM-based processor, so we can easily compile on another 
+  Single-Board Linux Computer.
 
   ## What You'll Need
 
@@ -24,18 +28,26 @@ active_menu_docs: true
   - an ARDrone 2.0
   - a Digispark
 
-  Your BeagleBone will need to be running at least Ubuntu 13.10 or Arch Linux, as the default Debian install won't be able to do what we need.
+  Your BeagleBone Black will need to be running Ubuntu 13.10 as the default 
+  Debian install won't be able to do what we need, and newer versions of the 
+  Linux kernel prevent the compiled executable from running on the dron's hardware.
 
-  This guide also assumes you're using a UNIX-y OS (Linux or OS X).
+  This guide also assumes you're using a UNIX-y OS (Linux or OS X) and you have
+  at least Go version 1.2 installed on your Beaglebone Black.
   With that in mind, let's get started.
 
   ## Building the Binary
 
   First, connect to the BeagleBone over SSH, and install the GCC-based Go compiler:
 
-      $ sudo apt-get install gccgo
+      $ sudo apt-get install gccgo libusb-dev
 
-  For this example, we just want the Digispark to blink so we can verify it's working, so we're using the following example code:
+  Now install Gobot on the Beaglebone Black:
+
+      $ go get -d -u github.com/hybridgroup/gobot/...
+
+
+  For this example, we'll blink the Digispark's built in led every one second:
 
       :::go
       package main
@@ -52,7 +64,7 @@ active_menu_docs: true
       	gbot := gobot.NewGobot()
 
       	digisparkAdaptor := digispark.NewDigisparkAdaptor("Digispark")
-      	led := gpio.NewLedDriver(digisparkAdaptor, "led", "0")
+      	led := gpio.NewLedDriver(digisparkAdaptor, "led", "1")
 
       	work := func() {
       		gobot.Every(1*time.Second, func() {
@@ -71,21 +83,18 @@ active_menu_docs: true
       	gbot.Start()
       }
 
-  Either write this file to your computer and copy it to the BBB, or write it directly on the BeagleBone, but once you've got it there, compile it:
+  Save this program on your Beaglebone Black as `blink.go` and then 
+  compile the program with:
 
-      $ go build -compiler=gccgo -gccgoflags='-static' digispark_blink.go
-
-  And once you've built the binary, move it to `/tmp`:
-
-      $ mv digispark_blink /tmp/
+      $ go build -compiler=gccgo -gccgoflags='-static' -o /tmp/blink blink.go
 
   ## Configuring the ARDrone
 
-  Now, connect to your ARDrone's WiFi, and telnet into it:
+  On your host computer, connect to your ARDrone's WiFi, and telnet into the drone:
 
       $ telnet 192.168.1.1
 
-  Once you're in, edit `/etc/usb.ids`:
+  Once you're logged into the drone, edit the file `/etc/usb.ids`:
 
       $ vi /etc/usb.ids
 
@@ -96,7 +105,7 @@ active_menu_docs: true
       16d0 digispark
       	0753 digispark
 
-  Next up, edit the `/etc/init.d/rcS` file:
+  Next, edit the file `/etc/init.d/rcS`:
 
       $ vi /etc/init.d/rcS
 
@@ -110,32 +119,36 @@ active_menu_docs: true
 
   ## Copy and Run
 
-  Now, on your host computer, move to your `tmp` directory:
+  On your host computer, move to your `tmp` directory:
 
       $ cd /tmp
 
-  And copy over the compiled `digispark_blink` binary from your BeagleBone Black:
+  And copy the compiled `blink` binary from your BeagleBone Black
+  to your host computer:
 
-      $ scp ubuntu@192.168.7.2:/tmp/digispark_blink .
+      $ scp ubuntu@192.168.7.2:/tmp/blink .
 
-  Now, connect your computer again to the ARDrone's WiFi and plug the Digispark into it.
+  Connect your computer again to the ARDrone's WiFi and plug the Digispark into 
+  the drone's usb port, which should be attached near the battery compartment.
 
-  Once that's done, use FTP to move the `digispark_blink` binary over:
+  Once that's done, use `ftp` to move the `blink` binary from your host
+  computer over to the drone:
 
       $ ftp 192.168.1.1
-      ftp> put digispark_blink
+      ftp> put blink
 
-  The FTP utility will copy the binary to the video folder on the drone, so telnet back into it and move to that directory:
+  The `ftp` program will copy the binary to the `~/data/video` folder on the 
+  drone, so telnet back into it and move to that directory:
 
       $ telnet 192.168.1.1
       # cd data/video
 
   Once in that directory, you can set the executible flag on the binary and run it:
 
-      # chmod +x digispark_blink
-      # ./digispark_blink
+      # chmod +x blink
+      # ./blink
 
-  At this point your Digispark's connected LED should be blinking.
+  At this point your Digispark's LED should be blinking.
 
   Congratulations!
   You've now got Gobot programs running directly on the ARDrone.
