@@ -16,6 +16,57 @@ img_character: "<img src='images/elements/gophy.png'>"
 catcher_phrase: Ready to build the next big thing with Go?
 getting_started_button: "<a href='/documentation/getting-started' class='cta'>Start Now</a>"
 ---
+%section.the-code
+  %h2.homepage  Meet The Code
+
+  %p Gobot makes commanding robots incredibly simple and fun.
+
+  %p All you need to get started is install the Gobot with :
+  :markdown
+    `go get -d -u github.com/hybridgroup/gobot/...`
+
+  %h2.homepage IoT Hello World 
+  %p 
+  :markdown
+    This program connects to an [Arduino](/documentation/platforms/arduino), and toggles an [led](/documentation/drivers/led) every one second.
+  :markdown
+        :::go
+        package main
+
+        import (
+          "time"
+          "github.com/hybridgroup/gobot"
+          "github.com/hybridgroup/gobot/platforms/firmata"
+          "github.com/hybridgroup/gobot/platforms/gpio"
+        )
+
+        func main() {
+          gbot := gobot.NewGobot()
+
+          firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
+          led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
+
+          work := func() {
+            gobot.Every(1*time.Second, func() {
+              led.Toggle()
+            })
+          }
+
+          gbot.AddRobot(gobot.NewRobot("bot",
+            []gobot.Connection{firmataAdaptor},
+            []gobot.Device{led},
+            work,
+          ))
+
+          gbot.Start()
+        }
+
+  %h2.homepage The fun doesn't stop here
+  %p
+  :markdown
+    We've got lots more [examples](/documentation/examples) to help you 
+    get started on your next hardware project!
+
 %section.gobot-platforms
   %h2#platforms.homepage Platform Support
   %p
