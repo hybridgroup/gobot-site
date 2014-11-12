@@ -111,48 +111,15 @@
       <div class="main" role="main">
         <section class="the-code"><h2 class="homepage">Meet The Code</h2>
           <p>Gobot makes commanding robots incredibly simple and fun.</p>
-          <p>All you need to get started is install the library with :</p>
-          <p><code>go get -u github.com/hybridgroup/gobot</code>.</p>
-          <h2 class="homepage">Gobot with Sphero</h2>
-          <pre class="CodeRay"><span class="keyword">package</span> main
-
-<span class="keyword">import</span> (
-  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
-
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
-)
-
-<span class="keyword">func</span> main() {
-  gbot := gobot.NewGobot()
-
-  adaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>)
-  spheroDriver := sphero.NewSpheroDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
-
-  work := <span class="keyword">func</span>() {
-    gobot.Every(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
-      spheroDriver.Roll(<span class="integer">30</span>, <span class="predefined-type">uint16</span>(gobot.Rand(<span class="integer">360</span>)))
-    })
-  }
-
-  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>,
-    []gobot.Connection{adaptor},
-    []gobot.Device{spheroDriver},
-    work,
-  )
-
-  gbot.AddRobot(robot)
-
-  gbot.Start()
-}
-</pre>
-          <h2 class="homepage">Gobot with Arduino</h2>
+          <p>All you need to get started is install Gobot with :</p>
+          <p><code>go get -d -u github.com/hybridgroup/gobot/...</code></p>
+          <h2 class="homepage">The "Hello, World" Of Things</h2>
+          <p></p>
+          <p>This program connects to an <a href="/documentation/platforms/arduino">Arduino</a>, and toggles an <a href="/documentation/drivers/led">LED</a> every one second.</p>
           <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
   <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
-
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
@@ -170,17 +137,18 @@
     })
   }
 
-  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+  gbot.AddRobot(gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
     []gobot.Connection{firmataAdaptor},
     []gobot.Device{led},
     work,
-  )
-
-  gbot.AddRobot(robot)
+  ))
 
   gbot.Start()
 }
 </pre>
+          <p></p>
+          <p>We've got lots more <a href="/documentation/examples">examples</a> to help you 
+          get started on your next IoT project!</p>
         </section><section class="gobot-platforms"><h2 class="homepage" id="platforms">Platform Support</h2>
           <p>
             Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported:
@@ -369,55 +337,34 @@
               <a href="/documentation/drivers/wiimote-nunchuk">
                 <img src="/images/devices/wiimote-nunchuk.jpg" style="width: 90%"></a>
             </li>
-          </ul>
-<p class="important-title">
-            See more drivers
-            <a href="/documentation/drivers">here</a>
-          </p>
-          <p>More platforms and drivers are coming soon...</p>
-          <h2 class="homepage">Getting Started</h2>
-          <p>Install the library with: <code>go get -u github.com/hybridgroup/gobot</code></p>
-          <p>Then install additional libraries for whatever hardware support you want to use from your robot. For example, <code>go get -u github.com/hybridgroup/gobot-sphero</code> to use Gobot with a Sphero.</p>
+          </ul></section><section class="api"><h2 class="homepage">API</h2>
           <p>
-            Ready to build Go robots with Gobot?
-            <a href="documentation/getting-started">Get Started Here!</a>
+            Gobot includes a
+            <a target="blank" href="http://cppp.io">cppp.io</a>
+            compliant RESTful API to query the status of any connection, device or
+            robot running in your swarm. It additionally has the ability to issue
+            commands directly to your devices and robots.
           </p>
-        </section><section class="api"><h2 class="homepage">API</h2>
-          <p>Gobot includes a RESTful API to query the status of any robot running within a group, including the connection and device status, and execute device commands.</p>
-          <p>To activate the API, require the <code>github.com/hybridgroup/gobot/api</code> package and instantiate the <code>API</code> like this:</p>
-          
-          <pre class="CodeRay">gbot := gobot.NewGobot()
-gobot.NewAPI(gbot).Start()
-</pre>
-          
-          <p>You can also specify the api host and port, and turn on authentication:</p>
-          
-          <pre class="CodeRay">gbot := gobot.NewGobot()
-server := api.NewAPI(gbot)
-server.Port = <span class="string"><span class="delimiter">"</span><span class="content">4000</span><span class="delimiter">"</span></span>
-server.Username = <span class="string"><span class="delimiter">"</span><span class="content">Gort</span><span class="delimiter">"</span></span>
-server.Password = <span class="string"><span class="delimiter">"</span><span class="content">klaatu</span><span class="delimiter">"</span></span>
-server.Start()
-</pre>
           <p>
-            </p>
-<p>You may access the <a href="https://github.com/hybridgroup/robeaux">robeaux</a> AngularJS interface with Gobot by navigating to <code>http://localhost:3000/index.html</code>.</p>
-            
-            <p><img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%"></p>
-            
-            <p>You can check out more information on the Gobot API in the docs <a href="/documentation/guides/api/">here</a>.</p>
-          
+            It also comes with the
+            <a target="blank" href="https://github.com/hybridgroup/robeaux">robeaux</a>
+            AngularJS interface baked right into it's API server for quick and easy
+            configuration.
+            <img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%"></p>
+          <p>
+            You can check out more information on the Gobot API in the docs
+            <a target="blank" href="/documentation/core/api">here</a>
+          </p>
         </section><section class="cli"><h2 class="homepage">CLI</h2>
-          <script data-autoplay="1" data-loop="true" id="asciicast-10306" src="https://asciinema.org/a/10306.js" type="text/javascript"></script><p><a href="http://gort.io">Gort</a> is a Command Line Toolkit (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and it works perfectly with Gobot. Also included with Gobot is a CLI for generating new robots and adaptors. </p>
+          <script data-autoplay="1" data-loop="true" id="asciicast-10306" src="https://asciinema.org/a/10306.js" type="text/javascript"></script><p>Gobot is designed to be using in conjunction with <a href="http://gort.io">Gort</a>, a Command Line Toolkit (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and it works perfectly with Gobot. Also included with Gobot is a CLI for generating new robots and adaptors. </p>
           
-          <p>You can can learn more about Gobot's CLI in the docs <a href="/documentation/guides/cli">here</a>.</p>
+          <p>Gobot also has it own CLI which you can learn more about <a href="/documentation/guides/cli">here</a>.</p>
           <h2 class="homepage">Be Part Of The Robot Evolution</h2>
           <ul>
 <li>Code on Github:   <a href="https://github.com/hybridgroup/gobot">https://github.com/hybridgroup/gobot</a>
 </li>
             <li>Join us on IRC:   <code>#gobotio @ irc.freenode.net</code>
 </li>
-            <li>Join us on our <a href="https://trello.com/b/kQPsldtk/gobot">Trello Board</a>.</li>
           </ul></section>
 </div>
     </div>

@@ -161,35 +161,37 @@
                 <h1>CLI</h1>
                 <h2>What is it?</h2>
                 <p>
-                  Gobot CLI is a powerful command line interface tool that provides several tools to make RobotOps and setting up your devices to work with gobot a lot easier.
-                </p>
-                <p>
-                  Gort
-                  <a target="blank" href="http://gort.io">(http://gort.io)</a>
-                  is a Command Line Interface (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more.
+                  The Gobot CLI is a command line interface that provides several generators
+                  to help you get started writing your own Gobot Adaptors and Drivers.
                 </p>
                 <h2>How to install</h2>
-                <p>For the commands to be available everywhere the gobot module needs to be installed globally.</p>
-                <p>Here's how to do it.</p>
-                <pre class="CodeRay">go get -u github.com/hybridgroup/gobot
+                <pre class="CodeRay">go get -u github.com/hybridgroup/gobot/gobot
 </pre>
-                <p>
-                  If you need more help to install golang click
-                  <a target="_blank" href="http://golang.org/doc/install">here.</a>
-                </p>
                 <h2>How can I use it?</h2>
                 <p>
                   </p>
-<p>The Gobot CLI tools are easy to use, designed to be intuitive, and offer contextual help regarding the commands you're using. Once you have the <code>gobot-cli</code> module installed globally, the toolkit will be available at all times. To find all available commands, just run <code>gobot help</code>.</p>
+<p>The Gobot CLI tools are easy to use, designed to be intuitive, and offer 
+                  contextual help regarding the commands you're using. Once you have the 
+                  <code>gobot</code> cli installed, the toolkit will be available at all times. 
+                  To find all available commands, just run <code>gobot help</code>.</p>
                 
                 <h3>Printing a list of available commands</h3>
-                <pre class="CodeRay">gobot
+                <pre class="CodeRay">NAME:
+   gobot - Command Line Utility for Gobot
 
-Commands:
+USAGE:
+   gobot [global options] command [command options] [arguments...]
 
-    generate    # Generate new Gobot skeleton project
+VERSION:
+   0.1
 
-Use "gobot help &lt;command&gt;" for more information about a command.
+COMMANDS:
+   generate     Generate new Gobot skeleton project
+   help, h      Shows a list of commands or help for one command
+   
+GLOBAL OPTIONS:
+   --help, -h           show help
+   --version, -v        print the version
 </pre>
                 <h2>What Gobot CLI commands are available?</h2>
                 <p>
