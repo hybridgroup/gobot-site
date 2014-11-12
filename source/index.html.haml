@@ -21,54 +21,20 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
 
   %p Gobot makes commanding robots incredibly simple and fun.
 
-  %p All you need to get started is install the library with :
+  %p All you need to get started is install Gobot with :
   :markdown
-    `go get -u github.com/hybridgroup/gobot`.
+    `go get -d -u github.com/hybridgroup/gobot/...`
 
-  %h2.homepage  Gobot with Sphero
+  %h2.homepage The "Hello, World" Of Things
+  %p 
   :markdown
-        :::go
-        package main
-
-        import (
-          "fmt"
-          "time"
-
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/sphero"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          adaptor := sphero.NewSpheroAdaptor("Sphero", "/dev/rfcomm0")
-          spheroDriver := sphero.NewSpheroDriver(adaptor, "sphero")
-
-          work := func() {
-            gobot.Every(3*time.Second, func() {
-              spheroDriver.Roll(30, uint16(gobot.Rand(360)))
-            })
-          }
-
-          robot := gobot.NewRobot("sphero",
-            []gobot.Connection{adaptor},
-            []gobot.Device{spheroDriver},
-            work,
-          )
-
-          gbot.AddRobot(robot)
-
-          gbot.Start()
-        }
-
-  %h2.homepage  Gobot with Arduino
+    This program connects to an [Arduino](/documentation/platforms/arduino), and toggles an [LED](/documentation/drivers/led) every one second.
   :markdown
         :::go
         package main
 
         import (
           "time"
-
           "github.com/hybridgroup/gobot"
           "github.com/hybridgroup/gobot/platforms/firmata"
           "github.com/hybridgroup/gobot/platforms/gpio"
@@ -86,16 +52,20 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
             })
           }
 
-          robot := gobot.NewRobot("bot",
+          gbot.AddRobot(gobot.NewRobot("bot",
             []gobot.Connection{firmataAdaptor},
             []gobot.Device{led},
             work,
-          )
-
-          gbot.AddRobot(robot)
+          ))
 
           gbot.Start()
         }
+
+  %p
+  :markdown
+    We've got lots more [examples](/documentation/examples) to help you 
+    get started on your next IoT project!
+
 %section.gobot-platforms
   %h2#platforms.homepage Platform Support
   %p
@@ -139,59 +109,35 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
         %a{:href => "/documentation/drivers/#{slug}"}
           %img{src: "/images/devices/#{slug}.jpg", style: "width: 90%"}
 
-  %p.important-title
-    See more drivers
-    = link_to "here", "/documentation/drivers"
-
-  %p More platforms and drivers are coming soon...
-
-  %h2.homepage Getting Started
-
-  :markdown
-    Install the library with: `go get -u github.com/hybridgroup/gobot`
-  :markdown
-    Then install additional libraries for whatever hardware support you want to use from your robot. For example, `go get -u github.com/hybridgroup/gobot-sphero` to use Gobot with a Sphero.
-  %p
-    Ready to build Go robots with Gobot?
-    = link_to "Get Started Here!", "documentation/getting-started"
 %section.api
   %h2.homepage API
-  %p Gobot includes a RESTful API to query the status of any robot running within a group, including the connection and device status, and execute device commands.
-
-  :markdown
-    To activate the API, require the `github.com/hybridgroup/gobot/api` package and instantiate the `API` like this:
-
-        :::go
-        gbot := gobot.NewGobot()
-        gobot.NewAPI(gbot).Start()
-
-    You can also specify the api host and port, and turn on authentication:
-
-        :::go
-        gbot := gobot.NewGobot()
-        server := api.NewAPI(gbot)
-        server.Port = "4000"
-        server.Username = "Gort"
-        server.Password = "klaatu"
-        server.Start()
+  %p 
+    Gobot includes a 
+    = link_to "cppp.io", "http://cppp.io", target: :blank  
+    compliant RESTful API to query the status of any connection, device or
+    robot running in your swarm. It additionally has the ability to issue 
+    commands directly to your devices and robots.
 
   %p
-    :markdown
-      You may access the [robeaux](https://github.com/hybridgroup/robeaux) AngularJS interface with Gobot by navigating to `http://localhost:3000/index.html`.
+    It also comes with the 
+    = link_to "robeaux", "https://github.com/hybridgroup/robeaux", target: :blank  
+    AngularJS interface baked right into it's API server for quick and easy
+    configuration.
 
-      <img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%">
+    <img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%">
 
-      You can check out more information on the Gobot API in the docs [here][api-docs].
+  %p
+    You can check out more information on the Gobot API in the docs
+    = link_to "here", "/documentation/core/api", target: :blank  
 
-      [api-docs]: /documentation/guides/api/
 
 %section.cli
   %h2.homepage CLI
   %script{type:"text/javascript", src:"https://asciinema.org/a/10306.js", id:"asciicast-10306", "data-autoplay" => "1",  "data-loop" => "true"}
   :markdown
-    [Gort][] is a Command Line Toolkit (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and it works perfectly with Gobot. Also included with Gobot is a CLI for generating new robots and adaptors. 
+    Gobot is designed to be using in conjunction with [Gort][], a Command Line Toolkit (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and it works perfectly with Gobot. Also included with Gobot is a CLI for generating new robots and adaptors. 
 
-    You can can learn more about Gobot's CLI in the docs [here][cli-docs].
+    Gobot also has it own CLI which you can learn more about [here][cli-docs].
 
     [Gort]: http://gort.io
     [cli-docs]: /documentation/guides/cli
@@ -201,4 +147,3 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
   :markdown
     - Code on Github:   [https://github.com/hybridgroup/gobot](https://github.com/hybridgroup/gobot)
     - Join us on IRC:   `#gobotio @ irc.freenode.net`
-    - Join us on our [Trello Board](https://trello.com/b/kQPsldtk/gobot).

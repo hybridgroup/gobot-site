@@ -12,40 +12,42 @@ active_menu_docs: true
   %h1 CLI
   %h2 What is it?
   %p
-    Gobot CLI is a powerful command line interface tool that provides several tools to make RobotOps and setting up your devices to work with gobot a lot easier.
-  %p
-    Gort
-    = link_to "(http://gort.io)","http://gort.io", target: :blank
-    is a Command Line Interface (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more.
+    The Gobot CLI is a command line interface that provides several generators 
+    to help you get started writing your own Gobot Adaptors and Drivers.
   %h2 How to install
-  %p For the commands to be available everywhere the gobot module needs to be installed globally.
-
-  %p Here's how to do it.
-
   :markdown
         :::bash
-        go get -u github.com/hybridgroup/gobot
-
-  %p
-    If you need more help to install golang click
-    = link_to "here.", "http://golang.org/doc/install", target: "_blank"
+        go get -u github.com/hybridgroup/gobot/gobot
 
 
   %h2 How can I use it?
   %p
     :markdown
-      The Gobot CLI tools are easy to use, designed to be intuitive, and offer contextual help regarding the commands you're using. Once you have the `gobot-cli` module installed globally, the toolkit will be available at all times. To find all available commands, just run `gobot help`.
+      The Gobot CLI tools are easy to use, designed to be intuitive, and offer 
+      contextual help regarding the commands you're using. Once you have the 
+      `gobot` cli installed, the toolkit will be available at all times. 
+      To find all available commands, just run `gobot help`.
 
   %h3 Printing a list of available commands
   :markdown
         :::bash
-        gobot
+        NAME:
+           gobot - Command Line Utility for Gobot
 
-        Commands:
+        USAGE:
+           gobot [global options] command [command options] [arguments...]
 
-            generate    # Generate new Gobot skeleton project
+        VERSION:
+           0.1
 
-        Use "gobot help <command>" for more information about a command.
+        COMMANDS:
+           generate     Generate new Gobot skeleton project
+           help, h      Shows a list of commands or help for one command
+           
+        GLOBAL OPTIONS:
+           --help, -h           show help
+           --version, -v        print the version
+
 
   %h2 What Gobot CLI commands are available?
   %p
