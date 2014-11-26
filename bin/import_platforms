@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+Bundler.setup
+
+require 'git'
+require 'fileutils'
+require 'nokogiri'
+
+REPO_URL = "https://github.com/hybridgroup/gobot.git"
+REPO_PATH = File.expand_path(__dir__ + "/../.gobot")
+
+
+class Platform
+  attr_reader :source, :name, :content
+
+  def initialize(filename)
+    @source = filename
+    @name = File.dirname(filename).split('/')[-1]
+    @content = File.open filename
+  end
+
+  def page
+    body = @content.dup
+    lines = []
+    @content.each_line do |line|
+      lines << line
+    end
+
+    i = 0
+    n = 0
+    while i < lines.length
+      if lines[i].include? "```"
+        if lines[i].include? "```\n"
+          lines[i]=""
+        else
+          lines[i] = "\t:::#{lines[i][3..-1]}"
+        end
+        n = 0
+        i += 1
+        while n < lines[i..-1].length
+          if lines[n+i].include? "```"
+            lines[n+i] = "\n"
+            i = n+i
+            break
+          else
+              lines[n+i] = "\t#{lines[n+i]}"
+              n += 1
+          end
+        end
+      end
+      i += 1
+    end
+
+
+    body = lines.join("")
+    # indent by four spaces
+    body.gsub! /^(.+)/, '    \1'
+    page_content = <<-EOS
+.example
+  :markdown
+#{body}
+EOS
+  end
+end
+
+def main
+  clone_repo
+  platforms = extract_platforms
+  add_platforms_to_site platforms
+end
+
+def clone_repo
+  FileUtils.rm_rf(REPO_PATH) if File.directory?(REPO_PATH)
+  puts " - Cloning repo. "
+  repo = Git.clone REPO_URL, REPO_PATH
+  repo.checkout 'master'
+end
+
+def extract_platforms
+  Dir.glob(REPO_PATH + "/platforms/**/*.md").map do |file|
+    Platform.new(file)
+  end
+end
+
+def add_platforms_to_site(platforms)
+  platforms_dir = File.expand_path __dir__ + "/../source/documentation/platforms/partials"
+
+  platforms.each do |platform|
+    puts "  - #{platform.name}"
+    path = platforms_dir + "/#{platform.name}.html.haml"
+    File.write path, platform.page
+  end
+end
+
+main

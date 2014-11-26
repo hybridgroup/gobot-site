@@ -35,63 +35,8 @@ subnavjs: true
   .clear
   
 
-%section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing Gobot with Arduino support is pretty easy.
-  :markdown
-        :::bash
-        go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/firmata
-
-  %p 
-    %b Note:
-    Works with any Arduino or compatible that can run Firmata, which is a universal serial interface to microcontrollers.
-        
-%section.how-to#HowToUse
-  %h2 How To Use
-  %p This small program lets you turn on and off a LED every 1s. 
-  :markdown
-        :::go
-        package main
-
-        import (
-            "time"
-
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/firmata"
-            "github.com/hybridgroup/gobot/platforms/gpio"
-        )
-
-        func main() {
-            gbot := gobot.NewGobot()
-
-            firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
-            led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
-
-            work := func() {
-                gobot.Every(1*time.Second, func() {
-                    led.Toggle()
-                })
-            }
-
-            robot := gobot.NewRobot("bot",
-                []gobot.Connection{firmataAdaptor},
-                []gobot.Device{led},
-                work,
-            )
-
-            gbot.AddRobot(robot)
-
-            gbot.Start()
-        }
-  
-  %h3 Hardware Support
-  %p The following firmata devices have been tested and are currently supported:
-  %ul 
-    %li 
-      = link_to "Arduino uno r3", "http://arduino.cc/en/Main/arduinoBoardUno", target: :blank  
-    %li 
-      = link_to "Teensy 3.0", "http://www.pjrc.com/store/teensy3.html", target: :blank  
-  %p More devices are coming soon...
+%section.how-to
+  = partial "documentation/platforms/partials/firmata"
 
  
 %section.drivers#Drivers
