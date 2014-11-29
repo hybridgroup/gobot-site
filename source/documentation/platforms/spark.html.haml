@@ -27,49 +27,8 @@ subnavjs: true
     %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/spark#SparkCoreAdaptor", :class => "api-link", :target => "_blank"} API Reference
   .clear
 
-%section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing Gobot with Spark support is pretty easy.
-  :markdown
-        :::ruby
-        go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/spark
-%section.how-to#HowToUse
-  %h2 How To Use
-  %p This small program lets you turn on or off a LED for every 2 sec.
-  :markdown
-        :::go
-        package main
-
-        import (
-            "time"
-
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/gpio"
-            "github.com/hybridgroup/gobot/platforms/spark"
-        )
-
-        func main() {
-            gbot := gobot.NewGobot()
-
-            sparkCore := spark.NewSparkCoreAdaptor("spark", "device_id", "access_token")
-            led := gpio.NewLedDriver(sparkCore, "led", "D7")
-
-            work := func() {
-                gobot.Every(1*time.Second, func() {
-                    led.Toggle()
-                })
-            }
-
-            robot := gobot.NewRobot("spark",
-                []gobot.Connection{sparkCore},
-                []gobot.Device{led},
-                work,
-            )
-
-            gbot.AddRobot(robot)
-
-            gbot.Start()
-        }
+%section.how-to
+  = partial "documentation/platforms/partials/spark"
 
 %section.drivers#Drivers
   %h2 Drivers

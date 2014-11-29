@@ -6,56 +6,57 @@
 
     This repository contains the Gobot adaptor for the MQTT machine to machine message broker (http://mqtt.org/).
 
-    ## Installing
+    ## How to Install
 
-    * Install running:
-    	go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/mqtt
+    Install running:
+
+        go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/mqtt
 
 
-    ## Using
+    ## How to Use
 
-    * Before running the example, make sure you have an MQTT message broker running somewhere you can connect to
+    Before running the example, make sure you have an MQTT message broker running somewhere you can connect to
 
-    	:::go
-    	package main
-    	
-    	import (
-    	  "github.com/hybridgroup/gobot"
-    	  "github.com/hybridgroup/gobot/platforms/mqtt"
-    	  "fmt"
-    	  "time"
-    	)
-    	
-    	func main() {
-    	  gbot := gobot.NewGobot()
-    	
-    	  mqttAdaptor := mqtt.NewMqttAdaptor("server", "tcp://0.0.0.0:1883", "pinger")
-    	
-    	  work := func() {
-    	    mqttAdaptor.On("hello", func(data []byte) {
-    	      fmt.Println("hello")
-    	    })
-    	    mqttAdaptor.On("hola", func(data []byte) {
-    	      fmt.Println("hola")
-    	    })
-    	    data := []byte("o")
-    	    gobot.Every(1*time.Second, func() {
-    	      mqttAdaptor.Publish("hello", data)
-    	    })
-    	    gobot.Every(5*time.Second, func() {
-    	      mqttAdaptor.Publish("hola", data)
-    	    })
-    	  }
-    	
-    	  robot := gobot.NewRobot("mqttBot",
-    	    []gobot.Connection{mqttAdaptor},
-    	    work,
-    	  )
-    	
-    	  gbot.AddRobot(robot)
-    	
-    	  gbot.Start()
-    	}
+        :::go
+        package main
+        
+        import (
+          "github.com/hybridgroup/gobot"
+          "github.com/hybridgroup/gobot/platforms/mqtt"
+          "fmt"
+          "time"
+        )
+        
+        func main() {
+          gbot := gobot.NewGobot()
+        
+          mqttAdaptor := mqtt.NewMqttAdaptor("server", "tcp://0.0.0.0:1883", "pinger")
+        
+          work := func() {
+            mqttAdaptor.On("hello", func(data []byte) {
+              fmt.Println("hello")
+            })
+            mqttAdaptor.On("hola", func(data []byte) {
+              fmt.Println("hola")
+            })
+            data := []byte("o")
+            gobot.Every(1*time.Second, func() {
+              mqttAdaptor.Publish("hello", data)
+            })
+            gobot.Every(5*time.Second, func() {
+              mqttAdaptor.Publish("hola", data)
+            })
+          }
+        
+          robot := gobot.NewRobot("mqttBot",
+            []gobot.Connection{mqttAdaptor},
+            work,
+          )
+        
+          gbot.AddRobot(robot)
+        
+          gbot.Start()
+        }
 
 
     ## Supported Features
@@ -63,11 +64,7 @@
     * Publish messages
     * Respond to incoming message events
 
-    ## Documentation
 
-    We're busy adding documentation to our web site at http://gobot.io/ please check there as we continue to work on Gobot
-
-    Thank you!
 
     ## Contributing
 

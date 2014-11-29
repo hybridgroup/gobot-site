@@ -4,8 +4,8 @@
 
     This package provides the Gobot adaptor and driver for the [Sphero](http://www.gosphero.com/) robot from Orbotix .
 
-    ## Installing
-    	go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/sphero
+    ## How to Install
+        go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/sphero
 
 
     ## How To Connect
@@ -21,55 +21,57 @@
     Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line using [Gort](https://github.com/hybridgroup/gort) CLI commands. Here are the steps.
 
     Find the address of the Sphero, by using:
-    	gort scan bluetooth
+        gort scan bluetooth
 
 
     Pair to Sphero using this command (substituting the actual address of your Sphero):
-    	gort bluetooth pair <address>
+        gort bluetooth pair <address>
 
 
     Connect to the Sphero using this command (substituting the actual address of your Sphero):
-    	gort bluetooth connect <address>
+        gort bluetooth connect <address>
 
 
     ### Windows
 
     You should be able to pair your Sphero using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as `COM3`.
 
-    ## Example
+    ## How to Use
 
-    	:::go
-    	package main
-    	
-    	import (
-    		"fmt"
-    		"time"
-    	
-    		"github.com/hybridgroup/gobot"
-    		"github.com/hybridgroup/gobot/platforms/sphero"
-    	)
-    	
-    	func main() {
-    		gbot := gobot.NewGobot()
-    	
-    		adaptor := sphero.NewSpheroAdaptor("sphero", "/dev/rfcomm0")
-    		driver := sphero.NewSpheroDriver(adaptor, "sphero")
-    	
-    		work := func() {
-    			gobot.Every(3*time.Second, func() {
-    				driver.Roll(30, uint16(gobot.Rand(360)))
-    			})
-    		}
-    	
-    		robot := gobot.NewRobot("sphero",
-    			[]gobot.Connection{adaptor},
-    			[]gobot.Device{driver},
-    			work,
-    		)
-    	
-    		gbot.AddRobot(robot)
-    	
-    		gbot.Start()
-    	}
+    Example of a simple program that makes the Sphero roll.
+
+        :::go
+        package main
+        
+        import (
+        	"fmt"
+        	"time"
+        
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/sphero"
+        )
+        
+        func main() {
+        	gbot := gobot.NewGobot()
+        
+        	adaptor := sphero.NewSpheroAdaptor("sphero", "/dev/rfcomm0")
+        	driver := sphero.NewSpheroDriver(adaptor, "sphero")
+        
+        	work := func() {
+        		gobot.Every(3*time.Second, func() {
+        			driver.Roll(30, uint16(gobot.Rand(360)))
+        		})
+        	}
+        
+        	robot := gobot.NewRobot("sphero",
+        		[]gobot.Connection{adaptor},
+        		[]gobot.Device{driver},
+        		work,
+        	)
+        
+        	gbot.AddRobot(robot)
+        
+        	gbot.Start()
+        }
 
 

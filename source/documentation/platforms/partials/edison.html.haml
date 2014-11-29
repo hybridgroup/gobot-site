@@ -1,17 +1,17 @@
 .example
   :markdown
-    # Edison 
+    # Edison
 
     This package contains the Gobot adaptor for the [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html) IoT platform.
 
     This package currently supports the following Intel IoT hardware:
     - Intel Edison with the Arduino breakout board
 
-    ## Getting Started
+    ## How to Install
 
     First you must install the appropriate Go packages
 
-    	go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/intel-iot/edison
+        go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/intel-iot/edison
 
 
     #### Setting up your Intel Edison
@@ -24,60 +24,66 @@
     #### Cross compiling for the Intel Edison
     You must first configure your Go environment for 386 linux cross compiling
 
-    	:::bash
-    	$ cd $GOROOT/src
-    	$ GOOS=linux GOARCH=386 ./make.bash --no-clean
+        :::bash
+        $ cd $GOROOT/src
+        $ GOOS=linux GOARCH=386 ./make.bash --no-clean
 
 
     Then compile your Gobot program with
-    	:::bash
-    	$ GOARCH=386 GOOS=linux go build examples/edison_blink.go
+
+        :::bash
+        $ GOARCH=386 GOOS=linux go build examples/edison_blink.go
 
 
-    Then you can simply upload your program over the network from your host computer to the Edison 
-    	::: bash
-    	$ scp edison_blink root@192.168.1.xxx:/home/root/
+    Then you can simply upload your program over the network from your host computer to the Edison
+
+        :::bash
+        $ scp edison_blink root@192.168.1.xxx:/home/root/
 
 
     and execute it on your Edison with
-    	:::bash
-    	$ ./edison_blink
+
+        :::bash
+        $ ./edison_blink
 
 
-    ## Example
+    ## How to Use
 
-    	:::go
-    	package main
-    	
-    	import (
-    		"time"
-    	
-    		"github.com/hybridgroup/gobot"
-    		"github.com/hybridgroup/gobot/platforms/gpio"
-    		"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
-    	)
-    	
-    	func main() {
-    		gbot := gobot.NewGobot()
-    	
-    		e := edison.NewEdisonAdaptor("edison")
-    		led := gpio.NewLedDriver(e, "led", "13")
-    	
-    		work := func() {
-    			gobot.Every(1*time.Second, func() {
-    				led.Toggle()
-    			})
-    		}
-    	
-    		robot := gobot.NewRobot("blinkBot",
-    			[]gobot.Connection{e},
-    			[]gobot.Device{led},
-    			work,
-    		)
-    	
-    		gbot.AddRobot(robot)
-    	
-    		gbot.Start()
-    	}
+        :::go
+        package main
+        
+        import (
+        	"time"
+        
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/gpio"
+        	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
+        )
+        
+        func main() {
+        	gbot := gobot.NewGobot()
+        
+        	e := edison.NewEdisonAdaptor("edison")
+        	led := gpio.NewLedDriver(e, "led", "13")
+        
+        	work := func() {
+        		gobot.Every(1*time.Second, func() {
+        			led.Toggle()
+        		})
+        	}
+        
+        	robot := gobot.NewRobot("blinkBot",
+        		[]gobot.Connection{e},
+        		[]gobot.Device{led},
+        		work,
+        	)
+        
+        	gbot.AddRobot(robot)
+        
+        	gbot.Start()
+        }
 
+    ## How to Connect
+
+    The [Intel Edison Getting Started Guide](https://communities.intel.com/docs/DOC-23147) details connection instructions for Windows, Mac and Linux.
 

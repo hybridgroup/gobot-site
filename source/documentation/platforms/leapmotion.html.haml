@@ -26,77 +26,8 @@ subnavjs: true
     %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/leap#LeapMotionAdaptor", :class => "api-link", :target => "_blank"} API Reference
   .clear
 
-%section.how-to#HowToInstall
-  %h2 How To Install
-  %p 
-    First install the 
-    = link_to "Leap Motion Software", "https://www.leapmotion.com/setup", target: :blank
-  %p Now you can install the package with
-  :markdown
-        :::bash
-        go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/leap
-
-%section.how-to#HowToUse
-  %h2 How To Use
-  %p This small program uses a Leap Motion Adaptor.
-  :markdown
-        :::go
-        package main
-
-        import (
-            "fmt"
-
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/leap"
-        )
-
-        func main() {
-            gbot := gobot.NewGobot()
-
-            leapMotionAdaptor := leap.NewLeapMotionAdaptor("leap", "127.0.0.1:6437")
-            l := leap.NewLeapMotionDriver(leapMotionAdaptor, "leap")
-
-            work := func() {
-                gobot.On(l.Event("message"), func(data interface{}) {
-                    fmt.Println(data.(leap.Frame))
-                })
-            }
-
-            robot := gobot.NewRobot("leapBot",
-                []gobot.Connection{leapMotionAdaptor},
-                []gobot.Device{l},
-                work,
-            )
-
-            gbot.AddRobot(robot)
-
-            gbot.Start()
-        }
-
-%section.how-to#HowToConnect
-  %h2 How To Connect
-  %h3 OSX
-  %p
-    This driver works out of the box with the vanilla installation of the Leap Motion Software that you get in their 
-    %a{ href:"https://www.leapmotion.com/setup" } Setup Guide.
-
-  %p The main steps are:
-
-  %ul
-    %li Run Leap Motion.app to open a websocket connection in port 6437.
-    %li Connect your Computer and Leap Motion Controller.
-    %li Connect to the device via Gobot.
-
-  %h3 Ubuntu
-  %p
-    The Linux download of the Leap Motion software can be obtained from
-    %a{ href:"https://developer.leapmotion.com/downloads" } Leap Motion Dev Center
-    (requires free signup)
-  %p The main steps are:
-  %ul
-    %li Run the leapd daemon, to open a websocket connection in port 6437.
-    %li Connect your computer and the Leap Motion controller
-    %li Connect to the device via Gobot
+%section.how-to
+  = partial "documentation/platforms/partials/leap"
 
 %section.drivers#Drivers
   %h2 Drivers

@@ -34,7 +34,7 @@ class Platform
         if lines[i].include? "```\n"
           lines[i]=""
         else
-          lines[i] = "\t:::#{lines[i][3..-1]}"
+          lines[i] = "\s\s\s\s:::#{lines[i][3..-1]}"
         end
         n = 0
         i += 1
@@ -44,7 +44,7 @@ class Platform
             i = n+i
             break
           else
-              lines[n+i] = "\t#{lines[n+i]}"
+              lines[n+i] = "\s\s\s\s#{lines[n+i]}"
               n += 1
           end
         end
@@ -74,7 +74,7 @@ def clone_repo
   FileUtils.rm_rf(REPO_PATH) if File.directory?(REPO_PATH)
   puts " - Cloning repo. "
   repo = Git.clone REPO_URL, REPO_PATH
-  repo.checkout 'master'
+  repo.checkout 'readme-updates'
 end
 
 def extract_platforms

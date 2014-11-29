@@ -4,46 +4,46 @@
 
     This package provides the adaptor for microcontrollers such as Arduino that support the [Firmata](http://firmata.org/wiki/Main_Page) protocol
 
-    ## Getting Started
+    ## How to Install
 
-    	go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/firmata
+        go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/firmata
 
 
-    ## Example
+    ## How to Use
 
-    	:::go
-    	package main
-    	
-    	import (
-    		"time"
-    	
-    		"github.com/hybridgroup/gobot"
-    		"github.com/hybridgroup/gobot/platforms/firmata"
-    		"github.com/hybridgroup/gobot/platforms/gpio"
-    	)
-    	
-    	func main() {
-    		gbot := gobot.NewGobot()
-    	
-    		firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
-    		led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
-    	
-    		work := func() {
-    			gobot.Every(1*time.Second, func() {
-    				led.Toggle()
-    			})
-    		}
-    	
-    		robot := gobot.NewRobot("bot",
-    			[]gobot.Connection{firmataAdaptor},
-    			[]gobot.Device{led},
-    			work,
-    		)
-    	
-    		gbot.AddRobot(robot)
-    	
-    		gbot.Start()
-    	}
+        :::go
+        package main
+        
+        import (
+        	"time"
+        
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/firmata"
+        	"github.com/hybridgroup/gobot/platforms/gpio"
+        )
+        
+        func main() {
+        	gbot := gobot.NewGobot()
+        
+        	firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
+        	led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
+        
+        	work := func() {
+        		gobot.Every(1*time.Second, func() {
+        			led.Toggle()
+        		})
+        	}
+        
+        	robot := gobot.NewRobot("bot",
+        		[]gobot.Connection{firmataAdaptor},
+        		[]gobot.Device{led},
+        		work,
+        	)
+        
+        	gbot.AddRobot(robot)
+        
+        	gbot.Start()
+        }
 
     ## Hardware Support
     The following firmata devices have been tested and are currently supported:
