@@ -5,6 +5,8 @@ page_title: Platforms
 page_subtitle: Gobot has an extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_docs: Raspberry Pi
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot/tree/master/platforms/raspi' target='_blank' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot/issues' target='_blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/raspi#RaspiAdaptor' target='blank' class='api-link'>API Reference</a>
+page_title_show: true
 page_title_show: true
 layout: documentation
 subnav_platform: true
@@ -14,88 +16,8 @@ subnavjs: true
 
 %section.intro
   = image_tag "/images/devices/raspi.jpg", class: "display"
-  .info-intro
-    %p
-      The Raspberry Pi is an inexpensive and popular ARM based single board computer with digital & PWM GPIO, and i2c interfaces built in.
 
-    %p
-      The Raspberry Pi is a credit-card-sized single-board computer developed in the UK by the Raspberry Pi Foundation with the intention of promoting the teaching of basic computer science in schools
-
-    %p
-      For more info about the Raspberry Pi platform, click
-      = succeed "." do
-        = link_to "here", "http://www.raspberrypi.org/", target: :blank
-
-    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/raspi#RaspiAdaptor", :class => "api-link", :target => "_blank"} API Reference
-  .clear
-
-%section.how-to#HowToInstall
-  %h2 How To Install
-  %p First you must install the appropriate Go packages
-  :markdown
-        :::bash
-        go get -d -u github.com/hybridgroup/gobot/... && go install github.com/hybridgroup/gobot/platforms/raspi
-
-    #### Cross compiling for the Raspberry Pi
-    You must first configure your Go environment for linux cross compiling
-
-        :::bash
-        $ cd $GOROOT/src
-        $ GOOS=linux GOARCH=arm ./make.bash --no-clean
-
-    Then compile your Gobot program with
-
-        :::bash
-        $ GOARM=6 GOARCH=arm GOOS=linux examples/raspi_blink.go
-
-    Then you can simply upload your program over the network from your host computer to the Raspi
-
-        :::bash
-        $ scp raspi_blink pi@192.168.1.xxx:/home/pi/
-
-    and execute it on your Raspberry Pi with
-
-        :::bash
-        $ ./raspi_blink
-
-%section.how-to#HowToUse
-  %h2 How To Use
-  %p
-  :markdown
-
-        :::go
-        package main
-
-        import (
-                "time"
-
-                "github.com/hybridgroup/gobot"
-                "github.com/hybridgroup/gobot/platforms/gpio"
-                "github.com/hybridgroup/gobot/platforms/raspi"
-        )
-
-        func main() {
-                gbot := gobot.NewGobot()
-
-                r := raspi.NewRaspiAdaptor("raspi")
-                led := gpio.NewLedDriver(r, "led", "7")
-
-                work := func() {
-                        gobot.Every(1*time.Second, func() {
-                                led.Toggle()
-                        })
-                }
-
-                robot := gobot.NewRobot("blinkBot",
-                        []gobot.Connection{r},
-                        []gobot.Device{led},
-                        work,
-                )
-
-                gbot.AddRobot(robot)
-
-                gbot.Start()
-        }
+= partial "documentation/platforms/partials/raspi"
 
 %section.drivers#Drivers
   %h2 Drivers

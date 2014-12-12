@@ -5,6 +5,7 @@ page_title: Platforms
 page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_docs: Pebble
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot-pebble' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot-pebble/issues'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/pebble' target='blank' class='api-link'>API Reference</a>
 page_title_show: true
 layout: documentation
 active_menu_platforms: true
@@ -15,24 +16,9 @@ subnavjs: true
 
 %section.intro
   = image_tag "/images/devices/pebble.jpg", class: "display"
-  .info-intro
-    %p
-      This repository contains the Gobot adaptor for the 
-      = link_to "Pebble smart watch", "http://getpebble.com/", target: :blank
 
-      It uses the Pebble 2.0 SDK, and requires the 2.0 iOS or Android app, and that the 
-      = link_to "watchbot app", "ttps://github.com/hybridgroup/watchbot", target: :blank
-      has been installed on the Pebble watch.
+= partial "documentation/platforms/partials/pebble"
 
-    %p 
-      Information on how to set up your Pebble with gobot can be found 
-      = link_to "here.", "http://godoc.org/github.com/hybridgroup/gobot/platforms/pebble", target: :blank
-    %p
-      More docs coming soon..
-
-  .clear
-
-  
 %section.drivers
   %h2 Drivers
   %p

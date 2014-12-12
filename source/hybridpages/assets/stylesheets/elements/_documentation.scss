@@ -17,30 +17,27 @@
 
 .documentation {
 
-  .intro {
+  .info-intro {
 
-    .info-intro {
+    float: right;
+    width: 60%;
+    margin: 0;
 
-      float: right;
-      width: 60%;
-      margin: 0;
+    p:last-of-type {
+      line-height: 22px;
+    }
 
-      p:last-of-type {
-        line-height: 22px;
-      }
+    @include small-screen  {
 
-      @include small-screen  {
+      width: 100%;
+    }
 
-        width: 100%;
-      }
+    .api-link{
+      @extend .cta;
 
-      .api-link{
-        @extend .cta;
-
-        line-height: 31px;
-        display: block;
-        width: 100%;
-      }
+      line-height: 31px;
+      display: block;
+      width: 100%;
     }
   }
 
