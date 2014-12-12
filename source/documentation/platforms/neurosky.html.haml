@@ -5,6 +5,7 @@ page_title: Platforms
 page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_docs: Neurosky
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot-neurosky' target='_blank' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot-neurosky/issues' target='_blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/neurosky#NeuroskyAdaptor' target='blank' class='api-link'>API Reference</a>
 layout: documentation
 page_title_show: true
 subnav_platform: true
@@ -14,18 +15,8 @@ subnavjs: true
 
 %section.intro
   = image_tag "/images/devices/neurosky.jpg", class: "display"
-  .info-intro
-    %p NeuroSky delivers fully integrated, single chip EEG biosensors. NeuroSky enables its partners and developers to bring their brainwave application ideas to market with the shortest amount of time, and lowest end consumer price.
 
-    %p 
-      This package contains the Gobot adaptor and driver for the 
-      = link_to "Neurosky Mindwave Mobile EEG.", "http://store.neurosky.com/products/mindwave-mobile", tagert: :blank
-
-    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/neurosky#NeuroskyAdaptor", :class => "api-link", :target => "_blank"} API Reference
-  .clear
-
-%section.how-to
-  = partial "documentation/platforms/partials/neurosky"
+= partial "documentation/platforms/partials/neurosky"
 
 
 %section.drivers#Drivers

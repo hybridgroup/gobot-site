@@ -5,6 +5,7 @@ page_title: Platforms
 page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_docs: BeagleBone
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot-beaglebone' class='repository' target='_blank'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot-beaglebone/issues' target='_blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/beaglebone#BeagleboneAdaptor' target='blank' class='api-link'>API Reference</a>
 page_title_show: true
 layout: documentation
 subnav_platform: true
@@ -14,19 +15,8 @@ subnavjs: true
 
 %section.intro
   = image_tag "/images/devices/beaglebone.jpg", class: "display"
-  .info-intro
-    %p The BeagleBone is an ARM based single board computer, with many different GPIO interfaces built in.
 
-    %p
-      For more info about the BeagleBone platform click
-      = succeed "." do
-        = link_to "here", "http://beagleboard.org/Products/BeagleBone+Black", target: :blank
-
-    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/beaglebone#BeagleboneAdaptor", :class => "api-link", :target => "_blank"} API Reference
-  .clear
-
-%section.how-to
-  = partial "documentation/platforms/partials/beaglebone"
+= partial "documentation/platforms/partials/beaglebone"
 
 %section.drivers#Drivers
   %h2 Drivers

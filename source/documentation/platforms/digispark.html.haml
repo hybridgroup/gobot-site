@@ -5,6 +5,7 @@ page_title: Platforms
 page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_docs: Digispark
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot-digispark' target='_blank' class='repository'>Repository</a> <a class+'issues' target='_blank' href='https://github.com/hybridgroup/gobot-digispark/issues'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/digispark#DigisparkAdaptor' target='blank' class='api-link'>API Reference</a>
 page_title_show: true
 layout: documentation
 subnav_platform: true
@@ -14,25 +15,8 @@ subnavjs: true
 
 %section.intro
   = image_tag "/images/devices/digispark.jpg", class: "display"
-  .info-intro
-    %p
-      The Digispark is an Attiny85 based microcontroller development board similar to the Arduino line, only cheaper, smaller,
-      and a bit less powerful. With a whole host of shields to extend its functionality and the ability to
-      use the familiar Arduino IDE the Digispark is a great way to jump into electronics, or perfect for when
-      an Arduino is too big or too much.
 
-    %p
-      This package provides the Gobot adaptor for the
-      = link_to "Digispark", "http://digistump.com/category/1", target: :blank
-      ATTiny-based USB development board with the
-      = link_to "Little Wire ", "http://littlewire.cc/", target: :blank
-      protocol firmware installed.
-
-    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/digispark#DigisparkAdaptor", :class => "api-link", :target => "_blank"} API Reference
-  .clear
-
-%section.how-to
-  = partial "documentation/platforms/partials/digispark"
+= partial "documentation/platforms/partials/digispark"
 
 %section.drivers#Drivers
   %h2 Drivers

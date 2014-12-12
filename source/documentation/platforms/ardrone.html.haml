@@ -5,6 +5,7 @@ page_title: Platforms
 page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_docs: Ardrone
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot-ardrone' target='blanck' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot-ardrone/issues' target='blanck'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/ardrone#ArdroneAdaptor' target='blank' class='api-link'>API Reference</a>
 layout: documentation
 page_title_show: true
 subnav_platform: true
@@ -14,19 +15,8 @@ subnavjs: true
 
 %section.intro
   = image_tag "/images/devices/ardrone.jpg", class: "display"
-  .info-intro
-    %p The ARDrone from Parrot is an inexpensive quadcopter that is controlled using WiFi. It includes a built-in front-facing HD video camera, as well as a second lower resolution bottom facing video camera.
 
-    %p
-      For more info about the ARDrone platform click
-      = succeed "." do
-        = link_to "here", "http://ardrone2.parrot.com/", target: :blank
-
-    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/ardrone#ArdroneAdaptor", :class => "api-link", :target => "_blank"} API Reference  
-  .clear
-
-%section.how-to
-  = partial "documentation/platforms/partials/ardrone"
+= partial "documentation/platforms/partials/ardrone"
 
 
 %section.drivers#Drivers

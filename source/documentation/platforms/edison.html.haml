@@ -4,7 +4,8 @@ author: The Hybrid Group
 page_title: Platforms
 page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_docs: Intel Edison
-page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot' target='blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/gobot/issues' target='blanck'>Issues</a>"
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot' target='blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/gobot/issues' target='blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/intel-iot/edison#EdisonAdaptor' target='blank' class='api-link'>API Reference</a>
 layout: documentation
 page_title_show: true
 subnav_platform: true
@@ -14,20 +15,8 @@ subnavjs: true
 
 %section.intro
   = image_tag "/images/devices/edison.jpg", class: "display"
-  .info-intro
-    :markdown
-      The Intel Edison is a wifi and Bluetooth® enabled devolopment platform for the 
-      Internet of Things. It packs a robust set of features into its small size and supports 
-      a broad spectrum of I/O and software support.
 
-      For more info about the Edison platform click 
-      [here](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html).
-
-    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/intel-iot/edison#EdisonAdaptor", :class => "api-link", :target => "_blank"} API Reference
-  .clear
-
-%section.how-to
-  = partial "documentation/platforms/partials/edison"
+= partial "documentation/platforms/partials/edison"
 
 
 %section.drivers#Drivers

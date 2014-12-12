@@ -5,7 +5,6 @@ Bundler.setup
 
 require 'git'
 require 'fileutils'
-require 'nokogiri'
 
 REPO_URL = "https://github.com/hybridgroup/gobot.git"
 REPO_PATH = File.expand_path(__dir__ + "/../.gobot")
@@ -27,8 +26,22 @@ class Platform
       lines << line
     end
 
+    # separate readme introduction paragraph
     i = 0
     n = 0
+    intro = []
+    while i < lines.length
+      if lines[i].include? "##"
+        intro = intro[2..-1]
+        lines = lines[i-1..-1]
+        break
+      end
+      intro << lines[i]
+      i += 1
+    end
+
+    # convert markdown syntax for haml
+    i=0
     while i < lines.length
       if lines[i].include? "```"
         if lines[i].include? "```\n"
@@ -52,12 +65,17 @@ class Platform
       i += 1
     end
 
-
-    body = lines.join("")
     # indent by four spaces
-    body.gsub! /^(.+)/, '    \1'
+    intro = intro.join("").gsub! /^(.+)/, '    \1'
+    body = lines.join("").gsub! /^(.+)/, '    \1'
+
     page_content = <<-EOS
-.example
+.info-intro
+  :markdown
+#{intro}
+  = current_page.data.api_reference
+.clear
+%section.how-to
   :markdown
 #{body}
 EOS
@@ -74,7 +92,7 @@ def clone_repo
   FileUtils.rm_rf(REPO_PATH) if File.directory?(REPO_PATH)
   puts " - Cloning repo. "
   repo = Git.clone REPO_URL, REPO_PATH
-  repo.checkout 'readme-updates'
+  repo.checkout 'master'
 end
 
 def extract_platforms

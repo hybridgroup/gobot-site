@@ -5,6 +5,7 @@ page_title: Platforms
 page_subtitle: Gobot has an extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_docs: Mavlink
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot' target='blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/gobot/issues' target='blanck'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/mavlink#MavlinkAdaptor' target='blank' class='api-link'>API Reference</a>
 page_title_show: true
 layout: documentation
 subnav_platform: true
@@ -14,13 +15,8 @@ subnavjs: true
 
 %section.intro
   = image_tag "/images/devices/mavlink.jpg", class: "display"
-  .info-intro
-    :markdown
-      For information on Mavlink click here [here](http://godoc.org/github.com/hybridgroup/gobot/platforms/mavlink)
-  .clear
 
-%section.how-to
-  = partial "documentation/platforms/partials/mavlink"
+= partial "documentation/platforms/partials/mavlink"
 
 %section.drivers#Drivers
   %h2 Drivers

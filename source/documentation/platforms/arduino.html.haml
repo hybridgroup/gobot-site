@@ -5,6 +5,7 @@ page_title: Platforms
 page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_docs: Arduino
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot-firmata' target='_blank' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot-firmata/issues' target='_blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/firmata#FirmataAdaptor' target='blank' class='api-link'>API Reference</a>
 page_title_show: true
 layout: documentation
 subnav_platform: true
@@ -14,30 +15,9 @@ subnavjs: true
 
 %section.intro
   = image_tag "/images/devices/arduino.jpg", class: "display"
-  .info-intro
-    %p
-      Arduino is an open-source electronics prototyping platform based on flexible,
-      easy-to-use hardware and software. It's intended for artists, designers, hobbyists and
-      anyone interested in creating interactive objects or environments.
 
-    %p 
-      This package provides the adaptor for microcontrollers such as Arduino that support the 
-      = link_to "Firmata", "http://firmata.org/wiki/Main_Page" , target: :blank
-      protocol
+= partial "documentation/platforms/partials/firmata"
 
-    %p
-      For more info about the arduino platform click
-      = succeed "." do
-        = link_to "here", "http://arduino.cc/", target: :blank
-
-    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/firmata#FirmataAdaptor", :class => "api-link", :target => "_blank"} API Reference
-
-  .clear
-
-%section.how-to
-  = partial "documentation/platforms/partials/firmata"
-
- 
 %section.drivers#Drivers
   %h2 Drivers
   %p

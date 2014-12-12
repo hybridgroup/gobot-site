@@ -5,6 +5,7 @@ page_title: Platforms
 page_subtitle: Gobot has an extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_docs: MQTT
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot/tree/master/platforms/mqtt' target='_blank' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot/issues' target='_blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/mqtt#MqttAdaptor' target='blank' class='api-link'>API Reference</a>
 page_title_show: true
 layout: documentation
 subnav_platform: true
@@ -14,19 +15,8 @@ subnavjs: true
 
 %section.intro
   = image_tag "/images/devices/mqtt.jpg", class: "display"
-  .info-intro
-    %p
-      MQTT is an Internet of Things connectivity protocol featuring a lightweight publish/subscribe messaging transport. It is useful for it's small code footprint and minimal network bandwidth usage.
-    %p
-      For more info about the MQTT adaptor click
-      = succeed "." do
-        = link_to "here", "http://mqtt.org/", target: :blank
 
-    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/mqtt#MqttAdaptor", :class => "api-link", :target => "_blank"} API Reference
-  .clear
-
-%section.how-to
-  = partial "documentation/platforms/partials/mqtt"
+= partial "documentation/platforms/partials/mqtt"
 
 %section.drivers#Drivers
   %h2 Drivers
