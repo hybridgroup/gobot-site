@@ -19,7 +19,7 @@
     "MQTT": "/documentation/platforms/mqtt",
     "Neurosky Mindwave": "/documentation/platforms/neurosky",
     "OpenCV": "/documentation/platforms/opencv",
-    "Pebble": "/documentation/drivers/pebble",
+    "Pebble": "/documentation/platforms/pebble",
     "Raspberry Pi": "/documentation/platforms/raspi",
     "Spark": "/documentation/platforms/spark",
     "Sphero": "/documentation/platforms/sphero"
