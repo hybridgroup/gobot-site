@@ -97,7 +97,7 @@
                     <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                     <a href="/documentation/platforms/opencv">OpenCV</a>
-                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
                     <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
@@ -164,75 +164,75 @@
               </div>
               <section class="subnav-drivers" id="mainsubnav"><div class="container">
                   <h5>BeagleBone</h5>
-                  <nav><a href="#HowToInstall">How To Install</a>
-                    <a href="#HowToUse">How To Use</a>
-                    <a href="#HowToConnect">How To Connect</a>
+                  <nav><a href="#how-to-install">How To Install</a>
+                    <a href="#how-to-use">How To Use</a>
+                    <a href="#how-to-connect">How To Connect</a>
                     <a href="#Drivers">Drivers</a>
                     <a href="#top">Top</a>
                   </nav>
 </div>
-              </section><br><section class="intro"><img class="display" src="/images/devices/beaglebone.jpg"><div class="info-intro">
-                  <p>The BeagleBone is an ARM based single board computer, with many different GPIO interfaces built in.</p>
-                  <p>
-                    For more info about the BeagleBone platform click
-                    <a target="blank" href="http://beagleboard.org/Products/BeagleBone+Black">here</a>.
-                  </p>
-                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/beaglebone#BeagleboneAdaptor" target="_blank">API Reference</a>
-                </div>
-                <div class="clear"></div>
-              </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
-                <p>
-                  Installing Gobot for beaglebone is pretty easy.
-                </p>
-                <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/platforms/beaglebone
+              </section><br><section class="intro"><img class="display" src="/images/devices/beaglebone.jpg"></section><div class="info-intro">
+                <p>The BeagleBone is an ARM based single board computer, with many different GPIO interfaces built in.</p>
+                
+                <p>For more info about the BeagleBone platform click <a href="http://beagleboard.org/Products/BeagleBone+Black">here</a>.</p>
+                <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms/beaglebone#BeagleboneAdaptor" target="blank" class="api-link">API Reference</a>
+              </div>
+              <div class="clear"></div>
+              <section class="how-to"><h2 id="how-to-install">How to Install</h2>
+                <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/beaglebone
 </pre>
-                <h2>Cross compiling for the Beaglebone Black</h2>
+                
+                <h2 id="cross-compiling-for-the-beaglebone-black">Cross compiling for the Beaglebone Black</h2>
                 <p>You must first configure your Go environment for arm linux cross compiling</p>
+                
                 <pre class="CodeRay">$ cd $GOROOT/src
 $ GOOS=linux GOARCH=arm ./make.bash --no-clean
 </pre>
+                
                 <p>Then compile your Gobot program with</p>
+                
                 <pre class="CodeRay">$ GOARM=7 GOARCH=arm GOOS=linux go build examples/beaglebone_blink.go
 </pre>
+                
                 <p>If you are running the official Angstrom or Debian linux through the usb-&gt;ethernet connection, you can simply upload your program and execute it with</p>
+                
                 <pre class="CodeRay">$ scp beaglebone_blink root@192.168.7.2:/home/root/
 $ ssh -t root@192.168.7.2 "./beaglebone_blink"
 </pre>
-              </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                <p>
-                  This small program causes an LED to blink.
-                </p>
+                
+                <h2 id="how-to-use">How to Use</h2>
+                
                 <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-    <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/beaglebone</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/beaglebone</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
-    beagleboneAdaptor := beaglebone.NewBeagleboneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span>)
-    led := gpio.NewLedDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">P9_12</span><span class="delimiter">"</span></span>)
+        beagleboneAdaptor := beaglebone.NewBeagleboneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span>)
+        led := gpio.NewLedDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">P9_12</span><span class="delimiter">"</span></span>)
 
-    work := <span class="keyword">func</span>() {
-        gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
-            led.Toggle()
-        })
-    }
+        work := <span class="keyword">func</span>() {
+                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+                        led.Toggle()
+                })
+        }
 
-    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">blinkBot</span><span class="delimiter">"</span></span>,
-        []gobot.Connection{beagleboneAdaptor},
-        []gobot.Device{led},
-        work,
-    )
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">blinkBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{beagleboneAdaptor},
+                []gobot.Device{led},
+                work,
+        )
 
-    gbot.AddRobot(robot)
+        gbot.AddRobot(robot)
 
-    gbot.Start()
+        gbot.Start()
 }
 </pre>
               </section><section class="drivers" id="Drivers"><h2>Drivers</h2>

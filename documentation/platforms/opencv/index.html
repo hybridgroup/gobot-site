@@ -97,7 +97,7 @@
                     <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                     <a href="/documentation/platforms/opencv">OpenCV</a>
-                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
                     <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
@@ -164,73 +164,74 @@
               </div>
               <section class="subnav-drivers" id="mainsubnav"><div class="container">
                   <h5>OpenCV</h5>
-                  <nav><a href="#HowToInstall">How To Install</a>
-                    <a href="#HowToUse">How To Use</a>
-                    <a href="#HowToConnect">How To Connect</a>
+                  <nav><a href="#how-to-install">How To Install</a>
+                    <a href="#how-to-use">How To Use</a>
+                    <a href="#how-to-connect">How To Connect</a>
                     <a href="#Drivers">Drivers</a>
                     <a href="#top">Top</a>
                   </nav>
 </div>
-              </section><br><section class="intro"><img class="display" src="/images/devices/opencv.jpg"><div class="info-intro">
-                  <p>OpenCV is a real-time computer vision library.</p>
-                  <p>OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products. Being a BSD-licensed product, OpenCV makes it easy for businesses to utilize and modify the code.</p>
-                  <p>
-                    For more info about OpenCV click
-                    <a target="blank" href="http://opencv.org/">here</a>.
-                  </p>
-                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/opencv#pkg-index" target="_blank">API Reference</a>
-                </div>
-                <div class="clear"></div>
-              </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
+              </section><br><section class="intro"><img class="display" src="/images/devices/opencv.jpg"></section><div class="info-intro">
+                <p>OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products. Being a BSD-licensed product, OpenCV makes it easy for businesses to utilize and modify the code.</p>
+                
+                <p>For more info about OpenCV click <a href="http://opencv.org/">here</a></p>
+                <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms/opencv#pkg-index" target="blank" class="api-link">API Reference</a>
+              </div>
+              <div class="clear"></div>
+              <section class="how-to"><h2 id="how-to-install">How to Install</h2>
+                
                 <p>This package requires <code>opencv</code> to be installed on your system</p>
-                <h3>OSX</h3>
+                
+                <h3 id="osx">OSX</h3>
+                
                 <p>To install <code>opencv</code> on OSX using Homebrew:</p>
                 
-                <pre class="CodeRay">$ brew tap homebrew/science &amp;&amp; brew install opencv 
+                <pre class="CodeRay">$ brew tap homebrew/science &amp;&amp; brew install opencv
 </pre>
-                <h3>Ubuntu</h3>
-                <p>
-                  Follow the official
-                  <a taget="blank" href="http://docs.opencv.org/doc/tutorials/introduction/linux_install/linux_install.html">OpenCV installation guide</a>
-                </p>
-                <h3>Windows</h3>
-                <p>
-                  Follow the official
-                  <a taget="blank" href="http://docs.opencv.org/doc/tutorials/introduction/windows_install/windows_install.html#windows-installation">OpenCV installation guide</a>
-                </p>
-                <p>Now you can install the package with</p>
-                <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/gobot/platforms/opencv
-</pre>
-              </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
+                
+                <h3 id="ubuntu">Ubuntu</h3>
+                
+                <p>Follow the official <a href="http://docs.opencv.org/doc/tutorials/introduction/linux_install/linux_install.html">OpenCV installation guide</a></p>
+                
+                <h3 id="windows">Windows</h3>
+                
+                <p>Follow the official <a href="http://docs.opencv.org/doc/tutorials/introduction/windows_install/windows_install.html#windows-installation">OpenCV installation guide</a></p>
+                
+                <p>Now you can install the package with
+                    go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/gobot/platforms/opencv</p>
+                
+                <h2 id="how-to-use">How to Use</h2>
+                
                 <p>Example using the camera.</p>
+                
                 <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-    cv <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/go-opencv/opencv</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/opencv</span><span class="delimiter">"</span></span>
+        cv <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/go-opencv/opencv</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/opencv</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
-    window := opencv.NewWindowDriver(<span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span>)
-    camera := opencv.NewCameraDriver(<span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>, <span class="integer">0</span>)
+        window := opencv.NewWindowDriver(<span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span>)
+        camera := opencv.NewCameraDriver(<span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>, <span class="integer">0</span>)
 
-    work := <span class="keyword">func</span>() {
-        gobot.On(camera.Event(<span class="string"><span class="delimiter">"</span><span class="content">frame</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            window.ShowImage(data.(*cv.IplImage))
-        })
-    }
+        work := <span class="keyword">func</span>() {
+                gobot.On(camera.Event(<span class="string"><span class="delimiter">"</span><span class="content">frame</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        window.ShowImage(data.(*cv.IplImage))
+                })
+        }
 
-    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">cameraBot</span><span class="delimiter">"</span></span>,
-        []gobot.Device{window, camera},
-        work,
-    )
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">cameraBot</span><span class="delimiter">"</span></span>,
+                []gobot.Device{window, camera},
+                work,
+        )
 
-    gbot.AddRobot(robot)
+        gbot.AddRobot(robot)
 
-    gbot.Start()
+        gbot.Start()
 }
 </pre>
               </section>

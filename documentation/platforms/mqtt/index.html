@@ -97,7 +97,7 @@
                     <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                     <a href="/documentation/platforms/opencv">OpenCV</a>
-                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
                     <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
@@ -164,29 +164,29 @@
               </div>
               <section class="subnav-drivers" id="mainsubnav"><div class="container">
                   <h5>MQTT</h5>
-                  <nav><a href="#HowToInstall">How To Install</a>
-                    <a href="#HowToUse">How To Use</a>
-                    <a href="#HowToConnect">How To Connect</a>
+                  <nav><a href="#how-to-install">How To Install</a>
+                    <a href="#how-to-use">How To Use</a>
+                    <a href="#how-to-connect">How To Connect</a>
                     <a href="#Drivers">Drivers</a>
                     <a href="#top">Top</a>
                   </nav>
 </div>
-              </section><br><section class="intro"><img class="display" src="/images/devices/mqtt.jpg"><div class="info-intro">
-                  <p>
-                    MQTT is an Internet of Things connectivity protocol featuring a lightweight publish/subscribe messaging transport. It is useful for it's small code footprint and minimal network bandwidth usage.
-                  </p>
-                  <p>
-                    For more info about the MQTT adaptor click
-                    <a target="blank" href="http://mqtt.org/">here</a>.
-                  </p>
-                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/mqtt#MqttAdaptor" target="_blank">API Reference</a>
-                </div>
-                <div class="clear"></div>
-              </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
-                <p>First you must install the appropriate Go packages</p>
+              </section><br><section class="intro"><img class="display" src="/images/devices/mqtt.jpg"></section><div class="info-intro">
+                <p>MQTT is an Internet of Things connectivity protocol featuring a lightweight publish/subscribe messaging transport. It is useful for it's small code footprint and minimal network bandwidth usage.</p>
+                
+                <p>For more info about the MQTT machine to machine message broker click <a href="http://mqtt.org/">here</a>.</p>
+                <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms/mqtt#MqttAdaptor" target="blank" class="api-link">API Reference</a>
+              </div>
+              <div class="clear"></div>
+              <section class="how-to"><h2 id="how-to-install">How to Install</h2>
+                
+                <p>Install running:</p>
+                
                 <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/gobot/platforms/mqtt
 </pre>
-              </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
+                
+                <h2 id="how-to-use">How to Use</h2>
+                
                 <p>Before running the example, make sure you have an MQTT message broker running somewhere you can connect to</p>
                 
                 <pre class="CodeRay"><span class="keyword">package</span> main
@@ -229,11 +229,32 @@
   gbot.Start()
 }
 </pre>
-              </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
-                <p>Before using mqtt, you'll need to have a MQTT broker running in order to connect/publish/subscribe to messages.</p>
                 
-                <p>A good, simple broker is <a href="https://github.com/mcollina/mosca">mosca</a>.
-                The developers have a <a href="https://github.com/mcollina/mosca/wiki/Mosca-as-a-standalone-service.">tutorial on using Mosca as a standalone service</a>.</p>
+                <h2 id="supported-features">Supported Features</h2>
+                
+                <ul>
+<li>Publish messages</li>
+                  <li>Respond to incoming message events</li>
+                </ul>
+<h2 id="contributing">Contributing</h2>
+                
+                <ul>
+<li>All patches must be provided under the Apache 2.0 License</li>
+                  <li>Please use the -s option in git to "sign off" that the commit is your work and you are providing it under the Apache 2.0 License</li>
+                  <li>Submit a Github Pull Request to the appropriate branch and ideally discuss the changes with us in IRC.</li>
+                  <li>We will look at the patch, test it out, and give you feedback.</li>
+                  <li>Avoid doing minor whitespace changes, renamings, etc. along with merged content. These will be done by the maintainers from time to time but they can complicate merges and should be done seperately.</li>
+                  <li>Take care to maintain the existing coding style.</li>
+                  <li>Add unit tests for any new or changed functionality</li>
+                  <li>All pull requests should be "fast forward"</li>
+                  <li>If there are commits after yours use “git rebase -i <new_head_branch>”</new_head_branch>
+</li>
+                  <li>If you have local changes you may need to use “git stash”</li>
+                  <li>For git help see <a href="http://git-scm.com/book">progit</a> which is an awesome (and free) book on git</li>
+                </ul>
+<h2 id="license">License</h2>
+                
+                <p>Copyright (c) 2013-2014 The Hybrid Group. Licensed under the Apache 2.0 license.</p>
               </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
                 <p>The MQTT does not have any drivers.</p>
               </section>

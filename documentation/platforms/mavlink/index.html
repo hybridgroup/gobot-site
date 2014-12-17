@@ -97,7 +97,7 @@
                     <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                     <a href="/documentation/platforms/opencv">OpenCV</a>
-                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
                     <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
@@ -164,19 +164,84 @@
               </div>
               <section class="subnav-drivers" id="mainsubnav"><div class="container">
                   <h5>Mavlink</h5>
-                  <nav><a href="#HowToInstall">How To Install</a>
-                    <a href="#HowToUse">How To Use</a>
-                    <a href="#HowToConnect">How To Connect</a>
+                  <nav><a href="#how-to-install">How To Install</a>
+                    <a href="#how-to-use">How To Use</a>
+                    <a href="#how-to-connect">How To Connect</a>
                     <a href="#Drivers">Drivers</a>
                     <a href="#top">Top</a>
                   </nav>
 </div>
-              </section><br><section class="intro"><img class="display" src="/images/devices/mavlink.jpg"><div class="info-intro">
-                  <p>For information on Mavlink click here <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms/mavlink">here</a></p>
-                  
-                  <p>More docs coming soon..</p>
-                </div>
-                <div class="clear"></div>
+              </section><br><section class="intro"><img class="display" src="/images/devices/mavlink.jpg"></section><div class="info-intro">
+                <p>For information on the MAVlink communication protocol click <a href="http://qgroundcontrol.org/mavlink/start">here</a>.</p>
+                <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms/mavlink#MavlinkAdaptor" target="blank" class="api-link">API Reference</a>
+              </div>
+              <div class="clear"></div>
+              <section class="how-to"><h2 id="how-to-install">How to Install</h2>
+                
+                <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/gobot/platforms/mavlink
+</pre>
+                
+                <h2 id="how-to-use">How to Use</h2>
+                
+                <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/mavlink</span><span class="delimiter">"</span></span>
+        common <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/mavlink/common</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        gbot := gobot.NewGobot()
+
+        adaptor := mavlink.NewMavlinkAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">iris</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+        iris := mavlink.NewMavlinkDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">iris</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                gobot.Once(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">packet</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        packet := data.(*common.MAVLinkPacket)
+
+                        dataStream := common.NewRequestDataStream(<span class="integer">100</span>,
+                                packet.SystemID,
+                                packet.ComponentID,
+                                <span class="integer">4</span>,
+                                <span class="integer">1</span>,
+                        )
+                        iris.SendPacket(common.CraftMAVLinkPacket(packet.SystemID,
+                                packet.ComponentID,
+                                dataStream,
+                        ))
+                })
+
+                gobot.On(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        <span class="keyword">if</span> data.(common.MAVLinkMessage).Id() == <span class="integer">30</span> {
+                                message := data.(*common.Attitude)
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Attitude</span><span class="delimiter">"</span></span>)
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">TIME_BOOT_MS</span><span class="delimiter">"</span></span>, message.TIME_BOOT_MS)
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">ROLL</span><span class="delimiter">"</span></span>, message.ROLL)
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">PITCH</span><span class="delimiter">"</span></span>, message.PITCH)
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">YAW</span><span class="delimiter">"</span></span>, message.YAW)
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">ROLLSPEED</span><span class="delimiter">"</span></span>, message.ROLLSPEED)
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">PITCHSPEED</span><span class="delimiter">"</span></span>, message.PITCHSPEED)
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">YAWSPEED</span><span class="delimiter">"</span></span>, message.YAWSPEED)
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>)
+                        }
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">mavBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{adaptor},
+                []gobot.Device{iris},
+                work,
+        )
+
+        gbot.AddRobot(robot)
+
+        gbot.Start()
+}
+</pre>
               </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
                 <div class="hardware">
                   <div class="devices">

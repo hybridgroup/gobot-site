@@ -97,7 +97,7 @@
                     <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                     <a href="/documentation/platforms/opencv">OpenCV</a>
-                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
                     <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
@@ -178,8 +178,8 @@
                 <span class="keyword">return</span> params[<span class="string"><span class="delimiter">"</span><span class="content">a</span><span class="delimiter">"</span></span>]
         })
 
-        loopback := gobot.NewLoopbackAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>)
-        ping := gobot.NewPingDriver(loopback, <span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span>)
+        loopback := NewLoopbackAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/null</span><span class="delimiter">"</span></span>)
+        ping := NewPingDriver(loopback, <span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">1</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
                 gobot.Every(<span class="integer">5</span>*time.Second, <span class="keyword">func</span>() {
@@ -198,6 +198,64 @@
 
         gbot.AddRobot(r)
         gbot.Start()
+}
+
+<span class="keyword">var</span> _ gobot.Adaptor = (*loopbackAdaptor)(<span class="predefined-constant">nil</span>)
+
+<span class="keyword">type</span> loopbackAdaptor <span class="keyword">struct</span> {
+        name <span class="predefined-type">string</span>
+        port <span class="predefined-type">string</span>
+}
+
+<span class="keyword">func</span> (t *loopbackAdaptor) Finalize() (errs []<span class="predefined-type">error</span>) { <span class="keyword">return</span> }
+<span class="keyword">func</span> (t *loopbackAdaptor) Connect() (errs []<span class="predefined-type">error</span>)  { <span class="keyword">return</span> }
+<span class="keyword">func</span> (t *loopbackAdaptor) Name() <span class="predefined-type">string</span>             { <span class="keyword">return</span> t.name }
+<span class="keyword">func</span> (t *loopbackAdaptor) Port() <span class="predefined-type">string</span>             { <span class="keyword">return</span> t.port }
+
+<span class="keyword">func</span> NewLoopbackAdaptor(name, port <span class="predefined-type">string</span>) *loopbackAdaptor {
+        <span class="keyword">return</span> &amp;loopbackAdaptor{
+                name: name,
+                port: port,
+        }
+}
+
+<span class="keyword">var</span> _ gobot.Driver = (*pingDriver)(<span class="predefined-constant">nil</span>)
+
+<span class="keyword">type</span> pingDriver <span class="keyword">struct</span> {
+        name       <span class="predefined-type">string</span>
+        pin        <span class="predefined-type">string</span>
+        connection gobot.Connection
+        gobot.Eventer
+        gobot.Commander
+}
+
+<span class="keyword">func</span> (t *pingDriver) Start() (errs []<span class="predefined-type">error</span>)        { <span class="keyword">return</span> }
+<span class="keyword">func</span> (t *pingDriver) Halt() (errs []<span class="predefined-type">error</span>)         { <span class="keyword">return</span> }
+<span class="keyword">func</span> (t *pingDriver) Name() <span class="predefined-type">string</span>                 { <span class="keyword">return</span> t.name }
+<span class="keyword">func</span> (t *pingDriver) Pin() <span class="predefined-type">string</span>                  { <span class="keyword">return</span> t.pin }
+<span class="keyword">func</span> (t *pingDriver) Connection() gobot.Connection { <span class="keyword">return</span> t.connection }
+
+<span class="keyword">func</span> NewPingDriver(adaptor *loopbackAdaptor, name <span class="predefined-type">string</span>, pin <span class="predefined-type">string</span>) *pingDriver {
+        t := &amp;pingDriver{
+                name:       name,
+                connection: adaptor,
+                pin:        pin,
+                Eventer:    gobot.NewEventer(),
+                Commander:  gobot.NewCommander(),
+        }
+
+        t.AddEvent(<span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span>)
+
+        t.AddCommand(<span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(params <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="keyword">interface</span>{}) <span class="keyword">interface</span>{} {
+                <span class="keyword">return</span> t.Ping()
+        })
+
+        <span class="keyword">return</span> t
+}
+
+<span class="keyword">func</span> (t *pingDriver) Ping() <span class="predefined-type">string</span> {
+        gobot.Publish(t.Event(<span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span>), <span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span>)
+        <span class="keyword">return</span> <span class="string"><span class="delimiter">"</span><span class="content">pong</span><span class="delimiter">"</span></span>
 }
 </pre>
               </div>

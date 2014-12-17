@@ -97,7 +97,7 @@
                     <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                     <a href="/documentation/platforms/opencv">OpenCV</a>
-                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
                     <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
@@ -164,30 +164,105 @@
               </div>
               <section class="subnav-drivers" id="mainsubnav"><div class="container">
                   <h5>Pebble</h5>
-                  <nav><a href="#HowToInstall">How To Install</a>
-                    <a href="#HowToUse">How To Use</a>
-                    <a href="#HowToConnect">How To Connect</a>
+                  <nav><a href="#how-to-install">How To Install</a>
+                    <a href="#how-to-use">How To Use</a>
+                    <a href="#how-to-connect">How To Connect</a>
                     <a href="#Drivers">Drivers</a>
                     <a href="#top">Top</a>
                   </nav>
 </div>
-              </section><br><section class="intro"><img class="display" src="/images/devices/pebble.jpg"><div class="info-intro">
-                  <p>
-                    This repository contains the Gobot adaptor for the
-                    <a target="blank" href="http://getpebble.com/">Pebble smart watch</a>
-                    It uses the Pebble 2.0 SDK, and requires the 2.0 iOS or Android app, and that the
-                    <a target="blank" href="ttps://github.com/hybridgroup/watchbot">watchbot app</a>
-                    has been installed on the Pebble watch.
-                  </p>
-                  <p>
-                    Information on how to set up your Pebble with gobot can be found
-                    <a target="blank" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/pebble">here.</a>
-                  </p>
-                  <p>
-                    More docs coming soon..
-                  </p>
-                </div>
-                <div class="clear"></div>
+              </section><br><section class="intro"><img class="display" src="/images/devices/pebble.jpg"></section><div class="info-intro">
+                <p>This repository contains the Gobot adaptor for <a href="http://getpebble.com/">Pebble smart watch</a>.</p>
+                
+                <p>It uses the Pebble 2.0 SDK, and requires the 2.0 iOS or Android app, and that the <a href="https://github.com/hybridgroup/watchbot">"watchbot" app</a> has been installed on the Pebble watch.</p>
+                <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms/pebble" target="blank" class="api-link">API Reference</a>
+              </div>
+              <div class="clear"></div>
+              <section class="how-to"><h2 id="how-to-install">How to Install</h2>
+                
+                <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/gobot/platforms/pebble
+</pre>
+                
+                <ul>
+<li>Install Pebble 2.0 iOS or Android app. (If you haven't already)</li>
+                  <li>Follow README to install and configure "watchbot" on your watch: https://github.com/hybridgroup/watchbot</li>
+                </ul>
+<h2 id="how-to-use">How to Use</h2>
+                
+                <p>Before running the example, make sure configuration settings match with your program. In the example, api host is your computer IP, robot name is 'pebble' and robot api port is 8080</p>
+                
+                <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/api</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/pebble</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        gbot := gobot.NewGobot()
+        api.NewAPI(gbot).Start()
+
+        pebbleAdaptor := pebble.NewPebbleAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>)
+        pebbleDriver := pebble.NewPebbleDriver(pebbleAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                pebbleDriver.SendNotification(<span class="string"><span class="delimiter">"</span><span class="content">Hello Pebble!</span><span class="delimiter">"</span></span>)
+                gobot.On(pebbleDriver.Event(<span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Button pushed: </span><span class="delimiter">"</span></span> + data.(<span class="predefined-type">string</span>))
+                })
+
+                gobot.On(pebbleDriver.Event(<span class="string"><span class="delimiter">"</span><span class="content">tap</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Tap event detected</span><span class="delimiter">"</span></span>)
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{pebbleAdaptor},
+                []gobot.Device{pebbleDriver},
+                work,
+        )
+
+        gbot.AddRobot(robot)
+
+        gbot.Start()
+}
+</pre>
+                
+                <h2 id="supported-features">Supported Features</h2>
+                
+                <ul>
+<li>We support event detection of 3 main pebble buttons.</li>
+                  <li>Accelerometer events</li>
+                  <li>Pushing data to pebble watch</li>
+                </ul>
+<h2 id="documentation">Documentation</h2>
+                
+                <p>We're busy adding documentation to our web site at http://gobot.io/ please check there as we continue to work on Gobot</p>
+                
+                <p>Thank you!</p>
+                
+                <h2 id="contributing">Contributing</h2>
+                
+                <ul>
+<li>All patches must be provided under the Apache 2.0 License</li>
+                  <li>Please use the -s option in git to "sign off" that the commit is your work and you are providing it under the Apache 2.0 License</li>
+                  <li>Submit a Github Pull Request to the appropriate branch and ideally discuss the changes with us in IRC.</li>
+                  <li>We will look at the patch, test it out, and give you feedback.</li>
+                  <li>Avoid doing minor whitespace changes, renamings, etc. along with merged content. These will be done by the maintainers from time to time but they can complicate merges and should be done seperately.</li>
+                  <li>Take care to maintain the existing coding style.</li>
+                  <li>Add unit tests for any new or changed functionality</li>
+                  <li>All pull requests should be "fast forward"</li>
+                  <li>If there are commits after yours use “git rebase -i <new_head_branch>”</new_head_branch>
+</li>
+                  <li>If you have local changes you may need to use “git stash”</li>
+                  <li>For git help see <a href="http://git-scm.com/book">progit</a> which is an awesome (and free) book on git</li>
+                </ul>
+<h2 id="license">License</h2>
+                
+                <p>Copyright (c) 2013-2014 The Hybrid Group. Licensed under the Apache 2.0 license.</p>
               </section><section class="drivers"><h2>Drivers</h2>
                 <p>
                   There is only one driver for the Pebble platform, as listed below.

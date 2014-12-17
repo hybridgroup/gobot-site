@@ -97,7 +97,7 @@
                     <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                     <a href="/documentation/platforms/opencv">OpenCV</a>
-                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
                     <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
@@ -181,7 +181,8 @@
                         g := <span class="predefined-type">byte</span>(gobot.Rand(<span class="integer">255</span>))
                         b := <span class="predefined-type">byte</span>(gobot.Rand(<span class="integer">255</span>))
                         blinkm.Rgb(r, g, b)
-                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">color</span><span class="delimiter">"</span></span>, blinkm.Color())
+                        color, _ := blinkm.Color()
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">color</span><span class="delimiter">"</span></span>, color)
                 })
         }
 

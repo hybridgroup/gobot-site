@@ -97,7 +97,7 @@
                     <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                     <a href="/documentation/platforms/opencv">OpenCV</a>
-                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
                     <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
@@ -164,89 +164,88 @@
               </div>
               <section class="subnav-drivers" id="mainsubnav"><div class="container">
                   <h5>Sphero</h5>
-                  <nav><a href="#HowToInstall">How To Install</a>
-                    <a href="#HowToUse">How To Use</a>
-                    <a href="#HowToConnect">How To Connect</a>
+                  <nav><a href="#how-to-install">How To Install</a>
+                    <a href="#how-to-use">How To Use</a>
+                    <a href="#how-to-connect">How To Connect</a>
                     <a href="#Drivers">Drivers</a>
                     <a href="#top">Top</a>
                   </nav>
 </div>
-              </section><br><section class="intro"><img class="display" src="/images/devices/sphero.jpg"><div class="info-intro">
-                  <h4>What is Sphero?</h4>
-                  <p>
-                    Sphero is a sophisticated and programmable robot housed in a polycarbonate sphere shell.
-                  </p>
-                  <p>
-                    The gobot-sphero adaptor makes it easy to interact with Sphero using Go, once you have your Sphero setup and connected to your computer
-                    you can start writing code to make Sphero move, change direction, speed and colors, or detect Sphero events and execute some
-                    code when they occur.
-                  </p>
-                  <h4>Where can I get a Sphero or find more info about it?</h4>
-                  <p>
-                    You can do it by following
-                    <a target="_blank" href="http://www.gosphero.com/">this link.</a>
-                  </p>
-                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/sphero#SpheroAdaptor" target="_blank">API Reference</a>
-                </div>
-                <div class="clear"></div>
-              </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
-                <p>
-                  Installing Gobot with sphero support is pretty easy.
-                </p>
-                <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/platforms/sphero
+              </section><br><section class="intro"><img class="display" src="/images/devices/sphero.jpg"></section><div class="info-intro">
+                <p>Sphero is a sophisticated and programmable robot housed in a polycarbonate sphere shell.</p>
+                
+                <p>The gobot-sphero adaptor makes it easy to interact with Sphero using Go, once you have your Sphero setup and connected to your computer you can start writing code to make Sphero move, change direction, speed and colors, or detect Sphero events and execute some code when they occur.</p>
+                
+                <p>Learn more about the Sphero robot from Orbotix <a href="http://www.gosphero.com/">here</a>.</p>
+                <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms/sphero#SpheroAdaptor" target="blank" class="api-link">API Reference</a>
+              </div>
+              <div class="clear"></div>
+              <section class="how-to"><h2 id="how-to-install">How to Install</h2>
+                <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/gobot/platforms/sphero
 </pre>
-              </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
+                
+                <h2 id="how-to-connect">How To Connect</h2>
+                
+                <h3 id="osx">OSX</h3>
+                
+                <p>In order to allow Gobot running on your Mac to access the Sphero, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p>
+                
+                <p>Now you must pair with the Sphero. Open System Preferences &gt; Bluetooth. Now with the Bluetooth devices windows open,  smack the Sphero until it starts flashing three colors. You should see "Sphero-XXX" pop up as available devices where "XXX" is the first letter of the three colors the sphero is flashing. Pair with that device. Once paired your Sphero will be accessable through the serial device similarly named as <code>/dev/tty.Sphero-XXX-RN-SPP</code></p>
+                
+                <h3 id="ubuntu">Ubuntu</h3>
+                
+                <p>Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line using <a href="https://github.com/hybridgroup/gort">Gort</a> CLI commands. Here are the steps.</p>
+                
+                <p>Find the address of the Sphero, by using:
+                    gort scan bluetooth</p>
+                
+                <p>Pair to Sphero using this command (substituting the actual address of your Sphero):
+                    gort bluetooth pair &lt;address&gt;</p>
+                
+                <p>Connect to the Sphero using this command (substituting the actual address of your Sphero):
+                    gort bluetooth connect &lt;address&gt;</p>
+                
+                <h3 id="windows">Windows</h3>
+                
+                <p>You should be able to pair your Sphero using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as <code>COM3</code>.</p>
+                
+                <h2 id="how-to-use">How to Use</h2>
+                
                 <p>Example of a simple program that makes the Sphero roll.</p>
+                
                 <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-    <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
-    adaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>)
-    driver := sphero.NewSpheroDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
+        adaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>)
+        driver := sphero.NewSpheroDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
 
-    work := <span class="keyword">func</span>() {
-        gobot.Every(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
-            driver.Roll(<span class="integer">30</span>, <span class="predefined-type">uint16</span>(gobot.Rand(<span class="integer">360</span>)))
-        })
-    }
+        work := <span class="keyword">func</span>() {
+                gobot.Every(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
+                        driver.Roll(<span class="integer">30</span>, <span class="predefined-type">uint16</span>(gobot.Rand(<span class="integer">360</span>)))
+                })
+        }
 
-    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>,
-        []gobot.Connection{adaptor},
-        []gobot.Device{driver},
-        work,
-    )
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{adaptor},
+                []gobot.Device{driver},
+                work,
+        )
 
-    gbot.AddRobot(robot)
+        gbot.AddRobot(robot)
 
-    gbot.Start()
+        gbot.Start()
 }
 </pre>
-              </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
-                <h3>OSX</h3>
-                <p>In order to allow Gobot running on your Mac to access the Sphero, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p>
-                <p>Now you must pair with the Sphero. Open System Preferences &gt; Bluetooth. Now with the Bluetooth devices windows open, smack the Sphero until it starts flashing three colors. You should see "Sphero-XXX" pop up as available devices where "XXX" is the first letter of the three colors the sphero is flashing. Pair with that device. Once paired your Sphero will be accessable through the serial device similarly named as <code>/dev/tty.Sphero-XXX-RN-SPP</code></p>
-                <h3>Ubuntu</h3>
-                <p>Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line using Gort CLI commands. Here are the steps.</p>
-                <p>Find the address of the Sphero, by using:</p>
-                <pre class="CodeRay">gort scan bluetooth
-</pre>
-                <p>Pair to Sphero using this command (substituting the actual address of your Sphero):</p>
-                <pre class="CodeRay">gort bluetooth pair &lt;address&gt;
-</pre>
-                <p>Connect to the Sphero using this command (substituting the actual address of your Sphero):</p>
-                <pre class="CodeRay">gort bluetooth connect &lt;address&gt;
-</pre>
-                <h3>Windows</h3>
-                <p>You should be able to pair your Sphero using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as <code>COM3.</code></p>
               </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
                 <p>
                   There is only one driver for the Sphero.

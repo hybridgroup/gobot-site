@@ -97,7 +97,7 @@
                     <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                     <a href="/documentation/platforms/opencv">OpenCV</a>
-                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
                     <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
@@ -164,64 +164,60 @@
               </div>
               <section class="subnav-drivers" id="mainsubnav"><div class="container">
                   <h5>Spark</h5>
-                  <nav><a href="#HowToInstall">How To Install</a>
-                    <a href="#HowToUse">How To Use</a>
-                    <a href="#HowToConnect">How To Connect</a>
+                  <nav><a href="#how-to-install">How To Install</a>
+                    <a href="#how-to-use">How To Use</a>
+                    <a href="#how-to-connect">How To Connect</a>
                     <a href="#Drivers">Drivers</a>
                     <a href="#top">Top</a>
                   </nav>
 </div>
-              </section><br><section class="intro"><img class="display" src="/images/devices/spark.jpg"><div class="info-intro">
-                  <p>The Spark Core contains a Wi-Fi connected microcontroller. Once it connects to a Wi-Fi network, it automatically connects with a central server (the "Spark Cloud") and stays connected so it can be controlled from external systems, such as a Gobot program.</p>
-                  <p>
-                    <b>
-                      To run gobot programs please make sure you are running default tinker firmware on the Spark Core.
-                    </b>
-                  </p>
-                  <p>
-                    For more info about the Spark platform go to
-                    <a target="blank" href="https://www.spark.io/">https://www.spark.io/</a>.
-                  </p>
-                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/spark#SparkCoreAdaptor" target="_blank">API Reference</a>
-                </div>
-                <div class="clear"></div>
-              </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
+              </section><br><section class="intro"><img class="display" src="/images/devices/spark.jpg"></section><div class="info-intro">
+                <p>The Spark Core contains a Wi-Fi connected microcontroller. Once it connects to a Wi-Fi network, it automatically connects with a central server (the "Spark Cloud") and stays connected so it can be controlled from external systems, such as a Gobot program. To run gobot programs please make sure you are running default tinker firmware on the Spark Core.</p>
+                
+                <p>For more info about the Spark platform click <a href="https://www.spark.io/">here</a></p>
+                <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms/spark#SparkCoreAdaptor" target="blank" class="api-link">API Reference</a>
+              </div>
+              <div class="clear"></div>
+              <section class="how-to"><h2 id="how-to-install">How to Install</h2>
+                
                 <p>Installing Gobot with Spark support is pretty easy.</p>
-                <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/platforms/spark
+                
+                <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/gobot/platforms/spark
 </pre>
-              </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                <p>This small program lets you turn on or off a LED for every 2 sec.</p>
+                
+                <h2 id="how-to-use">How to Use</h2>
+                
                 <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-    <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/spark</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/spark</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
-    sparkCore := spark.NewSparkCoreAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">spark</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">device_id</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">access_token</span><span class="delimiter">"</span></span>)
-    led := gpio.NewLedDriver(sparkCore, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">D7</span><span class="delimiter">"</span></span>)
+        sparkCore := spark.NewSparkCoreAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">spark</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">device_id</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">access_token</span><span class="delimiter">"</span></span>)
+        led := gpio.NewLedDriver(sparkCore, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">D7</span><span class="delimiter">"</span></span>)
 
-    work := <span class="keyword">func</span>() {
-        gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
-            led.Toggle()
-        })
-    }
+        work := <span class="keyword">func</span>() {
+                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+                        led.Toggle()
+                })
+        }
 
-    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">spark</span><span class="delimiter">"</span></span>,
-        []gobot.Connection{sparkCore},
-        []gobot.Device{led},
-        work,
-    )
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">spark</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{sparkCore},
+                []gobot.Device{led},
+                work,
+        )
 
-    gbot.AddRobot(robot)
+        gbot.AddRobot(robot)
 
-    gbot.Start()
+        gbot.Start()
 }
 </pre>
               </section><section class="drivers" id="Drivers"><h2>Drivers</h2>

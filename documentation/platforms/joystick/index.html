@@ -97,7 +97,7 @@
                     <a href="/documentation/platforms/mqtt">MQTT</a>
                     <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                     <a href="/documentation/platforms/opencv">OpenCV</a>
-                    <a href="/documentation/drivers/pebble">Pebble</a>
+                    <a href="/documentation/platforms/pebble">Pebble</a>
                     <a href="/documentation/platforms/raspi">Raspberry Pi</a>
                     <a href="/documentation/platforms/spark">Spark</a>
                     <a href="/documentation/platforms/sphero">Sphero</a>
@@ -164,188 +164,201 @@
               </div>
               <section class="subnav-drivers" id="mainsubnav"><div class="container">
                   <h5>Joysticks</h5>
-                  <nav><a href="#HowToInstall">How To Install</a>
-                    <a href="#HowToUse">How To Use</a>
-                    <a href="#HowToConnect">How To Connect</a>
+                  <nav><a href="#how-to-install">How To Install</a>
+                    <a href="#how-to-use">How To Use</a>
+                    <a href="#how-to-connect">How To Connect</a>
                     <a href="#Drivers">Drivers</a>
                     <a href="#top">Top</a>
                   </nav>
 </div>
-              </section><br><section class="intro"><img class="display" src="/images/devices/joystick.jpg"><div class="info-intro">
-                  <p>
-                    You can use Gobot with a Dualshock3 game controller, an XBox360 game controller, or any other USB joystick or game controller that is compatible with
-                    <a taget="blank" href="http://www.libsdl.org/">Simple DirectMedia Layer (SDL).</a>
-                  </p>
-                  <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/joystick#JoystickAdaptor" target="_blank">API Reference</a>
-                </div>
-                <div class="clear"></div>
-              </section><section class="how-to" id="HowToInstall"><h2>How to install</h2>
+              </section><br><section class="intro"><img class="display" src="/images/devices/joystick.jpg"></section><div class="info-intro">
+                <p>You can use Gobot with a Dualshock3 game controller, an XBox360 game controller, or any other USB joystick or game controller that is compatible with <a href="http://www.libsdl.org/">Simple DirectMedia Layer</a>.</p>
+                <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms/joystick#JoystickAdaptor" target="blank" class="api-link">API Reference</a>
+              </div>
+              <div class="clear"></div>
+              <section class="how-to"><h2 id="how-to-install">How to Install</h2>
+                
                 <p>This package requires <code>sdl2</code> to be installed on your system</p>
-                <h3>OSX</h3>
+                
+                <h3 id="osx">OSX</h3>
+                
                 <p>To install <code>sdl2</code> on OSX using Homebrew:</p>
                 
                 <pre class="CodeRay">$ brew install sdl2
 </pre>
-                <h3>Ubuntu</h3>
+                
+                <h3 id="ubuntu">Ubuntu</h3>
+                
                 <pre class="CodeRay">$ sudo apt-get install libsdl2-2.0-0
 </pre>
+                
                 <p>Now you can install the package with</p>
-                <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/platforms/joystick
+                
+                <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/gobot/platforms/joystick
 </pre>
-              </section><section class="how-to" id="HowToUse"><h2>How to use</h2>
-                <p>Controller configurations are stored in JSON format. Here's an example configuration file for the Dualshock 3 controller.</p>
+                
+                <h2 id="how-to-use">How to Use</h2>
+                
+                <p>Controller configurations are stored in JSON format. Here's an example configuration file for the Dualshock 3 controller</p>
+                
                 <pre class="CodeRay">{
-  "name": "Sony PLAYSTATION(R)3 Controller",
-  "guid": "030000004c0500006802000011010000",
-  "axis": [
-      {
-          "name": "left_x",
-          "id": 0
-      },
-      {
-          "name": "left_y",
-          "id": 1
-      },
-      {
-          "name": "right_x",
-          "id": 2
-      },
-      {
-          "name": "right_y",
-          "id": 3
-      }
-  ],
-  "buttons": [
-      {
-          "name": "square",
-          "id": 15
-      },
-      {
-          "name": "triangle",
-          "id": 12
-      },
-      {
-          "name": "circle",
-          "id": 13
-      },
-      {
-          "name": "x",
-          "id": 14
-      },
-      {
-          "name": "up",
-          "id": 4
-      },
-      {
-          "name": "down",
-          "id": 6
-      },
-      {
-          "name": "left",
-          "id": 7
-      },
-      {
-          "name": "right",
-          "id": 5
-      },
-      {
-          "name": "left_stick",
-          "id": 1
-      },
-      {
-          "name": "right_stick",
-          "id": 2
-      },
-      {
-          "name": "l1",
-          "id": 10
-      },
-      {
-          "name": "l2",
-          "id": 8
-      },
-      {
-          "name": "r1",
-          "id": 11
-      },
-      {
-          "name": "r2",
-          "id": 9
-      },
-      {
-          "name": "start",
-          "id": 3
-      },
-      {
-          "name": "select",
-          "id": 0
-      },
-      {
-          "name": "home",
-          "id": 16
-      }
-  ]   }
+    <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">Sony PLAYSTATION(R)3 Controller</span><span class="delimiter">"</span></span>,
+    <span class="key"><span class="delimiter">"</span><span class="content">guid</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">030000004c0500006802000011010000</span><span class="delimiter">"</span></span>,
+    <span class="key"><span class="delimiter">"</span><span class="content">axis</span><span class="delimiter">"</span></span>: [
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">0</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">1</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">2</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">3</span>
+        }
+    ],
+    <span class="key"><span class="delimiter">"</span><span class="content">buttons</span><span class="delimiter">"</span></span>: [
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">square</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">15</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">triangle</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">12</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">circle</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">13</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">14</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">up</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">4</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">down</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">6</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">left</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">7</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">right</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">5</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">left_stick</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">1</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">right_stick</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">2</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">l1</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">10</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">l2</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">8</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">r1</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">11</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">r2</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">9</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">start</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">3</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">select</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">0</span>
+        },
+        {
+            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">home</span><span class="delimiter">"</span></span>,
+            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">16</span>
+        }
+    ]
+}
 </pre>
-                <h3>Example</h3>
-                <p>This small program receives joystick and button press events from an XBox360 game controller.</p>
+                
+                <h2 id="how-to-connect">How to Connect</h2>
+                
+                <p>Plug your USB joystick or game controller into your USB port. If your device is supported by SDL, you are now ready.</p>
+                
+                <h2 id="examples">Examples</h2>
+                
+                <p>This small program receives joystick and button press events from an PlayStation 3 game controller.</p>
+                
                 <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-    <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
 
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/joystick</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/joystick</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
+        gbot := gobot.NewGobot()
 
-    joystickAdaptor := joystick.NewJoystickAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>)
-    joystick := joystick.NewJoystickDriver(joystickAdaptor,
-        <span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>,
-        <span class="string"><span class="delimiter">"</span><span class="content">./platforms/joystick/configs/dualshock3.json</span><span class="delimiter">"</span></span>,
-    )
+        joystickAdaptor := joystick.NewJoystickAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>)
+        joystick := joystick.NewJoystickDriver(joystickAdaptor,
+                <span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>,
+                <span class="string"><span class="delimiter">"</span><span class="content">./platforms/joystick/configs/dualshock3.json</span><span class="delimiter">"</span></span>,
+        )
 
-    work := <span class="keyword">func</span>() {
-        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>)
-        })
-        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">square_release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">square_release</span><span class="delimiter">"</span></span>)
-        })
-        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>)
-        })
-        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">triangle_release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">triangle_release</span><span class="delimiter">"</span></span>)
-        })
-        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>, data)
-        })
-        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>, data)
-        })
-        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>, data)
-        })
-        gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>, data)
-        })
-    }
+        work := <span class="keyword">func</span>() {
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>)
+                })
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">square_release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">square_release</span><span class="delimiter">"</span></span>)
+                })
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>)
+                })
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">triangle_release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">triangle_release</span><span class="delimiter">"</span></span>)
+                })
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>, data)
+                })
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>, data)
+                })
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>, data)
+                })
+                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>, data)
+                })
+        }
 
-    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">joystickBot</span><span class="delimiter">"</span></span>,
-        []gobot.Connection{joystickAdaptor},
-        []gobot.Device{joystick},
-        work,
-    )
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">joystickBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{joystickAdaptor},
+                []gobot.Device{joystick},
+                work,
+        )
 
-    gbot.AddRobot(robot)
+        gbot.AddRobot(robot)
 
-    gbot.Start()
+        gbot.Start()
 }
 </pre>
-              </section><section class="how-to" id="HowToConnect"><h2>How to Connect</h2>
-                <p>Plug your USB joystick or game controller into your USB port. If your device is supported by SDL, you are now ready.</p>
               </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
                 <p>
                   There are 2 driver for different joysticks, as listed below:
