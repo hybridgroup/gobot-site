@@ -41,16 +41,16 @@ html {
   padding-bottom: 40px;
   @include outer-container;
 
-  .videos {
+  .resources {
+    @include row();
+    h3 {
+      font-size: 16px;
+    }
 
     .video {
 
       @include span-columns(6);
       margin: .5%;
-
-      h3 {
-        font-size: 16px;
-      }
 
       iframe, object {
 
@@ -72,6 +72,28 @@ html {
         iframe, object {
 
           height: 240px;
+        }
+      }
+    }
+
+    .video-description{
+      font:600 16px/22px open sans;
+      height: 42px;
+    }
+
+    .external-link {
+      color:  $title-color;
+
+      &:hover{
+        color: $link-hover-color;
+      }
+
+      span{
+        text-decoration: underline;
+        color: darken($cta-color, 10);
+
+        &:hover{
+          color:  $link-hover-color;
         }
       }
     }
