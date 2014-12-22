@@ -1649,87 +1649,115 @@ html {
   /* line 23, /home/nathan/.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
   .main:after {
     clear: both; }
-  /* line 46, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-  .main .videos .video {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 48.82117%;
-    margin: .5%; }
-    /* line 40, /home/nathan/.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
-    .main .videos .video:last-child {
-      margin-right: 0; }
-    /* line 51, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-    .main .videos .video h3 {
+  /* line 44, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+  .main .resources {
+    *zoom: 1;
+    display: block; }
+    /* line 18, /home/nathan/.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+    .main .resources:before, .main .resources:after {
+      content: " ";
+      display: table; }
+    /* line 23, /home/nathan/.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+    .main .resources:after {
+      clear: both; }
+    /* line 46, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+    .main .resources h3 {
       font-size: 16px; }
-    /* line 55, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-    .main .videos .video iframe, .main .videos .video object {
-      width: 100%;
-      height: 300px; }
-    @media only screen and (min-width: 767px) and (max-width: 960px) {
-      /* line 63, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-      .main .videos .video iframe, .main .videos .video object {
-        height: 240px; } }
-    @media only screen and (max-width: 767px) {
-      /* line 46, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-      .main .videos .video {
-        float: left;
-        display: block;
-        margin-right: 2.35765%;
-        width: 100%; }
-        /* line 40, /home/nathan/.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
-        .main .videos .video:last-child {
-          margin-right: 0; }
-        /* line 72, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-        .main .videos .video iframe, .main .videos .video object {
+    /* line 50, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+    .main .resources .video {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 48.82117%;
+      margin: .5%; }
+      /* line 40, /home/nathan/.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+      .main .resources .video:last-child {
+        margin-right: 0; }
+      /* line 55, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+      .main .resources .video iframe, .main .resources .video object {
+        width: 100%;
+        height: 300px; }
+      @media only screen and (min-width: 767px) and (max-width: 960px) {
+        /* line 63, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+        .main .resources .video iframe, .main .resources .video object {
           height: 240px; } }
-  /* line 79, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-  .main .videos span {
-    text-decoration: underline;
-    color: #580a25; }
+      @media only screen and (max-width: 767px) {
+        /* line 50, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+        .main .resources .video {
+          float: left;
+          display: block;
+          margin-right: 2.35765%;
+          width: 100%; }
+          /* line 40, /home/nathan/.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+          .main .resources .video:last-child {
+            margin-right: 0; }
+          /* line 72, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+          .main .resources .video iframe, .main .resources .video object {
+            height: 240px; } }
+    /* line 79, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+    .main .resources .video-description {
+      font: 600 16px/22px open sans;
+      height: 42px; }
     /* line 84, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-    .main .videos span:hover {
+    .main .resources .external-link {
       color: #3e3e3e; }
-  /* line 89, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-  .main .videos .video-index {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 82.94039%; }
-    /* line 40, /home/nathan/.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
-    .main .videos .video-index:last-child {
-      margin-right: 0; }
-    /* line 93, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-    .main .videos .video-index iframe, .main .videos .video-index object {
-      width: 100%;
-      height: 400px; }
-    @media only screen and (min-width: 767px) and (max-width: 960px) {
-      /* line 101, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-      .main .videos .video-index iframe, .main .videos .video-index object {
-        height: 300px; } }
-    @media only screen and (max-width: 767px) {
-      /* line 109, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-      .main .videos .video-index iframe, .main .videos .video-index object {
-        height: 180px; } }
-  /* line 116, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
-  .main .videos:last-child {
-    padding-bottom: 40px; }
-  /* line 122, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+      /* line 87, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+      .main .resources .external-link:hover {
+        color: #580a25; }
+      /* line 91, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+      .main .resources .external-link span {
+        text-decoration: underline;
+        color: #5f9039; }
+        /* line 95, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+        .main .resources .external-link span:hover {
+          color: #580a25; }
+    /* line 101, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+    .main .resources span {
+      text-decoration: underline;
+      color: #580a25; }
+      /* line 106, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+      .main .resources span:hover {
+        color: #3e3e3e; }
+    /* line 111, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+    .main .resources .video-index {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 82.94039%; }
+      /* line 40, /home/nathan/.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
+      .main .resources .video-index:last-child {
+        margin-right: 0; }
+      /* line 115, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+      .main .resources .video-index iframe, .main .resources .video-index object {
+        width: 100%;
+        height: 400px; }
+      @media only screen and (min-width: 767px) and (max-width: 960px) {
+        /* line 123, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+        .main .resources .video-index iframe, .main .resources .video-index object {
+          height: 300px; } }
+      @media only screen and (max-width: 767px) {
+        /* line 131, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+        .main .resources .video-index iframe, .main .resources .video-index object {
+          height: 180px; } }
+    /* line 138, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+    .main .resources:last-child {
+      padding-bottom: 40px; }
+  /* line 144, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main.full {
     width: 100%;
     clear: both; }
-  /* line 128, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+  /* line 150, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main h1, .main h2 {
     color: #3e3e3e; }
-  /* line 133, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+  /* line 155, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main h1 {
     font-size: 28pt;
     padding: 10px 0; }
     @media only screen and (max-width: 767px) {
-      /* line 133, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+      /* line 155, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
       .main h1 {
         padding-top: 30px; } }
-  /* line 143, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+  /* line 165, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main .aside.right {
     float: left;
     display: block;
@@ -1740,12 +1768,12 @@ html {
     /* line 40, /home/nathan/.rvm/gems/ruby-2.0.0-p247@gobot.io/gems/neat-1.5.0/app/assets/stylesheets/grid/_span-columns.scss */
     .main .aside.right:last-child {
       margin-right: 0; }
-    /* line 149, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+    /* line 171, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
     .main .aside.right img {
       width: 100%;
       margin-top: 20px;
       margin-left: 20px; }
-  /* line 159, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
+  /* line 181, /home/nathan/Documents/Github/gobot-site/source/stylesheets/../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main section.content .index-content {
     float: left;
     display: block;
