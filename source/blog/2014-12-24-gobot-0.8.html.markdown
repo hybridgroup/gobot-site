@@ -1,13 +1,15 @@
 ---
 page_title_show: true
-title: Gobot 0.8 is out! 
+title: Gobot 0.8 - The Happy Holiday Release
 page_title: Blog
 date: 2014-12-24
 tags: releases
 author: Adrian Zankich
 ---
 
-This release brings a number of very large and necessary changes to Gobot. Over time our interfaces have grown out of hand and are becoming unmanagable and largely unecessary, with Gobot 0.8 we have completely changed the core interfaces as well as our gpio and i2c driver interfaces. In addition to this, we are finally correctly passing errors throughout the system and have removed all panics! Altough this is very exciting, this also means that there are many breaking api changes, especially if you have written your own drivers and adaptors.
+This release brings a number of very large and necessary changes to Gobot. Over time our interfaces have grown out of hand and are becoming unmanagable and largely unecessary. With the Gobot 0.8 release, we have completely changed the core interfaces as well as our gpio and i2c driver interfaces. 
+
+In addition to this, we are finally correctly passing errors throughout the system and have removed all panics! Altough this is very exciting, this also means that there are many breaking api changes, especially if you have written your own drivers and adaptors.
 
 If you're not ready to update to the new interfaces or errors handling, then you're in luck! We create a tag with every new Gobot release, so rolling back to the previous release is as easy as:
 
@@ -42,7 +44,7 @@ This release includes a number of breaking api changes!
 
 ## Contributors  
 
-A special thanks to everyone who made this release possible. 
+A special thanks to everyone who made this release possible. You've been very nice!
 
 ## Documentation
 
@@ -50,7 +52,7 @@ We are now generating our platforms pages directly from our README files for eas
 
 ## Issues
 
-If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a [GitHub issue](https://github.com/hybridgroup/gobot/issues) and we'll get back to you as soon as possible.
+If you find any issues with Gobot, please let us know. We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a [GitHub issue](https://github.com/hybridgroup/gobot/issues) and we'll get back to you as soon as possible.
 
 ## Stay In Touch
 
