@@ -74,6 +74,99 @@
               <header class="header"><div class="date">
                   <div class="blue">
                     <div class="month">
+                      Dec
+                    </div>
+                    <div class="day">
+                      24
+                    </div>
+                  </div>
+                  <div class="red">
+                    <div class="year">
+                      2014
+                    </div>
+                  </div>
+                </div>
+                <div class="data">
+                  <h3>
+                    <a href="/blog/2014/12/24/gobot-0.8/">Gobot 0.8 - The Happy Holiday Release</a>
+                  </h3>
+                  <div class="author">
+                    by Adrian Zankich
+                  </div>
+                </div>
+              </header><p>This release brings a number of very large and necessary changes to Gobot. Over time our interfaces have grown out of hand and are becoming unmanagable and largely unecessary. With the Gobot 0.8 release, we have completely changed the core interfaces as well as our gpio and i2c driver interfaces. </p>
+              
+              <p>In addition to this, we are finally correctly passing errors throughout the system and have removed all panics! Altough this is very exciting, this also means that there are many breaking api changes, especially if you have written your own drivers and adaptors.</p>
+              
+              <p>If you're not ready to update to the new interfaces or errors handling, then you're in luck! We create a tag with every new Gobot release, so rolling back to the previous release is as easy as:</p>
+              
+              <p><code>$ go get -d -u github.com/hybridgroup/gobot/...</code><br><code>$ cd $GOPATH/src/github.com/hybridgroup/gobot</code><br><code>$ git checkout 0.7.1</code><br><code>$ go build -a github.com/hybridgroup/gobot</code>  </p>
+              
+              <p>You really should update to the latest release however, it's much better!</p>
+              
+              <p>Here's a overview of the changes, but if you want to see more check out the compare view on <a href="https://github.com/hybridgroup/gobot/compare/0.7.1...0.8">GitHub</a>.</p>
+              
+              <h2 id="changelog">Changelog</h2>
+              
+              <p>This release includes a number of breaking api changes!</p>
+              
+              <ul>
+<li><strong>Refactor core, gpio, and i2c interfaces</strong></li>
+                <li><strong>Correctly pass errors throughout packages and remove all panics</strong></li>
+                <li><strong>Numerous bug fixes and performance improvement</strong></li>
+                <li>
+<strong>api</strong>
+                  <ul>
+<li>Update robeaux to v0.3.0</li>
+                  </ul>
+</li>
+                <li>
+<strong>firmata</strong>
+                  <ul>
+<li>Add optional io.ReadWriteCloser parameter to FirmataAdaptor</li>
+                    <li>Fix <strong>thread exhaustion</strong> error</li>
+                  </ul>
+</li>
+                <li>
+<strong>cli</strong> 
+                  <ul>
+<li>
+<strong>generator</strong>
+                      <ul>
+<li>Update generator for new adaptor and driver interfaces</li>
+                        <li>Add driver, adaptor and project generators</li>
+                        <li>Add optional package name parameter</li>
+                      </ul>
+</li>
+                  </ul>
+</li>
+              </ul>
+<h2 id="contributors">Contributors</h2>
+              
+              <p>A special thanks to everyone who made this release possible. You've been very nice!</p>
+              
+              <h2 id="documentation">Documentation</h2>
+              
+              <p>We are now generating our platforms pages directly from our README files for easier editing and collaboration, thanks <a href="https://github.com/zankavrogin">zankavrogin</a>! You can find the latest documentation on the <a href="http://gobot.io/documentation/">docs page</a>.</p>
+              
+              <h2 id="issues">Issues</h2>
+              
+              <p>If you find any issues with Gobot, please let us know. We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a <a href="https://github.com/hybridgroup/gobot/issues">GitHub issue</a> and we'll get back to you as soon as possible.</p>
+              
+              <h2 id="stay-in-touch">Stay In Touch</h2>
+              
+              <p>Please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a> for the latest updates, as we continue to work on this amazing platform.</p>
+              <div class="tags">
+                <div class="img">
+                  <img src="/images/elements/tag.png">
+</div>
+                <a href="/blog/tags/releases/">releases</a>
+              </div>
+            </div>
+            <div class="article">
+              <header class="header"><div class="date">
+                  <div class="blue">
+                    <div class="month">
                       Nov
                     </div>
                     <div class="day">
@@ -846,7 +939,8 @@ $ GOOS=linux GOARCH=386 ./make.bash --no-clean
           <div class="titles">
             <h4>Posts</h4>
             <ul>
-<li><a href="/blog/2014/11/11/gobot-0.7/">Gobot 0.7 - The Big Release</a></li>
+<li><a href="/blog/2014/12/24/gobot-0.8/">Gobot 0.8 - The Happy Holiday Release</a></li>
+              <li><a href="/blog/2014/11/11/gobot-0.7/">Gobot 0.7 - The Big Release</a></li>
               <li><a href="/blog/2014/09/24/run-golang-on-the-intel-edison-with-gobot/">Run Golang On The Intel Edison With Gobot</a></li>
               <li><a href="/blog/2014/08/08/flying-iris-at-distill-2014/">Flying Iris At Distill 2014</a></li>
               <li><a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a></li>

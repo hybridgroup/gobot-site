@@ -7,7 +7,7 @@
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta name="description">
 <meta content="Adrian Zankich" name="author">
-<title>Gobot 0.7 - The Big Release</title>
+<title>Gobot 0.8 - The Happy Holiday Release</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/javascripts/vendor/angular.min.js"></script><script src="/javascripts/app.js"></script>
 <script type="text/javascript">
@@ -73,10 +73,10 @@
             <header class="header"><div class="date">
                 <div class="blue">
                   <div class="month">
-                    Nov
+                    Dec
                   </div>
                   <div class="day">
-                    11
+                    24
                   </div>
                 </div>
                 <div class="red">
@@ -87,92 +87,70 @@
               </div>
               <div class="data">
                 <h3>
-                  <a href="/blog/2014/11/11/gobot-0.7/">Gobot 0.7 - The Big Release</a>
+                  <a href="/blog/2014/12/24/gobot-0.8/">Gobot 0.8 - The Happy Holiday Release</a>
                 </h3>
                 <div class="author">
                   by Adrian Zankich
                 </div>
               </div>
-            </header><p>We've been quietly (and not so quietly) working these last couple of months, and we've just released Gobot 0.7! This is a very big release, that adds a lot of new capabilities, adds a lot of test coverage, refactors code, and adds support for a whole bunch of new hardware platforms too.</p>
+            </header><p>This release brings a number of very large and necessary changes to Gobot. Over time our interfaces have grown out of hand and are becoming unmanagable and largely unecessary. With the Gobot 0.8 release, we have completely changed the core interfaces as well as our gpio and i2c driver interfaces. </p>
             
-            <p>Here's a overview of the changes, but if you want to see more check out the compare view on <a href="https://github.com/hybridgroup/gobot/compare/0.6.3...0.7">GitHub</a>.</p>
+            <p>In addition to this, we are finally correctly passing errors throughout the system and have removed all panics! Altough this is very exciting, this also means that there are many breaking api changes, especially if you have written your own drivers and adaptors.</p>
+            
+            <p>If you're not ready to update to the new interfaces or errors handling, then you're in luck! We create a tag with every new Gobot release, so rolling back to the previous release is as easy as:</p>
+            
+            <p><code>$ go get -d -u github.com/hybridgroup/gobot/...</code><br><code>$ cd $GOPATH/src/github.com/hybridgroup/gobot</code><br><code>$ git checkout 0.7.1</code><br><code>$ go build -a github.com/hybridgroup/gobot</code>  </p>
+            
+            <p>You really should update to the latest release however, it's much better!</p>
+            
+            <p>Here's a overview of the changes, but if you want to see more check out the compare view on <a href="https://github.com/hybridgroup/gobot/compare/0.7.1...0.8">GitHub</a>.</p>
             
             <h2 id="changelog">Changelog</h2>
             
+            <p>This release includes a number of breaking api changes!</p>
+            
             <ul>
-<li><strong>Dramatically increased test coverage and documentation</strong></li>
+<li><strong>Refactor core, gpio, and i2c interfaces</strong></li>
+              <li><strong>Correctly pass errors throughout packages and remove all panics</strong></li>
+              <li><strong>Numerous bug fixes and performance improvement</strong></li>
               <li>
 <strong>api</strong>
                 <ul>
-<li>Conform to the <a href="https://github.com/hybridgroup/cppp-io">cppp.io</a> spec</li>
-                  <li>Add support for basic middleware</li>
-                  <li>Add support for custom routes</li>
-                  <li>Add SSE support</li>
+<li>Update robeaux to v0.3.0</li>
                 </ul>
 </li>
               <li>
-<strong>ardrone</strong>
+<strong>firmata</strong>
                 <ul>
-<li>Add optional parameter to specify the drones network address</li>
+<li>Add optional io.ReadWriteCloser parameter to FirmataAdaptor</li>
+                  <li>Fix <strong>thread exhaustion</strong> error</li>
                 </ul>
 </li>
               <li>
-<strong>core</strong>
+<strong>cli</strong> 
                 <ul>
-<li>Add <strong>Once</strong> Event function</li>
-                  <li>Rename <strong>Expect</strong> to <strong>Assert</strong> and add <strong>Refute</strong> test helper function</li>
-                </ul>
+<li>
+<strong>generator</strong>
+                    <ul>
+<li>Update generator for new adaptor and driver interfaces</li>
+                      <li>Add driver, adaptor and project generators</li>
+                      <li>Add optional package name parameter</li>
+                    </ul>
 </li>
-              <li>
-<strong>i2c</strong>
-                <ul>
-<li>Add support for MPL115A2</li>
-                  <li>Add support for MPU6050</li>
-                </ul>
-</li>
-              <li>
-<strong>mavlink</strong>
-                <ul>
-<li>Add support for <strong>common</strong> mavlink messages</li>
-                </ul>
-</li>
-              <li>
-<strong>mqtt</strong>
-                <ul>
-<li>Add support for mqtt</li>
-                </ul>
-</li>
-              <li>
-<strong>raspi</strong>
-                <ul>
-<li>Add support for the Raspberry Pi</li>
-                </ul>
-</li>
-              <li>
-<strong>sphero</strong>
-                <ul>
-<li>Enable stop on sphero disconnect</li>
-                  <li>Add <strong>Collision</strong> data struct  </li>
-                </ul>
-</li>
-              <li>
-<strong>sysfs</strong>
-                <ul>
-<li>Add generic linux filesystem gpio implementation</li>
                 </ul>
 </li>
             </ul>
 <h2 id="contributors">Contributors</h2>
             
-            <p>A very special thanks to <a href="https://github.com/strongh">strongh</a>, <a href="https://github.com/tangsoft">tangsoft</a>, <a href="https://github.com/derailed">derailed</a>, <a href="https://github.com/trevrosen">trevrosen</a>, <a href="https://github.com/nathany">nathany</a>, <a href="https://github.com/nzmichaelh">zmichaelh</a>, and everyone else who made this release possible. </p>
+            <p>A special thanks to everyone who made this release possible. You've been very nice!</p>
             
             <h2 id="documentation">Documentation</h2>
             
-            <p>We are now generating proper godoc docs from our code. In addition, we're constantly updating the Gobot docs site with additional info to keep them up-to-date. You can find the latest info on the <a href="http://gobot.io/documentation/">docs page</a>.</p>
+            <p>We are now generating our platforms pages directly from our README files for easier editing and collaboration, thanks <a href="https://github.com/zankavrogin">zankavrogin</a>! You can find the latest documentation on the <a href="http://gobot.io/documentation/">docs page</a>.</p>
             
             <h2 id="issues">Issues</h2>
             
-            <p>If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a <a href="https://github.com/hybridgroup/gobot/issues">GitHub issue</a> and we'll get back to you as soon as possible.</p>
+            <p>If you find any issues with Gobot, please let us know. We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a <a href="https://github.com/hybridgroup/gobot/issues">GitHub issue</a> and we'll get back to you as soon as possible.</p>
             
             <h2 id="stay-in-touch">Stay In Touch</h2>
             
