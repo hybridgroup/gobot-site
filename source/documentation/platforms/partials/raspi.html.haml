@@ -11,6 +11,17 @@
 .clear
 %section.how-to
   :markdown
+  
+    ## Installing Go
+    
+    The version of Go supplied by default with Raspian Wheezy is too old to compile gobot. You should install go as follows:
+    
+        wget -O - http://dave.cheney.net/paste/go1.4.linux-arm~multiarch-armv6-1.tar.gz|sudo tar -xzC /usr/local -f -
+
+        echo '# Setup for golang' |sudo tee /etc/profile.d/golang.sh
+        echo 'PATH=$PATH:/usr/local/go/bin'|sudo tee -a /etc/profile.d/golang.sh
+
+        source /etc/profile.d/golang.sh
 
     ## How to Install
 
