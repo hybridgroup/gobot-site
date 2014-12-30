@@ -4,24 +4,12 @@ This is the code for the website for Gobot (http://gobot.io) a framework for rob
 
 If you are looking for the actual Gobot code itself, it is at https://github.com/hybridgroup/gobot
 
-This site is build using [Middleman](http://middlemanapp.com/basics/getting-started/)  
+This site is build using [Middleman](http://middlemanapp.com/basics/getting-started/)
 
-To run locally:  
+To run locally:
 
       bundle install
       bundle exec middleman
-
-### Deploy
-
-[middleman-gh-pages](https://github.com/neo/middleman-gh-pages) gem is being used to build the webpage and deploy to gh-pages branch.  
-
-For deploying the webpage, your must be in 'master' branch and run the following command:
-
-      rake publish
-
-You must not have any uncomitted or untracked files in the site dirs, or the publish operation will fail with a message such as `Directory not clean`.
-
-If the publish fails, you might need to remove the `build` dir before trying to run `rake publish` again.
 
 ### Documentation
 
@@ -39,7 +27,7 @@ If you want to help us with the documentation of the site, you can follow this s
 		  git checkout "new_name"
 
   or
-  
+
       git checkout -b "new_name"
 
 - 3) Open the project with your favourite text editor.
@@ -48,7 +36,14 @@ If you want to help us with the documentation of the site, you can follow this s
 
 #### Platforms
 
-To import platforms from the main Gobot repository, run the `bin/import-platforms` script. You'll need to have Git installed.
+All of the page content is generated from the platform's github repo. To add new documentation to any platform, edit the readme in the respective [Gobot module's repository](https://github.com/hybridgroup/gobot/tree/master/platforms).
+
+In order for the readme to be properly extracted, the content being pushed to the site must:
+
+- include a `## How to Install` section following the platform introduction
+- have a new line after each code block
+
+To import platforms from the main Gobot repository, run the `bin/import_platforms` script. You'll need to have Git installed.
 
 This script will:
 
@@ -56,13 +51,6 @@ This script will:
 - extract all platform readmes
 - convert github markdown syntax to be haml compatible
 - save the platform documentation to `source/documentation/platforms/partials`
-
-In order for the readme to be properly extracted, it must:
-
-- begin with `## How to Install` and include a `## Documentation` section following the platform information
-- have a new line after each code block
-
-To add new information to any platform, edit the platform readme in the respective Gobot module's repository.
 
 #### Drivers
 
@@ -108,3 +96,15 @@ bin/import_repo_docs https://github.com/hybridgroup/gobot-gpio.git
 ### Send your Pull Request
 
 When you have your code ready, create a new PR : `base: master` and `compare:"your_branch"`
+
+### Deploy
+
+[middleman-gh-pages](https://github.com/neo/middleman-gh-pages) gem is being used to build the webpage and deploy to gh-pages branch.
+
+For deploying the webpage, your must be in 'master' branch and run the following command:
+
+      rake publish
+
+You must not have any uncomitted or untracked files in the site dirs, or the publish operation will fail with a message such as `Directory not clean`.
+
+If the publish fails, you might need to remove the `build` dir before trying to run `rake publish` again.
