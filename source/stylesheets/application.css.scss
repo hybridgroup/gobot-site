@@ -1,0 +1,97 @@
+// Sassy and Neat.
+@import "bourbon";
+@import "neat";
+@import "vendor/normalize";
+
+
+// Configuration
+// --------------------------------------------------
+$grid-columns                          : 12;
+$max-width                             : 966px;
+
+
+// Devices
+// --------------------------------------------------
+$design-edge                          : new-breakpoint(max-width 966px 4);
+$tablet                               : new-breakpoint(max-width 768px 4);
+$mobile-large                         : new-breakpoint(max-width 640px 4);
+$mobile                               : new-breakpoint(max-width 480px 4);
+$mobile-small                         : new-breakpoint(max-width 320px 4);
+
+
+// Color Palette
+// --------------------------------------------------
+$color-white                          : #fafaf1;
+$color-off-white                      : #f3f1eb;
+$color-blue                           : #86D7E0;
+$color-light-blue                     : #ebfdff;
+$color-light-green                    : #89cd54;
+$color-green                          : #77b547;
+$color-medium-green                   : #83C74E;
+$color-dark-green                     : darken($color-green, 10);
+$color-grey                           : #514b47;
+$color-light-grey                     : #e8e8e8;
+$color-lightest-grey                  : #eeeaec;
+$color-dark-grey                      : #3F3A36;
+$color-medium-grey                    : #504338;
+$color-medium-light-grey              : #CECECE;
+$color-dark-purple                    : #523d47;
+
+
+// Panels
+// --------------------------------------------------
+$color-panel-header                   : $color-grey;
+$color-panel-footer                   : #e6d6d6;
+$color-panel-body                     : $color-off-white ;
+$color-panel-catcher                  : #FDFCF5;
+$color-panel-sidebar                  : $color-green;
+$color-panel-documentation-box        : #6ba340;
+$color-panel-documentation-box-header : #5f9039;
+
+
+// Text
+// --------------------------------------------------
+$font-primary                         : Open Sans, Helvetica,Arial,sans-serif ;
+$font-secondary                       : lato, sans-serif;
+$font-code                            : Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace;
+$font-color                           : #444;
+$color-title-hero                     : rgba(255,255,255, .94);
+$color-anchor                         : $color-green;
+$color-anchor-hover                   : $color-dark-green;
+
+
+// Button
+// --------------------------------------------------
+$color-button-footer                  : $color-green;
+$color-button-static                  : #fff441;
+$color-button-shadow                  : #ffd146;
+$color-button-border                  : #ddab38;
+$color-button-hover                   : darken($color-button-static, 10%);
+$color-button-hover-shadow            : darken($color-button-shadow, 10%);
+
+//Sidebar
+// --------------------------------------------------
+$color-arrow                          : #A5A5A5;
+$color-sidebar-link                   : #333;
+
+
+//Sub Nav
+// --------------------------------------------------
+$color-subnav                          : $color-dark-green;
+$color-subnav-link                     : $color-white;
+
+
+// Includes
+// --------------------------------------------------
+
+@import "vendor/coderay";
+
+@import "support/before/*";
+
+@import "support/*";
+
+@import "views/shared/*";
+
+@import "objects/*";
+
+@import "views/*";
