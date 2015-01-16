@@ -1,0 +1,17 @@
+.call-to-action{
+  @extend %button;
+}
+
+%footer-button{
+  background-color: $color-button-footer;
+  display: inline-block;
+  padding: em(7) em(14);
+
+  a {
+    color: $color-grey;
+  }
+
+  @include media($tablet) {
+    margin: 0 auto;
+  }
+}

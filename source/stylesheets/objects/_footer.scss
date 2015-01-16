@@ -1,0 +1,88 @@
+.grass-footer{
+  background: url(/images/elements/grass-short.png) top center repeat-x;
+  height: 60px;
+}
+
+.app-footer {
+  @include span-columns( 12 of 12);
+  background: $color-grey;
+  color: $color-white;
+  position: relative;
+  overflow: hidden;
+
+  .frameworks {
+    background: url(/images/elements/ground.png) top center repeat;
+    padding: em(50) 0;
+
+    h4 {
+      color: white;
+    }
+  }
+
+  .column-footer {
+    @include span-columns(3 of 9.5, block-collapse);
+    text-align: center;
+    float: left;
+    padding: em(20);
+    z-index: 0;
+    position: relative;
+    padding: 20px;
+
+    @include media($tablet) {
+      @include span-columns(12 of 12);
+    }
+  }
+
+  .display {
+    max-width: 144px;
+  }
+
+  .footer-button {
+    @extend %footer-button;
+
+  }
+
+  .copyright {
+    clear: both;
+    padding: em(10) 0;
+  }
+
+  .hybrid-group {
+    float: left;
+
+    span{
+      vertical-align: sub;
+    }
+  }
+
+  #THG-logo {
+    img {
+      margin-bottom: em(-15);
+      width: 150px;
+      padding: em(5);
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .top-link {
+    float: right;
+    text-align: right;
+
+    a {
+      color: white;
+
+      p {
+        text-align: center;
+        margin: 0;
+      }
+
+      &:hover {
+        color: $color-light-grey;
+      }
+    }
+  }
+}

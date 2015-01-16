@@ -1,0 +1,119 @@
+.app-header {
+    padding: em(9) 0 em(23) 0;
+    background-color: $color-panel-header;
+
+
+  .app-logo {
+    a {
+      @include span-columns(12 of 12);
+      color: $color-green;
+      background: url('/images/elements/logo.png') left top no-repeat;
+      text-indent: em(-9999);
+      margin-top: em(19);
+    }
+  }
+
+  .display, .subtitle, .menu, h1 {
+    vertical-align: middle;
+    margin: 0;
+    display: inline-block;
+  }
+
+  .display {
+    @include span-columns(5 of 12);
+    margin: em(-1) 0 0 0;
+
+    @include media($design-edge) {
+      @include span-columns(6 of 12);
+    }
+  }
+
+  .menu {
+    @include span-columns(7 of 12);
+    text-align: right;
+    display: inline-block;
+    margin: em(18) 0 0 0;
+
+    @include media($design-edge) {
+      @include span-columns(6 of 12);
+      padding: 0;
+
+      .item {
+        margin: 0;
+        padding: 0 em(5);
+      }
+    }
+  }
+
+  .nav-list{
+    margin:0;
+    list-style: none;
+
+    li{
+      display: inline-block;
+    }
+  }
+
+  .active {
+    padding: em(8) em(12);
+    font-weight: bold;
+  }
+
+  .item {
+    font-size: em(16);
+    font-weight: bold;
+    margin: em(10);
+    padding: em(8) em(4);
+
+    &, &:visited, &:active {
+      color: $color-lightest-grey;
+    }
+
+    &:hover, &:focus {
+      color: $color-green;
+    }
+  }
+
+  @include media($tablet) {
+    .subtitle, .menu {
+      width: auto;
+      display: block;
+    }
+
+    .display,.app-logo {
+      width: 100%;
+      display: inline-block;
+    }
+
+    .app-logo, .subtitle, .menu {
+      margin: 0 0 em(5) 0;
+    }
+
+    .display {
+      @include span-columns(12 of 12);
+      text-align: center;
+      margin: em(-1) 0 0;
+    }
+
+    .app-logo a {
+      background-position: center center;
+    }
+
+    .subtitle {
+      font-size: em(19);
+      line-height: em(15);
+      padding: 0;
+    }
+
+    .menu {
+      margin: em(5) 0 0 0;
+      text-align: center;
+      @include span-columns(12 of 12);
+
+      .item {
+        margin: 0;
+        padding: 0 em(2);
+      }
+    }
+  }
+}

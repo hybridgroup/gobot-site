@@ -1,0 +1,13 @@
+%list-title{
+  color: $color-grey;
+  font-size: em(18);
+  display: block;
+  width: 100%;
+
+  &:hover{
+    color: $color-green;
+    img {
+      opacity: .8;
+    }
+  }
+}
