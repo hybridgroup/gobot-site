@@ -15,15 +15,16 @@ subnavjs: true
 
 %section.intro
   =image_tag "/images/devices/mpl115a2.jpg", class: "display"
-  .info-intro
-    %p
-      This is the MPL115A2 driver, used for measuring barometric pressure.
-      For more information click
-      = link_to "here.", "https://www.adafruit.com/products/992", taget: :blank
 
-    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#MPL115A2Driver", :class => "api-link", :target => "_blank"} API Reference
-  .clear
-  
+.info-intro
+  %p
+    This is the MPL115A2 driver, used for measuring barometric pressure.
+    For more information click
+    = link_to "here.", "https://www.adafruit.com/products/992", taget: :blank
+
+  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#MPL115A2Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
