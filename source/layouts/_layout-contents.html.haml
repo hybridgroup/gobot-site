@@ -6,7 +6,7 @@
 
 -content_for :menu do
   
-  %ul
+  %ul.nav-list
     %li  
       - if current_page.data.active_menu_docs == true
         = link_to "Docs", "/documentation", (menu_item("documentation")), class: "active"

@@ -1,6 +1,6 @@
 %html{"ng-app" => "cylon"}
   %head
-    = partial "/layouts/partials/head"
+    = partial "/layouts/hybridpages/head"
   %link{href: 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,800|Lato:400', rel: 'stylesheet', type: 'text/css'}
     %link{href: '/favicon.ico', rel: 'shortcut icon', type: 'image/gif' }/
   %body
@@ -9,24 +9,25 @@
       %header.app-header{role: "banner"}
         .container
           .display
-            = partial "/hybridpages/partials/layouts/app-logo"
+            .app-logo
+              = yield_content :logo
 
           %nav.menu
             = yield_content :menu
 
       - if current_page.data.hero == true
-        = partial "/hybridpages/partials/widgets/hero"
-            
+        = partial "/layouts/hybridpages/hero"
+
       - if current_page.data.page_title_show == true && (current_page.data.layout != 'documentation' || current_page.data.main_nav == true)
-        = partial "/hybridpages/partials/widgets/page_title" 
+        = partial "/layouts/hybridpages/page_title"
 
       = yield
 
       - if current_page.data.catcher == true
-        = partial "/hybridpages/partials/widgets/catcher"
-        
+        = partial "/layouts/hybridpages/catcher"
+
     %footer.app-footer
       .grass-footer
-      = partial "/layouts/partials/footer"
+      = partial "/layouts/hybridpages/footer"
 
 

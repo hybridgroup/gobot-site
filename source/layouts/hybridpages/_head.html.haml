@@ -4,10 +4,11 @@
 %meta{:content => current_page.data.description, :name => "description"}
 %meta{:content => current_page.data.author, :name => "author"}
 %title= current_page.data.title
-%link{href: "/stylesheets/style.css", rel: "stylesheet"}
+//%link{href: "/stylesheets/style.css", rel: "stylesheet"}
+%link{href: "/stylesheets/application.css", rel: "stylesheet"}
 %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
 %script{:src => "/javascripts/vendor/angular.min.js"}
 %script{:src => "/javascripts/app.js"}
 
 - if current_page.data.subnavjs == true
-	%script{:src => "/hybridpages/assets/javascript/subnav.js"} 
+  %script{:src => "/javascripts/subnav.js"}

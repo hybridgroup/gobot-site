@@ -11,16 +11,17 @@
 
         = current_page.data.getting_started_button
 
+        .social
+          = yield_content :social_links
 
-      .gobot
+      .display
         .waves
           .inner
           .outer
         %img{src: "/images/elements/gopher.png"}/
 
-    .grass
-      = partial "/hybridpages/partials/widgets/social"
 
+    .grass
       .hill
   .about
     .container
