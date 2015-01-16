@@ -18,6 +18,7 @@ end
 
 activate :directory_indexes
 activate :neat
+activate :livereload
 
 configure :build do
 end
