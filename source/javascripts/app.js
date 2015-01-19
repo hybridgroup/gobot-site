@@ -1,4 +1,4 @@
-var cylon = angular.module("cylon", []);
+var gobot = angular.module("gobot", []);
 
 var SidebarCtrl = function SidebarCtrl($scope, $element) {
   var path = window.location.pathname.replace(/\/$/, ''),

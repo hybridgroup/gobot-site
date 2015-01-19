@@ -5,33 +5,33 @@
   .main
 
 -content_for :menu do
-  
+
   %ul.nav-list
-    %li  
+    %li
       - if current_page.data.active_menu_docs == true
         = link_to "Docs", "/documentation", (menu_item("documentation")), class: "active"
       -else
         = link_to "Docs", "", (menu_item("documentation"))
 
-    %li  
+    %li
       - if current_page.data.active_menu_platforms == true
         = link_to "Platforms", "/documentation/platforms", (menu_item("documentation/platforms")), class: "active"
       -else
         = link_to "Platforms", "", (menu_item("documentation/platforms"))
 
-    %li  
+    %li
       - if current_page.data.active_menu_resources == true
         = link_to "Resources", "/resources", (menu_item("resources")), class: "active"
       -else
         = link_to "Resources", "", (menu_item("resources"))
 
-    %li  
+    %li
       - if current_page.data.active_menu_blog == true
         = link_to "Blog", "/blog", (menu_item("blog")), class: "active"
       -else
         = link_to "Blog", "", (menu_item("blog"))
 
-    %li  
+    %li
       =  link_to "Github", "https://github.com/hybridgroup/gobot/", class: "item", target: "blanck"
 
 -content_for :social_links do
