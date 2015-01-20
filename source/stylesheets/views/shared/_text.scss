@@ -1,0 +1,46 @@
+.main-content {
+
+  h1,h2{
+    color: $color-medium-grey;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: em(37);
+    padding: em(5) 0;
+    color: $color-medium-grey;
+  }
+}
+
+h3, h4, h5, ul, ol {
+  color: $color-medium-grey;
+  font-family: $font-secondary;
+}
+
+a {
+  &, &:visited {
+    color: $color-green;
+  }
+
+  &:hover, &:focus {
+    color: $color-anchor-hover;
+  }
+}
+
+pre {
+    @include media($tablet) {
+    white-space: pre;
+    overflow: scroll;
+    word-wrap: normal;
+  }
+}
+
+.hero-anchors {
+  &, &:active, &:visited {
+    color: $color-off-white;
+  }
+
+  &:hover, &:focus {
+    color: $color-white;
+  }
+}

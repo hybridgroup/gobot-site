@@ -1,0 +1,20 @@
+%button {
+  border-radius: 7px;
+  padding: em(10) em(25);
+  box-shadow: inset 0px -5px $color-button-shadow;
+  border: 1px solid $color-button-border;
+  display: inline-block;
+  margin: em(17) 0 0 0;
+  font-weight: bold;
+  text-align: center;
+
+  &, &:visited, &:active {
+    background: $color-button-static;
+    color: $color-grey;
+  }
+
+  &:hover, &:focus {
+    background: $color-button-hover;
+    box-shadow: inset 0px -5px $color-button-hover-shadow;
+  }
+}

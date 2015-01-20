@@ -1,0 +1,12 @@
+.home{
+  padding: em(25) em(15) em(40);
+
+  h2{
+    color: $color-green;
+    margin-top: em(25);
+  }
+
+  section + section {
+    margin-top: em(30);
+  }
+}

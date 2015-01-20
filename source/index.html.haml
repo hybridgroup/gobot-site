@@ -9,15 +9,15 @@ description: Gobot is a framework for robotics, physical computing, and the Inte
 layout: home
 
 hero_title: "<span>Go, Robot, Go!</span> <br> Golang Powered Robotics"
-hero_subtitle: "Next generation robotics framework with support for <a href='#platforms'>15 different platforms</a>"
+hero_subtitle: "Next generation robotics framework with support for <a class='platforms-number' href='#platforms'>15 different platforms</a>"
 
 img_character: "<img src='images/elements/gophy.png'>"
 
 catcher_phrase: Ready to build the next big thing with Go?
-getting_started_button: "<a href='/documentation/getting-started' class='cta'>Start Now</a>"
+getting_started_button: "<a href='/documentation/getting-started' class='call-to-action'>Start Now</a>"
 ---
 %section.the-code
-  %h2.homepage  Meet The Code
+  %h2 Meet The Code
 
   %p Gobot makes commanding robots incredibly simple and fun.
 
@@ -25,8 +25,8 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
   :markdown
     `go get -d -u github.com/hybridgroup/gobot/...`
 
-  %h2.homepage The "Hello, World" Of Things
-  %p 
+  %h2 The "Hello, World" Of Things
+  %p
   :markdown
     This program connects to an [Arduino](/documentation/platforms/arduino), and toggles an [LED](/documentation/drivers/led) every one second.
   :markdown
@@ -67,50 +67,49 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
     get started on your next IoT project!
 
 %section.gobot-platforms
-  %h2#platforms.homepage Platform Support
+  %h2#platforms Platform Support
   %p
     Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported:
 
-    %h2.homepage.platforms
+    %h2
       = "#{ data.platforms.length } Platforms"
 
-    %ul.homepage-platform
+    %ul.platform-list
       - data.platforms.each do |name, data|
-        %li
-          .title
-            = link_to name, data.url, target:"_blank"
+        %li.platform
           %a{:href => "/documentation/platforms/#{data.slug}"}
+            %p.title= name
             %img{src: "/images/devices/#{data.slug}.jpg", style: "width: 90%"}
 
     .clear
 
   %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provded using the gobot-gpio module:
 
-  %h2.platforms
+  %h2
     = link_to "#{data.drivers.GPIO.length} GPIO drivers", "https://en.wikipedia.org/wiki/General_Purpose_Input/Output" , target:"_blank"
 
-  %ul.homepage-platform
+  %ul.platform-list
     - data.drivers.GPIO.each do |name, slug|
-      %li
-        .title= link_to name, "/documentation/drivers/#{slug}"
+      %li.platform
         %a{:href => "/documentation/drivers/#{slug}"}
+          %p.title= name
           %img{src: "/images/devices/#{slug}.jpg", style: "width: 90%"}
   .clear
 
   %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the gobot-i2c module:
 
-  %h2.platforms
+  %h2
     = link_to "#{data.drivers.I2C.length} I2C drivers", "https://en.wikipedia.org/wiki/I%C2%B2C", target:"_blank"
 
-  %ul.homepage-platform
+  %ul.platform-list
     - data.drivers.I2C.each do |name, slug|
-      %li
-        .title= link_to name, "/documentation/drivers/#{slug}"
+      %li.platform
         %a{:href => "/documentation/drivers/#{slug}"}
+          %p.title= name
           %img{src: "/images/devices/#{slug}.jpg", style: "width: 90%"}
 
 %section.api
-  %h2.homepage API
+  %h2 API
   %p 
     Gobot includes a 
     = link_to "cppp.io", "http://cppp.io", target: :blank  
@@ -132,7 +131,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
 
 
 %section.cli
-  %h2.homepage CLI
+  %h2 CLI
   %script{type:"text/javascript", src:"https://asciinema.org/a/10306.js", id:"asciicast-10306", "data-autoplay" => "1",  "data-loop" => "true"}
   :markdown
     Gobot is designed to be using in conjunction with [Gort][], a Command Line Toolkit (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and it works perfectly with Gobot. Also included with Gobot is a CLI for generating new robots and adaptors. 
@@ -143,7 +142,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'>St
     [cli-docs]: /documentation/guides/cli
 
 
-  %h2.homepage Be Part Of The Robot Evolution
+  %h2 Be Part Of The Robot Evolution
   :markdown
     - Code on Github:   [https://github.com/hybridgroup/gobot](https://github.com/hybridgroup/gobot)
     - Join us on IRC:   `#gobotio @ irc.freenode.net`

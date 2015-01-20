@@ -1,0 +1,206 @@
+.hero {
+  background: url(/images/elements/back.png) $color-blue   top center no-repeat;
+  height: em(455);
+  position: relative;
+  z-index: 0;
+
+  .display{
+    @include span-columns(4 of 12);
+    width: em(230);
+    float: right;
+
+    img {
+      margin: em(54) 0  0 em(-274);
+    }
+
+    @include media($tablet) {
+      display: none;
+    }
+  }
+
+  .description {
+    @include span-columns(8 of 12);
+    margin-top: em(35);
+
+    @include media($tablet) {
+      @include span-columns(12 of 12);
+      text-align: center;
+    }
+
+    .title, a {
+      color: $color-grey;
+      font-weight: 400;
+      font-size: em(41);
+
+      @include media($design-edge) {
+        font-size: rem(33);
+      }
+
+      @include media($tablet) {
+        @include font(rem(23), rem(27));
+      }
+
+      span{
+        @include font(rem(73), rem(70));
+        white-space: nowrap;
+
+        @include media($tablet) {
+          @include font(rem(50), rem(50));
+        }
+        @include media($mobile) {
+          @include font(rem(35), rem(35));
+        }
+      }
+    }
+
+    p,a {
+      @include font(rem(22), rem(30));
+      max-width: em(520);
+
+      @include media($tablet) {
+        max-width: 100%;
+      }
+    }
+
+    .call-to-action {
+      @extend %button;
+      font-weight: bold ;
+    }
+  }
+
+  .grass{
+    background: url(/images/elements/grass.png) top center repeat-x;
+    position: relative;
+    height: 100px;
+    top: em(-14);
+
+    @include media($tablet) {
+      top: 0;
+    }
+
+    @include  media($mobile-large) {
+      top: em(-6);
+    }
+  }
+
+  .social {
+    line-height: 0;
+    position: relative;
+    z-index: 1;
+    top: em(62);
+
+    @include media($tablet) {
+      top: em(100);
+    }
+  }
+
+  .twitter-follow-button {
+    vertical-align: top;
+  }
+
+  .splitter {
+    display: inline-block;
+  }
+
+  @include media($tablet) {
+    .splitter {
+      margin-bottom: em(14);
+    }
+
+    #twitter-widget-1 {
+      display: none;
+    }
+
+    #twitter-widget-0 {
+      width: 99px !important;
+    }
+
+    .fork {
+      display: none;
+    }
+  }
+
+  .hill{
+    background: $color-medium-green;
+    position: relative;
+    height: em(100);
+    top: em(-53);
+    padding-bottom: em(75);
+    z-index: -1;
+    @include media($tablet) {
+      display: none;
+    }
+  }
+
+  .clouds{
+    position: absolute;
+    width: 100%;
+    height: 167px;
+    background-image: url(/images/elements/clouds.png);
+    background-position: 0px;
+    background-repeat: repeat-x;
+    @include animation(cloud 25s infinite linear);
+  }
+
+  @include keyframes(cloud) {
+    from {
+      background-position: 0px;
+    }
+    to {
+      background-position: 1400px;
+    }
+  }
+
+  .inner{
+    @include animation(wave 1s infinite linear);
+    background: url(/images/elements/wave.png) top center no-repeat;
+    background-size: 50%;
+    height: 112px;
+    position: absolute;
+    right: 95px;
+    top: 83px;
+    width: 112px;
+
+    @include media($tablet) {
+      display: none;
+    }
+  }
+
+  .outer{
+    @extend .inner;
+    @include animation(wave 1s infinite linear);
+    @include animation-delay(.5s);
+  }
+
+  @include keyframes(wave) {
+    0% {
+      background-size: 50%;
+      top: 83px;
+      opacity: 1;
+    }
+    50% {
+      opacity: .75;
+    }
+    100% {
+      background-size: 130%;
+      top: 38px;
+      opacity: 0;
+    }
+  }
+}
+
+.about{
+  background: url(/images/elements/ground.png) top center repeat;
+  margin-top : em(-23);
+  text-align: center;
+
+  h2{
+    padding: em(35) 0 em(30);
+    color: $color-light-blue;
+    font-weight: 600;
+  }
+
+  span{
+    color: $color-medium-green;
+  }
+}

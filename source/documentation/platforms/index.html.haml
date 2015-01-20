@@ -3,16 +3,17 @@ title: Platforms - Gobot - Golang framework for robotics, physical computing, an
 author: The Hybrid Group
 description: Gobot Platforms
 page_title: Platforms
-page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
+page_subtitle: Gobot has an extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
 page_title_show: true
 layout: documentation
 active_menu_platforms: true
 main_nav: true
 ---
 
-%ul.doc-platform
+%ul.platform-list
   - data.platforms.each do |name, info|
-    %li
+    %li.platform
       %a{:href => "/documentation/platforms/#{info.slug}"}
         %p.title= name
         %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}
+
