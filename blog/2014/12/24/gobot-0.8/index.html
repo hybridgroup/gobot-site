@@ -1,50 +1,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html ng-app="cylon">
-<head>
+<html ng-app="gobot">
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta name="description">
-<meta content="Adrian Zankich" name="author">
-<title>Gobot 0.8 - The Happy Holiday Release</title>
-<link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/javascripts/vendor/angular.min.js"></script><script src="/javascripts/app.js"></script>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-
-  _gaq.push(['_setAccount', "UA-46433484-3"]);
-
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="Adrian Zankich" name="author">
+    <title>Gobot 0.8 - The Happy Holiday Release</title>
+    <!-- /%link{href: "/stylesheets/style.css", rel: "stylesheet"} -->
+    <link href="/stylesheets/application.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/javascripts/vendor/angular.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+  <script type="text/javascript">
 
 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-3', {"cookieDomain":"gobot.io"});
 
 
 
 
-  _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
 </script></head>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet" type="text/css">
-<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
-<body>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet" type="text/css">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  
+  <body>
     
     <div class="app">
-      <header class="app-header" role="banner"><div class="container">
+      <header class="app-header" id="top" role="banner">
+        <div class="container">
           <div class="display">
             <div class="app-logo">
               <a href="/">Gobot</a>
             </div>
           </div>
-          <nav class="menu"><ul>
-<li>
+          <nav class="menu">
+            <ul class="nav-list">
+              <li>
                 <a href="/documentation" class="item">Docs</a>
               </li>
               <li>
@@ -59,19 +72,22 @@
               <li>
                 <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
               </li>
-            </ul></nav>
-</div>
-      </header><div class="page-title">
-        <div class="w">
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div class="page-title">
+        <div class="container">
           <h1 class="title">Blog</h1>
         </div>
       </div>
       
-      <div class="main blog" role="main">
+      <div class="main-content blog" role="main">
         <div class="articles">
           <div class="article">
-            <header class="header"><div class="date">
-                <div class="blue">
+            <header class="header">
+              <div class="dates">
+                <div class="date-top">
                   <div class="month">
                     Dec
                   </div>
@@ -79,27 +95,30 @@
                     24
                   </div>
                 </div>
-                <div class="red">
+                <div class="date-bottom">
                   <div class="year">
                     2014
                   </div>
                 </div>
               </div>
-              <div class="data">
-                <h3>
-                  <a href="/blog/2014/12/24/gobot-0.8/">Gobot 0.8 - The Happy Holiday Release</a>
-                </h3>
-                <div class="author">
-                  by Adrian Zankich
-                </div>
+              <h3 class="article-title">
+                <a href="/blog/2014/12/24/gobot-0.8/">Gobot 0.8 - The Happy Holiday Release</a>
+                <br>
+              </h3>
+              <div class="author">
+                by Adrian Zankich
               </div>
-            </header><p>This release brings a number of very large and necessary changes to Gobot. Over time our interfaces have grown out of hand and are becoming unmanagable and largely unecessary. With the Gobot 0.8 release, we have completely changed the core interfaces as well as our gpio and i2c driver interfaces. </p>
+            </header>
+            <p>This release brings a number of very large and necessary changes to Gobot. Over time our interfaces have grown out of hand and are becoming unmanagable and largely unecessary. With the Gobot 0.8 release, we have completely changed the core interfaces as well as our gpio and i2c driver interfaces. </p>
             
             <p>In addition to this, we are finally correctly passing errors throughout the system and have removed all panics! Altough this is very exciting, this also means that there are many breaking api changes, especially if you have written your own drivers and adaptors.</p>
             
             <p>If you're not ready to update to the new interfaces or errors handling, then you're in luck! We create a tag with every new Gobot release, so rolling back to the previous release is as easy as:</p>
             
-            <p><code>$ go get -d -u github.com/hybridgroup/gobot/...</code><br><code>$ cd $GOPATH/src/github.com/hybridgroup/gobot</code><br><code>$ git checkout 0.7.1</code><br><code>$ go build -a github.com/hybridgroup/gobot</code>  </p>
+            <p><code>$ go get -d -u github.com/hybridgroup/gobot/...</code><br>
+            <code>$ cd $GOPATH/src/github.com/hybridgroup/gobot</code><br>
+            <code>$ git checkout 0.7.1</code><br>
+            <code>$ go build -a github.com/hybridgroup/gobot</code>  </p>
             
             <p>You really should update to the latest release however, it's much better!</p>
             
@@ -110,37 +129,38 @@
             <p>This release includes a number of breaking api changes!</p>
             
             <ul>
-<li><strong>Refactor core, gpio, and i2c interfaces</strong></li>
+              <li><strong>Refactor core, gpio, and i2c interfaces</strong></li>
               <li><strong>Correctly pass errors throughout packages and remove all panics</strong></li>
               <li><strong>Numerous bug fixes and performance improvement</strong></li>
               <li>
 <strong>api</strong>
                 <ul>
-<li>Update robeaux to v0.3.0</li>
+                  <li>Update robeaux to v0.3.0</li>
                 </ul>
-</li>
+              </li>
               <li>
 <strong>firmata</strong>
                 <ul>
-<li>Add optional io.ReadWriteCloser parameter to FirmataAdaptor</li>
+                  <li>Add optional io.ReadWriteCloser parameter to FirmataAdaptor</li>
                   <li>Fix <strong>thread exhaustion</strong> error</li>
                 </ul>
-</li>
+              </li>
               <li>
 <strong>cli</strong> 
                 <ul>
-<li>
+                  <li>
 <strong>generator</strong>
                     <ul>
-<li>Update generator for new adaptor and driver interfaces</li>
+                      <li>Update generator for new adaptor and driver interfaces</li>
                       <li>Add driver, adaptor and project generators</li>
                       <li>Add optional package name parameter</li>
                     </ul>
-</li>
+                  </li>
                 </ul>
-</li>
+              </li>
             </ul>
-<h2 id="contributors">Contributors</h2>
+            
+            <h2 id="contributors">Contributors</h2>
             
             <p>A special thanks to everyone who made this release possible. You've been very nice!</p>
             
@@ -155,16 +175,31 @@
             <h2 id="stay-in-touch">Stay In Touch</h2>
             
             <p>Please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a> for the latest updates, as we continue to work on this amazing platform.</p>
+            <div class="blog-footer">
+              <h2>Contact Us</h2>
+              <ul>
+                <li>
+                To stay up to date with all Gobot news, join our
+                <a target="blank" href="https://groups.google.com/forum/#!forum/gobotio">mailing list</a>
+                <li>Need some help? Talk to us on IRC at #gobotio @ irc.freenode.net</li>
+                <li>
+                If you need help or you feel we can improve something, let us know! Open a
+                <a target="blank" href="https://github.com/hybridgroup/gobot/issues/new">new issue.</a>
+                <li>
+                To subscribe for announcements of releases and important changes please follow
+                <a target="blank" href="https://twitter.com/gobotio">@gobotio</a>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="side-column">
           <div class="categories">
             <h4>Tags</h4>
             <ul>
-<li><a href="/blog/tags/robots/">Robots</a></li>
+              <li><a href="/blog/tags/robots/">Robots</a></li>
               <li><a href="/blog/tags/events/">Events</a></li>
             </ul>
-</div>
+          </div>
           <div class="network">
             <h4>Network</h4>
             <div class="network-links">
@@ -175,7 +210,7 @@
           <div class="titles">
             <h4>Posts</h4>
             <ul>
-<li><a href="/blog/2014/12/24/gobot-0.8/">Gobot 0.8 - The Happy Holiday Release</a></li>
+              <li><a href="/blog/2014/12/24/gobot-0.8/">Gobot 0.8 - The Happy Holiday Release</a></li>
               <li><a href="/blog/2014/11/11/gobot-0.7/">Gobot 0.7 - The Big Release</a></li>
               <li><a href="/blog/2014/09/24/run-golang-on-the-intel-edison-with-gobot/">Run Golang On The Intel Edison With Gobot</a></li>
               <li><a href="/blog/2014/08/08/flying-iris-at-distill-2014/">Flying Iris At Distill 2014</a></li>
@@ -185,24 +220,25 @@
               <li><a href="/blog/2014/04/10/national-robotics-week-at-boston-golang/">National Robotics Week at Boston Golang</a></li>
               <li><a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a></li>
             </ul>
-</div>
+          </div>
         </div>
       </div>
     </div>
-    <footer class="app-footer"><div class="grass-footer"></div>
+    <footer class="app-footer">
+      <div class="grass-footer"></div>
       <div class="frameworks">
         <div class="container">
           <div class="column-footer">
             <div class="img">
               <img src="/images/elements/gobot-home.png">
-</div>
-            <p>Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            </div>
+            <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
           </div>
           <div class="column-footer">
             <div class="img">
               <img src="/images/elements/artoo.png">
-</div>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            </div>
+            <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p>
             <div class="footer-button">
               <a target="blank" href="http://artoo.io">View Project</a>
             </div>
@@ -210,8 +246,8 @@
           <div class="column-footer">
             <div class="img">
               <img src="/images/elements/cylon.png">
-</div>
-            <p>Want to use Javascript to power your robots? Check out our sister project Cylon.js</p>
+            </div>
+            <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p>
             <div class="footer-button">
               <a target="blank" href="http://cylonjs.com">View Project</a>
             </div>
@@ -222,18 +258,20 @@
       <div class="copyright">
         <div class="container">
           <div class="hybrid-group">
-            <span>© Copyright 2012-2014</span>
+            <span>© Copyright 2012-2015</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
-              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
-              <img alt="Top" src="/images/elements/triangle_up.svg"><p>Top</p>
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
             </a>
           </div>
           <div class="clear"></div>
         </div>
       </div>
     </footer>
-</body>
+  </body>
 </html>
