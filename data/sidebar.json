@@ -39,6 +39,7 @@
     "I2C": {
       "BlinkM": "/documentation/drivers/blinkm",
       "HMC6352 Compass": "/documentation/drivers/hmc6352-compass",
+      "LIDAR-Lite": "/documentation/drivers/lidar-lite",
       "MPL115A2": "/documentation/drivers/mpl115a2",
       "MPU6050": "/documentation/drivers/mpu6050",
       "Wiichuck": "/documentation/drivers/wiimote-nunchuk"
