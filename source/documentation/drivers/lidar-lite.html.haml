@@ -1,0 +1,91 @@
+---
+title: Gobot - LIDAR-Lite Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has an extensible system for connecting to hardware devices.
+page_title_docs: LIDAR-Lite
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/lidar-lite.jpg", class: "display"
+
+.info-intro
+  %p The LIDAR-Lite uses optical lasers to measure distances of up to 40 meters.
+  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#LIDARLiteDriver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/i2c`
+  :markdown
+        :::go
+        package main
+
+        import (
+          "fmt"
+          "time"
+
+          "github.com/hybridgroup/gobot"
+          "github.com/hybridgroup/gobot/platforms/firmata"
+          "github.com/hybridgroup/gobot/platforms/i2c"
+        )
+
+        func main() {
+          gbot := gobot.NewGobot()
+
+          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
+          lidar := i2c.NewLIDARLiteDriver(firmataAdaptor, "lidar")
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using the LIDAR-Lite
+  :markdown
+        :::go
+        package main
+
+        import (
+          "fmt"
+          "time"
+
+          "github.com/hybridgroup/gobot"
+          "github.com/hybridgroup/gobot/platforms/firmata"
+          "github.com/hybridgroup/gobot/platforms/i2c"
+        )
+
+        func main() {
+          gbot := gobot.NewGobot()
+
+          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
+          lidar := i2c.NewLIDARLiteDriver(firmataAdaptor, "lidar")
+
+          work := func() {
+            gobot.Every(100*time.Millisecond, func() {
+              distance, _ := lidar.Distance()
+              fmt.Println("Distance", distance)
+            })
+          }
+
+          robot := gobot.NewRobot("lidarbot",
+            []gobot.Connection{firmataAdaptor},
+            []gobot.Device{lidar},
+            work,
+          )
+
+          gbot.AddRobot(robot)
+
+          gbot.Start()
+        }
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "LIDAR-Lite" }
