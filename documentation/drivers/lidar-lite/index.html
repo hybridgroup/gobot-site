@@ -5,14 +5,15 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta content="A Gobot code example" name="description">
+    <meta name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Gobot Example - sphero_master</title>
+    <title>Gobot - LIDAR-Lite Driver</title>
     <!-- /%link{href: "/stylesheets/style.css", rel: "stylesheet"} -->
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/subnav.js"></script>
   <script type="text/javascript">
 
 
@@ -175,60 +176,130 @@
             </nav>
           </div>
           <div class="container-documentation">
-            
-            <div class="example">
+            <div class="page-title-docs">
+              <div class="container">
+                <h1 class="title">LIDAR-Lite</h1>
+              </div>
+            </div>
+            <section class="subnav-drivers" id="mainsubnav">
+              <div class="container">
+                <h5>LIDAR-Lite</h5>
+                <nav class="documentation-nav">
+                  <a href="#HowToConnect">How to Connect</a>
+                  <a href="#HowToUse">How To Use</a>
+                  <a href="#Commands">Commands</a>
+                  <a href="#Events">Events</a>
+                  <a href="#Circuit">Circuit</a>
+                  <a href="#Compatability">Compatibility</a>
+                  <a href="#top">Top</a>
+                </nav>
+              </div>
+            </section>
+            <br>
+            <section class="intro">
+              <img class="display" src="/images/devices/lidar-lite.jpg">
+            </section>
+            <div class="info-intro">
+              <p>The LIDAR-Lite uses optical lasers to measure distances of up to 40 meters.</p>
+              <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#LIDARLiteDriver" target="_blank">API Reference</a>
+            </div>
+            <div class="clear"></div>
+            <section class="how-to" id="HowToConnect">
+              <h2>How To Connect</h2>
+              <p>Install the library with: <code>go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/platforms/i2c</code></p>
               <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/i2c</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
+  gbot := gobot.NewGobot()
 
-        spheros := <span class="keyword">map</span>[<span class="predefined-type">string</span>]<span class="predefined-type">string</span>{
-                <span class="string"><span class="delimiter">"</span><span class="content">Sphero-BPO</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>,
-        }
+  firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+  lidar := i2c.NewLIDARLiteDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">lidar</span><span class="delimiter">"</span></span>)
+...
+</pre>
+            </section>
+            <section class="how-to" id="HowToUse">
+              <h2>How To Use</h2>
+              <p>Example using the LIDAR-Lite</p>
+              <pre class="CodeRay"><span class="keyword">package</span> main
 
-        <span class="keyword">for</span> name, port := <span class="keyword">range</span> spheros {
-                spheroAdaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, port)
+<span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-                spheroDriver := sphero.NewSpheroDriver(spheroAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/i2c</span><span class="delimiter">"</span></span>
+)
 
-                work := <span class="keyword">func</span>() {
-                        spheroDriver.SetRGB(<span class="predefined-type">uint8</span>(<span class="integer">255</span>), <span class="predefined-type">uint8</span>(<span class="integer">0</span>), <span class="predefined-type">uint8</span>(<span class="integer">0</span>))
-                }
+<span class="keyword">func</span> main() {
+  gbot := gobot.NewGobot()
 
-                robot := gobot.NewRobot(name,
-                        []gobot.Connection{spheroAdaptor},
-                        []gobot.Device{spheroDriver},
-                        work,
-                )
+  firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+  lidar := i2c.NewLIDARLiteDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">lidar</span><span class="delimiter">"</span></span>)
 
-                gbot.AddRobot(robot)
-        }
+  work := <span class="keyword">func</span>() {
+    gobot.Every(<span class="integer">100</span>*time.Millisecond, <span class="keyword">func</span>() {
+      distance, _ := lidar.Distance()
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Distance</span><span class="delimiter">"</span></span>, distance)
+    })
+  }
 
-        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>,
-                <span class="keyword">func</span>() {
-                        gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
-                                sphero := gbot.Robot(<span class="string"><span class="delimiter">"</span><span class="content">Sphero-BPO</span><span class="delimiter">"</span></span>).Device(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>).(*sphero.SpheroDriver)
-                                sphero.SetRGB(<span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
-                                        <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
-                                        <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
-                                )
-                        })
-                },
-        )
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">lidarbot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{firmataAdaptor},
+    []gobot.Device{lidar},
+    work,
+  )
 
-        gbot.AddRobot(robot)
+  gbot.AddRobot(robot)
 
-        gbot.Start()
+  gbot.Start()
 }
 </pre>
-            </div>
+            </section>
+            <section class="compatability hardware" id="Compatability">
+              <h2>Compatibility</h2>
+              <div class="devices">
+                <div class="compatability-link">
+                  <a href="/documentation/platforms/arduino">
+                    <p class="title">Arduino</p>
+                    <img src="/images/devices/arduino.jpg" style="width: 90%">
+                  </a>
+                </div>
+                <div class="compatability-link">
+                  <a href="/documentation/platforms/beaglebone">
+                    <p class="title">Beaglebone Black</p>
+                    <img src="/images/devices/beaglebone.jpg" style="width: 90%">
+                  </a>
+                </div>
+                <div class="compatability-link">
+                  <a href="/documentation/platforms/digispark">
+                    <p class="title">Digispark</p>
+                    <img src="/images/devices/digispark.jpg" style="width: 90%">
+                  </a>
+                </div>
+                <div class="compatability-link">
+                  <a href="/documentation/platforms/edison">
+                    <p class="title">Intel Edison</p>
+                    <img src="/images/devices/edison.jpg" style="width: 90%">
+                  </a>
+                </div>
+                <div class="compatability-link">
+                  <a href="/documentation/platforms/raspi">
+                    <p class="title">Raspberry Pi</p>
+                    <img src="/images/devices/raspi.jpg" style="width: 90%">
+                  </a>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </div>
