@@ -11,37 +11,42 @@ layout: documentation
 ---
 
 %section.how-to
-  %h2 Install Go
-  %p 
-  Go is an open source programming language which makes it easy to build simple, 
-  reliable, and efficient software. Follow the 
-  = link_to "official installation instructions","http://golang.org/doc/install", target:"blank"
-  to get started.
+  :markdown
+    ## Install Go
+
+    Go is an open-source programming language that makes it easy to develop simple, reliable, and efficient software.
+
+    Follow the <a href="http://golang.org/doc/install" target="blank">official installation instructions</a> to get started.
 
 %section
-  %h2 Install Gobot
   :markdown
-    Download Gobot and it's required dependencies with:   
-      `go get -d -u github.com/hybridgroup/gobot/...`
+    ## Install Gobot
 
+    With Go installed, the `go get` tool will help you install Gobot and its required dependencies:
 
-  %section
-  %h2 Programming Hardware
-  %p 
-  Now you're ready to write some code! Take a look at the examples below to get
-  started using Gobot.
+        $ go get -d -u github.com/hybridgroup/gobot/...
 
 %section
-  %h4 Arduino with LED.
   :markdown
-    This is the "Hello World" of physical computing, a blinking led! This program
-    connects to an [arduino](/documentation/platforms/arduino/)
-    on port `/dev/ttyACM0` and flashes an [led](/documentation/drivers/led/)
-    every one second. Take note that your arduino may be on a different port number.
+    ## Programming Hardware
+
+    Now you're ready to write some code!
+    Take a look at the examples below to get started using Gobot.
+
+%section
   :markdown
+    #### Arduino With LED
+
+    This is the "Hello World" of physical computing, a blinking LED!
+    This program connects to an [Arduino][] on port `/dev/ttyACM0`, and flashes an [LED][] every one second.
+    Take note, your Arduino may be on a different port number.
+
+    [Arduino]: /documentation/platforms/arduino
+    [LED]: /documentation/drivers/led
+
         :::go
         package main
-        
+
         import (
                 "time"
 
@@ -73,52 +78,17 @@ layout: documentation
                 gbot.Start()
         }
 
-  %h3 Sphero
-  :markdown
-    This example connects to a [sphero](/documentation/platforms/sphero/)
-    on port `/dev/rfcomm0` and randomly rolls in a new direction every two seconds.
-    Take note that your sphero may be on a different port number.
-  :markdown
-        :::go
-        package main
-
-        import (
-                "fmt"
-                "time"
-
-                "github.com/hybridgroup/gobot"
-                "github.com/hybridgroup/gobot/platforms/sphero"
-        )
-
-        func main() {
-                gbot := gobot.NewGobot()
-
-                adaptor := sphero.NewSpheroAdaptor("Sphero", "/dev/rfcomm0")
-                spheroDriver := sphero.NewSpheroDriver(adaptor, "sphero")
-
-                work := func() {
-                        gobot.Every(2*time.Second, func() {
-                                spheroDriver.Roll(30, uint16(gobot.Rand(360)))
-                        })
-
-                }
-
-                robot := gobot.NewRobot("sphero",
-                        []gobot.Connection{adaptor},
-                        []gobot.Device{spheroDriver},
-                        work,
-                )
-
-                gbot.AddRobot(robot)
-
-                gbot.Start()
-        }
-
 %section
-  %h2 Going further
   :markdown
-    Be sure to check out the rest of our [examples](/documentation/examples/) 
-    as well as our [platforms](/documentation/platforms/), [guides](/documentation/guides)
-    and [core](/documentation/core) api documentation to help get started with your hardware application. 
+    ## Going further
+
+    Be sure to check out the rest of our [examples][]. as well as our [platforms][],
+    [guides][], and [core][] API documentation to help get started with your
+    hardware application.
+
+    [examples]: /documentation/examples
+    [platforms]: /documentation/platforms
+    [guides]: /documentation/guides
+    [core]: /documentation/core
 
 %section.footer
