@@ -17,24 +17,28 @@ catcher_phrase: Ready to build the next big thing with Go?
 getting_started_button: "<a href='/documentation/getting-started' class='call-to-action'>Start Now</a>"
 ---
 %section.the-code
-  %h2 Meet The Code
-
-  %p Gobot makes commanding robots incredibly simple and fun.
-
-  %p All you need to get started is install Gobot with :
   :markdown
-    `go get -d -u github.com/hybridgroup/gobot/...`
+    ## Meet The Code
 
-  %h2 The "Hello, World" Of Things
-  %p
-  :markdown
-    This program connects to an [Arduino](/documentation/platforms/arduino), and toggles an [LED](/documentation/drivers/led) every one second.
-  :markdown
+    Gobot makes commanding robots incredibly simple and fun.
+
+    All you neet to get started is to install Gobot:
+
+        $ go get -d -u github.com/hybridgroup/gobot/...
+
+    ## The "Hello, World" Of Things
+
+    This program connects to an [Arduino][], and toggles an [LED][], every one second.
+
+    [Arduino]: /documentation/platforms/arduino
+    [LED]: /documentation/drivers/led
+
         :::go
         package main
 
         import (
           "time"
+
           "github.com/hybridgroup/gobot"
           "github.com/hybridgroup/gobot/platforms/firmata"
           "github.com/hybridgroup/gobot/platforms/gpio"
@@ -61,15 +65,16 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
           gbot.Start()
         }
 
-  %p
-  :markdown
-    We've got lots more [examples](/documentation/examples) to help you 
-    get started on your next IoT project!
+    We've got many more [examples][] to help you get started on your next IoT project!
+
+    [examples]: /documentation/examples
 
 %section.gobot-platforms
   %h2#platforms Platform Support
+
   %p
-    Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported:
+    Gobot has a extensible system for connecting to hardware devices.
+    The following robotics and physical computing platforms are currently supported:
 
     %h2
       = "#{ data.platforms.length } Platforms"
@@ -83,7 +88,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
 
     .clear
 
-  %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provded using the gobot-gpio module:
+  %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the gpio platform package:
 
   %h2
     = link_to "#{data.drivers.GPIO.length} GPIO drivers", "https://en.wikipedia.org/wiki/General_Purpose_Input/Output" , target:"_blank"
@@ -96,7 +101,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
           %img{src: "/images/devices/#{slug}.jpg", style: "width: 90%"}
   .clear
 
-  %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the gobot-i2c module:
+  %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provided using the i2c platform package:
 
   %h2
     = link_to "#{data.drivers.I2C.length} I2C drivers", "https://en.wikipedia.org/wiki/I%C2%B2C", target:"_blank"
@@ -131,9 +136,11 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
 
 
 %section.cli
-  %h2 CLI
-  %script{type:"text/javascript", src:"https://asciinema.org/a/10306.js", id:"asciicast-10306", "data-autoplay" => "1",  "data-loop" => "true"}
   :markdown
+    ## CLI
+
+    <script src="https://asciinema.org/a/10306.js" id="asciicast-10306" data-autoplay="1" data-loop="true"></script>
+
     Gobot is designed to be using in conjunction with [Gort][], a Command Line Toolkit (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and it works perfectly with Gobot. Also included with Gobot is a CLI for generating new robots and adaptors. 
 
     Gobot also has it own CLI which you can learn more about [here][cli-docs].
@@ -141,8 +148,8 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
     [Gort]: http://gort.io
     [cli-docs]: /documentation/guides/cli
 
-
-  %h2 Be Part Of The Robot Evolution
   :markdown
+    ## Be Part Of The Robot Evolution
+
     - Code on Github:   [https://github.com/hybridgroup/gobot](https://github.com/hybridgroup/gobot)
     - Join us on IRC:   `#gobotio @ irc.freenode.net`
