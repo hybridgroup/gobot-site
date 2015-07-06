@@ -9,42 +9,42 @@ active_menu_docs: true
 ---
 
 .api
-  %h1 API
-  %p Gobot includes a RESTful API to query the status of any robot running within a group, including the connection and device status, and execute device commands.
-  %p
-    :markdown
-      To activate the API, import the `github.com/hybridgroup/gobot/api` package and instantiate the `API` like this:
-
-          :::go
-          gbot := gobot.NewGobot()
-          api.NewAPI(gbot).Start()
-
-      You can also specify the api host and port, and turn on authentication:
-
-          :::go
-          gbot := gobot.NewGobot()
-          server := api.NewAPI(gbot)
-          server.Port = "3000"
-          server.Username = "Gort"
-          server.Password = "klaatu"
-          server.Start()
-
-  %p
-    :markdown
-      You may access the [robeaux](https://github.com/hybridgroup/robeaux) AngularJS interface with Gobot by navigating to `http://localhost:3000/`.
-
-  %h3 Routes
-  %p 
-    :markdown
-      The Gobot api conforms to the [cppp.io spec](https://github.com/hybridgroup/cppp-io/blob/master/specification.markdown).
-
-
-  %h3  Example:
-  %p 
-    The following code example will spin up an API server with two custom commands
-    and a middleware handler:
-
   :markdown
+    # API
+
+    Gobot includes a RESTful API to query the status of any robot running within
+    a group, including the connection and device status, and execute device
+    commands.
+
+    To activate the API, import the `github.com/hybridgroup/gobot/api` package
+    and instantiate the `API` like this:
+
+        :::go
+        gbot := gobot.NewGobot()
+        api.NewAPI(gbot).Start()
+
+    You can also specify the api host and port, and turn on authentication:
+
+        :::go
+        gbot := gobot.NewGobot()
+        server := api.NewAPI(gbot)
+        server.Port = "3000"
+        server.Username = "Gort"
+        server.Password = "klaatu"
+        server.Start()
+
+    You may access the [robeaux][] React.js interface with Gobot by navigating to `http://localhost:3000/`.
+
+    [robeaux]: https://github.com/hybridgroup/robeaux
+
+    ### Routes
+
+    The Gobot API conforms to the [cppp.io spec](https://github.com/hybridgroup/cppp-io/blob/master/specification.markdown).
+
+    ### Example
+
+    The following code example will spin up an API server with two custom commands and a middleware handler:
+
         :::go
         package main
 
