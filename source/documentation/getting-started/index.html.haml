@@ -69,8 +69,8 @@ layout: documentation
                 }
 
                 robot := gobot.NewRobot("drone",
-                        []gobot.Connection{ardroneAdaptor},
-                        []gobot.Device{drone},
+                        []gobot.Connection{},
+                        []gobot.Device{},
                         work,
                 )
                 gbot.AddRobot(robot)
@@ -96,10 +96,14 @@ layout: documentation
 
                 firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
                 led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
+                button := gpio.NewButtonDriver(firmataAdaptor, "button", "2")
 
                 work := func() {
-                        gobot.Every(1*time.Second, func() {
-                                led.Toggle()
+                        gobot.On(button.Event("push"), func(data interface{}) {
+                                led.On()
+                        })
+                        gobot.On(button.Event("release"), func(data interface{}) {
+                                led.Off()
                         })
                 }
 
