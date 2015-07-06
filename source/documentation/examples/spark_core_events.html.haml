@@ -1,0 +1,47 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - spark_core_events"
+page_title: "Example: spark_core_events"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/spark"
+        )
+
+        func main() {
+        	gbot := gobot.NewGobot()
+
+        	sparkCore := spark.NewSparkCoreAdaptor("spark", "DEVICE_ID", "ACCESS_TOKEN")
+
+        	work := func() {
+        		if stream, err := sparkCore.EventStream("all", ""); err != nil {
+        			fmt.Println(err)
+        		} else {
+        			gobot.On(stream, func(data interface{}) {
+        				fmt.Println(data.(spark.Event))
+        			})
+        		}
+        	}
+
+        	robot := gobot.NewRobot("spark",
+        		[]gobot.Connection{sparkCore},
+        		work,
+        	)
+
+        	gbot.AddRobot(robot)
+
+        	gbot.Start()
+        }
+

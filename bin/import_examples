@@ -108,7 +108,7 @@ active_menu_docs: true
     %tbody
 EOS
 
-  examples.each do |example|
+  examples.sort_by(&:name).each do |example|
     string = "%tr\n"
     string << "  %td #{example.name}\n"
     string << "  %td.links= link_to 'Code', '/documentation/examples/#{example.name}'\n"

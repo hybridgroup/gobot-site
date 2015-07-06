@@ -1,0 +1,45 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - spark_core_function"
+page_title: "Example: spark_core_function"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/spark"
+        )
+
+        func main() {
+        	gbot := gobot.NewGobot()
+
+        	sparkCore := spark.NewSparkCoreAdaptor("spark", "DEVICE_ID", "ACCESS_TOKEN")
+
+        	work := func() {
+        		if result, err := sparkCore.Function("brew", "202,230"); err != nil {
+        			fmt.Println(err)
+        		} else {
+        			fmt.Println("result from \"brew\":", result)
+        		}
+        	}
+
+        	robot := gobot.NewRobot("spark",
+        		[]gobot.Connection{sparkCore},
+        		work,
+        	)
+
+        	gbot.AddRobot(robot)
+
+        	gbot.Start()
+        }
+
