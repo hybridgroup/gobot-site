@@ -176,37 +176,19 @@
           </div>
           <div class="container-documentation">
             
-            <h1>Guidelines</h1>
+            <h1 id="guidelines">Guidelines</h1>
+            
             <ul>
-              <li>
-                All active development is in the dev branch. New or updated features must be added to the dev branch. Hotfixes will be considered on the master branch in situations where it does not alter behaviour or features, only fixes a bug.
-              </li>
-              <li>
-                All patches must be provided under the Apache 2.0 License
-              </li>
-              <li>
-                Please use the -s option in git to "sign off" that the commit is your work and you are providing it under the Apache 2.0 License
-              </li>
-              <li>
-                Submit a Github Pull Request to the appropriate branch and ideally discuss the changes with us in IRC.
-              </li>
-              <li>
-                We will look at the patch, test it out, and give you feedback.
-              </li>
-              <li>
-                Avoid doing minor whitespace changes, renamings, etc. along with merged content. These will be done by the maintainers from time to time but they can complicate merges and should be done seperately.
-              </li>
-              <li>
-                Take care to maintain the existing coding style.
-              </li>
-              <li>
-                go fmt your code.
-              </li>
-              <li>
-                Add unit tests for any new or changed functionality.
-              </li>
-              <li>
-                All pull requests should be "fast forward"
+              <li>All active development is in the dev branch. New or updated features must be added to the dev branch. Hotfixes will be considered on the master branch in situations where it does not alter behaviour or features, only fixes a bug.</li>
+              <li>All patches must be provided under the Apache 2.0 License</li>
+              <li>Please use the -s option in git to "sign off" that the commit is your work and you are providing it under the Apache 2.0 License</li>
+              <li>Submit a Github Pull Request to the appropriate branch and ideally discuss the changes with us in IRC.</li>
+              <li>We will look at the patch, test it out, and give you feedback.</li>
+              <li>Avoid doing minor whitespace changes, renamings, etc. along with merged content. These will be done by the maintainers from time to time but they can complicate merges and should be done seperately.</li>
+              <li>Take care to maintain the existing coding style.</li>
+              <li>go fmt your code.</li>
+              <li>Add unit tests for any new or changed functionality.</li>
+              <li>All pull requests should be "fast forward"
                 <ul>
                   <li>If there are commits after yours use “git rebase -i ”</li>
                   <li>If you have local changes you may need to use “git stash”</li>

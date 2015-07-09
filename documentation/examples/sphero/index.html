@@ -194,8 +194,14 @@
         spheroDriver := sphero.NewSpheroDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
-                gobot.On(spheroDriver.Event(<span class="string"><span class="delimiter">"</span><span class="content">collision</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">Collision Detected! %+v</span><span class="char">\n</span><span class="delimiter">"</span></span>, data)
+                spheroDriver.SetDataStreaming(sphero.DefaultDataStreamingConfig())
+
+                gobot.On(spheroDriver.Event(sphero.Collision), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">Collision! %+v</span><span class="char">\n</span><span class="delimiter">"</span></span>, data)
+                })
+
+                gobot.On(spheroDriver.Event(sphero.SensorData), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">Streaming Data! %+v</span><span class="char">\n</span><span class="delimiter">"</span></span>, data)
                 })
 
                 gobot.Every(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {

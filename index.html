@@ -124,17 +124,24 @@
       </div>
       <div class="main-content home" role="main">
         <section class="the-code">
-          <h2>Meet The Code</h2>
+          <h2 id="meet-the-code">Meet The Code</h2>
+          
           <p>Gobot makes commanding robots incredibly simple and fun.</p>
-          <p>All you need to get started is install Gobot with :</p>
-          <p><code>go get -d -u github.com/hybridgroup/gobot/...</code></p>
-          <h2>The "Hello, World" Of Things</h2>
-          <p></p>
-          <p>This program connects to an <a href="/documentation/platforms/arduino">Arduino</a>, and toggles an <a href="/documentation/drivers/led">LED</a> every one second.</p>
+          
+          <p>All you neet to get started is to install Gobot:</p>
+          
+          <pre class="CodeRay">$ go get -d -u github.com/hybridgroup/gobot/...
+</pre>
+          
+          <h2 id="the-hello-world-of-things">The "Hello, World" Of Things</h2>
+          
+          <p>This program connects to an <a href="/documentation/platforms/arduino">Arduino</a>, and toggles an <a href="/documentation/drivers/led">LED</a>, every one second.</p>
+          
           <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
   <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
@@ -161,14 +168,14 @@
   gbot.Start()
 }
 </pre>
-          <p></p>
-          <p>We've got lots more <a href="/documentation/examples">examples</a> to help you 
-          get started on your next IoT project!</p>
+          
+          <p>We've got many more <a href="/documentation/examples">examples</a> to help you get started on your next IoT project!</p>
         </section>
         <section class="gobot-platforms">
           <h2 id="platforms">Platform Support</h2>
           <p>
-            Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported:
+            Gobot has a extensible system for connecting to hardware devices.
+            The following robotics and physical computing platforms are currently supported:
             </p>
 <h2>
               15 Platforms
@@ -267,7 +274,7 @@
             </ul>
             <div class="clear"></div>
           
-          <p>Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provded using the gobot-gpio module:</p>
+          <p>Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the gpio platform package:</p>
           <h2>
             <a target="_blank" href="https://en.wikipedia.org/wiki/General_Purpose_Input/Output">7 GPIO drivers</a>
           </h2>
@@ -316,7 +323,7 @@
             </li>
           </ul>
           <div class="clear"></div>
-          <p>Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the gobot-i2c module:</p>
+          <p>Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provided using the i2c platform package:</p>
           <h2>
             <a target="_blank" href="https://en.wikipedia.org/wiki/I%C2%B2C">6 I2C drivers</a>
           </h2>
@@ -381,12 +388,15 @@
           </p>
         </section>
         <section class="cli">
-          <h2>CLI</h2>
-          <script data-autoplay="1" data-loop="true" id="asciicast-10306" src="https://asciinema.org/a/10306.js" type="text/javascript"></script>
+          <h2 id="cli">CLI</h2>
+          
+          <script src="https://asciinema.org/a/10306.js" id="asciicast-10306" data-autoplay="1" data-loop="true"></script>
+          
           <p>Gobot is designed to be using in conjunction with <a href="http://gort.io">Gort</a>, a Command Line Toolkit (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and it works perfectly with Gobot. Also included with Gobot is a CLI for generating new robots and adaptors. </p>
           
           <p>Gobot also has it own CLI which you can learn more about <a href="/documentation/guides/cli">here</a>.</p>
-          <h2>Be Part Of The Robot Evolution</h2>
+          <h2 id="be-part-of-the-robot-evolution">Be Part Of The Robot Evolution</h2>
+          
           <ul>
             <li>Code on Github:   <a href="https://github.com/hybridgroup/gobot">https://github.com/hybridgroup/gobot</a>
 </li>

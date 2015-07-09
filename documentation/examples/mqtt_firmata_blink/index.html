@@ -191,7 +191,7 @@
 <span class="keyword">func</span> main() {
         gbot := gobot.NewGobot()
 
-        mqttAdaptor := mqtt.NewMqttAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">server</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">tcp://localhost:1883</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">blinker</span><span class="delimiter">"</span></span>)
+        mqttAdaptor := mqtt.NewMqttAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">server</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">tcp://test.mosquitto.org:1883</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">blinker</span><span class="delimiter">"</span></span>)
         firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
         led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
 

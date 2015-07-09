@@ -177,19 +177,22 @@
           <div class="container-documentation">
             
             <div class="api">
-              <h1>API</h1>
-              <p>Gobot includes a RESTful API to query the status of any robot running within a group, including the connection and device status, and execute device commands.</p>
-              <p>
-                </p>
-<p>To activate the API, import the <code>github.com/hybridgroup/gobot/api</code> package and instantiate the <code>API</code> like this:</p>
-                
-                <pre class="CodeRay">gbot := gobot.NewGobot()
+              <h1 id="api">API</h1>
+              
+              <p>Gobot includes a RESTful API to query the status of any robot running within
+              a group, including the connection and device status, and execute device
+              commands.</p>
+              
+              <p>To activate the API, import the <code>github.com/hybridgroup/gobot/api</code> package
+              and instantiate the <code>API</code> like this:</p>
+              
+              <pre class="CodeRay">gbot := gobot.NewGobot()
 api.NewAPI(gbot).Start()
 </pre>
-                
-                <p>You can also specify the api host and port, and turn on authentication:</p>
-                
-                <pre class="CodeRay">gbot := gobot.NewGobot()
+              
+              <p>You can also specify the api host and port, and turn on authentication:</p>
+              
+              <pre class="CodeRay">gbot := gobot.NewGobot()
 server := api.NewAPI(gbot)
 server.Port = <span class="string"><span class="delimiter">"</span><span class="content">3000</span><span class="delimiter">"</span></span>
 server.Username = <span class="string"><span class="delimiter">"</span><span class="content">Gort</span><span class="delimiter">"</span></span>
@@ -197,20 +200,16 @@ server.Password = <span class="string"><span class="delimiter">"</span><span cla
 server.Start()
 </pre>
               
-              <p>
-                </p>
-<p>You may access the <a href="https://github.com/hybridgroup/robeaux">robeaux</a> AngularJS interface with Gobot by navigating to <code>http://localhost:3000/</code>.</p>
+              <p>You may access the <a href="https://github.com/hybridgroup/robeaux">robeaux</a> React.js interface with Gobot by navigating to <code>http://localhost:3000/</code>.</p>
               
-              <h3>Routes</h3>
-              <p>
-                </p>
-<p>The Gobot api conforms to the <a href="https://github.com/hybridgroup/cppp-io/blob/master/specification.markdown">cppp.io spec</a>.</p>
+              <h3 id="routes">Routes</h3>
               
-              <h3>Example:</h3>
-              <p>
-                The following code example will spin up an API server with two custom commands
-                and a middleware handler:
-              </p>
+              <p>The Gobot API conforms to the <a href="https://github.com/hybridgroup/cppp-io/blob/master/specification.markdown">cppp.io spec</a>.</p>
+              
+              <h3 id="example">Example</h3>
+              
+              <p>The following code example will spin up an API server with two custom commands and a middleware handler:</p>
+              
               <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (

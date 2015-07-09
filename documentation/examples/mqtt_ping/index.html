@@ -190,7 +190,7 @@
 <span class="keyword">func</span> main() {
         gbot := gobot.NewGobot()
 
-        mqttAdaptor := mqtt.NewMqttAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">server</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">tcp://0.0.0.0:1883</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">pinger</span><span class="delimiter">"</span></span>)
+        mqttAdaptor := mqtt.NewMqttAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">server</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">tcp://test.mosquitto.org:1883</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">pinger</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
                 mqttAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(data []<span class="predefined-type">byte</span>) {

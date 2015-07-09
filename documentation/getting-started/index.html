@@ -176,30 +176,80 @@
           </div>
           <div class="container-documentation">
             
-            <section class="how-to">
-              <h2>Install Go</h2>
-              <p></p>
-              Go is an open source programming language which makes it easy to build simple,
-              reliable, and efficient software. Follow the
-              <a target="blank" href="http://golang.org/doc/install">official installation instructions</a>
-              to get started.
+            <section>
+              <p>Gobot is a framework for robotics, physical computing, and the Internet of Things, written in the Go programming language</p>
+              
+              <p>Robots written with Gobot can run on a host machine communicating to connected devices, or directly on a single-board linux computer, or anywhere in between.</p>
+              
+              <p>Gobot makes it easy to write a program that works on multiple platforms with little modification.</p>
             </section>
             <section>
-              <h2>Install Gobot</h2>
-              <p>Download Gobot and it's required dependencies with: <br>
-                <code>go get -d -u github.com/hybridgroup/gobot/...</code></p>
-              <section></section>
-              <h2>Programming Hardware</h2>
-              <p></p>
-              Now you're ready to write some code! Take a look at the examples below to get
-              started using Gobot.
+              <h1 id="set-up-your-environment">Set Up Your Environment</h1>
+              
+              <h2 id="installing-go">Installing Go</h2>
+              
+              <p>Go is an open-source programming language that makes it easy to develop simple, reliable, and efficient software.</p>
+              
+              <p>Follow the <a href="http://golang.org/doc/install" target="blank">official installation instructions</a> to get started.</p>
             </section>
             <section>
-              <h4>Arduino with LED.</h4>
-              <p>This is the "Hello World" of physical computing, a blinking led! This program
-              connects to an <a href="/documentation/platforms/arduino/">arduino</a>
-              on port <code>/dev/ttyACM0</code> and flashes an <a href="/documentation/drivers/led/">led</a>
-              every one second. Take note that your arduino may be on a different port number.</p>
+              <h2 id="installing-gobot">Installing Gobot</h2>
+              
+              <p>With Go installed, the <code>go get</code> tool will help you install Gobot and its required dependencies:</p>
+              
+              <pre class="CodeRay">$ go get -d -u github.com/hybridgroup/gobot/...
+</pre>
+            </section>
+            <section>
+              <h2 id="writing-and-running-gobot-robots">Writing And Running Gobot Robots</h2>
+              
+              <p>With the Gobot packages installed, you're ready to start writing your own code.
+              You can take a look at some of the examples below, or read the guide page on
+              <a href="/documentation/guides/working-with-robots/" target="_blank">Working with Robots</a>.</p>
+              
+              <p>Additionally, if you want to find more examples of how to write robots with Gobot, check out our
+              <a href="/documentation/examples" target="_blank">Examples page</a>.</p>
+              
+              <p>To run your robots, you can just pass the source file to <code>go run</code>:</p>
+              
+              <p>$ go run robot.go</p>
+            </section>
+            <section>
+              <h2 id="gobot-code-examples">Gobot Code Examples</h2>
+              
+              <h3 id="hello">Hello</h3>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        gbot := gobot.NewGobot()
+
+        work := <span class="keyword">func</span>() {
+                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Hello, human!</span><span class="delimiter">"</span></span>)
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{},
+                []gobot.Device{},
+                work,
+        )
+        gbot.AddRobot(robot)
+
+        gbot.Start()
+}
+</pre>
+              
+              <h3 id="arduino---led--button">Arduino - LED + Button</h3>
+              
               <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
@@ -215,10 +265,14 @@
 
         firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
         led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
+        button := gpio.NewButtonDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">2</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
-                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
-                        led.Toggle()
+                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        led.On()
+                })
+                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        led.Off()
                 })
         }
 
@@ -233,36 +287,40 @@
         gbot.Start()
 }
 </pre>
-              <h3>Sphero</h3>
-              <p>This example connects to a <a href="/documentation/platforms/sphero/">sphero</a>
-              on port <code>/dev/rfcomm0</code> and randomly rolls in a new direction every two seconds.
-              Take note that your sphero may be on a different port number.</p>
+              
+              <h3 id="multiple-arduinos">Multiple Arduinos</h3>
+              
               <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
         <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
         gbot := gobot.NewGobot()
 
-        adaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>)
-        spheroDriver := sphero.NewSpheroDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
+        firmataA := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">arduinoA</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+        firmataB := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">arduinoB</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM1</span><span class="delimiter">"</span></span>)
+
+        led := gpio.NewLedDriver(firmataA, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
+        button := gpio.NewButtonDriver(firmataB, <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">2</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
-                gobot.Every(<span class="integer">2</span>*time.Second, <span class="keyword">func</span>() {
-                        spheroDriver.Roll(<span class="integer">30</span>, <span class="predefined-type">uint16</span>(gobot.Rand(<span class="integer">360</span>)))
+                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        led.On()
                 })
-
+                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        led.Off()
+                })
         }
 
-        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>,
-                []gobot.Connection{adaptor},
-                []gobot.Device{spheroDriver},
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{firmataA, firmataB},
+                []gobot.Device{led, button},
                 work,
         )
 
@@ -271,12 +329,110 @@
         gbot.Start()
 }
 </pre>
+              
+              <h3 id="parrot-ardrone-20">Parrot ARDrone 2.0</h3>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/ardrone</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        gbot := gobot.NewGobot()
+
+        ardroneAdaptor := ardrone.NewArdroneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
+        drone := ardrone.NewArdroneDriver(ardroneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                drone.TakeOff()
+                gobot.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        gobot.After(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
+                                drone.Land()
+                        })
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{ardroneAdaptor},
+                []gobot.Device{drone},
+                work,
+        )
+        gbot.AddRobot(robot)
+
+        gbot.Start()
+}
+</pre>
             </section>
             <section>
-              <h2>Going further</h2>
-              <p>Be sure to check out the rest of our <a href="/documentation/examples/">examples</a> 
-              as well as our <a href="/documentation/platforms/">platforms</a>, <a href="/documentation/guides">guides</a>
-              and <a href="/documentation/core">core</a> api documentation to help get started with your hardware application. </p>
+              <h2 id="cli">CLI</h2>
+              
+              <p>To get access to a number of useful command-line tools, you should check out our helpful CLI tool,
+              <a href="http://gort.io" target="_blank">Gort</a>.</p>
+              
+              <pre class="CodeRay">$ gort
+NAME:
+  gort - Command Line Utility for RobotOps
+
+USAGE:
+  gort [global options] command [command options] [arguments...]
+
+VERSION:
+  0.3.0
+
+AUTHOR:
+  Author - &lt;unknown@email&gt;
+
+COMMANDS:
+  scan         Scan for connected devices on Serial, USB, or Bluetooth ports
+  bluetooth    Pair, unpair &amp; connect to bluetooth devices.
+  arduino      Install avrdude, and upload HEX files to your Arduino
+  spark        Upload sketches to your Spark
+  digispark    Configure your Digispark microcontroller
+  crazyflie    Configure your Crazyflie
+  klaatu       barada nikto
+  dronedrop    Install, uninstall, update and download dronedrop firmware
+  help, h      Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+  --help, -h           show help
+  --version, -v        print the versio
+</pre>
+            </section>
+            <section>
+              <h2 id="where-next">Where Next?</h2>
+              
+              <p>Where do we go from here?</p>
+              
+              <p>Well, if you're interested in seeing some more examples of Gobot in action, check out our <a href="/documentation/examples">Examples</a> page.</p>
+              
+              <p>If you'd like to find out more about a specific platform, our <a href="/documentation/platforms">Platforms</a> page will point you in the right direction.</p>
+              
+              <p>Instead, if you'd rather explore at your leisure, the sidebar should help you find what you're looking for.</p>
+              
+              <p>If you have any questions, please don't hesitate to get in touch with us and we'll try to help as best we can.</p>
+            </section>
+            <section class="contributing">
+              <h2 id="contributing">Contributing</h2>
+              
+              <p>We welcome your contributions!
+              If you want to make Gobot even better (even fixing typos!), check out the
+              <a href="https://github.com/hybridgroup/gobot" target="_blank">GitHub page</a>!</p>
+              
+              <p>Have you noticed an error in our docs site?
+              Think a paragraph could be worded better?
+              Please send us an issue or pull request!
+              The site has it's own
+              <a href="https://github.com/hybridgroup/gobot-site" target="_blank">GitHub page</a> too!</p>
+              
+              <p>Want to suggest a feature? Report a bug? Show us something cool you made? Just say hi?
+              You can also get in touch with us directly on
+              <a href="https://twitter.com/gobotio" target="_blank">Twitter</a>,
+              or ping us on
+              <a href="/documentation/chat/" target="_blank">IRC</a>.</p>
             </section>
             <section class="footer"></section>
           </div>
