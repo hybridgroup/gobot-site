@@ -12,11 +12,20 @@ layout: documentation
 
 %section
   :markdown
-    Gobot is a framework for robotics, physical computing, and the Internet of Things, written in the Go programming language
 
-    Robots written with Gobot can run on a host machine communicating to connected devices, or directly on a single-board linux computer, or anywhere in between.
+    # What is Gobot?
 
-    Gobot makes it easy to write a program that works on multiple platforms with little modification.
+    Gobot is a framework for robotics, physical computing, and the Internet of Things, written in the Go programming language.
+
+    **It provides:**
+
+    * Drivers and adapters for controlling a wide variety of drones, toys, and physical computing platforms like Arduino and Raspberry Pi
+    * "Robots" - a software abstraction that makes it easy to build interesting high-level functionality for supported devices
+    * An external control interface for individual or groups of Robots on a shared network, implemented as a JSON-over-HTTP API
+
+    Robots (Go programs) written with Gobot can run on a host machine communicating to connected devices (your laptop talking to your Sphero), or directly on a single-board Linux computer (controlling GPIO, I2C or analog interfaces directly), or anywhere in between.
+
+    Gobot's approach to standardization and abstraction makes it easy to write a program that works on multiple platforms with little modification.
 
 %section
   :markdown
