@@ -95,7 +95,6 @@
               <div class="section" ng-class="{active: active('Guides')}">
                 <div class="name" ng-click="show('Guides')">Guides</div>
                 <div class="links" ng-show="active('Guides')">
-                  <a href="/documentation/guides/what_is_gobot">About Gobot</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                 </div>
@@ -177,16 +176,36 @@
           <div class="container-documentation">
             
             <section>
-              <p>Gobot is a framework for robotics, physical computing, and the Internet of Things, written in the Go programming language</p>
+              <h1 id="what-is-gobot">What is Gobot?</h1>
               
-              <p>Robots written with Gobot can run on a host machine communicating to connected devices, or directly on a single-board linux computer, or anywhere in between.</p>
+              <p>Gobot is a framework for robotics, physical computing, and the Internet of Things, written in the Go programming language.</p>
               
-              <p>Gobot makes it easy to write a program that works on multiple platforms with little modification.</p>
+              <p><strong>It provides:</strong></p>
+              
+              <ul>
+                <li>Drivers and adapters for controlling a wide variety of drones, toys, and physical computing platforms like Arduino and Raspberry Pi</li>
+                <li>"Robots" - a software abstraction that makes it easy to build interesting high-level functionality for supported devices</li>
+                <li>An external control interface for individual or groups of Robots on a shared network, implemented as a JSON-over-HTTP API</li>
+              </ul>
+              
+              <p>Robots (Go programs) written with Gobot can run on a host machine communicating to connected devices, or directly on a single-board Linux computer, or anywhere in between.</p>
+              
+              <p>Gobot's approach to standardization and abstraction makes it easy to write a program that works on multiple platforms with little modification.</p>
+              
+              <p><strong>Robots in Other Languages</strong></p>
+              <p>
+                Want to use Node.js on robots? Check out our sister project CylonJS
+                <a target="_blank" href="http://cylonjs.com">(http://cylonjs.com)</a>
+              </p>
+              <p>
+                Want to use Ruby on robots? Check out our sister project Artoo
+                <a target="_blank" href="http://artoo.io">(http://artoo.io)</a>
+              </p>
             </section>
             <section>
-              <h1 id="set-up-your-environment">Set Up Your Environment</h1>
+              <h2 id="set-up-your-environment">Set Up Your Environment</h2>
               
-              <h2 id="installing-go">Installing Go</h2>
+              <h3 id="installing-go">Installing Go</h3>
               
               <p>Go is an open-source programming language that makes it easy to develop simple, reliable, and efficient software.</p>
               
@@ -207,12 +226,12 @@
               You can take a look at some of the examples below, or read the guide page on
               <a href="/documentation/guides/working-with-robots/" target="_blank">Working with Robots</a>.</p>
               
-              <p>Additionally, if you want to find more examples of how to write robots with Gobot, check out our
+              <p>Additionally, if you want to find more examples of how to write Robots with Gobot, check out our
               <a href="/documentation/examples" target="_blank">Examples page</a>.</p>
               
-              <p>To run your robots, you can just pass the source file to <code>go run</code>:</p>
+              <p>To run your Robots, you can just pass the source file to <code>go run</code>:</p>
               
-              <p>$ go run robot.go</p>
+              <p>$ go run my-robot.go</p>
             </section>
             <section>
               <h2 id="gobot-code-examples">Gobot Code Examples</h2>

@@ -96,7 +96,6 @@
               <div class="section" ng-class="{active: active('Guides')}">
                 <div class="name" ng-click="show('Guides')">Guides</div>
                 <div class="links" ng-show="active('Guides')">
-                  <a href="/documentation/guides/what_is_gobot">About Gobot</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                 </div>
@@ -211,7 +210,7 @@
                 Gobot and the Sphero driver take care of the rest.
                 </p>
 <p>Install the library with:
-                <code>go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/platforms/sphero</code></p>
+                <code>go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/sphero</code></p>
                 
                 <pre class="CodeRay"><span class="keyword">package</span> main
 
