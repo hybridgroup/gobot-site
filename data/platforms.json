@@ -35,6 +35,12 @@
     "drivers": ["Joystick - DualShock 3", "Joystick - Xbox 360"]
   },
 
+  "Keyboard": {
+    "slug": "keyboard",
+    "url": "https://en.wikipedia.org/wiki/Computer_keyboard",
+    "drivers": ["Keyboard"]
+  },
+
   "Leap Motion": {
     "slug": "leapmotion",
     "url": "https://www.leapmotion.com/",

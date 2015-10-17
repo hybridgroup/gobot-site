@@ -13,6 +13,7 @@
     "Digispark": "/documentation/platforms/digispark",
     "Intel Edison": "/documentation/platforms/edison",
     "Joystick": "/documentation/platforms/joystick",
+    "Keyboard": "/documentation/platforms/keyboard",
     "Leap Motion": "/documentation/platforms/leapmotion",
     "Mavlink": "/documentation/platforms/mavlink",
     "MQTT": "/documentation/platforms/mqtt",
