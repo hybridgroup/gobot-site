@@ -1,0 +1,84 @@
+---
+page_title_show: true
+title: Gobot - Keyboard Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Keyboard
+page_subtitle_docs: Driver
+layout: documentation
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/keyboard.jpg", class: "display"
+
+.info-intro
+  %p
+    Allows user to interact with gobot devices using any keyboard.
+  %a{ :href => "https://godoc.org/github.com/hybridgroup/gobot/platforms/keyboard", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how_to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::go
+          package main
+
+          import (
+              "fmt"
+              "github.com/hybridgroup/gobot"
+              "github.com/hybridgroup/gobot/platforms/keyboard"
+          )
+
+          func main() {
+              gbot := gobot.NewGobot()
+              keys := keyboard.NewKeyboardDriver("keyboard")
+
+          ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example receiving key events from keyboard.
+  :markdown
+        :::go
+          package main
+
+          import (
+              "fmt"
+              "github.com/hybridgroup/gobot"
+              "github.com/hybridgroup/gobot/platforms/keyboard"
+          )
+
+          func main() {
+              gbot := gobot.NewGobot()
+              keys := keyboard.NewKeyboardDriver("keyboard")
+
+              work := func() {
+                  gobot.On(keys.Event("key"), func(data interface{}) {
+                      key := data.(keyboard.KeyEvent)
+
+                      if key.Key == keyboard.A {
+                          fmt.Println("A pressed!")
+                      } else {
+                          fmt.Println("keyboard event!", key, key.Char)
+                      }
+                  })
+              }
+
+              robot := gobot.NewRobot("keyboardbot",
+                  []gobot.Connection{},
+                  []gobot.Device{keys},
+                  work,
+              )
+
+              gbot.AddRobot(robot)
+              gbot.Start()
+          }
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Keyboard" }
