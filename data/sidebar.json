@@ -10,6 +10,7 @@
     "Ardrone": "/documentation/platforms/ardrone",
     "Arduino": "/documentation/platforms/arduino",
     "Beaglebone": "/documentation/platforms/beaglebone",
+    "Bebop": "/documentation/platforms/bebop",
     "Digispark": "/documentation/platforms/digispark",
     "Intel Edison": "/documentation/platforms/edison",
     "Joystick": "/documentation/platforms/joystick",
@@ -46,6 +47,7 @@
     },
 
     "Ardrone - Flight": "/documentation/drivers/ardrone-flight",
+    "Bebop": "/documentation/drivers/bebop",
     "Joystick - DualShock 3": "/documentation/drivers/dualshock3",
     "Joystick - Xbox 360": "/documentation/drivers/xbox360",
     "Keyboard": "/documentation/drivers/keyboard",

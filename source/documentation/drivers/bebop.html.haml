@@ -1,0 +1,89 @@
+---
+title: Gobot - Bebop Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Bebop
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/bebop.jpg", class: "display"
+.info-intro
+  %p
+    Allows user to send flight control commands to Bebop. Flight control commands are those used
+    to tell the Bebop to take off, land, and or any number of other autonomous flight manuvers.
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+
+  %p
+    The Bebop is a WiFi device, so there is no additional work to establish a connection to a single drone.
+    However, in order to connect to multiple drones, you need to perform some configuration steps on each
+    drone via SSH.
+
+  :markdown
+        :::go
+        package main
+
+        import (
+            "time"
+            "github.com/hybridgroup/gobot"
+            "github.com/hybridgroup/gobot/platforms/bebop"
+        )
+
+        func main() {
+            gbot := gobot.NewGobot()
+            bebopAdaptor := bebop.NewBebopAdaptor("Drone")
+            drone := bebop.NewBebopDriver(bebopAdaptor, "Drone")
+
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+  :markdown
+        :::go
+        package main
+
+        import (
+            "time"
+            "github.com/hybridgroup/gobot"
+            "github.com/hybridgroup/gobot/platforms/bebop"
+        )
+
+        func main() {
+            gbot := gobot.NewGobot()
+            bebopAdaptor := bebop.NewBebopAdaptor("Drone")
+            drone := bebop.NewBebopDriver(bebopAdaptor, "Drone")
+
+            work := func() {
+            drone.HullProtection(true)
+                drone.TakeOff()
+                gobot.On(drone.Event("flying"), func(data interface{}) {
+                    gobot.After(3*time.Second, func() {
+                        drone.Land()
+                    })
+                })
+            }
+
+            robot := gobot.NewRobot("drone",
+                []gobot.Connection{bebopAdaptor},
+                []gobot.Device{drone},
+                work,
+            )
+
+            gbot.AddRobot(robot)
+            gbot.Start()
+        }
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Bebop" }

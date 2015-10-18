@@ -17,6 +17,12 @@
     "drivers": ["GPIO", "I2C"]
   },
 
+  "Bebop": {
+    "slug": "bebop",
+    "url": "http://www.parrot.com/products/bebop-drone/",
+    "drivers": ["Bebop"]
+  },
+
   "Digispark": {
     "slug": "digispark",
     "url": "http://digistump.com/category/1",
