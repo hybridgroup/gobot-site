@@ -11,6 +11,8 @@
 
   "I2C": {
     "BlinkM": "blinkm",
+    "Grove LCD": "grove-lcd",
+    "Grove Accelerometer": "grove-accelerometer",
     "HMC6352 Compass": "hmc6352-compass",
     "LIDAR-Lite": "lidar-lite",
     "MPU6050": "mpu6050",

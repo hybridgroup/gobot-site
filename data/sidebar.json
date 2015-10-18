@@ -39,6 +39,8 @@
 
     "I2C": {
       "BlinkM": "/documentation/drivers/blinkm",
+      "Grove LCD": "/documentation/drivers/grove-lcd",
+      "Grove Accelerometer": "/documentation/drivers/grove-accelerometer",
       "HMC6352 Compass": "/documentation/drivers/hmc6352-compass",
       "LIDAR-Lite": "/documentation/drivers/lidar-lite",
       "MPL115A2": "/documentation/drivers/mpl115a2",

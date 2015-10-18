@@ -1,0 +1,38 @@
+---
+title: Gobot - Grove Accelerometer Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Grove Accelerometer
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/grove-accelerometer.jpg", class: "display"
+.info-intro
+  %p
+    This 3-axis Accelerometer module is based on MMA7660FC with Digital Output I2C.
+    This Module can be used for sensing data changes, product orientation, and gesture
+    detection through an interrupt pin (INT).It is a very low power, low profile capacitive
+    MEMS sensor.
+  %a{:href => "https://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#GroveAccelerometerDriver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/i2c`
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Grove Accelerometer" }
