@@ -1,0 +1,39 @@
+---
+title: Gobot - Grove Touch Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Grove Touch
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/grove-touch.jpg", class: "display"
+.info-intro
+  %p
+    Grove - Touch Sensor enables you to replace press with touch.
+    It can detect the change in capacitance when a finger is near by.
+    That means no matter your finger directly touches the pad or just
+    stays close to the pad, Grove - Touch Sensor would outputs HIGH also.
+
+  %a{:href => "https://godoc.org/github.com/hybridgroup/gobot/platforms/i2c", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/i2c`
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Grove Touch" }
