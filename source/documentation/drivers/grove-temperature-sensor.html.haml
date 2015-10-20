@@ -14,12 +14,12 @@ subnavjs: true
 ---
 
 %section.intro
-  =image_tag "/images/devices/grove-touch.jpg", class: "display"
+  =image_tag "/images/devices/grove-temperature-sensor.jpg", class: "display"
 .info-intro
   %p
-    The Grove-Relay module is a digital normally-open switch. Through it, you can control circuit of high voltage
-    with low voltage, say 5V on the controller. There is an indicator LED on the board, which will light up when
-    the controlled terminals get closed.
+    The Grove - Temperature Sensor uses a Thermistor to detect the ambient temperature.
+    The resistance of a thermistor will increase when the ambient temperature decreases.
+    It's this characteristic that we use to calculate the ambient temperature.
 
   %a{:href => "https://godoc.org/github.com/hybridgroup/gobot/platforms/i2c", :class => "api-link", :target => "_blank"} API Reference
 .clear
