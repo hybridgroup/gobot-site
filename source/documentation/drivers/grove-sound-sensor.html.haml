@@ -1,0 +1,37 @@
+---
+title: Gobot - Grove Sound Sensor Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Grove Sound Sensor
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/grove-sound-sensor.jpg", class: "display"
+.info-intro
+  %p
+    Grove - Sound Sensor can detect the sound strength of the environment. The main component of
+    the module is a simple microphone, which is based on the LM358 amplifier and an electret microphone
+
+  %a{:href => "https://godoc.org/github.com/hybridgroup/gobot/platforms/i2c", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/i2c`
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Grove Touch" }

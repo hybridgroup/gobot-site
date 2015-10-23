@@ -1,0 +1,40 @@
+---
+title: Gobot - Grove Piezo Vibration Sensor Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Grove Piezo Vibration Sensor
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/grove-piezo-vibration-sensor.jpg", class: "display"
+.info-intro
+  %p
+    Grove- Piezo Vibration Sensor is suitable for measurements of flexibility, vibration, impact and touch.
+    The module is based on PZT film sensor LDT0-028. When the sensor moves back and forth, a certain voltage
+    will be created by the voltage comparator inside of it. A wide dynamic range (0.001Hz~1000MHz) guarantees
+    an excellent measuring performance. And, you can adjust its sensitivity by adjusting the on-board
+    potentiometer with a screw.
+
+  %a{:href => "https://godoc.org/github.com/hybridgroup/gobot/platforms/i2c", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/i2c`
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Grove Touch" }

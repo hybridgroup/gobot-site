@@ -17,6 +17,12 @@
     "drivers": ["GPIO", "I2C"]
   },
 
+  "Bebop": {
+    "slug": "bebop",
+    "url": "http://www.parrot.com/products/bebop-drone/",
+    "drivers": ["Bebop"]
+  },
+
   "Digispark": {
     "slug": "digispark",
     "url": "http://digistump.com/category/1",
@@ -33,6 +39,12 @@
     "slug": "joystick",
     "url": "http://en.wikipedia.org/wiki/Joystick",
     "drivers": ["Joystick - DualShock 3", "Joystick - Xbox 360"]
+  },
+
+  "Keyboard": {
+    "slug": "keyboard",
+    "url": "https://en.wikipedia.org/wiki/Computer_keyboard",
+    "drivers": ["Keyboard"]
   },
 
   "Leap Motion": {

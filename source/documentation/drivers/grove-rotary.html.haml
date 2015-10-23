@@ -1,0 +1,38 @@
+---
+title: Gobot - Grove Rotary Sensor Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Grove Rotary Sensor
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/grove-rotary.jpg", class: "display"
+.info-intro
+  %p
+    The rotary angle sensor produces analog output between 0 and Vcc (5V DC with Seeeduino) on its D1 connector.
+    The D2 connector is not used. The angular range is 300 degrees with a linear change in value. The resistance
+    value is 10k ohms, perfect for Arduino use. This may also be known as a “potentiometer ”.
+
+  %a{:href => "https://godoc.org/github.com/hybridgroup/gobot/platforms/i2c", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/i2c`
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Grove Touch" }
