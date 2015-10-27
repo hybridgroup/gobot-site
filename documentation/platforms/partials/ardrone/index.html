@@ -92,35 +92,35 @@
         <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/ardrone</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/ardrone</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
+    gbot := gobot.NewGobot()
 
-        ardroneAdaptor := ardrone.NewArdroneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
-        drone := ardrone.NewArdroneDriver(ardroneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
+    ardroneAdaptor := ardrone.NewArdroneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
+    drone := ardrone.NewArdroneDriver(ardroneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
 
-        work := <span class="keyword">func</span>() {
-                drone.TakeOff()
-                gobot.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        gobot.After(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
-                                drone.Land()
-                        })
-                })
-        }
+    work := <span class="keyword">func</span>() {
+        drone.TakeOff()
+        gobot.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+            gobot.After(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
+                drone.Land()
+            })
+        })
+    }
 
-        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
-                []gobot.Connection{ardroneAdaptor},
-                []gobot.Device{drone},
-                work,
-        )
-        gbot.AddRobot(robot)
+    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
+        []gobot.Connection{ardroneAdaptor},
+        []gobot.Device{drone},
+        work,
+    )
+    gbot.AddRobot(robot)
 
-        gbot.Start()
+    gbot.Start()
 }
 </pre>
         
