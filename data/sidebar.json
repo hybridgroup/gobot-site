@@ -36,7 +36,7 @@
       "Grove Buzzer": "/documentation/drivers/grove-buzzer",
       "Grove Led": "/documentation/drivers/grove-led",
       "Grove Light Sensor": "/documentation/drivers/grove-light-sensor",
-      "Grove Piezo Vibration Sensor": "/documentation/drivers/grove-piezo-vibration-sensor",
+      "Grove Vibration Sensor": "/documentation/drivers/grove-piezo-vibration-sensor",
       "Grove Rotary": "/documentation/drivers/grove-rotary",
       "Grove Relay": "/documentation/drivers/grove-relay",
       "Grove Temperature Sensor": "/documentation/drivers/grove-temperature-sensor",
