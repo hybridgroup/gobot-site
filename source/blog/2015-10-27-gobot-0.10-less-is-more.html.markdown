@@ -58,4 +58,4 @@ As always, if you find any issues with the new Gobot release, please let us know
 
 ## Keep Informed
 
-To stay informed on our rapid progress, please follow us on Twitter at [@gobotio](http://twitter.com/gobotio), as our team and contributors continue our work together.
+To stay informed on our progress, please follow us on Twitter at [@gobotio](http://twitter.com/gobotio), as our team and contributors continue our work together.
