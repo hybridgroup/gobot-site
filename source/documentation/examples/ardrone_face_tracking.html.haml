@@ -40,7 +40,6 @@ active_menu_docs: true
 
         	work := func() {
         		detect := false
-        		drone.TakeOff()
         		var image *cv.IplImage
         		gobot.On(camera.Event("frame"), func(data interface{}) {
         			image = data.(*cv.IplImage)
@@ -81,6 +80,7 @@ active_menu_docs: true
         				gobot.After(20*time.Second, func() { drone.Land() })
         			})
         		})
+        		drone.TakeOff()
         	}
 
         	robot := gobot.NewRobot("face",
