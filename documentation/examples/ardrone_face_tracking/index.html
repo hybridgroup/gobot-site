@@ -221,7 +221,6 @@
 
         work := <span class="keyword">func</span>() {
                 detect := <span class="predefined-constant">false</span>
-                drone.TakeOff()
                 <span class="keyword">var</span> image *cv.IplImage
                 gobot.On(camera.Event(<span class="string"><span class="delimiter">"</span><span class="content">frame</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         image = data.(*cv.IplImage)
@@ -262,6 +261,7 @@
                                 gobot.After(<span class="integer">20</span>*time.Second, <span class="keyword">func</span>() { drone.Land() })
                         })
                 })
+                drone.TakeOff()
         }
 
         robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">face</span><span class="delimiter">"</span></span>,

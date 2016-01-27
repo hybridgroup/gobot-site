@@ -259,13 +259,13 @@
     drone := bebop.NewBebopDriver(bebopAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
 
     work := <span class="keyword">func</span>() {
-    drone.HullProtection(<span class="predefined-constant">true</span>)
-        drone.TakeOff()
+        drone.HullProtection(<span class="predefined-constant">true</span>)
         gobot.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
             gobot.After(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
                 drone.Land()
             })
         })
+        drone.TakeOff()
     }
 
     robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
