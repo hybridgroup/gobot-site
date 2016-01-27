@@ -2,6 +2,7 @@
   "Getting Started": "/documentation/getting-started",
 
   "Guides": {
+    "What Is Gobot?": "/documentation/guides/what_is_gobot",
     "CLI": "/documentation/guides/cli",
     "Gobot on ARDrone": "/documentation/guides/gobot-on-ardrone"
   },
