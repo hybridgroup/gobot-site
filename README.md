@@ -4,7 +4,7 @@ This is the code for the website for Gobot (http://gobot.io) a framework for rob
 
 If you are looking for the actual Gobot code itself, it is at https://github.com/hybridgroup/gobot
 
-This site is build using [Middleman](http://middlemanapp.com/basics/getting-started/)
+This site is built using [Middleman](http://middlemanapp.com/basics/getting-started/)
 
 To run locally:
 
@@ -32,7 +32,7 @@ If you want to help us with the documentation of the site, you can follow this s
 
 - 3) Open the project with your favourite text editor.
 
-- 4) Go to the file `source/documentation` , here is all the documentation of the site.
+- 4) Go to the file `source/documentation` , which has all the documentation of the site.
 
 #### Platforms
 
