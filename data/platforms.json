@@ -23,6 +23,12 @@
     "drivers": ["Bebop"]
   },
 
+  "C.H.I.P.": {
+    "slug": "chip",
+    "url": "http://www.nextthing.co/pages/chip",
+    "drivers": ["chip"]
+  },
+
   "Digispark": {
     "slug": "digispark",
     "url": "http://digistump.com/category/1",

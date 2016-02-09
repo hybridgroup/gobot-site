@@ -11,6 +11,7 @@
     "Arduino": "/documentation/platforms/arduino",
     "Beaglebone": "/documentation/platforms/beaglebone",
     "Bebop": "/documentation/platforms/bebop",
+    "C.H.I.P.": "/documentation/platforms/chip",
     "Digispark": "/documentation/platforms/digispark",
     "Intel Edison": "/documentation/platforms/edison",
     "Joystick": "/documentation/platforms/joystick",
