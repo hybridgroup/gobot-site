@@ -1,0 +1,111 @@
+---
+page_title_show: true
+title: Gobot - This One Goes To 0.11
+page_title: Blog
+date: 2016-02-17
+tags: releases
+author: Ron Evans
+---
+
+:markdown
+
+  Forgive us, dear friends, that it has been a couple of months since our last update, but we wanted to release our newest version as part of the [Golang 1.6 release party](https://twitter.com/search?q=%23go16party).
+
+  So, without further ado, say hello to version 0.11 of Gobot, our open source robotics and Internet of Things (IoT) framework written in the Go programming language.
+
+  ## Welcome, C.H.I.P.
+
+  Once of the most exciting parts of the new 0.11 release, is adding support for C.H.I.P the $9 computer. Yes, you read that correctly. Thanks to awesome contributor [Hrishikesh Tapaswi](http://github/hrishikesh195), we now have support for one of the most exciting pieces of hardware we've seen for a while. Check it out in action:
+
+  <iframe src="https://vine.co/v/iJ6VwDqB737/embed/simple" width="600" height="600" frameborder="0"></iframe><script src="https://platform.vine.co/static/scripts/embed.js"></script>
+
+  The code is as you would expect, just classic Gobot:
+
+      :::go
+      package main
+
+      import (
+      	"time"
+
+      	"github.com/hybridgroup/gobot"
+      	"github.com/hybridgroup/gobot/platforms/i2c"
+      	"github.com/hybridgroup/gobot/platforms/chip"
+      )
+
+      func main() {
+      	gbot := gobot.NewGobot()
+
+      	board := chip.NewChipAdaptor("chip")
+      	screen := i2c.NewGroveLcdDriver(board, "screen")
+
+      	work := func() {
+      		screen.Write("hello")
+
+      		screen.SetRGB(255, 0, 0)
+
+      		gobot.After(5*time.Second, func() {
+      			screen.Clear()
+      			screen.Home()
+      			screen.SetRGB(0, 255, 0)
+      			// set a custom character in the first position
+      			screen.SetCustomChar(0, i2c.CustomLCDChars["smiley"])
+      			// add the custom character at the end of the string
+      			screen.Write("goodbye\nhave a nice day " + string(byte(0)))
+      			gobot.Every(500*time.Millisecond, func() {
+      				screen.Scroll(false)
+      			})
+      		})
+
+      		screen.Home()
+      		<-time.After(1 * time.Second)
+      		screen.SetRGB(0, 0, 255)
+      	}
+
+      	robot := gobot.NewRobot("screenBot",
+      		[]gobot.Connection{board},
+      		[]gobot.Device{screen},
+      		work,
+      	)
+
+      	gbot.AddRobot(robot)
+
+      	gbot.Start()
+      }
+
+  Imagine what kinds of new applications and devices you will be able to create using Gobot on C.H.I.P. Imagine, and now create them!
+
+  ## Changelog
+
+  You can find the changelog here, but if you want to see every detail, as always you can take a look at the compare view on [GitHub](https://github.com/hybridgroup/gobot/compare/0.10.0...0.11).
+
+  * **Support for Golang 1.6**
+  * **Determine I2C adaptor capabilities dynamically to avoid use of block I/O when unavailable**
+  * **chip**
+    * Add support for GPIO & I2C interfaces on C.H.I.P. $9 computer
+  * **leap motion**
+    * Add support additional "hand" and "gesture" events
+  * **mqtt**
+    * Support latest update to Eclipse Paho MQTT client library
+  * **raspberry pi**
+    * Proper release of Pi Blaster for PWM pins
+  * **bebop**
+    * Prevent event race conditions on takeoff/landing
+  * **i2c**
+    * Support added for new i2c device:
+      * MCP23017 Port Expander
+    * Bugfixes:
+      * Correct init and data parsing for MPU-6050
+      * Correct handling of errors and buffering for Wiichuk
+  * **gort**
+    * Update `bluetooth` commands for more logical order
+    * Update `arduino` to support many more board types
+  * **docs**
+    * Many corrections and updates for docs, primarily contributed by the awesome community.
+
+  ## Need To Report Issues?
+
+  When you find any issues with Gobot, please let us know by entering a [GitHub issue](https://github.com/hybridgroup/gobot/issues) and we'll take a look as soon as possible. We're also frequently around on IRC (#gobotio on freenode).
+
+  ## Keep Up To Date
+
+  To keep up with the project, please follow us on Twitter at [@gobotio](http://twitter.com/gobotio), as our team and many contributors work together to make Gobot the best it can be.
