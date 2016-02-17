@@ -20,4 +20,8 @@ subnavjs: true
 
 %section.drivers#Drivers
   %h2 Drivers
-  %p The C.H.I.P. platform does not have any drivers.
+  %p All Gobot digital GPIO and i2c drivers listed below should work with the C.H.I.P.:
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "C.H.I.P." }
