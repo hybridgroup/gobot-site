@@ -2274,7 +2274,10 @@ a:hover, a:focus {
         margin-right: 0; }
         /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .platform-list .platform:last-child {
-          margin-right: 0; } }
+          margin-right: 0; }
+        /* line 20, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_platform-list.scss */
+        .platform-list .platform:nth-child(odd) {
+          clear: both; } }
 
 /* line 1, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_resources.scss */
 .resources {

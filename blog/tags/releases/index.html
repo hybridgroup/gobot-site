@@ -91,6 +91,179 @@
                 <div class="dates">
                   <div class="date-top">
                     <div class="month">
+                      Feb
+                    </div>
+                    <div class="day">
+                      17
+                    </div>
+                  </div>
+                  <div class="date-bottom">
+                    <div class="year">
+                      2016
+                    </div>
+                  </div>
+                </div>
+                <h3 class="article-title">
+                  <a href="/blog/2016/02/17/gobot-this-one-goes-to-0.11/">Gobot - This One Goes To 0.11</a>
+                  <br>
+                </h3>
+                <div class="author">
+                  by Ron Evans
+                </div>
+              </header>
+              <p>Forgive us, dear friends, that it has been a couple of months since our last update, but we wanted to release our newest version as part of the <a href="https://twitter.com/search?q=%23go16party">Golang 1.6 release party</a>.</p>
+              
+              <p>So, without further ado, say hello to version 0.11 of Gobot, our open source robotics and Internet of Things (IoT) framework written in the Go programming language.</p>
+              
+              <h2 id="welcome-chip">Welcome, C.H.I.P.</h2>
+              
+              <p>Once of the most exciting parts of the new 0.11 release, is adding support for C.H.I.P the $9 computer. Yes, you read that correctly. Thanks to awesome contributor <a href="http://github/hrishikesh195">Hrishikesh Tapaswi</a>, we now have support for one of the most exciting pieces of hardware we've seen for a while. Check it out in action:</p>
+              
+              <iframe src="https://vine.co/v/iJ6VwDqB737/embed/simple" width="600" height="600" frameborder="0"></iframe>
+              <script src="https://platform.vine.co/static/scripts/embed.js"></script>
+              
+              <p>The code is as you would expect, just classic Gobot:</p>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/i2c</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/chip</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        gbot := gobot.NewGobot()
+
+        board := chip.NewChipAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">chip</span><span class="delimiter">"</span></span>)
+        screen := i2c.NewGroveLcdDriver(board, <span class="string"><span class="delimiter">"</span><span class="content">screen</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                screen.Write(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>)
+
+                screen.SetRGB(<span class="integer">255</span>, <span class="integer">0</span>, <span class="integer">0</span>)
+
+                gobot.After(<span class="integer">5</span>*time.Second, <span class="keyword">func</span>() {
+                        screen.Clear()
+                        screen.Home()
+                        screen.SetRGB(<span class="integer">0</span>, <span class="integer">255</span>, <span class="integer">0</span>)
+                        <span class="comment">// set a custom character in the first position</span>
+                        screen.SetCustomChar(<span class="integer">0</span>, i2c.CustomLCDChars[<span class="string"><span class="delimiter">"</span><span class="content">smiley</span><span class="delimiter">"</span></span>])
+                        <span class="comment">// add the custom character at the end of the string</span>
+                        screen.Write(<span class="string"><span class="delimiter">"</span><span class="content">goodbye</span><span class="char">\n</span><span class="content">have a nice day </span><span class="delimiter">"</span></span> + <span class="predefined-type">string</span>(<span class="predefined-type">byte</span>(<span class="integer">0</span>)))
+                        gobot.Every(<span class="integer">500</span>*time.Millisecond, <span class="keyword">func</span>() {
+                                screen.Scroll(<span class="predefined-constant">false</span>)
+                        })
+                })
+
+                screen.Home()
+                &lt;-time.After(<span class="integer">1</span> * time.Second)
+                screen.SetRGB(<span class="integer">0</span>, <span class="integer">0</span>, <span class="integer">255</span>)
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">screenBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{board},
+                []gobot.Device{screen},
+                work,
+        )
+
+        gbot.AddRobot(robot)
+
+        gbot.Start()
+}
+</pre>
+              
+              <p>Imagine what kinds of new applications and devices you will be able to create using Gobot on C.H.I.P. Imagine, and now create them!</p>
+              
+              <h2 id="changelog">Changelog</h2>
+              
+              <p>You can find the changelog here, but if you want to see every detail, as always you can take a look at the compare view on <a href="https://github.com/hybridgroup/gobot/compare/0.10.0...0.11">GitHub</a>.</p>
+              
+              <ul>
+                <li><strong>Support for Golang 1.6</strong></li>
+                <li><strong>Determine I2C adaptor capabilities dynamically to avoid use of block I/O when unavailable</strong></li>
+                <li>
+<strong>chip</strong>
+                  <ul>
+                    <li>Add support for GPIO &amp; I2C interfaces on C.H.I.P. $9 computer</li>
+                  </ul>
+                </li>
+                <li>
+<strong>leap motion</strong>
+                  <ul>
+                    <li>Add support additional "hand" and "gesture" events</li>
+                  </ul>
+                </li>
+                <li>
+<strong>mqtt</strong>
+                  <ul>
+                    <li>Support latest update to Eclipse Paho MQTT client library</li>
+                  </ul>
+                </li>
+                <li>
+<strong>raspberry pi</strong>
+                  <ul>
+                    <li>Proper release of Pi Blaster for PWM pins</li>
+                  </ul>
+                </li>
+                <li>
+<strong>bebop</strong>
+                  <ul>
+                    <li>Prevent event race conditions on takeoff/landing</li>
+                  </ul>
+                </li>
+                <li>
+<strong>i2c</strong>
+                  <ul>
+                    <li>Support added for new i2c device:
+                      <ul>
+                        <li>MCP23017 Port Expander</li>
+                      </ul>
+                    </li>
+                    <li>Bugfixes:
+                      <ul>
+                        <li>Correct init and data parsing for MPU-6050</li>
+                        <li>Correct handling of errors and buffering for Wiichuk</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+<strong>gort</strong>
+                  <ul>
+                    <li>Update <code>bluetooth</code> commands for more logical order</li>
+                    <li>Update <code>arduino</code> to support many more board types</li>
+                  </ul>
+                </li>
+                <li>
+<strong>docs</strong>
+                  <ul>
+                    <li>Many corrections and updates for docs, primarily contributed by the awesome community.</li>
+                  </ul>
+                </li>
+              </ul>
+              
+              <h2 id="need-to-report-issues">Need To Report Issues?</h2>
+              
+              <p>When you find any issues with Gobot, please let us know by entering a <a href="https://github.com/hybridgroup/gobot/issues">GitHub issue</a> and we'll take a look as soon as possible. We're also frequently around on IRC (#gobotio on freenode).</p>
+              
+              <h2 id="keep-up-to-date">Keep Up To Date</h2>
+              
+              <p>To keep up with the project, please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a>, as our team and many contributors work together to make Gobot the best it can be.</p>
+              <div class="tags">
+                <div class="img">
+                  <img src="/images/elements/tag.png">
+                </div>
+                <a href="/blog/tags/releases/">releases</a>
+              </div>
+            </div>
+            <div class="article">
+              <header class="header">
+                <div class="dates">
+                  <div class="date-top">
+                    <div class="month">
                       Oct
                     </div>
                     <div class="day">
@@ -474,7 +647,7 @@
               
               <p>Here is a short video using Gobot to control the Edison's GPIO for reading analog input, and then using PWM output to turn on the LED:</p>
               
-              <iframe width="560" height="315" src="//www.youtube.com/embed/X1ZmNHg0G30" frameborder="0" allowfullscreen=""></iframe>
+              <iframe width="100%" height="315" src="//www.youtube.com/embed/X1ZmNHg0G30" frameborder="0" allowfullscreen=""></iframe>
               
               <p>Here is the code we used to run the above sample:</p>
               
@@ -519,7 +692,7 @@
               <p>We also have implemented i2c support.
               In the following video, we are showing an Edison, running Gobot, reading analog input, and then communicating via i2c with a <a href="http://thingm.com/products/blinkm/">BlinkM</a>.</p>
               
-              <iframe width="560" height="315" src="//www.youtube.com/embed/tQX34zQGPtw" frameborder="0" allowfullscreen=""></iframe>
+              <iframe width="100%" height="315" src="//www.youtube.com/embed/tQX34zQGPtw" frameborder="0" allowfullscreen=""></iframe>
               
               <p>Here is the code:</p>
               
@@ -797,6 +970,7 @@ $ GOOS=linux GOARCH=386 ./make.bash --no-clean
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2016/02/17/gobot-this-one-goes-to-0.11/">Gobot - This One Goes To 0.11</a></li>
               <li><a href="/blog/2015/10/27/gobot-0.10-less-is-more/">Gobot 0.10 - Less Is More</a></li>
               <li><a href="/blog/2014/12/24/gobot-0.8/">Gobot 0.8 - The Happy Holiday Release</a></li>
               <li><a href="/blog/2014/11/11/gobot-0.7/">Gobot 0.7 - The Big Release</a></li>
