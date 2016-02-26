@@ -8,3 +8,5 @@
     = link_to image_tag("elements/twitter.png"), "https://twitter.com/gobotio"
     = link_to image_tag("elements/github.png"), "https://github.com/hybridgroup/gobot"
 
+-content_for :head do
+  %link{href: '/blog/feed.xml', rel: 'alternate', type: 'application/atom+xml', title: "Atom Feed" }/

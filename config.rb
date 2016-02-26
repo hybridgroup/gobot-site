@@ -16,6 +16,8 @@ activate :blog do |blog|
   blog.tag_template = "blog/tag.html"
 end
 
+page "/blog/feed.xml", layout: false
+
 activate :directory_indexes
 activate :neat
 activate :livereload
@@ -33,5 +35,9 @@ helpers do
 
     properties
   end
-end
 
+  def article_author(article)
+    article.data.author || "Staff"
+  end
+
+end

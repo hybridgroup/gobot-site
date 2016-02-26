@@ -9,6 +9,7 @@
 %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
 %script{:src => "/javascripts/vendor/angular.min.js"}
 %script{:src => "/javascripts/app.js"}
+= yield_content :head
 
 - if current_page.data.subnavjs == true
   %script{:src => "/javascripts/subnav.js"}
