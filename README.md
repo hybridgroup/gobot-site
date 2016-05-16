@@ -1,6 +1,6 @@
 ## Gobot Website
 
-This is the code for the website for Gobot (http://gobot.io) a framework for robotics, physical computing, and the Internet of Things written using the Go programming language (http://golang.org/)
+This is the code for the website for Gobot (http://gobot.io) a framework for robotics, physical computing, and the Internet of Things (IoT) written using the Go programming language (http://golang.org/)
 
 If you are looking for the actual Gobot code itself, it is at https://github.com/hybridgroup/gobot
 

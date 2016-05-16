@@ -1,6 +1,6 @@
 .info-intro
   :markdown
-    MQTT is an Internet of Things connectivity protocol featuring a lightweight publish/subscribe messaging transport. It is useful for it's small code footprint and minimal network bandwidth usage.
+    MQTT is an Internet of Things (IoT) connectivity protocol featuring a lightweight publish/subscribe messaging transport. It is useful for it's small code footprint and minimal network bandwidth usage.
 
     For more info about the MQTT machine to machine message broker click [here](http://mqtt.org/).
 
@@ -23,19 +23,19 @@
 
         :::go
         package main
-        
+
         import (
           "github.com/hybridgroup/gobot"
           "github.com/hybridgroup/gobot/platforms/mqtt"
           "fmt"
           "time"
         )
-        
+
         func main() {
           gbot := gobot.NewGobot()
-        
+
           mqttAdaptor := mqtt.NewMqttAdaptor("server", "tcp://0.0.0.0:1883", "pinger")
-        
+
           work := func() {
             mqttAdaptor.On("hello", func(data []byte) {
               fmt.Println("hello")
@@ -51,14 +51,14 @@
               mqttAdaptor.Publish("hola", data)
             })
           }
-        
+
           robot := gobot.NewRobot("mqttBot",
             []gobot.Connection{mqttAdaptor},
             work,
           )
-        
+
           gbot.AddRobot(robot)
-        
+
           gbot.Start()
         }
 
@@ -87,4 +87,3 @@
     ## License
 
     Copyright (c) 2013-2014 The Hybrid Group. Licensed under the Apache 2.0 license.
-

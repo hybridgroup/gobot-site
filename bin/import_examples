@@ -91,7 +91,7 @@ def create_index_page(examples)
 ---
 page_title_show: true
 layout: documentation
-title: Examples - Gobot - Golang framework for robotics, physical computing, and the Internet of Things
+title: Examples - Gobot - Golang framework for robotics, physical computing, and the Internet of Things (IoT)
 page_title: Examples
 author: The Hybrid Group
 description: Examples of using gobot with different hardware configurations
