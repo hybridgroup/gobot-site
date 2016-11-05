@@ -93,6 +93,16 @@ or
 bin/import_repo_docs https://github.com/hybridgroup/gobot-gpio.git
 ```
 
+### Images
+
+To add images for platforms or devices:
+
+- remove entire background
+- the image should be 800 width x 600 height
+- layer effect: White color overlay with blend mode HUE
+
+Background color is #F3F1EB
+
 ### Send your Pull Request
 
 When you have your code ready, create a new PR : `base: master` and `compare:"your_branch"`
