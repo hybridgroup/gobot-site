@@ -1,0 +1,48 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - joule_blinkm"
+page_title: "Example: joule_blinkm"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+        	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/drivers/i2c"
+        	"github.com/hybridgroup/gobot/platforms/intel-iot/joule"
+        )
+
+        func main() {
+        	e := joule.NewAdaptor()
+        	blinkm := i2c.NewBlinkMDriver(e)
+
+        	work := func() {
+        		gobot.Every(3*time.Second, func() {
+        			r := byte(gobot.Rand(255))
+        			g := byte(gobot.Rand(255))
+        			b := byte(gobot.Rand(255))
+        			blinkm.Rgb(r, g, b)
+        			color, _ := blinkm.Color()
+        			fmt.Println("color", color)
+        		})
+        	}
+
+        	robot := gobot.NewRobot("blinkmBot",
+        		[]gobot.Connection{e},
+        		[]gobot.Device{blinkm},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

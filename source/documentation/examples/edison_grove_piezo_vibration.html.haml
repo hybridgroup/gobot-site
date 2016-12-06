@@ -1,0 +1,42 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - edison_grove_piezo_vibration"
+page_title: "Example: edison_grove_piezo_vibration"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/drivers/gpio"
+        	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
+        )
+
+        func main() {
+        	board := edison.NewAdaptor()
+        	sensor := gpio.NewGrovePiezoVibrationSensorDriver(board, "0")
+
+        	work := func() {
+        		sensor.On(gpio.Vibration, func(data interface{}) {
+        			fmt.Println("got one!")
+        		})
+        	}
+
+        	robot := gobot.NewRobot("bot",
+        		[]gobot.Connection{board},
+        		[]gobot.Device{sensor},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

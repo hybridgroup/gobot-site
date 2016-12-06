@@ -17,15 +17,13 @@ active_menu_docs: true
         	"time"
 
         	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/drivers/gpio"
         	"github.com/hybridgroup/gobot/platforms/firmata"
-        	"github.com/hybridgroup/gobot/platforms/gpio"
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
-
-        	firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
-        	buzzer := gpio.NewBuzzerDriver(firmataAdaptor, "buzzer", "3")
+        	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+        	buzzer := gpio.NewBuzzerDriver(firmataAdaptor, "3")
 
         	work := func() {
         		type note struct {
@@ -52,7 +50,7 @@ active_menu_docs: true
 
         		for _, val := range song {
         			buzzer.Tone(val.tone, val.duration)
-        			<-time.After(10 * time.Millisecond)
+        			time.Sleep(10 * time.Millisecond)
         		}
         	}
 
@@ -62,8 +60,6 @@ active_menu_docs: true
         		work,
         	)
 
-        	gbot.AddRobot(robot)
-
-        	gbot.Start()
+        	robot.Start()
         }
 

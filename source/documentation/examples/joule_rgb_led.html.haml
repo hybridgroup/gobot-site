@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - spark_core_blink"
-page_title: "Example: spark_core_blink"
+title: "Gobot Example - joule_rgb_led"
+page_title: "Example: joule_rgb_led"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -17,30 +17,29 @@ active_menu_docs: true
         	"time"
 
         	"github.com/hybridgroup/gobot"
-        	"github.com/hybridgroup/gobot/platforms/gpio"
-        	"github.com/hybridgroup/gobot/platforms/spark"
+        	"github.com/hybridgroup/gobot/drivers/gpio"
+        	"github.com/hybridgroup/gobot/platforms/intel-iot/joule"
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
-
-        	sparkCore := spark.NewSparkCoreAdaptor("spark", "device_id", "access_token")
-        	led := gpio.NewLedDriver(sparkCore, "led", "D7")
+        	e := joule.NewAdaptor()
+        	led := gpio.NewRgbLedDriver(e, "25", "27", "29")
 
         	work := func() {
         		gobot.Every(1*time.Second, func() {
-        			led.Toggle()
+        			r := uint8(gobot.Rand(255))
+        			g := uint8(gobot.Rand(255))
+        			b := uint8(gobot.Rand(255))
+        			led.SetRGB(r, g, b)
         		})
         	}
 
-        	robot := gobot.NewRobot("spark",
-        		[]gobot.Connection{sparkCore},
+        	robot := gobot.NewRobot("rgbBot",
+        		[]gobot.Connection{e},
         		[]gobot.Device{led},
         		work,
         	)
 
-        	gbot.AddRobot(robot)
-
-        	gbot.Start()
+        	robot.Start()
         }
 

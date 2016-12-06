@@ -1,0 +1,44 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - particle_variable"
+page_title: "Example: particle_variable"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+        	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/particle"
+        )
+
+        func main() {
+        	core := particle.NewAdaptor("DEVICE_ID", "ACCESS_TOKEN")
+
+        	work := func() {
+        		gobot.Every(1*time.Second, func() {
+        			if temp, err := core.Variable("temperature"); err != nil {
+        				fmt.Println(err)
+        			} else {
+        				fmt.Println("result from \"temperature\" is:", temp)
+        			}
+        		})
+        	}
+
+        	robot := gobot.NewRobot("spark",
+        		[]gobot.Connection{core},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

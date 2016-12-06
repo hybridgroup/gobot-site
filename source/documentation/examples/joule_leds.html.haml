@@ -1,0 +1,59 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - joule_leds"
+page_title: "Example: joule_leds"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/drivers/gpio"
+        	"github.com/hybridgroup/gobot/platforms/intel-iot/joule"
+        )
+
+        func main() {
+        	e := joule.NewAdaptor()
+        	led0 := gpio.NewLedDriver(e, "100")
+        	led1 := gpio.NewLedDriver(e, "101")
+        	led2 := gpio.NewLedDriver(e, "102")
+        	led3 := gpio.NewLedDriver(e, "103")
+
+        	work := func() {
+        		led0.Off()
+        		led1.Off()
+        		led2.Off()
+        		led3.Off()
+
+        		gobot.Every(1*time.Second, func() {
+        			led0.Toggle()
+        		})
+        		gobot.Every(2*time.Second, func() {
+        			led1.Toggle()
+        		})
+        		gobot.Every(4*time.Second, func() {
+        			led2.Toggle()
+        		})
+        		gobot.Every(8*time.Second, func() {
+        			led3.Toggle()
+        		})
+        	}
+
+        	robot := gobot.NewRobot("blinkBot",
+        		[]gobot.Connection{e},
+        		[]gobot.Device{led0, led1, led2, led3},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

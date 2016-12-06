@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - spark_core_function"
-page_title: "Example: spark_core_function"
+title: "Gobot Example - particle_function"
+page_title: "Example: particle_function"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -17,16 +17,14 @@ active_menu_docs: true
         	"fmt"
 
         	"github.com/hybridgroup/gobot"
-        	"github.com/hybridgroup/gobot/platforms/spark"
+        	"github.com/hybridgroup/gobot/platforms/particle"
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
-
-        	sparkCore := spark.NewSparkCoreAdaptor("spark", "DEVICE_ID", "ACCESS_TOKEN")
+        	core := particle.NewAdaptor("DEVICE_ID", "ACCESS_TOKEN")
 
         	work := func() {
-        		if result, err := sparkCore.Function("brew", "202,230"); err != nil {
+        		if result, err := core.Function("brew", "202,230"); err != nil {
         			fmt.Println(err)
         		} else {
         			fmt.Println("result from \"brew\":", result)
@@ -34,12 +32,10 @@ active_menu_docs: true
         	}
 
         	robot := gobot.NewRobot("spark",
-        		[]gobot.Connection{sparkCore},
+        		[]gobot.Connection{core},
         		work,
         	)
 
-        	gbot.AddRobot(robot)
-
-        	gbot.Start()
+        	robot.Start()
         }
 

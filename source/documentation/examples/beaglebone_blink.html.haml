@@ -17,15 +17,13 @@ active_menu_docs: true
         	"time"
 
         	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/drivers/gpio"
         	"github.com/hybridgroup/gobot/platforms/beaglebone"
-        	"github.com/hybridgroup/gobot/platforms/gpio"
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
-
-        	beagleboneAdaptor := beaglebone.NewBeagleboneAdaptor("beaglebone")
-        	led := gpio.NewLedDriver(beagleboneAdaptor, "led", "P9_12")
+        	beagleboneAdaptor := beaglebone.NewAdaptor()
+        	led := gpio.NewLedDriver(beagleboneAdaptor, "P9_12")
 
         	work := func() {
         		gobot.Every(1*time.Second, func() {
@@ -39,8 +37,6 @@ active_menu_docs: true
         		work,
         	)
 
-        	gbot.AddRobot(robot)
-
-        	gbot.Start()
+        	robot.Start()
         }
 

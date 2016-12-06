@@ -22,16 +22,14 @@ active_menu_docs: true
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
+        	leapAdaptor := leap.NewAdaptor("127.0.0.1:6437")
+        	spheroAdaptor := sphero.NewAdaptor("/dev/tty.Sphero-YBW-RN-SPP")
 
-        	leapAdaptor := leap.NewLeapMotionAdaptor("leap", "127.0.0.1:6437")
-        	spheroAdaptor := sphero.NewSpheroAdaptor("Sphero", "/dev/tty.Sphero-YBW-RN-SPP")
-
-        	leapDriver := leap.NewLeapMotionDriver(leapAdaptor, "leap")
-        	spheroDriver := sphero.NewSpheroDriver(spheroAdaptor, "sphero")
+        	leapDriver := leap.NewDriver(leapAdaptor)
+        	spheroDriver := sphero.NewSpheroDriver(spheroAdaptor)
 
         	work := func() {
-        		gobot.On(leapDriver.Event("message"), func(data interface{}) {
+        		leapDriver.On(leap.MessageEvent, func(data interface{}) {
         			hands := data.(leap.Frame).Hands
 
         			if len(hands) > 0 {
@@ -49,9 +47,7 @@ active_menu_docs: true
         		work,
         	)
 
-        	gbot.AddRobot(robot)
-
-        	gbot.Start()
+        	robot.Start()
         }
 
         func scale(position float64) uint8 {

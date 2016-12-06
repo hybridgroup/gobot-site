@@ -21,16 +21,15 @@ active_menu_docs: true
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
+        	master := gobot.NewMaster()
 
         	spheros := map[string]string{
         		"Sphero-BPO": "/dev/rfcomm0",
         	}
 
         	for name, port := range spheros {
-        		spheroAdaptor := sphero.NewSpheroAdaptor("sphero", port)
-
-        		spheroDriver := sphero.NewSpheroDriver(spheroAdaptor, "sphero")
+        		spheroAdaptor := sphero.NewAdaptor(port)
+        		spheroDriver := sphero.NewSpheroDriver(spheroAdaptor)
 
         		work := func() {
         			spheroDriver.SetRGB(uint8(255), uint8(0), uint8(0))
@@ -42,13 +41,13 @@ active_menu_docs: true
         			work,
         		)
 
-        		gbot.AddRobot(robot)
+        		master.AddRobot(robot)
         	}
 
         	robot := gobot.NewRobot("",
         		func() {
         			gobot.Every(1*time.Second, func() {
-        				sphero := gbot.Robot("Sphero-BPO").Device("sphero").(*sphero.SpheroDriver)
+        				sphero := master.Robot("Sphero-BPO").Device("sphero").(*sphero.SpheroDriver)
         				sphero.SetRGB(uint8(gobot.Rand(255)),
         					uint8(gobot.Rand(255)),
         					uint8(gobot.Rand(255)),
@@ -57,8 +56,8 @@ active_menu_docs: true
         		},
         	)
 
-        	gbot.AddRobot(robot)
+        	master.AddRobot(robot)
 
-        	gbot.Start()
+        	master.Start()
         }
 

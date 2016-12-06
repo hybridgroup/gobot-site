@@ -1,0 +1,60 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - sphero_dpad"
+page_title: "Example: sphero_dpad"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/api"
+        	"github.com/hybridgroup/gobot/platforms/sphero"
+        )
+
+        func main() {
+        	master := gobot.NewMaster()
+        	a := api.NewAPI(master)
+        	a.Start()
+
+        	conn := sphero.NewAdaptor("/dev/rfcomm0")
+        	ball := sphero.NewSpheroDriver(conn)
+
+        	robot := gobot.NewRobot("sphero-dpad",
+        		[]gobot.Connection{conn},
+        		[]gobot.Device{ball},
+        	)
+
+        	robot.AddCommand("move", func(params map[string]interface{}) interface{} {
+        		direction := params["direction"].(string)
+
+        		switch direction {
+        		case "up":
+        			ball.Roll(100, 0)
+        		case "down":
+        			ball.Roll(100, 180)
+        		case "left":
+        			ball.Roll(100, 270)
+        		case "right":
+        			ball.Roll(100, 90)
+        		}
+
+        		time.Sleep(2 * time.Second)
+        		ball.Stop()
+        		return "ok"
+        	})
+
+        	master.AddRobot(robot)
+
+        	master.Start()
+        }
+

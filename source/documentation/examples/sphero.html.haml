@@ -22,19 +22,17 @@ active_menu_docs: true
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
-
-        	adaptor := sphero.NewSpheroAdaptor("Sphero", "/dev/rfcomm0")
-        	spheroDriver := sphero.NewSpheroDriver(adaptor, "sphero")
+        	adaptor := sphero.NewAdaptor("/dev/rfcomm0")
+        	spheroDriver := sphero.NewSpheroDriver(adaptor)
 
         	work := func() {
         		spheroDriver.SetDataStreaming(sphero.DefaultDataStreamingConfig())
 
-        		gobot.On(spheroDriver.Event(sphero.Collision), func(data interface{}) {
+        		spheroDriver.On(sphero.Collision, func(data interface{}) {
         			fmt.Printf("Collision! %+v\n", data)
         		})
 
-        		gobot.On(spheroDriver.Event(sphero.SensorData), func(data interface{}) {
+        		spheroDriver.On(sphero.SensorData, func(data interface{}) {
         			fmt.Printf("Streaming Data! %+v\n", data)
         		})
 
@@ -56,8 +54,6 @@ active_menu_docs: true
         		work,
         	)
 
-        	gbot.AddRobot(robot)
-
-        	gbot.Start()
+        	robot.Start()
         }
 

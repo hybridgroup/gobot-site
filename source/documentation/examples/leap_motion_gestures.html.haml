@@ -1,0 +1,45 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - leap_motion_gestures"
+page_title: "Example: leap_motion_gestures"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/leap"
+        )
+
+        func main() {
+        	leapMotionAdaptor := leap.NewAdaptor("127.0.0.1:6437")
+        	l := leap.NewDriver(leapMotionAdaptor)
+
+        	work := func() {
+        		l.On(leap.GestureEvent, func(data interface{}) {
+        			printGesture(data.(leap.Gesture))
+        		})
+        	}
+
+        	robot := gobot.NewRobot("leapBot",
+        		[]gobot.Connection{leapMotionAdaptor},
+        		[]gobot.Device{l},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+
+        func printGesture(gesture leap.Gesture) {
+        	fmt.Println("Gesture", gesture)
+        }
+

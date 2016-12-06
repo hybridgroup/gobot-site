@@ -1,0 +1,43 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - ble_battery"
+page_title: "Example: ble_battery"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+        	"os"
+        	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/ble"
+        )
+
+        func main() {
+        	bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+        	battery := ble.NewBatteryDriver(bleAdaptor)
+
+        	work := func() {
+        		gobot.Every(5*time.Second, func() {
+        			fmt.Println("Battery level:", battery.GetBatteryLevel())
+        		})
+        	}
+
+        	robot := gobot.NewRobot("bleBot",
+        		[]gobot.Connection{bleAdaptor},
+        		[]gobot.Device{battery},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

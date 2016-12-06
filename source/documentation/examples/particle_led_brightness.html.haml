@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - spark_core_led_brithgness"
-page_title: "Example: spark_core_led_brithgness"
+title: "Gobot Example - particle_led_brightness"
+page_title: "Example: particle_led_brightness"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -17,15 +17,13 @@ active_menu_docs: true
         	"time"
 
         	"github.com/hybridgroup/gobot"
-        	"github.com/hybridgroup/gobot/platforms/gpio"
-        	"github.com/hybridgroup/gobot/platforms/spark"
+        	"github.com/hybridgroup/gobot/drivers/gpio"
+        	"github.com/hybridgroup/gobot/platforms/particle"
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
-
-        	sparkCore := spark.NewSparkCoreAdaptor("spark", "device_id", "access_token")
-        	led := gpio.NewLedDriver(sparkCore, "led", "A1")
+        	core := particle.NewAdaptor("device_id", "access_token")
+        	led := gpio.NewLedDriver(core, "A1")
 
         	work := func() {
         		brightness := uint8(0)
@@ -41,13 +39,11 @@ active_menu_docs: true
         	}
 
         	robot := gobot.NewRobot("spark",
-        		[]gobot.Connection{sparkCore},
+        		[]gobot.Connection{core},
         		[]gobot.Device{led},
         		work,
         	)
 
-        	gbot.AddRobot(robot)
-
-        	gbot.Start()
+        	robot.Start()
         }
 

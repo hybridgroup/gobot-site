@@ -1,0 +1,46 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - bebop"
+page_title: "Example: bebop"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/bebop"
+        )
+
+        func main() {
+        	bebopAdaptor := bebop.NewAdaptor()
+        	drone := bebop.NewDriver(bebopAdaptor)
+
+        	work := func() {
+        		drone.On(bebop.Flying, func(data interface{}) {
+        			gobot.After(10*time.Second, func() {
+        				drone.Land()
+        			})
+        		})
+
+        		drone.HullProtection(true)
+        		drone.TakeOff()
+        	}
+
+        	robot := gobot.NewRobot("drone",
+        		[]gobot.Connection{bebopAdaptor},
+        		[]gobot.Device{drone},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

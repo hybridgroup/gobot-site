@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - spark_core_api"
-page_title: "Example: spark_core_api"
+title: "Gobot Example - particle_blink"
+page_title: "Example: particle_blink"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -17,17 +17,13 @@ active_menu_docs: true
         	"time"
 
         	"github.com/hybridgroup/gobot"
-        	"github.com/hybridgroup/gobot/api"
-        	"github.com/hybridgroup/gobot/platforms/gpio"
-        	"github.com/hybridgroup/gobot/platforms/spark"
+        	"github.com/hybridgroup/gobot/drivers/gpio"
+        	"github.com/hybridgroup/gobot/platforms/particle"
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
-        	api.NewAPI(gbot).Start()
-
-        	sparkCore := spark.NewSparkCoreAdaptor("spark", "device_id", "access_token")
-        	led := gpio.NewLedDriver(sparkCore, "led", "D7")
+        	core := particle.NewAdaptor("device_id", "access_token")
+        	led := gpio.NewLedDriver(core, "D7")
 
         	work := func() {
         		gobot.Every(1*time.Second, func() {
@@ -36,13 +32,11 @@ active_menu_docs: true
         	}
 
         	robot := gobot.NewRobot("spark",
-        		[]gobot.Connection{sparkCore},
+        		[]gobot.Connection{core},
         		[]gobot.Device{led},
         		work,
         	)
 
-        	gbot.AddRobot(robot)
-
-        	gbot.Start()
+        	robot.Start()
         }
 

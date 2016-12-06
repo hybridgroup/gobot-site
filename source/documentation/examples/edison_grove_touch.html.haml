@@ -1,0 +1,47 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - edison_grove_touch"
+page_title: "Example: edison_grove_touch"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/drivers/gpio"
+        	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
+        )
+
+        func main() {
+        	e := edison.NewAdaptor()
+        	touch := gpio.NewGroveTouchDriver(e, "2")
+
+        	work := func() {
+        		touch.On(gpio.ButtonPush, func(data interface{}) {
+        			fmt.Println("On!")
+        		})
+
+        		touch.On(gpio.ButtonRelease, func(data interface{}) {
+        			fmt.Println("Off!")
+        		})
+
+        	}
+
+        	robot := gobot.NewRobot("blinkBot",
+        		[]gobot.Connection{e},
+        		[]gobot.Device{touch},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

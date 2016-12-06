@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - spark_core_variable"
-page_title: "Example: spark_core_variable"
+title: "Gobot Example - particle_api"
+page_title: "Example: particle_api"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -14,35 +14,35 @@ active_menu_docs: true
         package main
 
         import (
-        	"fmt"
         	"time"
 
         	"github.com/hybridgroup/gobot"
-        	"github.com/hybridgroup/gobot/platforms/spark"
+        	"github.com/hybridgroup/gobot/api"
+        	"github.com/hybridgroup/gobot/drivers/gpio"
+        	"github.com/hybridgroup/gobot/platforms/particle"
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
+        	master := gobot.NewMaster()
+        	api.NewAPI(master).Start()
 
-        	sparkCore := spark.NewSparkCoreAdaptor("spark", "DEVICE_ID", "ACCESS_TOKEN")
+        	core := particle.NewAdaptor("device_id", "access_token")
+        	led := gpio.NewLedDriver(core, "D7")
 
         	work := func() {
         		gobot.Every(1*time.Second, func() {
-        			if temp, err := sparkCore.Variable("temperature"); err != nil {
-        				fmt.Println(err)
-        			} else {
-        				fmt.Println("result from \"temperature\" is:", temp)
-        			}
+        			led.Toggle()
         		})
         	}
 
         	robot := gobot.NewRobot("spark",
-        		[]gobot.Connection{sparkCore},
+        		[]gobot.Connection{core},
+        		[]gobot.Device{led},
         		work,
         	)
 
-        	gbot.AddRobot(robot)
+        	master.AddRobot(robot)
 
-        	gbot.Start()
+        	master.Start()
         }
 

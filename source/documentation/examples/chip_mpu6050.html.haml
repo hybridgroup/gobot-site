@@ -1,0 +1,45 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - chip_mpu6050"
+page_title: "Example: chip_mpu6050"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+        	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/drivers/i2c"
+        	"github.com/hybridgroup/gobot/platforms/chip"
+        )
+
+        func main() {
+        	board := chip.NewAdaptor()
+        	mpu6050 := i2c.NewMPU6050Driver(board)
+
+        	work := func() {
+        		gobot.Every(100*time.Millisecond, func() {
+        			fmt.Println("Accelerometer", mpu6050.Accelerometer)
+        			fmt.Println("Gyroscope", mpu6050.Gyroscope)
+        			fmt.Println("Temperature", mpu6050.Temperature)
+        		})
+        	}
+
+        	robot := gobot.NewRobot("mpu6050Bot",
+        		[]gobot.Connection{board},
+        		[]gobot.Device{mpu6050},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

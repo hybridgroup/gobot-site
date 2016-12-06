@@ -1,0 +1,48 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - edison_grove_accelerometer"
+page_title: "Example: edison_grove_accelerometer"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+        	"time"
+
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/drivers/i2c"
+        	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
+        )
+
+        func main() {
+        	board := edison.NewAdaptor()
+        	accel := i2c.NewGroveAccelerometerDriver(board)
+
+        	work := func() {
+        		gobot.Every(500*time.Millisecond, func() {
+        			if x, y, z, err := accel.XYZ(); err == nil {
+        				fmt.Println(x, y, z)
+        				fmt.Println(accel.Acceleration(x, y, z))
+        			} else {
+        				fmt.Println(err)
+        			}
+        		})
+        	}
+
+        	robot := gobot.NewRobot("accelBot",
+        		[]gobot.Connection{board},
+        		[]gobot.Device{accel},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

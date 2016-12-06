@@ -1,0 +1,45 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - edison_button_led"
+page_title: "Example: edison_button_led"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/drivers/gpio"
+        	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
+        )
+
+        func main() {
+        	e := edison.NewAdaptor()
+
+        	button := gpio.NewButtonDriver(e, "2")
+        	led := gpio.NewLedDriver(e, "4")
+
+        	work := func() {
+        		button.On(gpio.ButtonPush, func(data interface{}) {
+        			led.On()
+        		})
+        		button.On(gpio.ButtonRelease, func(data interface{}) {
+        			led.Off()
+        		})
+        	}
+
+        	robot := gobot.NewRobot("buttonBot",
+        		[]gobot.Connection{e},
+        		[]gobot.Device{led, button},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

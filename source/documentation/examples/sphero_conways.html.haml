@@ -29,7 +29,7 @@ active_menu_docs: true
         }
 
         func main() {
-        	gbot := gobot.NewGobot()
+        	master := gobot.NewMaster()
 
         	spheros := []string{
         		"/dev/rfcomm0",
@@ -38,9 +38,10 @@ active_menu_docs: true
         	}
 
         	for _, port := range spheros {
-        		spheroAdaptor := sphero.NewSpheroAdaptor("Sphero", port)
+        		spheroAdaptor := sphero.NewAdaptor(port)
 
-        		cell := sphero.NewSpheroDriver(spheroAdaptor, "Sphero"+port)
+        		cell := sphero.NewSpheroDriver(spheroAdaptor)
+        		cell.SetName("Sphero" + port)
 
         		work := func() {
         			conway := new(conway)
@@ -48,18 +49,18 @@ active_menu_docs: true
 
         			conway.birth()
 
-        			gobot.On(cell.Event("collision"), func(data interface{}) {
+        			cell.On(sphero.Collision, func(data interface{}) {
         				conway.contact()
         			})
 
         			gobot.Every(3*time.Second, func() {
-        				if conway.alive == true {
+        				if conway.alive {
         					conway.movement()
         				}
         			})
 
         			gobot.Every(10*time.Second, func() {
-        				if conway.alive == true {
+        				if conway.alive {
         					conway.birthday()
         				}
         			})
@@ -70,10 +71,11 @@ active_menu_docs: true
         			[]gobot.Device{cell},
         			work,
         		)
-        		gbot.AddRobot(robot)
+
+        		master.AddRobot(robot)
         	}
 
-        	gbot.Start()
+        	master.Start()
         }
 
         func (c *conway) resetContacts() {
@@ -120,8 +122,8 @@ active_menu_docs: true
 
         	fmt.Println("Happy birthday", c.cell.Name, "you are", c.age, "and had", c.contacts, "contacts.")
 
-        	if c.enoughContacts() == true {
-        		if c.alive == false {
+        	if c.enoughContacts() {
+        		if !c.alive {
         			c.rebirth()
         		}
         	} else {
@@ -132,7 +134,7 @@ active_menu_docs: true
         }
 
         func (c *conway) movement() {
-        	if c.alive == true {
+        	if c.alive {
         		c.cell.Roll(100, uint16(gobot.Rand(360)))
         	}
         }

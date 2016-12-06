@@ -21,14 +21,12 @@ active_menu_docs: true
         )
 
         func main() {
-        	gbot := gobot.NewGobot()
-
-        	leapMotionAdaptor := leap.NewLeapMotionAdaptor("leap", "127.0.0.1:6437")
-        	l := leap.NewLeapMotionDriver(leapMotionAdaptor, "leap")
+        	leapMotionAdaptor := leap.NewAdaptor("127.0.0.1:6437")
+        	l := leap.NewDriver(leapMotionAdaptor)
 
         	work := func() {
-        		gobot.On(l.Event("message"), func(data interface{}) {
-        			printHands(data.(leap.Frame))
+        		l.On(leap.HandEvent, func(data interface{}) {
+        			printHand(data.(leap.Hand))
         		})
         	}
 
@@ -38,14 +36,10 @@ active_menu_docs: true
         		work,
         	)
 
-        	gbot.AddRobot(robot)
-
-        	gbot.Start()
+        	robot.Start()
         }
 
-        func printHands(frame leap.Frame) {
-        	for key, hand := range frame.Hands {
-        		fmt.Println("Hand", key, hand)
-        	}
+        func printHand(hand leap.Hand) {
+        	fmt.Println("Hand", hand)
         }
 
