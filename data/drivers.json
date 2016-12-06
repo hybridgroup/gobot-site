@@ -38,6 +38,12 @@
     "Wiimote Nunchuk": "wiimote-nunchuk"
   },
 
+  "Bluetooth LE": {
+    "Battery Service": "ble-battery",
+    "Device Information Service": "ble-device-information",
+    "Generic Access Service": "ble-generic-access"
+  },
+
   "ARDrone - Flight": "ardrone-flight",
   "Bebop": "bebop",
   "Joystick - DualShock 3": "dualshock3",

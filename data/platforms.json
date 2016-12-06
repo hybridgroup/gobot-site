@@ -26,7 +26,7 @@
   "Bluetooth LE": {
     "slug": "ble",
     "url": "",
-    "drivers": ["BLE - battery"]
+    "drivers": ["Battery Service", "Device Information Service", "Generic Access Service"]
   },
 
   "C.H.I.P.": {
