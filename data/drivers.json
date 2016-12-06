@@ -2,9 +2,8 @@
   "GPIO": {
     "Analog Sensor": "analog-sensor",
     "Button": "button",
+    "Buzzer": "buzzer",
     "Direct Pin": "direct-pin",
-    "Grove Touch": "grove-touch",
-    "Grove Sound Sensor": "grove-sound-sensor",
     "Grove Button": "grove-button",
     "Grove Buzzer": "grove-buzzer",
     "Grove Led": "grove-led",
@@ -12,21 +11,30 @@
     "Grove Vibration Sensor": "grove-piezo-vibration-sensor",
     "Grove Rotary": "grove-rotary",
     "Grove Relay": "grove-relay",
+    "Grove Sound Sensor": "grove-sound-sensor",
     "Grove Temperature Sensor": "grove-temperature-sensor",
+    "Grove Touch": "grove-touch",
     "LED": "led",
     "Makey Button": "makey-button",
     "Motor": "motor",
+    "PIR Motion Sensor": "pir-motion-sensor",
+    "Relay": "relay",
+    "RGB LED": "rgb-led",
     "Servo": "servo"
   },
 
   "I2C": {
+    "Adafruit Motor Hat": "adafruit-motor-hat",
     "BlinkM": "blinkm",
-    "Grove LCD": "grove-lcd",
+    "Grove LCD w/RGB": "grove-lcd",
     "Grove Accelerometer": "grove-accelerometer",
     "HMC6352 Compass": "hmc6352-compass",
+    "MCP23017": "MCP23017",
     "LIDAR-Lite": "lidar-lite",
-    "MPU6050": "mpu6050",
+    "MCP23017": "MCP23017",
+    "MMA7660": "mma7660",
     "MPL115A2": "mpl115a2",
+    "MPU6050": "mpu6050",
     "Wiimote Nunchuk": "wiimote-nunchuk"
   },
 

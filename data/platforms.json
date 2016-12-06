@@ -23,6 +23,12 @@
     "drivers": ["Bebop"]
   },
 
+  "Bluetooth LE": {
+    "slug": "ble",
+    "url": "",
+    "drivers": ["BLE - battery"]
+  },
+
   "C.H.I.P.": {
     "slug": "chip",
     "url": "http://www.nextthing.co/pages/chip",
@@ -38,6 +44,12 @@
   "Intel Edison": {
     "slug": "edison",
     "url": "http://www.intel.com/content/www/us/en/do-it-yourself/edison.html",
+    "drivers": ["GPIO", "I2C"]
+  },
+
+  "Intel Joule": {
+    "slug": "joule",
+    "url": "http://www.intel.com/joule/getstarted",
     "drivers": ["GPIO", "I2C"]
   },
 
@@ -71,6 +83,12 @@
     "drivers": ["MQTT"]
   },
 
+  "NATS": {
+    "slug": "nats",
+    "url": "http://nats.io/",
+    "drivers": []
+  },
+
   "Neurosky": {
     "slug": "neurosky",
     "url": "http://neurosky.com/products-markets/eeg-biosensors/hardware/",
@@ -95,9 +113,9 @@
     "drivers": ["GPIO", "I2C"]
   },
 
-  "Spark": {
-    "slug": "spark",
-    "url": "https://www.spark.io/",
+  "Particle": {
+    "slug": "particle",
+    "url": "https://www.particle.io/",
     "drivers": ["GPIO"]
   },
 

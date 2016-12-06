@@ -1,57 +1,54 @@
 .info-intro
-    :markdown
-        Packge keyboard contains the Gobot drivers for keyboard support.
+  :markdown
+    This module implements support for keyboard events, wrapping the `stty` utility.
 
-    = current_page.data.api_reference
 
+  = current_page.data.api_reference
 .clear
 %section.how-to
-    :markdown
-        ## How to Install
+  :markdown
 
-            go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/keyboard
+    ## How to Install
 
-        ## How to Use
+        go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/gobot/platforms/keyboard
 
-        ## How to Connect
 
-        All that you need to do is plug the keyboard into your computer as usual.
+    ## How to Use
 
-        ## Examples
+    Example parsing key events
 
-        This small program receives events from keyboard
+        :::go
+        package main
+        
+        import (
+        	"fmt"
+        
+        	"github.com/hybridgroup/gobot"
+        	"github.com/hybridgroup/gobot/platforms/keyboard"
+        )
+        
+        func main() {
+        	keys := keyboard.NewDriver()
+        
+        	work := func() {
+        		keys.On(keyboard.Key, func(data interface{}) {
+        			key := data.(keyboard.KeyEvent)
+        
+        			if key.Key == keyboard.A {
+        				fmt.Println("A pressed!")
+        			} else {
+        				fmt.Println("keyboard event!", key, key.Char)
+        			}
+        		})
+        	}
+        
+        	robot := gobot.NewRobot("keyboardbot",
+        		[]gobot.Connection{},
+        		[]gobot.Device{keys},
+        		work,
+        	)
+        
+        	robot.Start()
+        }
 
-            :::go
-            package main
 
-            import (
-                "fmt"
-                "github.com/hybridgroup/gobot"
-                "github.com/hybridgroup/gobot/platforms/keyboard"
-            )
-
-            func main() {
-                gbot := gobot.NewGobot()
-                keys := keyboard.NewKeyboardDriver("keyboard")
-
-                work := func() {
-                    gobot.On(keys.Event("key"), func(data interface{}) {
-                        key := data.(keyboard.KeyEvent)
-
-                        if key.Key == keyboard.A {
-                            fmt.Println("A pressed!")
-                        } else {
-                            fmt.Println("keyboard event!", key, key.Char)
-                        }
-                    })
-                }
-
-                robot := gobot.NewRobot("keyboardbot",
-                    []gobot.Connection{},
-                    []gobot.Device{keys},
-                    work,
-                )
-
-                gbot.AddRobot(robot)
-                gbot.Start()
-            }

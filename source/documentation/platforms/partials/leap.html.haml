@@ -32,10 +32,8 @@
         )
         
         func main() {
-        	gbot := gobot.NewGobot()
-        
-        	leapMotionAdaptor := leap.NewLeapMotionAdaptor("leap", "127.0.0.1:6437")
-        	l := leap.NewLeapMotionDriver(leapMotionAdaptor, "leap")
+        	leapMotionAdaptor := leap.NewAdaptor("127.0.0.1:6437")
+        	l := leap.NewDriver(leapMotionAdaptor)
         
         	work := func() {
         		gobot.On(l.Event("message"), func(data interface{}) {
@@ -49,9 +47,7 @@
         		work,
         	)
         
-        	gbot.AddRobot(robot)
-        
-        	gbot.Start()
+        	robot.Start()
         }
 
 
@@ -76,3 +72,4 @@
     *   Run the leapd daemon, to open a websocket connection in port 6437.
     *   Connect your computer and the Leap Motion controller
     *   Connect to the device via Gobot
+

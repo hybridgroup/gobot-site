@@ -92,7 +92,7 @@ def clone_repo
   FileUtils.rm_rf(REPO_PATH) if File.directory?(REPO_PATH)
   puts " - Cloning repo. "
   repo = Git.clone REPO_URL, REPO_PATH
-  repo.checkout 'master'
+  repo.checkout 'dev'
 end
 
 def extract_platforms

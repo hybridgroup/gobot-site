@@ -1,6 +1,11 @@
 .info-intro
   :markdown
-    You can use Gobot with a Dualshock3 game controller, an XBox360 game controller, or any other USB joystick or game controller that is compatible with [Simple DirectMedia Layer](http://www.libsdl.org/).
+    You can use Gobot with any USB joystick or game controller that is compatible with [Simple DirectMedia Layer](http://www.libsdl.org/).
+
+    Current configurations included:
+    - Dualshock3 game controller
+    - Dualshock4 game controller
+    - XBox360 game controller
 
 
   = current_page.data.api_reference
@@ -132,6 +137,8 @@
 
     Plug your USB joystick or game controller into your USB port. If your device is supported by SDL, you are now ready.
 
+    For the Dualshock4, you must pair the device with your computers Bluetooth interface first, before running your Gobot program.
+
     ## Examples
 
     This small program receives joystick and button press events from an PlayStation 3 game controller.
@@ -147,11 +154,8 @@
         )
         
         func main() {
-        	gbot := gobot.NewGobot()
-        
-        	joystickAdaptor := joystick.NewJoystickAdaptor("ps3")
-        	joystick := joystick.NewJoystickDriver(joystickAdaptor,
-        		"ps3",
+        	joystickAdaptor := joystick.NewAdaptor()
+        	joystick := joystick.NewDriver(joystickAdaptor,
         		"./platforms/joystick/configs/dualshock3.json",
         	)
         
@@ -188,9 +192,7 @@
         		work,
         	)
         
-        	gbot.AddRobot(robot)
-        
-        	gbot.Start()
+        	robot.Start()
         }
 
 

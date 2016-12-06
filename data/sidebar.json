@@ -14,6 +14,7 @@
     "C.H.I.P.": "/documentation/platforms/chip",
     "Digispark": "/documentation/platforms/digispark",
     "Intel Edison": "/documentation/platforms/edison",
+    "Intel Joule": "/documentation/platforms/joule",
     "Joystick": "/documentation/platforms/joystick",
     "Keyboard": "/documentation/platforms/keyboard",
     "Leap Motion": "/documentation/platforms/leapmotion",
@@ -21,9 +22,9 @@
     "MQTT": "/documentation/platforms/mqtt",
     "Neurosky Mindwave": "/documentation/platforms/neurosky",
     "OpenCV": "/documentation/platforms/opencv",
+    "Particle": "/documentation/platforms/particle",    
     "Pebble": "/documentation/platforms/pebble",
     "Raspberry Pi": "/documentation/platforms/raspi",
-    "Spark": "/documentation/platforms/spark",
     "Sphero": "/documentation/platforms/sphero"
   },
 
