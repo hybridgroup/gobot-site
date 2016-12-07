@@ -77,6 +77,12 @@
     "drivers": ["Mavlink"]
   },
 
+  "Minidrone": {
+    "slug": "minidrone",
+    "url": "http://www.parrot.com/products/minidrone/",
+    "drivers": ["Minidrone"]
+  },
+
   "MQTT": {
     "slug": "mqtt",
     "url": "http://www.mqtt.org/",
@@ -119,9 +125,15 @@
     "drivers": ["GPIO"]
   },
 
+  "Ollie": {
+    "slug": "ollie",
+    "url": "http://www.sphero.com/",
+    "drivers": ["Ollie"]
+  },
+
   "Sphero": {
     "slug": "sphero",
-    "url": "http://www.gosphero.com/",
+    "url": "http://www.sphero.com/",
     "drivers": ["Sphero"]
   }
 }

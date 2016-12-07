@@ -51,7 +51,9 @@
   "Keyboard": "keyboard",
   "Leap Motion": "leapmotion",
   "Mavlink": "mavlink",
+  "Minidrone": "minidrone",
   "Neurosky Mindwave": "neurosky",
   "Pebble": "pebble",
-  "Sphero": "sphero"
+  "Sphero": "sphero",
+  "Ollie": "ollie"
 }

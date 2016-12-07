@@ -26,7 +26,8 @@
     "Particle": "/documentation/platforms/particle",
     "Pebble": "/documentation/platforms/pebble",
     "Raspberry Pi": "/documentation/platforms/raspi",
-    "Sphero": "/documentation/platforms/sphero"
+    "Sphero": "/documentation/platforms/sphero",
+    "Sphero Ollie": "/documentation/platforms/ollie"
   },
 
   "Drivers": {
@@ -76,7 +77,9 @@
     "Mavlink": "/documentation/drivers/mavlink",
     "Neurosky Mindwave": "/documentation/drivers/neurosky",
     "Pebble": "/documentation/drivers/pebble",
-    "Sphero": "/documentation/drivers/sphero"
+    "Sphero": "/documentation/drivers/sphero",
+    "Ollie": "/documentation/drivers/ollie"
+
   },
 
   "Core": {

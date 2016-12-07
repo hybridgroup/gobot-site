@@ -1,0 +1,45 @@
+---
+title: Gobot - Minidrone Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Minidrone
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/minidrone.jpg", class: "display"
+.info-intro
+  %p
+    Allows user to send flight control commands to Parrot Minidrone. Flight control commands are those used
+    to tell the Minidrone to take off, land, and or any number of other autonomous flight maneuvers.
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+
+  %p
+    Goes here...
+
+  :markdown
+        :::go
+        // code here...
+
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+  :markdown
+        :::go
+        // code here...
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Minidrone" }

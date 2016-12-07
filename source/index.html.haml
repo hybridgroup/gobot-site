@@ -9,7 +9,7 @@ description: Gobot is a framework for robotics, physical computing, and the Inte
 layout: home
 
 hero_title: "<span>Go, Robot, Go!</span> <br> Golang Powered Robotics"
-hero_subtitle: "Next generation robotics framework with support for <a class='platforms-number' href='#platforms'>18 different platforms</a>"
+hero_subtitle: "Next generation robotics framework with support for <a class='platforms-number' href='#platforms'>24 different platforms</a>"
 
 img_character: "<img src='images/elements/gophy.png'>"
 
@@ -41,14 +41,12 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
 
           "github.com/hybridgroup/gobot"
           "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
+          "github.com/hybridgroup/gobot/drivers/gpio"
         )
 
         func main() {
-          gbot := gobot.NewGobot()
-
-          firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
-          led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
+          firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+          led := gpio.NewLedDriver(firmataAdaptor, "13")
 
           work := func() {
             gobot.Every(1*time.Second, func() {
@@ -56,13 +54,13 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
             })
           }
 
-          gbot.AddRobot(gobot.NewRobot("bot",
+          robot = gobot.NewRobot("bot",
             []gobot.Connection{firmataAdaptor},
             []gobot.Device{led},
             work,
-          ))
+          )
 
-          gbot.Start()
+          robot.Start()
         }
 
     We've got many more [examples][] to help you get started on your next IoT project!

@@ -1,11 +1,11 @@
 ---
-title: Parrot Ardrone with Gobot
+title: Parrot Minidrone with Gobot
 author: The Hybrid Group
 page_title: Platforms
 page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
-page_title_docs: Ardrone
+page_title_docs: Minidrone
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot' target='blank' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot/issues' target='_blank'>Issues</a>"
-api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/parrot/ardrone' target='_blank' class='api-link'>API Reference</a>
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/parrot/minidrone' target='_blank' class='api-link'>API Reference</a>
 layout: documentation
 page_title_show: true
 subnav_platform: true
@@ -14,15 +14,15 @@ subnavjs: true
 ---
 
 %section.intro
-  = image_tag "/images/devices/ardrone.jpg", class: "display"
+  = image_tag "/images/devices/minidrone.jpg", class: "display"
 
-= partial "documentation/platforms/partials/ardrone"
+= partial "documentation/platforms/partials/minidrone"
 
 
 %section.drivers#Drivers
   %h2 Drivers
-  %p Available drivers for the ARDrone platform are listed below..
+  %p Available drivers for the Parrot Minidrone platform are listed below..
 
   .hardware
     .devices
-      = partial "/partials/devices_for_platform", locals: { platform: "ARDrone" }
+      = partial "/partials/devices_for_platform", locals: { platform: "Minidrone" }
