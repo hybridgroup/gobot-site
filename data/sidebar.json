@@ -2,6 +2,10 @@
   "Getting Started": "/documentation/getting-started",
 
   "Guides": {
+    "Classic Gobot": "/documentation/guides/classic-gobot",
+    "Master Gobot": "/documentation/guides/master-gobot",
+    "Metal Gobot": "/documentation/guides/metal-gobot",
+    "Adding Hardware Support": "/documentation/guides/adding-hardware-support",
     "CLI": "/documentation/guides/cli",
     "Gobot on ARDrone": "/documentation/guides/gobot-on-ardrone"
   },
@@ -23,6 +27,7 @@
     "MQTT": "/documentation/platforms/mqtt",
     "Neurosky Mindwave": "/documentation/platforms/neurosky",
     "OpenCV": "/documentation/platforms/opencv",
+    "Parrot Minidrone": "/documentation/platforms/minidrone",
     "Particle": "/documentation/platforms/particle",
     "Pebble": "/documentation/platforms/pebble",
     "Raspberry Pi": "/documentation/platforms/raspi",
@@ -83,6 +88,11 @@
   },
 
   "Core": {
+    "Robots": "/documentation/core/robots",
+    "Adaptors": "/documentation/core/adaptors",
+    "Drivers": "/documentation/core/drivers",
+    "Events": "/documentation/core/events",
+    "Commands": "/documentation/core/commands",
     "API": "/documentation/core/api",
     "Helper Methods": "/documentation/core/helpers",
     "sysfs": "/documentation/core/sysfs"
