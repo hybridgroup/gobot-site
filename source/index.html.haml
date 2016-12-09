@@ -9,7 +9,7 @@ description: Gobot is a framework for robotics, physical computing, and the Inte
 layout: home
 
 hero_title: "<span>Go, Robot, Go!</span> <br> Golang Powered Robotics"
-hero_subtitle: "Next generation robotics framework with support for <a class='platforms-number' href='#platforms'>24 different platforms</a>"
+hero_subtitle: "Next generation robotics framework with support for <a class='platforms-number' href='#platforms'>23 different platforms</a>"
 
 img_character: "<img src='images/elements/gophy.png'>"
 
@@ -86,10 +86,10 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
 
     .clear
 
-  %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the gpio platform package:
-
   %h2
     = link_to "#{data.drivers.GPIO.length} GPIO drivers", "https://en.wikipedia.org/wiki/General_Purpose_Input/Output" , target:"_blank"
+
+  %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the gpio platform package:
 
   %ul.platform-list
     - data.drivers.GPIO.each do |name, slug|
@@ -99,10 +99,10 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
           %img{src: "/images/devices/#{slug}.jpg", style: "width: 90%"}
   .clear
 
-  %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provided using the i2c platform package:
-
   %h2
     = link_to "#{data.drivers.I2C.length} I2C drivers", "https://en.wikipedia.org/wiki/I%C2%B2C", target:"_blank"
+
+  %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provided using the i2c platform package:
 
   %ul.platform-list
     - data.drivers.I2C.each do |name, slug|

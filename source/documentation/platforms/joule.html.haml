@@ -1,0 +1,30 @@
+---
+title: Intel Joule with Gobot
+author: The Hybrid Group
+page_title: Platforms
+page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
+page_title_docs: Intel Joule
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/gobot/issues' target='_blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/github.com/hybridgroup/gobot/platforms/intel-iot/joule' target='_blank' class='api-link'>API Reference</a>
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+
+%section.intro
+  = image_tag "/images/devices/joule.jpg", class: "display"
+
+= partial "documentation/platforms/partials/joule"
+
+
+%section.drivers#Drivers
+  :markdown
+    ## Drivers
+
+    Available drivers for the Intel Joule are listed below.
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "Intel Joule"}

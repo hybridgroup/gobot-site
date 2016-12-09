@@ -38,7 +38,7 @@
     "Wiimote Nunchuk": "wiimote-nunchuk"
   },
 
-  "Bluetooth LE": {
+  "BLE": {
     "Battery Service": "ble-battery",
     "Device Information Service": "ble-device-information",
     "Generic Access Service": "ble-generic-access"
