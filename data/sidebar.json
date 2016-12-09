@@ -11,10 +11,8 @@
   },
 
   "Platforms": {
-    "Ardrone": "/documentation/platforms/ardrone",
     "Arduino": "/documentation/platforms/arduino",
     "Beaglebone": "/documentation/platforms/beaglebone",
-    "Bebop": "/documentation/platforms/bebop",
     "Bluetooth LE": "/documentation/platforms/ble",
     "C.H.I.P.": "/documentation/platforms/chip",
     "Digispark": "/documentation/platforms/digispark",
@@ -25,8 +23,11 @@
     "Leap Motion": "/documentation/platforms/leapmotion",
     "Mavlink": "/documentation/platforms/mavlink",
     "MQTT": "/documentation/platforms/mqtt",
+    "NATS": "/documentation/platforms/nats",
     "Neurosky Mindwave": "/documentation/platforms/neurosky",
     "OpenCV": "/documentation/platforms/opencv",
+    "Parrot ARdrone": "/documentation/platforms/ardrone",
+    "Parrot Bebop": "/documentation/platforms/bebop",
     "Parrot Minidrone": "/documentation/platforms/minidrone",
     "Particle": "/documentation/platforms/particle",
     "Pebble": "/documentation/platforms/pebble",
@@ -84,7 +85,6 @@
     "Pebble": "/documentation/drivers/pebble",
     "Sphero": "/documentation/drivers/sphero",
     "Ollie": "/documentation/drivers/ollie"
-
   },
 
   "Core": {
