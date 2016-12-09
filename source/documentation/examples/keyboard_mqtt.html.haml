@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - keyboard"
-page_title: "Example: keyboard"
+title: "Gobot Example - keyboard_mqtt"
+page_title: "Example: keyboard_mqtt"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -14,29 +14,34 @@ active_menu_docs: true
         package main
 
         import (
-        	"fmt"
-
         	"gobot.io/x/gobot"
         	"gobot.io/x/gobot/platforms/keyboard"
+        	"gobot.io/x/gobot/platforms/mqtt"
         )
 
         func main() {
         	keys := keyboard.NewDriver()
+        	mqttAdaptor := mqtt.NewAdaptor("tcp://iot.eclipse.org:1883", "conductor")
 
         	work := func() {
         		keys.On(keyboard.Key, func(data interface{}) {
         			key := data.(keyboard.KeyEvent)
 
-        			if key.Key == keyboard.A {
-        				fmt.Println("A pressed!")
-        			} else {
-        				fmt.Println("keyboard event!", key, key.Char)
+        			switch key.Key {
+        			case keyboard.ArrowUp:
+        				mqttAdaptor.Publish("rover/frente", []byte{})
+        			case keyboard.ArrowRight:
+        				mqttAdaptor.Publish("rover/derecha", []byte{})
+        			case keyboard.ArrowDown:
+        				mqttAdaptor.Publish("rover/atras", []byte{})
+        			case keyboard.ArrowLeft:
+        				mqttAdaptor.Publish("rover/izquierda", []byte{})
         			}
         		})
         	}
 
         	robot := gobot.NewRobot("keyboardbot",
-        		[]gobot.Connection{},
+        		[]gobot.Connection{mqttAdaptor},
         		[]gobot.Device{keys},
         		work,
         	)
