@@ -1,0 +1,44 @@
+---
+title: Gobot - MCP23017 Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has an extensible system for connecting to hardware devices.
+page_title_docs: MCP23017
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/mcp23017.jpg", class: "display"
+
+.info-intro
+  %p The MCP23017 is...
+  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/drivers/i2c#MCP23017Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the package with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/drivers/i2c`
+  :markdown
+        :::go
+        // code here...
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using the MCP23017
+  :markdown
+        :::go
+        // code here...
+
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "MCP23017" }

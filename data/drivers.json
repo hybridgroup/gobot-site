@@ -24,14 +24,13 @@
   },
 
   "I2C": {
-    "Adafruit Motor Hat": "adafruit-motor-hat",
+    "Adafruit Motor HAT": "adafruit-motor-hat",
     "BlinkM": "blinkm",
     "Grove LCD w/RGB": "grove-lcd",
     "Grove Accelerometer": "grove-accelerometer",
     "HMC6352 Compass": "hmc6352-compass",
-    "MCP23017": "MCP23017",
     "LIDAR-Lite": "lidar-lite",
-    "MCP23017": "MCP23017",
+    "MCP23017": "mcp23017",
     "MMA7660": "mma7660",
     "MPL115A2": "mpl115a2",
     "MPU6050": "mpu6050",
@@ -40,8 +39,7 @@
 
   "BLE": {
     "Battery Service": "ble-battery",
-    "Device Information Service": "ble-device-information",
-    "Generic Access Service": "ble-generic-access"
+    "Device Information Service": "ble-device-information"
   },
 
   "ARDrone - Flight": "ardrone-flight",
