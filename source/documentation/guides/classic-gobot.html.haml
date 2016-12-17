@@ -8,18 +8,51 @@ page_title_show: true
 active_menu_docs: true
 ---
 
-.cli
-  %h1 Classic Gobot
-  %h2 What is it?
-  %p
+%section
+  :markdown
+    # Classic Gobot
+
     The simplest way to create robots, and drones, and Internet connected things, is to use "Classic Gobot".
 
-  %h2 "Hello, World" using Classic Gobot
-  :markdown
+    Remember the "Hello, World of Things" code example from the "Getting Started" page? This is a good example of "Classic Gobot" in action:
+
+    ### Hello, World of Things
+
         :::go
-        // sample here...
+        package main
+
+        import (
+        	"time"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/drivers/gpio"
+        	"gobot.io/x/gobot/platforms/firmata"
+        )
+
+        func main() {
+        	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+        	led := gpio.NewLedDriver(firmataAdaptor, "13")
+
+        	work := func() {
+        		gobot.Every(1*time.Second, func() {
+        			led.Toggle()
+        		})
+        	}
+
+        	robot := gobot.NewRobot("bot",
+        		[]gobot.Connection{firmataAdaptor},
+        		[]gobot.Device{led},
+        		work,
+        	)
+
+        	robot.Start()
+        }
 
 
-  %h2 How can I use it?
-  %p
-    More explanation here...
+    ## How to use it
+
+    The Robot is the main abstraction you use when working with Classic Gobot. You can create a new Robot using the `gobot.NewRobot()` function.
+
+    Pass in the slice of one or more Connection structs, a slice of one or more Device structs, and a function with the Work that the Robot is expected to do.
+
+    Once your Robot is created, you then call the `Start()` function.

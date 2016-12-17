@@ -17,25 +17,15 @@ layout: documentation
 
     Gobot is a framework for robotics, physical computing, and the Internet of Things (IoT), written in the Go programming language.
 
-    **It provides:**
+    Gobot provides drivers and adapters for controlling a wide variety of physical devices from low-level Arduino and Raspberry Pi, as well as drones, toys, and other complete devices that themselves have APIs.
 
-    * Drivers and adapters for controlling a wide variety of drones, toys, and physical computing platforms like Arduino and Raspberry Pi
-    * "Robots" - a software abstraction that makes it easy to build interesting high-level functionality for supported devices
-    * An external control interface for individual or groups of Robots on a shared network, implemented as a JSON-over-HTTP API
+    The "Robot" is the main software abstraction that makes it easy to build interesting high-level functionality for supported devices.
 
     Robots (Go programs) written with Gobot can run on a host machine communicating to connected devices, or directly on a single-board Linux computer, or anywhere in between.
 
-    Gobot's approach to standardization and abstraction makes it easy to write a program that works on multiple platforms with little modification.
+    Gobot can also provide an external facing API to allow other programs to control from individual devices to entire groups of Robots on a shared network, implemented using JSON-over-HTTP API.
 
-    **Robots in Other Languages**
-  %p
-    Want to use Node.js on robots? Check out our sister project CylonJS
-    = link_to "(http://cylonjs.com)", "http://cylonjs.com", target: "_blank"
-
-  %p
-    Want to use Ruby on robots? Check out our sister project Artoo
-    = link_to "(http://artoo.io)", "http://artoo.io", target: "_blank"
-
+    Gobot's approach to standardization and abstraction makes it easy to write a program that works on multiple hardware platforms with little modification.
 
 %section
   :markdown
@@ -53,214 +43,97 @@ layout: documentation
 
     With Go installed, the `go get` tool will help you install Gobot and its required dependencies:
 
-        $ go get -d -u github.com/hybridgroup/gobot/...
+        $ go get -d -u gobot.io/x/gobot/...
 
 %section
   :markdown
-    ## Writing And Running Gobot Robots
+    ## Writing Your First Robot
 
-    With the Gobot packages installed, you're ready to start writing your own code.
-    Please take a look at some of the examples below.
+    Once you have the Gobot packages installed, you're ready to start writing your own code. The first program we are going to create is the "Hello, World" of things, which is a program to blink an LED on and off every second.
 
-    Additionally, if you want to find more examples of how to write Robots with Gobot, check out our
-    <a href="/documentation/examples" target="_blank">Examples page</a>.
-
-    To run your Robots, you can just pass the source file to `go run`:
-
-      $ go run my-robot.go
-
-%section
-  :markdown
-    ## Gobot Code Examples
-
-    ### Hello
+    ### Hello, World of Things
 
         :::go
         package main
 
         import (
-                "time"
-                "fmt"
+        	"time"
 
-                "github.com/hybridgroup/gobot"
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/drivers/gpio"
+        	"gobot.io/x/gobot/platforms/firmata"
         )
 
         func main() {
-                gbot := gobot.NewGobot()
+        	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+        	led := gpio.NewLedDriver(firmataAdaptor, "13")
 
-                work := func() {
-                        gobot.Every(1*time.Second, func() {
-                                fmt.Println("Hello, human!")
-                        })
-                }
+        	work := func() {
+        		gobot.Every(1*time.Second, func() {
+        			led.Toggle()
+        		})
+        	}
 
-                robot := gobot.NewRobot("drone",
-                        []gobot.Connection{},
-                        []gobot.Device{},
-                        work,
-                )
-                gbot.AddRobot(robot)
+        	robot := gobot.NewRobot("bot",
+        		[]gobot.Connection{firmataAdaptor},
+        		[]gobot.Device{led},
+        		work,
+        	)
 
-                gbot.Start()
+        	robot.Start()
         }
 
-    ### Arduino - LED + Button
+    To run your Robot, you can just pass the source file to `go run`:
+
+      $ go run blink.go
+
+    You should see the LED turn on and off every second.
+
+    ## Adding Input
+
+    Now that you have basic output, let's add some input in the form of a push-button.
+
+    ### Button and LED
 
         :::go
         package main
 
         import (
-                "time"
-
-                "github.com/hybridgroup/gobot"
-                "github.com/hybridgroup/gobot/platforms/firmata"
-                "github.com/hybridgroup/gobot/platforms/gpio"
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/drivers/gpio"
+        	"gobot.io/x/gobot/platforms/firmata"
         )
 
         func main() {
-                gbot := gobot.NewGobot()
+        	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
 
-                firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
-                led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
-                button := gpio.NewButtonDriver(firmataAdaptor, "button", "2")
+        	button := gpio.NewButtonDriver(firmataAdaptor, "5")
+        	led := gpio.NewLedDriver(firmataAdaptor, "13")
 
-                work := func() {
-                        gobot.On(button.Event("push"), func(data interface{}) {
-                                led.On()
-                        })
-                        gobot.On(button.Event("release"), func(data interface{}) {
-                                led.Off()
-                        })
-                }
+        	work := func() {
+        		button.On(gpio.ButtonPush, func(data interface{}) {
+        			led.On()
+        		})
+        		button.On(gpio.ButtonRelease, func(data interface{}) {
+        			led.Off()
+        		})
+        	}
 
-                robot := gobot.NewRobot("bot",
-                        []gobot.Connection{firmataAdaptor},
-                        []gobot.Device{led},
-                        work,
-                )
+        	robot := gobot.NewRobot("buttonBot",
+        		[]gobot.Connection{firmataAdaptor},
+        		[]gobot.Device{button, led},
+        		work,
+        	)
 
-                gbot.AddRobot(robot)
-
-                gbot.Start()
+        	robot.Start()
         }
 
-    ### Multiple Arduinos
 
-        :::go
-        package main
-
-        import (
-                "time"
-
-                "github.com/hybridgroup/gobot"
-                "github.com/hybridgroup/gobot/platforms/firmata"
-                "github.com/hybridgroup/gobot/platforms/gpio"
-        )
-
-        func main() {
-                gbot := gobot.NewGobot()
-
-                firmataA := firmata.NewFirmataAdaptor("arduinoA", "/dev/ttyACM0")
-                firmataB := firmata.NewFirmataAdaptor("arduinoB", "/dev/ttyACM1")
-
-                led := gpio.NewLedDriver(firmataA, "led", "13")
-                button := gpio.NewButtonDriver(firmataB, "button", "2")
-
-                work := func() {
-                        gobot.On(button.Event("push"), func(data interface{}) {
-                                led.On()
-                        })
-                        gobot.On(button.Event("release"), func(data interface{}) {
-                                led.Off()
-                        })
-                }
-
-                robot := gobot.NewRobot("bot",
-                        []gobot.Connection{firmataA, firmataB},
-                        []gobot.Device{led, button},
-                        work,
-                )
-
-                gbot.AddRobot(robot)
-
-                gbot.Start()
-        }
-
-    ### Parrot ARDrone 2.0
-
-        :::go
-        package main
-
-        import (
-                "time"
-
-                "github.com/hybridgroup/gobot"
-                "github.com/hybridgroup/gobot/platforms/ardrone"
-        )
-
-        func main() {
-                gbot := gobot.NewGobot()
-
-                ardroneAdaptor := ardrone.NewArdroneAdaptor("Drone")
-                drone := ardrone.NewArdroneDriver(ardroneAdaptor, "Drone")
-
-                work := func() {
-                        drone.TakeOff()
-                        gobot.On(drone.Event("flying"), func(data interface{}) {
-                                gobot.After(3*time.Second, func() {
-                                        drone.Land()
-                                })
-                        })
-                }
-
-                robot := gobot.NewRobot("drone",
-                        []gobot.Connection{ardroneAdaptor},
-                        []gobot.Device{drone},
-                        work,
-                )
-                gbot.AddRobot(robot)
-
-                gbot.Start()
-        }
+    This time when you run your program, you should see the LED turn on when you push the button, and then off when you release the button.
 
 %section
   :markdown
-    ## CLI
-
-    To get access to a number of useful command-line tools, you should check out our helpful CLI tool,
-    <a href="http://gort.io" target="_blank">Gort</a>.
-
-        $ gort
-        NAME:
-          gort - Command Line Utility for RobotOps
-
-        USAGE:
-          gort [global options] command [command options] [arguments...]
-
-        VERSION:
-          0.3.0
-
-        AUTHOR:
-          Author - <unknown@email>
-
-        COMMANDS:
-          scan         Scan for connected devices on Serial, USB, or Bluetooth ports
-          bluetooth    Pair, unpair & connect to bluetooth devices.
-          arduino      Install avrdude, and upload HEX files to your Arduino
-          spark        Upload sketches to your Spark
-          digispark    Configure your Digispark microcontroller
-          crazyflie    Configure your Crazyflie
-          klaatu       barada nikto
-          dronedrop    Install, uninstall, update and download dronedrop firmware
-          help, h      Shows a list of commands or help for one command
-
-        GLOBAL OPTIONS:
-          --help, -h           show help
-          --version, -v        print the version
-
-%section
-  :markdown
-    ## Where Next?
+    ## What's Next?
 
     Where do we go from here?
 

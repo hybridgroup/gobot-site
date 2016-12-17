@@ -8,18 +8,62 @@ page_title_show: true
 active_menu_docs: true
 ---
 
-.cli
-  %h1 Master Gobot
-  %h2 What is it?
-  %p
+%section
+  :markdown
+    # Master Gobot
+
     Use Master Gobot when you want to provide an API to your robot, drone, or Internet connected thing. Also, use Master Gobot when you want to create a swarm of devices, and control them as a single unit.
 
-  %h2 "Hello, World" using Master Gobot
-  :markdown
+    Let's take the "Hello, World of Things" code example from the "Getting Started" page, and add the Gobot API:
+
+    ### Blink with API
+
         :::go
-        // sample here...
+        package main
+
+        import (
+        	"time"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/api"
+        	"gobot.io/x/gobot/drivers/gpio"
+        	"gobot.io/x/gobot/platforms/firmata"
+        )
+
+        func main() {
+        	master := gobot.NewMaster()
+        	a := api.NewAPI(master)
+        	a.Start()
+
+        	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+        	led := gpio.NewLedDriver(firmataAdaptor, "13")
+
+        	work := func() {
+        		gobot.Every(1*time.Second, func() {
+        			led.Toggle()
+        		})
+        	}
+
+        	robot := gobot.NewRobot("bot",
+        		[]gobot.Connection{firmataAdaptor},
+        		[]gobot.Device{led},
+        		work,
+        	)
+
+        	master.AddRobot(robot)
+
+        	master.Start()
+        }
 
 
-  %h2 How can I use it?
-  %p
-    More explanation here...
+    ## How to use it
+
+    The "Master" is what you use to attach the Gobot API, and also to control the various Robots under the Master's "control program".
+
+    Create a new master by calling the `gobot.NewMaster()` function.
+
+    Define your Robot or Robots the same way as you do when working with Classic Gobot. You can create a new Robot using the `gobot.NewRobot()` function.
+
+    Pass in the slice of one or more Connection structs, a slice of one or more Device structs, and a function with the Work that the Robot is expected to do.
+
+    Once your Robot is created, add it to the Master using the `AddRobot()` function. You then call the Master's `Start()` function which will Start() each of the individual robots under its control.
