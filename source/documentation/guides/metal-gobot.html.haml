@@ -8,18 +8,55 @@ page_title_show: true
 active_menu_docs: true
 ---
 
-.cli
-  %h1 Metal Gobot
-  %h2 What is it?
-  %p
-    Use Metal Gobot when you want to use the individual Gobot packages yourself to have the greatest control, or to more easily integrate Gobot functionality into your existing Golang code.
-
-  %h2 "Hello, World" using Metal Gobot
+%section
   :markdown
+    # Metal Gobot
+
+    Use Metal Gobot when you want to use the individual Gobot packages yourself to have the greatest control, or to more easily integrate Gobot functionality into your existing Golang programs.
+
+    Let's revisit the "Blink" code example from the "Getting Started" page, written using "Metal Gobot" style:
+
+    ### Metal Blink
+
         :::go
-        // sample here...
+        package main
+
+        import (
+        	"fmt"
+
+        	"gobot.io/x/gobot/drivers/gpio"
+        	"gobot.io/x/gobot/platforms/intel-iot/edison"
+        )
+
+        func main() {
+        	e := edison.NewAdaptor()
+        	e.Connect()
+
+        	led := gpio.NewLedDriver(e, "13")
+        	led.Start()
+        	led.Off()
+
+        	button := gpio.NewButtonDriver(e, "5")
+        	button.Start()
+
+        	buttonEvents := button.Subscribe()
+        	for {
+        		select {
+        		case event := <-buttonEvents:
+        			fmt.Println("Event:", event.Name, event.Data)
+        			if event.Name == gpio.ButtonPush {
+        				led.Toggle()
+        			}
+        		}
+        	}
+        }
 
 
-  %h2 How can I use it?
-  %p
-    More explanation here...
+
+    ## How to use it
+
+    When using Metal Gobot you need to make calls directly to Adaptors and/or Drivers yourself.
+
+    This includes all of the normal Gobot initialization.
+
+    Once your Robot is created, you then call the `Start()` function.
