@@ -8,7 +8,20 @@ page_title_show: true
 active_menu_docs: true
 ---
 
-.api
-  %h1 Events
-  %p
-    Explanation about Events here...
+%section
+  :markdown
+    # Events
+
+    Events are how notifications are passed to inform code when important things happen.
+
+    This is used by Drivers to communicate back to the Robot to which they belong in a concurrent way.
+
+    For example, the GPIO Button Driver uses the GPIO ButtonPush Event to let a Robot know when a specific button has been pressed.
+
+    Gobot provides convenience functions in the `gobot.Eventer` interface such as `On()` to subscribe and handle Events with very little code.
+
+    However the implementation of Gobot Events are simply data passed using normal Golang channels that are managed by the `gobot.Eventer` interface.
+
+    When you `Publish()` an Event you are just adding it to the appropriate Event channel.
+
+    When you `Subscribe()` to the Event channel for something, you are returned a normal Golang channel that you can use along with the typical `<-` operator.

@@ -8,7 +8,10 @@ page_title_show: true
 active_menu_docs: true
 ---
 
-.api
-  %h1 Robots
-  %p
-    Explanation about the Gobot Robot here...
+%section
+  :markdown
+    # Robots
+
+    The main abstraction used by Gobot is the Robot. A Robot can represent a rover, a drone, or some other kind of connected or autonomous machine.
+
+    A Robot has Connections to various Adaptors, has Devices controlled by various Drivers, and then has the Work that the Robot is intended to perform.

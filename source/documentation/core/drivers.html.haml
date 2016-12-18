@@ -8,7 +8,12 @@ page_title_show: true
 active_menu_docs: true
 ---
 
-.api
-  %h1 Drivers
-  %p
-    Explanation about Drivers here...
+%section
+  :markdown
+    # Drivers
+
+    Drivers in Gobot provide specific behaviors to support particular hardware devices such as buttons, LEDs, and many others.
+
+    Drivers consume the interfaces that are provided by Adaptors. For example, to connect a button to an Arduino, you would use the GPIO Button driver to consume the DigitalRead interface as provided by the Firmata Adaptor.
+
+    The same GPIO Button Driver could instead just as easily consume the same DigitalRead interface as provided by the Intel Edison Adaptor.

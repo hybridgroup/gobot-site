@@ -8,7 +8,12 @@ page_title_show: true
 active_menu_docs: true
 ---
 
-.api
-  %h1 Adaptors
-  %p
-    Explanation about adaptors here...
+%section
+  :markdown
+    # Adaptors
+
+    Adaptors in Gobot are how you communicate with a hardware platform. For example, to communicate with an Arduino you use the Firmata Adaptor that knows how to talk to it.
+
+    Adaptors are expected to provide the needed interfaces to a hardware platform, so that whichever Devices can consume them.
+
+    For example, the Firmata Adaptor provides the DigitalRead interface that the gpio.Button consumes.
