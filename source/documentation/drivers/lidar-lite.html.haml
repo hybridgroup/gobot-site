@@ -18,31 +18,16 @@ subnavjs: true
 
 .info-intro
   %p The LIDAR-Lite uses optical lasers to measure distances of up to 40 meters.
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#LIDARLiteDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/i2c#LIDARLiteDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
-    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/i2c`
+    Install the package with: `go get gobot.io/x/gobot`
   :markdown
         :::go
-        package main
-
-        import (
-          "fmt"
-          "time"
-
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/i2c"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          lidar := i2c.NewLIDARLiteDriver(firmataAdaptor, "lidar")
+        // code here
         ...
 
 %section.how-to#HowToUse
@@ -50,40 +35,7 @@ subnavjs: true
   %p Example using the LIDAR-Lite
   :markdown
         :::go
-        package main
-
-        import (
-          "fmt"
-          "time"
-
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/i2c"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          lidar := i2c.NewLIDARLiteDriver(firmataAdaptor, "lidar")
-
-          work := func() {
-            gobot.Every(100*time.Millisecond, func() {
-              distance, _ := lidar.Distance()
-              fmt.Println("Distance", distance)
-            })
-          }
-
-          robot := gobot.NewRobot("lidarbot",
-            []gobot.Connection{firmataAdaptor},
-            []gobot.Device{lidar},
-            work,
-          )
-
-          gbot.AddRobot(robot)
-
-          gbot.Start()
-        }
+        // code here
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

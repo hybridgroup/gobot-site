@@ -18,6 +18,7 @@ subnavjs: true
   %p
     Allows user to send flight control commands to Bebop. Flight control commands are those used
     to tell the Bebop to take off, land, and or any number of other autonomous flight manuvers.
+    %a{ :href => "http://godoc.org/gobot.io/x/gobot/platforms/parrot/bebop#Driver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
@@ -30,18 +31,7 @@ subnavjs: true
 
   :markdown
         :::go
-        package main
-
-        import (
-            "time"
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/bebop"
-        )
-
-        func main() {
-            gbot := gobot.NewGobot()
-            bebopAdaptor := bebop.NewBebopAdaptor("Drone")
-            drone := bebop.NewBebopDriver(bebopAdaptor, "Drone")
+        // code here
 
         ...
 
@@ -50,38 +40,7 @@ subnavjs: true
 
   :markdown
         :::go
-        package main
-
-        import (
-            "time"
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/bebop"
-        )
-
-        func main() {
-            gbot := gobot.NewGobot()
-            bebopAdaptor := bebop.NewBebopAdaptor("Drone")
-            drone := bebop.NewBebopDriver(bebopAdaptor, "Drone")
-
-            work := func() {
-                drone.HullProtection(true)
-                gobot.On(drone.Event("flying"), func(data interface{}) {
-                    gobot.After(3*time.Second, func() {
-                        drone.Land()
-                    })
-                })
-                drone.TakeOff()
-            }
-
-            robot := gobot.NewRobot("drone",
-                []gobot.Connection{bebopAdaptor},
-                []gobot.Device{drone},
-                work,
-            )
-
-            gbot.AddRobot(robot)
-            gbot.Start()
-        }
+        // code here
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

@@ -18,82 +18,34 @@ subnavjs: true
 
 .info-intro
   %p Simple interface that makes it possible to register clicks through physical input.
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#ButtonDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/gpio#ButtonDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
-    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/gpio`
+    Install the package with: `go get gobot.io/x/gobot`
   %h3 For Arduino:
   :markdown
         :::go
-        package main
-
-        import (
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          firmataAdaptor := firmata.NewFirmataAdaptor("myFirmata", "/dev/ttyACM0")
-
-          button := gpio.NewButtonDriver(firmataAdaptor, "myButton", "2")
-          led := gpio.NewLedDriver(firmataAdaptor, "myLed", "13")
+        // code here
         ...
 
 
 %section.how-to#HowToUse
   %h2 How To Use
   %p This example detects when a button has been pushed, it turns on and off a LED
- 
+
   :markdown
         :::go
-        package main
-
-        import (
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          firmataAdaptor := firmata.NewFirmataAdaptor("myFirmata", "/dev/ttyACM0")
-
-          button := gpio.NewButtonDriver(firmataAdaptor, "myButton", "2")
-          led := gpio.NewLedDriver(firmataAdaptor, "myLed", "13")
-
-          work := func() {
-            gobot.On(button.Event("push"), func(data interface{}) {
-              led.On()
-            })
-            gobot.On(button.Event("release"), func(data interface{}) {
-              led.Off()
-            })
-          }
-
-          robot := gobot.NewRobot("buttonBot",
-            []gobot.Connection{firmataAdaptor},
-            []gobot.Device{button, led},
-            work,
-          )
-
-          gbot.AddRobot(robot)
-
-          gbot.Start()
-        }
+        // code here
 
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
-    %p 
+    %p
   .image-circuit
-    %img{:src => "/documentation/drivers/breadboards/gpio/button_bb.png", :alt => ""}/ 
+    %img{:src => "/documentation/drivers/breadboards/gpio/button_bb.png", :alt => ""}/
   .clear
 
 %section.compatability.hardware#Compatability

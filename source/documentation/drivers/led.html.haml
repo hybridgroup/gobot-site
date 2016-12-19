@@ -18,31 +18,19 @@ subnavjs: true
 
 .info-intro
   %p  Allows user to interact with LEDs through digital output and PWM (Pulse Width Modulation)
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#LedDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/gpio#LedDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
-    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/gpio`
+    Install the package with: `go get github.com/hybridgroup/gobot`
   %h3 For Arduino:
   :markdown
         :::go
-        package main
-
-        import (
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-          "time"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-          firmataAdaptor := firmata.NewFirmataAdaptor("myFirmata", "/dev/ttyACM0")
-          led := gpio.NewLedDriver(firmataAdaptor, "myLed", "13")
+        // code here
         ...
-        
+
 %section.how-to#HowToUse
   %h2 How To Use
   %p
@@ -50,47 +38,16 @@ subnavjs: true
 
   :markdown
         :::go
-        package main
-
-        import (
-            "time"
-
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/firmata"
-            "github.com/hybridgroup/gobot/platforms/gpio"
-        )
-
-        func main() {
-            gbot := gobot.NewGobot()
-
-            firmataAdaptor := firmata.NewFirmataAdaptor("arduino", "/dev/ttyACM0")
-            led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
-
-            work := func() {
-                gobot.Every(1*time.Second, func() {
-                    led.Toggle()
-                })
-            }
-
-            robot := gobot.NewRobot("bot",
-                []gobot.Connection{firmataAdaptor},
-                []gobot.Device{led},
-                work,
-            )
-
-            gbot.AddRobot(robot)
-
-            gbot.Start()
-        }
+        // code here
 
 %section.circuit#Circuit
-  %h2 Circuit 
+  %h2 Circuit
   .description-circuit
-    %p 
+    %p
   .image-circuit
-    %img{:src => "/documentation/drivers/breadboards/gpio/led_bb.png", :alt => ""}/ 
+    %img{:src => "/documentation/drivers/breadboards/gpio/led_bb.png", :alt => ""}/
   .clear
-  
+
 %section.compatability.hardware#Compatability
   %h2 Compatability
   .devices

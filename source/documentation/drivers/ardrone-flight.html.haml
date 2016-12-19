@@ -18,7 +18,7 @@ subnavjs: true
 .info-intro
   %p
     Allows user to send flight control commands to an ARDrone. Flight control commands are those used to tell the ARDrone to take off, land, and or any number of other autonomous flight manuvers.
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/ardrone#ArdroneDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/platforms/parrot/ardrone#Driver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
@@ -28,59 +28,16 @@ subnavjs: true
 
   :markdown
         :::go
-        package main
-
-        import (
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/ardrone"
-            "time"
-        )
-
-        func main() {
-            gbot := gobot.NewGobot()
-            adaptor := ardrone.NewArdroneAdaptor("Drone")
-            drone := ardrone.NewArdroneDriver(adaptor, "Drone")
+        // code here
         ...
 
 %section.how-to#HowToUse
   %h2 How To Use
-  %p 
+  %p
     This example controls an ARDrone to take off, and then land.
   :markdown
         :::go
-        package main
-
-        import (
-          "time"
-
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/ardrone"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          ardroneAdaptor := ardrone.NewArdroneAdaptor("Drone")
-          drone := ardrone.NewArdroneDriver(ardroneAdaptor, "Drone")
-
-          work := func() {
-            gobot.On(drone.Event("flying"), func(data interface{}) {
-              gobot.After(3*time.Second, func() {
-                drone.Land()
-              })
-            })
-            drone.TakeOff()
-          }
-
-          robot := gobot.NewRobot("drone",
-            []gobot.Connection{ardroneAdaptor},
-            []gobot.Device{drone},
-            work,
-          )
-          gbot.AddRobot(robot)
-
-          gbot.Start()
-        }
+        // code here
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

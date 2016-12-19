@@ -19,29 +19,17 @@ subnavjs: true
 .info-intro
   %p
     Provides motor manipulation tools for gobot like on/off, speed modulation using PWM,use of bidirectional motors using forward/backward pins.
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#MotorDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/gpio#MotorDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
-    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/gpio`
+    Install the library with: `go get gobot.io/x/gobot`
   :markdown
         :::go
-        package main
-
-        import (
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-          "time"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          motor := gpio.NewMotorDriver(firmataAdaptor, "motor", "3")
-          ...
+        // code here
+        ...
 
 %section.how-to#HowToUse
   %h2 How To Use
@@ -49,53 +37,15 @@ subnavjs: true
     This example turns on a DC motor using PWM.
   :markdown
         :::go
-        package main
-
-        import (
-          "time"
-
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          motor := gpio.NewMotorDriver(firmataAdaptor, "motor", "3")
-
-          work := func() {
-            speed := byte(0)
-            fadeAmount := byte(15)
-
-            gobot.Every(100*time.Millisecond, func() {
-              motor.Speed(speed)
-              speed = speed + fadeAmount
-              if speed == 0 || speed == 255 {
-                fadeAmount = -fadeAmount
-              }
-            })
-          }
-
-          robot := gobot.NewRobot("motorBot",
-            []gobot.Connection{firmataAdaptor},
-            []gobot.Device{motor},
-            work,
-          )
-
-          gbot.AddRobot(robot)
-
-          gbot.Start()
-        }
+        // code here
 
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
-    %p  
-  .image-circuit 
-    %img{:src => "/documentation/drivers/breadboards/gpio/motor_bb.png", :alt => ""}/ 
-  .clear 
+    %p
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/gpio/motor_bb.png", :alt => ""}/
+  .clear
 
 %section.compatibility.hardware#Compatibility
   %h2 Compatibility

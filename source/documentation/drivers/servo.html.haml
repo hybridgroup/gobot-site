@@ -18,30 +18,18 @@ subnavjs: true
 
 .info-intro
   %p Provides an interface for making servos easy to work and interact with from Gobot.
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#ServoDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/platforms/gpio#ServoDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
-    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/gpio`
+    Install the package with: `go get gobot.io/x/gobot`
+
   %h3 For Arduino:
   :markdown
         :::go
-        package main
-
-        import (
-          "fmt"
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-          "time"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          servo := gpio.NewServoDriver(firmataAdaptor, "servo", "3")
+        // code here
         ...
 
 %section.how-to#HowToUse
@@ -52,49 +40,16 @@ subnavjs: true
   %h3 Example
   :markdown
         :::go
-        package main
-
-        import (
-          "fmt"
-          "time"
-
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          servo := gpio.NewServoDriver(firmataAdaptor, "servo", "3")
-
-          work := func() {
-            gobot.Every(1*time.Second, func() {
-              i := uint8(gobot.Rand(180))
-              fmt.Println("Turning", i)
-              servo.Move(i)
-            })
-          }
-
-          robot := gobot.NewRobot("servoBot",
-            []gobot.Connection{firmataAdaptor},
-            []gobot.Device{servo},
-            work,
-          )
-
-          gbot.AddRobot(robot)
-          gbot.Start()
-        }
+        // code here
 
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
-    %p 
-  .image-circuit 
-    %img{:src => "/documentation/drivers/breadboards/gpio/servo_bb.png", :alt => ""}/ 
-  .clear 
-  
+    %p
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/gpio/servo_bb.png", :alt => ""}/
+  .clear
+
 %section.compatability.hardware#Compatability
   %h2 Compatability
   .devices

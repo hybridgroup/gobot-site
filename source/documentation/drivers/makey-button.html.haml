@@ -20,82 +20,37 @@ subnavjs: true
   %p
     Inspired by the awesome <a href='http://makeymakey.com'> MakeyMakey</a>, this GPIO driver allows you to connect a 10 MOhm resistor to a digital pin on your Arduino to control your robots with bananas, clay, or drawable circuitry. For more information click
     = link_to "here.", "https://learn.sparkfun.com/tutorials/makey-makey-quickstart-guide", target: "_blank"
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#MakeyButtonDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/gpio#MakeyButtonDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
-    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/gpio`
+    Install the package with: `go get gobot.io/x/gobot`
+
   %h3 For Arduino:
   :markdown
         :::go
-        package main
-
-        import (
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          button := gpio.NewMakeyButtonDriver(firmataAdaptor, "button", "2")
-          led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
+        // code here
         ...
 
 
 %section.how-to#HowToUse
   %h2 How To Use
   %p This example detects when a button has been pushed, it turns on and off a LED
- 
+
   :markdown
         :::go
-        package main
-
-        import (
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          button := gpio.NewMakeyButtonDriver(firmataAdaptor, "button", "2")
-          led := gpio.NewLedDriver(firmataAdaptor, "led", "13")
-
-          work := func() {
-            gobot.On(button.Event("push"), func(data interface{}) {
-              led.On()
-            })
-
-            gobot.On(button.Event("release"), func(data interface{}) {
-              led.Off()
-            })
-          }
-
-          robot := gobot.NewRobot("makeyBot",
-            []gobot.Connection{firmataAdaptor},
-            []gobot.Device{button, led},
-            work,
-          )
-
-          gbot.AddRobot(robot)
-
-          gbot.Start()
-        }
+        // code here
 
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
-    %p 
+    %p
   .image-circuit
-    %img{:src => "/documentation/drivers/breadboards/gpio/makey_button_bb.png", :alt => ""}/ 
+    %img{:src => "/documentation/drivers/breadboards/gpio/makey_button_bb.png", :alt => ""}/
   .clear
-  
+
 %section.compatability.hardware#Compatability
   %h2 Compatability
   .devices

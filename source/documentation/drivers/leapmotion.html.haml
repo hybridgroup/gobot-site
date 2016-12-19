@@ -18,25 +18,14 @@ subnavjs: true
 .info-intro
   %p
     Allows user to interact with Gobot devices using a Leap Motion controller. The Leap Motion uses its built in cameras to track the user's hand motions, and translations those to events that Gobot can use to trigger actions or control hardware.
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/leap#LeapMotionDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/platforms/leap#LeapMotionDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
         :::go
-        package main
-
-        import (
-            "fmt"
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/leap"
-        )
-
-        func main() {
-            gbot := gobot.NewGobot()
-            adaptor := leap.NewLeapMotionAdaptor("leap", "127.0.0.1:6437")
-            l := leap.NewLeapMotionDriver(adaptor, "leap")
+        // code here
         ...
 
 %section.how-to#HowToUse
@@ -44,37 +33,7 @@ subnavjs: true
   %h3 Example receiving hand events from a Leap Motion.
   :markdown
         :::go
-        package main
-
-        import (
-          "fmt"
-
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/leap"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          leapMotionAdaptor := leap.NewLeapMotionAdaptor("leap", "127.0.0.1:6437")
-          l := leap.NewLeapMotionDriver(leapMotionAdaptor, "leap")
-
-          work := func() {
-            gobot.On(l.Event("message"), func(data interface{}) {
-              fmt.Println(data.(leap.Frame))
-            })
-          }
-
-          robot := gobot.NewRobot("leapBot",
-            []gobot.Connection{leapMotionAdaptor},
-            []gobot.Device{l},
-            work,
-          )
-
-          gbot.AddRobot(robot)
-
-          gbot.Start()
-        }
+        // code here
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

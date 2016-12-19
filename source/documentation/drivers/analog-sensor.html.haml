@@ -18,85 +18,34 @@ subnavjs: true
   %p
     Makes it possible to interact with analog inputs on your device and obtain values that represent the analog input send by the sensors.
     The value received from an analog input read from the sensor goes from 0 to 1027.
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#AnalogSensorDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/gpio#AnalogSensorDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to
   %h2#HowToConnect How To Connect
   :markdown
-    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/gpio`
+    Install the package with: `go get gobot.io/x/gobot`
   :markdown
         :::go
-        package main
-
-        import (
-          "fmt"
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-          "time"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          sensor := gpio.NewAnalogSensorDriver(firmataAdaptor, "sensor", "0")
-          led := gpio.NewLedDriver(firmataAdaptor, "led", "3")
+        // code here
         ...
-        
+
 
   %h2#HowToConnect How To Use
-  %p 
+  %p
     This example detects lower and upper limits on a photoresistor sensor.
   :markdown
         :::go
-        package main
-
-        import (
-          "fmt"
-
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          sensor := gpio.NewAnalogSensorDriver(firmataAdaptor, "sensor", "0")
-          led := gpio.NewLedDriver(firmataAdaptor, "led", "3")
-
-          work := func() {
-            gobot.On(sensor.Event("data"), func(data interface{}) {
-              brightness := uint8(
-                gobot.ToScale(gobot.FromScale(float64(data.(int)), 0, 1024), 0, 255),
-              )
-              fmt.Println("sensor", data)
-              fmt.Println("brightness", brightness)
-              led.Brightness(brightness)
-            })
-          }
-
-          robot := gobot.NewRobot("sensorBot",
-            []gobot.Connection{firmataAdaptor},
-            []gobot.Device{sensor, led},
-            work,
-          )
-
-          gbot.AddRobot(robot)
-
-          gbot.Start()
-        } 
+        // code here
 
 %section.circuit#Circuit
-  %h2 Circuit 
+  %h2 Circuit
   .description-circuit
     %p
   .image-circuit
-    %img{:src => "/documentation/drivers/breadboards/gpio/analog_sensor_bb.png", :alt => ""}/ 
-  .clear 
-   
+    %img{:src => "/documentation/drivers/breadboards/gpio/analog_sensor_bb.png", :alt => ""}/
+  .clear
+
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility

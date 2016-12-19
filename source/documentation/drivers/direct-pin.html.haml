@@ -17,65 +17,25 @@ subnavjs: true
 
 .info-intro
   %p This a prototyping driver.
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#DirectPinDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/gpio#DirectPinDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
-    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/gpio`
+    Install the package with: `go get gobot.io/x/gobot`
   %h3 For Beaglebone:
   :markdown
         :::go
-        package main
-
-        import (
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-          "time"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-          firmataAdaptor := firmata.NewFirmataAdaptor("myFirmata", "/dev/ttyACM0")
-          pin := gpio.NewDirectPinDriver(firmataAdaptor, "pin", "13")
+        // code here
         ...
-        
+
 %section.how-to#HowToUse
   %h2 How To Use
 
   :markdown
         :::go
-        package main
-
-        import (
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/gpio"
-          "time"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-          firmataAdaptor := firmata.NewFirmataAdaptor("myFirmata", "/dev/ttyACM0")
-          pin := gpio.NewDirectPinDriver(firmataAdaptor, "pin", "13")
-          work := func() {
-            level := byte(1)
-
-            gobot.Every(1*time.Second, func() {
-              pin.DigitalWrite(level)
-              if level == 1 {
-                level = 0
-              } else {
-                level = 1
-              }
-            })
-          }
-          gbot.Robots = append(gbot.Robots,
-            gobot.NewRobot("pinBot", []gobot.Connection{firmataAdaptor}, []gobot.Device{pin}, work))
-          gbot.Start()
-        }
+        // code here
 
 %section.compatability.hardware#Compatability
   %h2 Compatability

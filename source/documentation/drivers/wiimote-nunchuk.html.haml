@@ -17,29 +17,18 @@ subnavjs: true
 
 .info-intro
   %p Allows user to use a Nintendo Wii Nunchuck controller via i2c interface
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/i2c#WiichuckDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/i2c#WiichuckDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
-    Install the library with: `go get github.com/hybridgroup/gobot && go install github.com/hybridgroup/platforms/i2c`
+    Install the package with: `go get gobot.io/x/gobot`
+
   %h3 For Arduino:
   :markdown
         :::go
-        package main
-
-        import (
-          "fmt"
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/i2c"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          wiichuck := i2c.NewWiichuckDriver(firmataAdaptor, "wiichuck")
+        // code here
         ...
 
 
@@ -48,46 +37,7 @@ subnavjs: true
   %h3 Example using a Nintendo Wii Nunchuck.
   :markdown
         :::go
-        package main
-
-        import (
-          "fmt"
-
-          "github.com/hybridgroup/gobot"
-          "github.com/hybridgroup/gobot/platforms/firmata"
-          "github.com/hybridgroup/gobot/platforms/i2c"
-        )
-
-        func main() {
-          gbot := gobot.NewGobot()
-
-          firmataAdaptor := firmata.NewFirmataAdaptor("firmata", "/dev/ttyACM0")
-          wiichuck := i2c.NewWiichuckDriver(firmataAdaptor, "wiichuck")
-
-          work := func() {
-            gobot.On(wiichuck.Event("joystick"), func(data interface{}) {
-              fmt.Println("joystick", data)
-            })
-
-            gobot.On(wiichuck.Event("c"), func(data interface{}) {
-              fmt.Println("c")
-            })
-
-            gobot.On(wiichuck.Event("z"), func(data interface{}) {
-              fmt.Println("z")
-            })
-          }
-
-          robot := gobot.NewRobot("chuck",
-            []gobot.Connection{firmataAdaptor},
-            []gobot.Device{wiichuck},
-            work,
-          )
-
-          gbot.AddRobot(robot)
-
-          gbot.Start()
-        }
+        // code here
 
 %section.compatability.hardware#Compatability
   %h2 Compatability

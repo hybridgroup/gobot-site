@@ -14,28 +14,17 @@ subnavjs: true
 
 %section.intro
   =image_tag "/images/devices/dualshock3.jpg", class: "display"
- 
+
 .info-intro
   %p Allows user to interact with Artoo devices using a Dualshock3 game controller.
-  %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/joystick#JoystickDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/platforms/joystick#JoystickDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
         :::go
-        package main
-
-        import (
-            "fmt"
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/joystick"
-        )
-
-        func main() {
-            gbot := gobot.NewGobot()
-            joystickAdaptor := joystick.NewJoystickAdaptor("ps3")
-            joystickDriver := joystick.NewJoystickDriver(joystickAdaptor, "ps3", "./platforms/joystick/configs/dualshock3.json")
+        // code here
         ...
 
 %section.how-to#HowToUse
@@ -43,61 +32,7 @@ subnavjs: true
   %h3 Example using Dualshock3 controller joystick and an Ardrone.
   :markdown
         :::go
-        package main
-
-        import (
-            "fmt"
-
-            "github.com/hybridgroup/gobot"
-            "github.com/hybridgroup/gobot/platforms/joystick"
-        )
-
-        func main() {
-            gbot := gobot.NewGobot()
-
-            joystickAdaptor := joystick.NewJoystickAdaptor("ps3")
-            joystick := joystick.NewJoystickDriver(joystickAdaptor,
-                "ps3",
-                "./platforms/joystick/configs/dualshock3.json",
-            )
-
-            work := func() {
-                gobot.On(joystick.Event("square_press"), func(data interface{}) {
-                    fmt.Println("square_press")
-                })
-                gobot.On(joystick.Event("square_release"), func(data interface{}) {
-                    fmt.Println("square_release")
-                })
-                gobot.On(joystick.Event("triangle_press"), func(data interface{}) {
-                    fmt.Println("triangle_press")
-                })
-                gobot.On(joystick.Event("triangle_release"), func(data interface{}) {
-                    fmt.Println("triangle_release")
-                })
-                gobot.On(joystick.Event("left_x"), func(data interface{}) {
-                    fmt.Println("left_x", data)
-                })
-                gobot.On(joystick.Event("left_y"), func(data interface{}) {
-                    fmt.Println("left_y", data)
-                })
-                gobot.On(joystick.Event("right_x"), func(data interface{}) {
-                    fmt.Println("right_x", data)
-                })
-                gobot.On(joystick.Event("right_y"), func(data interface{}) {
-                    fmt.Println("right_y", data)
-                })
-            }
-
-            robot := gobot.NewRobot("joystickBot",
-                []gobot.Connection{joystickAdaptor},
-                []gobot.Device{joystick},
-                work,
-            )
-
-            gbot.AddRobot(robot)
-
-            gbot.Start()
-        }
+        // code here
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
