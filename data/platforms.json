@@ -127,8 +127,14 @@
 
   "Ollie": {
     "slug": "ollie",
-    "url": "http://www.sphero.com/",
+    "url": "http://www.sphero.com/ollie",
     "drivers": ["Ollie"]
+  },
+
+  "BB-8": {
+    "slug": "bb8",
+    "url": "http://www.sphero.com/bb8",
+    "drivers": ["BB-8"]
   },
 
   "Sphero": {

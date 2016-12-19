@@ -33,6 +33,7 @@
     "Pebble": "/documentation/platforms/pebble",
     "Raspberry Pi": "/documentation/platforms/raspi",
     "Sphero": "/documentation/platforms/sphero",
+    "Sphero BB-8": "/documentation/platforms/bb8",
     "Sphero Ollie": "/documentation/platforms/ollie"
   },
 
@@ -85,6 +86,7 @@
     "Neurosky Mindwave": "/documentation/drivers/neurosky",
     "Pebble": "/documentation/drivers/pebble",
     "Sphero": "/documentation/drivers/sphero",
+    "BB-8": "/documentation/drivers/bb8",
     "Ollie": "/documentation/drivers/ollie"
   },
 

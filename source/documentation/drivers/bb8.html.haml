@@ -1,0 +1,84 @@
+---
+title: Gobot - Sphero BB-8 Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: BB-8
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/bb8.jpg", class: "display"
+.info-intro
+  %p
+    Allows user to send commands to Sphero BB-8.
+    %a{ :href => "http://godoc.org/github.com/hybridgroup/gobot/platforms/sphero/bb8#Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+
+  %p
+    The Sphero BB-8 is a Bluetooth LE device.
+
+    You need to know the BLE ID of the BB-8 you want to connect to. The Gobot BLE client adaptor also lets you connect by friendly name, aka "BB-1247".
+
+  :markdown
+        :::go
+        import (
+          "gobot.io/x/gobot/platforms/ble"
+          "gobot.io/x/gobot/platforms/sphero/bb8"
+        )
+
+        bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+        bb8 := bb8.NewDriver(bleAdaptor)
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+  :markdown
+        :::go
+        package main
+
+        import (
+          "os"
+          "time"
+
+          "gobot.io/x/gobot"
+          "gobot.io/x/gobot/platforms/ble"
+          "gobot.io/x/gobot/platforms/sphero/bb8"
+        )
+
+        func main() {
+          bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+          bb8 := bb8.NewDriver(bleAdaptor)
+
+          work := func() {
+            gobot.Every(1*time.Second, func() {
+              r := uint8(gobot.Rand(255))
+              g := uint8(gobot.Rand(255))
+              b := uint8(gobot.Rand(255))
+              bb8.SetRGB(r, g, b)
+            })
+          }
+
+          robot := gobot.NewRobot("bb",
+            []gobot.Connection{bleAdaptor},
+            []gobot.Device{bb8},
+            work,
+          )
+
+          robot.Start()
+        }
+
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "bb8" }
