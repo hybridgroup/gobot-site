@@ -8,12 +8,27 @@ page_title_show: true
 active_menu_docs: true
 ---
 
-.cli
-  %h1 Adding Hardware Support
-  %h2 Adding a platform
-  %p
-    How to add a new platform
+%section
+  :markdown
+    # Adding Hardware Support
 
-  %h2 Adding a driver
-  %p
-    How to add a new platform
+    Gobot is easy to extend to add new support for additional hardware and software devices.
+
+    If you discover new capabilities that should be added to Gobot, you would add either an Adaptor or a Driver to support them. In some cases, you will want to add both, in order to support an entirely new platform.
+
+    ### Adding an Adaptor
+
+    Normally, you would want to add a new Adaptor to Gobot in order to add support for something such as a new kind of single-board Linux computer. In many cases, we would consider this a new platform, and it should be added to a new package under the `/platforms` directory.
+
+    ### Adding a Driver
+
+    You would want to add a new Driver to Gobot in order to add support for a device that can be used on multiple platform, such as a digital compass.
+
+    In other cases, you might want to add a new Driver to expose a related set of functionality, such as the navigation interface for a particular drone.
+
+    ## Adding a new platform
+
+    You can add platform support to the Gobot package itself, or you can create a new package that contains your new functionality.
+
+    If you have some new capabilities that you are willing to share with the community, we'd love to have your contribution.
+    

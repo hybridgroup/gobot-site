@@ -22,6 +22,34 @@ active_menu_docs: true
         package main
 
         import (
+        	"gobot.io/x/gobot/drivers/gpio"
+        	"gobot.io/x/gobot/platforms/intel-iot/edison"
+        	"time"
+        )
+
+        func main() {
+        	e := edison.NewAdaptor()
+        	e.Connect()
+
+        	led := gpio.NewLedDriver(e, "13")
+        	led.Start()
+
+        	for {
+        		led.Toggle()
+        		time.Sleep(1000 * time.Millisecond)
+        	}
+        }
+
+    This is a nice simple example. You `Connect()` the Adaptor, you `Start()` the Driver, and away you go.
+
+    Here is a slightly more sophsticated example that uses Metal Gobot along with an Event channel:
+
+    ### Metal Button
+
+        :::go
+        package main
+
+        import (
         	"fmt"
 
         	"gobot.io/x/gobot/drivers/gpio"
@@ -51,12 +79,10 @@ active_menu_docs: true
         	}
         }
 
-
-
     ## How to use it
 
     When using Metal Gobot you need to make calls directly to Adaptors and/or Drivers yourself.
 
-    This includes all of the normal Gobot initialization.
+    You will need to call `Connect()` on each Adaptor yourself. Likewise, you will need to call `Start()` on each Driver.
 
-    Once your Robot is created, you then call the `Start()` function.
+    Once this is done, you can then use the Adaptors and Drivers directly however you wish.
