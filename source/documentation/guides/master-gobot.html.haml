@@ -12,9 +12,11 @@ active_menu_docs: true
   :markdown
     # Master Gobot
 
-    Use Master Gobot when you want to provide an API to your robot, drone, or Internet connected thing. Also, use Master Gobot when you want to create a swarm of devices, and control them as a single unit.
+    Use Master Gobot when you want to provide an API to your robot, drone, or Internet connected thing.
 
-    Let's take the "Hello, World of Things" code example from the "Getting Started" page, and add the Gobot API:
+    Also, use Master Gobot when you want to create a swarm of devices, and control them as a single unit.
+
+    Let's take the "Blink" code example from the "Getting Started" page, and add the Gobot API:
 
     ### Blink with API
 
@@ -55,8 +57,75 @@ active_menu_docs: true
         	master.Start()
         }
 
+    Just by adding a few lines of code, we get the entire RESTful API on top of your Gobot Master.
 
-    ## How to use it
+    Another way to use Master Gobot is to control a swarm or group of Robots. Here is an example that controls a sawrn of Sphero robots:
+
+    ### Swarm of Spheros
+
+        :::go
+        package main
+
+        import (
+        	"fmt"
+        	"time"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/api"
+        	"gobot.io/x/gobot/platforms/sphero"
+        )
+
+        func NewSwarmBot(port string) *gobot.Robot {
+        	spheroAdaptor := sphero.NewAdaptor(port)
+        	spheroDriver := sphero.NewSpheroDriver(spheroAdaptor)
+        	spheroDriver.SetName("Sphero" + port)
+
+        	work := func() {
+        		spheroDriver.Stop()
+
+        		spheroDriver.On(sphero.Collision, func(data interface{}) {
+        			fmt.Println("Collision Detected!")
+        		})
+
+        		gobot.Every(1*time.Second, func() {
+        			spheroDriver.Roll(100, uint16(gobot.Rand(360)))
+        		})
+        		gobot.Every(3*time.Second, func() {
+        			spheroDriver.SetRGB(uint8(gobot.Rand(255)),
+        				uint8(gobot.Rand(255)),
+        				uint8(gobot.Rand(255)),
+        			)
+        		})
+        	}
+
+        	robot := gobot.NewRobot("sphero",
+        		[]gobot.Connection{spheroAdaptor},
+        		[]gobot.Device{spheroDriver},
+        		work,
+        	)
+
+        	return robot
+        }
+
+        func main() {
+        	master := gobot.NewMaster()
+        	api.NewAPI(master).Start()
+
+        	spheros := []string{
+        		"/dev/rfcomm0",
+        		"/dev/rfcomm1",
+        		"/dev/rfcomm2",
+        		"/dev/rfcomm3",
+        	}
+
+        	for _, port := range spheros {
+        		master.AddRobot(NewSwarmBot(port))
+        	}
+
+        	master.Start()
+        }
+
+    ## How to use Master Gobot
 
     The "Master" is what you use to attach the Gobot API, and also to control the various Robots under the Master's "control program".
 
