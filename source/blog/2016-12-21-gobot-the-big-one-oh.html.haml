@@ -1,0 +1,205 @@
+---
+page_title_show: true
+title: Gobot - The Big One Oh!
+page_title: Blog
+date: 2016-12-21
+tags: releases
+author: Ron Evans
+---
+
+:markdown
+
+  It's been a long time coming, and version 1.0 of Gobot is finally here!
+
+  We're really excited to share this big news with all of you.
+
+  If you want a "media-friendly" version of the story, here is our press release about it: [http://gobot.io/news/gobot-1.0-release/](http://gobot.io/news/gobot-1.0-release/)
+
+  However, if you want the serious technical details, then read on!
+
+  You can now use "Classic Gobot" to write the fewest possible lines of Golang code that can control physical devices.
+
+  Or you can use "Metal Gobot", and use the low-level Gobot adaptors and drivers directly.
+
+  Lastly, you can use "Master Gobot", to include the entire Gobot API and control swarms of devices.
+
+  These are just some of the major changes we've made for the 1.0 release.
+
+  ## Classic Gobot
+
+  We've reduced the amount of Golang code to control physical devices down as simple as possible, but no simpler.
+
+  Here is the "Hello, World of Things" aka a program that blinks an LED. In this case the platform is an Arduino microcontroller.
+
+      :::go
+      package main
+
+      import (
+      	"time"
+
+      	"gobot.io/x/gobot"
+      	"gobot.io/x/gobot/drivers/gpio"
+      	"gobot.io/x/gobot/platforms/firmata"
+      )
+
+      func main() {
+      	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+      	led := gpio.NewLedDriver(firmataAdaptor, "13")
+
+      	work := func() {
+      		gobot.Every(1*time.Second, func() {
+      			led.Toggle()
+      		})
+      	}
+
+      	robot := gobot.NewRobot("bot",
+      		[]gobot.Connection{firmataAdaptor},
+      		[]gobot.Device{led},
+      		work,
+      	)
+
+      	robot.Start()
+      }
+
+  ## Metal Gobot
+
+  Metal Gobot gives the developer the lowest-level control over the hardware interfaces themselves. If you want discrete control over exactly how your application handles concurrency, failover, and everything else, then Metal Gobot is looking pretty shiny.
+
+  This is a program that blinks an LED using "Metal Gobot" style. The platform is an Intel Edison single-board Linux computer.
+
+      :::go
+      package main
+
+      import (
+      	"time"
+
+      	"gobot.io/x/gobot/drivers/gpio"
+      	"gobot.io/x/gobot/platforms/intel-iot/edison"
+      )
+
+      func main() {
+      	e := edison.NewAdaptor()
+      	e.Connect()
+
+      	led := gpio.NewLedDriver(e, "13")
+      	led.Start()
+
+      	for {
+      		led.Toggle()
+      		time.Sleep(1000 * time.Millisecond)
+      	}
+      }
+
+  ## Master Gobot
+
+  Master Gobot adds the built-in RESTful APIs, along other internal structures you need to control groups of robots.
+
+  This program controls a swarm of four Sphero robots:
+
+      :::go
+      package main
+
+      import (
+      	"fmt"
+      	"time"
+
+      	"gobot.io/x/gobot"
+      	"gobot.io/x/gobot/api"
+      	"gobot.io/x/gobot/platforms/sphero"
+      )
+
+      func NewSwarmBot(port string) *gobot.Robot {
+      	spheroAdaptor := sphero.NewAdaptor(port)
+      	spheroDriver := sphero.NewSpheroDriver(spheroAdaptor)
+      	spheroDriver.SetName("Sphero" + port)
+
+      	work := func() {
+      		spheroDriver.Stop()
+
+      		spheroDriver.On(sphero.Collision, func(data interface{}) {
+      			fmt.Println("Collision Detected!")
+      		})
+
+      		gobot.Every(1*time.Second, func() {
+      			spheroDriver.Roll(100, uint16(gobot.Rand(360)))
+      		})
+      		gobot.Every(3*time.Second, func() {
+      			spheroDriver.SetRGB(uint8(gobot.Rand(255)),
+      				uint8(gobot.Rand(255)),
+      				uint8(gobot.Rand(255)),
+      			)
+      		})
+      	}
+
+      	robot := gobot.NewRobot("sphero",
+      		[]gobot.Connection{spheroAdaptor},
+      		[]gobot.Device{spheroDriver},
+      		work,
+      	)
+
+      	return robot
+      }
+
+      func main() {
+      	master := gobot.NewMaster()
+      	api.NewAPI(master).Start()
+
+      	spheros := []string{
+      		"/dev/rfcomm0",
+      		"/dev/rfcomm1",
+      		"/dev/rfcomm2",
+      		"/dev/rfcomm3",
+      	}
+
+      	for _, port := range spheros {
+      		master.AddRobot(NewSwarmBot(port))
+      	}
+
+      	master.Start()
+      }
+
+  ## Other Major Changes
+
+  Here is a list of some of our other major changes. If you want the complete [CHANGELOG](https://github.com/hybridgroup/gobot/blob/master/CHANGELOG.md), we've got that as well.
+
+  * Refactor events to use channels all the way down. Allows 'metal' development using Gobot libs
+  * No longer return slices of errors, instead use hashicorp/go-multierror
+  * Use canonical import domain of gobot.io for all code
+  * Add golang 1.7 & 1.8 to build matrix for TravisCI
+  * Reduce Travis builds to golang 1.4+ since it is late 2016 already
+  * Complete move of test interfaces into the test files where they belong
+  * Add missing godocs for everything
+
+  We've also added support for the [NATS](http://nats.io/) open source messaging server.
+
+  Also, many updates to our hardware support, such as:
+
+  * I2C
+  * GPIO
+  * Beaglebone
+  * Bluetooth LE
+  * Intel Edison
+  * Intel Joule
+  * Arduino
+  * C.H.I.P.
+  * Sphero BB-8
+
+  ## We Had To Change The Interface
+
+  This is a big release, and makes breaking changes to a number of APIs. Normally this is frowned upon in the Golang programming world.
+
+  However, we recognized that we could greatly simplify how code could be written, in particular by removing things that were redundant or repetitive.
+
+  We're sorry about any inconvenience this may bring.
+
+  Now the interfaces are stable, and we don't anticipate any more breaking changes in the near future.
+
+  ## Thanks To The Contributors
+
+  We'd really like to extend a massive thanks to the many contributors who've helped get Gobot to this 1.0 release milestone.
+
+  We couldn't have done this without you. Thank you.
+
+  ## Keep Up To Date
+
+  To keep up with the project, please follow us on Twitter at [@gobotio](http://twitter.com/gobotio), as our team and many contributors work together to make Gobot the best it can be.

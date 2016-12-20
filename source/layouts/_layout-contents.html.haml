@@ -26,6 +26,12 @@
         = link_to "Resources", "", (menu_item("resources"))
 
     %li
+      - if current_page.data.active_menu_news == true
+        = link_to "News", "/news", (menu_item("news")), class: "active"
+      -else
+        = link_to "News", "", (menu_item("news"))
+
+    %li
       - if current_page.data.active_menu_blog == true
         = link_to "Blog", "/blog", (menu_item("blog")), class: "active"
       -else
