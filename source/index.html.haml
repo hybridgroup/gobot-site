@@ -100,6 +100,19 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
   .clear
 
   %h2
+    = link_to "#{data.drivers.AIO.length} Analog I/O (AIO) drivers", "https://en.wikipedia.org/wiki/General_Purpose_Input/Output" , target:"_blank"
+
+  %p Support for many devices that use Analog Input/Output (AIO) have a shared set of drivers provided also using the gpio platform package:
+
+  %ul.platform-list
+    - data.drivers.AIO.each do |name, slug|
+      %li.platform
+        %a{:href => "/documentation/drivers/#{slug}"}
+          %p.title= name
+          %img{src: "/images/devices/#{slug}.jpg", style: "width: 90%"}
+  .clear
+
+  %h2
     = link_to "#{data.drivers.I2C.length} I2C drivers", "https://en.wikipedia.org/wiki/I%C2%B2C", target:"_blank"
 
   %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provided using the i2c platform package:

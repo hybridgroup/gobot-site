@@ -39,23 +39,27 @@
 
   "Drivers": {
     "GPIO": {
-      "Analog Sensor": "/documentation/drivers/analog-sensor",
       "Button": "/documentation/drivers/button",
       "Grove Touch": "/documentation/drivers/grove-touch",
-      "Grove Sound Sensor": "/documentation/drivers/grove-sound-sensor",
       "Grove Button": "/documentation/drivers/grove-button",
       "Grove Buzzer": "/documentation/drivers/grove-buzzer",
       "Grove Led": "/documentation/drivers/grove-led",
-      "Grove Light Sensor": "/documentation/drivers/grove-light-sensor",
       "Grove Vibration Sensor": "/documentation/drivers/grove-piezo-vibration-sensor",
-      "Grove Rotary": "/documentation/drivers/grove-rotary",
       "Grove Relay": "/documentation/drivers/grove-relay",
-      "Grove Temperature Sensor": "/documentation/drivers/grove-temperature-sensor",
       "Direct Pin": "/documentation/drivers/direct-pin",
       "LED": "/documentation/drivers/led",
       "Makey Button": "/documentation/drivers/makey-button",
       "Motor": "/documentation/drivers/motor",
       "Servo": "/documentation/drivers/servo"
+    },
+
+    "AIO": {
+      "Analog Sensor": "/documentation/drivers/analog-sensor",
+      "Grove Sound Sensor": "/documentation/drivers/grove-sound-sensor",
+      "Grove Light Sensor": "/documentation/drivers/grove-light-sensor",
+      "Grove Rotary": "/documentation/drivers/grove-rotary",
+      "Grove Temperature Sensor": "/documentation/drivers/grove-temperature-sensor",
+      "Direct Pin": "/documentation/drivers/direct-pin"
     },
 
     "I2C": {

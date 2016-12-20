@@ -8,13 +8,13 @@
   "Arduino": {
     "slug": "arduino",
     "url": "http://www.arduino.cc/",
-    "drivers": ["GPIO", "I2C"]
+    "drivers": ["GPIO", "AIO", "I2C"]
   },
 
   "Beaglebone Black": {
     "slug": "beaglebone",
     "url": "http://beagleboard.org/Products/BeagleBone+Black/",
-    "drivers": ["GPIO", "I2C"]
+    "drivers": ["GPIO", "AIO", "I2C"]
   },
 
   "Bebop": {
@@ -38,13 +38,13 @@
   "Digispark": {
     "slug": "digispark",
     "url": "http://digistump.com/category/1",
-    "drivers": ["GPIO", "I2C"]
+    "drivers": ["GPIO", "AIO", "I2C"]
   },
 
   "Intel Edison": {
     "slug": "edison",
     "url": "http://www.intel.com/content/www/us/en/do-it-yourself/edison.html",
-    "drivers": ["GPIO", "I2C"]
+    "drivers": ["GPIO", "AIO", "I2C"]
   },
 
   "Intel Joule": {

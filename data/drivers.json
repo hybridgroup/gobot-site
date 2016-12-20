@@ -1,18 +1,13 @@
 {
   "GPIO": {
-    "Analog Sensor": "analog-sensor",
     "Button": "button",
     "Buzzer": "buzzer",
     "Direct Pin": "direct-pin",
     "Grove Button": "grove-button",
     "Grove Buzzer": "grove-buzzer",
     "Grove Led": "grove-led",
-    "Grove Light Sensor": "grove-light-sensor",
     "Grove Vibration Sensor": "grove-piezo-vibration-sensor",
-    "Grove Rotary": "grove-rotary",
     "Grove Relay": "grove-relay",
-    "Grove Sound Sensor": "grove-sound-sensor",
-    "Grove Temperature Sensor": "grove-temperature-sensor",
     "Grove Touch": "grove-touch",
     "LED": "led",
     "Makey Button": "makey-button",
@@ -21,6 +16,14 @@
     "Relay": "relay",
     "RGB LED": "rgb-led",
     "Servo": "servo"
+  },
+
+  "AIO": {
+    "Analog Sensor": "analog-sensor",
+    "Grove Light Sensor": "grove-light-sensor",
+    "Grove Rotary": "grove-rotary",
+    "Grove Sound Sensor": "grove-sound-sensor",
+    "Grove Temperature Sensor": "grove-temperature-sensor"
   },
 
   "I2C": {
