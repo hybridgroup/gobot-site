@@ -68,6 +68,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -96,6 +99,10 @@
               <div class="section" ng-class="{active: active('Guides')}">
                 <div class="name" ng-click="show('Guides')">Guides</div>
                 <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/classic-gobot">Classic Gobot</a>
+                  <a href="/documentation/guides/master-gobot">Master Gobot</a>
+                  <a href="/documentation/guides/metal-gobot">Metal Gobot</a>
+                  <a href="/documentation/guides/adding-hardware-support">Adding Hardware Support</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                 </div>
@@ -103,24 +110,30 @@
               <div class="section" ng-class="{active: active('Platforms')}">
                 <div class="name" ng-click="show('Platforms')">Platforms</div>
                 <div class="links" ng-show="active('Platforms')">
-                  <a href="/documentation/platforms/ardrone">Ardrone</a>
                   <a href="/documentation/platforms/arduino">Arduino</a>
                   <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                  <a href="/documentation/platforms/bebop">Bebop</a>
+                  <a href="/documentation/platforms/ble">Bluetooth LE</a>
                   <a href="/documentation/platforms/chip">C.H.I.P.</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joule">Intel Joule</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
                   <a href="/documentation/platforms/keyboard">Keyboard</a>
                   <a href="/documentation/platforms/leapmotion">Leap Motion</a>
                   <a href="/documentation/platforms/mavlink">Mavlink</a>
                   <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nats">NATS</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/ardrone">Parrot ARdrone</a>
+                  <a href="/documentation/platforms/bebop">Parrot Bebop</a>
+                  <a href="/documentation/platforms/minidrone">Parrot Minidrone</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/raspi">Raspberry Pi</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/bb8">Sphero BB-8</a>
+                  <a href="/documentation/platforms/ollie">Sphero Ollie</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Drivers')}">
@@ -129,18 +142,13 @@
                   <div class="sub-section">
                     <div class="name">GPIO</div>
                     <div class="links">
-                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
                       <a href="/documentation/drivers/button">Button</a>
                       <a href="/documentation/drivers/grove-touch">Grove Touch</a>
-                      <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
                       <a href="/documentation/drivers/grove-button">Grove Button</a>
                       <a href="/documentation/drivers/grove-buzzer">Grove Buzzer</a>
                       <a href="/documentation/drivers/grove-led">Grove Led</a>
-                      <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor">Grove Vibration Sensor</a>
-                      <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
                       <a href="/documentation/drivers/grove-relay">Grove Relay</a>
-                      <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
                       <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/led">LED</a>
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
@@ -149,16 +157,36 @@
                     </div>
                   </div>
                   <div class="sub-section">
+                    <div class="name">AIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
+                      <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
+                      <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
+                      <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
                     <div class="name">I2C</div>
                     <div class="links">
+                      <a href="/documentation/drivers/adafruit-motor-hat">Adafruit Motor HAT</a>
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
                       <a href="/documentation/drivers/grove-lcd">Grove LCD</a>
                       <a href="/documentation/drivers/grove-accelerometer">Grove Accelerometer</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
                       <a href="/documentation/drivers/lidar-lite">LIDAR-Lite</a>
+                      <a href="/documentation/drivers/mcp23017">MCP23017</a>
                       <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
                       <a href="/documentation/drivers/mpu6050">MPU6050</a>
                       <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Bluetooth LE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery">Battery</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
                     </div>
                   </div>
                   <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
@@ -171,11 +199,18 @@
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/bb8">BB-8</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Core')}">
                 <div class="name" ng-click="show('Core')">Core</div>
                 <div class="links" ng-show="active('Core')">
+                  <a href="/documentation/core/robots">Robots</a>
+                  <a href="/documentation/core/adaptors">Adaptors</a>
+                  <a href="/documentation/core/drivers">Drivers</a>
+                  <a href="/documentation/core/events">Events</a>
+                  <a href="/documentation/core/commands">Commands</a>
                   <a href="/documentation/core/api">API</a>
                   <a href="/documentation/core/helpers">Helper Methods</a>
                   <a href="/documentation/core/sysfs">sysfs</a>
@@ -220,71 +255,20 @@
                 Makes it possible to interact with analog inputs on your device and obtain values that represent the analog input send by the sensors.
                 The value received from an analog input read from the sensor goes from 0 to 1027.
               </p>
-              <a class="api-link" href="http://godoc.org/github.com/hybridgroup/gobot/platforms/gpio#AnalogSensorDriver" target="_blank">API Reference</a>
+              <a class="api-link" href="http://godoc.org/gobot.io/x/gobot/drivers/aio#AnalogSensorDriver" target="_blank">API Reference</a>
             </div>
             <div class="clear"></div>
             <section class="how-to">
               <h2 id="HowToConnect">How To Connect</h2>
-              <p>Install the library with: <code>go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/platforms/gpio</code></p>
-              <pre class="CodeRay"><span class="keyword">package</span> main
-
-<span class="keyword">import</span> (
-  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
-)
-
-<span class="keyword">func</span> main() {
-  gbot := gobot.NewGobot()
-  firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
-  sensor := gpio.NewAnalogSensorDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">0</span><span class="delimiter">"</span></span>)
-  led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">3</span><span class="delimiter">"</span></span>)
+              <p>Install the package with: <code>go get gobot.io/x/gobot</code></p>
+              <pre class="CodeRay"><span class="comment">// code here</span>
 ...
 </pre>
               <h2 id="HowToConnect">How To Use</h2>
               <p>
                 This example detects lower and upper limits on a photoresistor sensor.
               </p>
-              <pre class="CodeRay"><span class="keyword">package</span> main
-
-<span class="keyword">import</span> (
-  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
-
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-)
-
-<span class="keyword">func</span> main() {
-  gbot := gobot.NewGobot()
-
-  firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
-  sensor := gpio.NewAnalogSensorDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">0</span><span class="delimiter">"</span></span>)
-  led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">3</span><span class="delimiter">"</span></span>)
-
-  work := <span class="keyword">func</span>() {
-    gobot.On(sensor.Event(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-      brightness := <span class="predefined-type">uint8</span>(
-        gobot.ToScale(gobot.FromScale(<span class="predefined-type">float64</span>(data.(<span class="predefined-type">int</span>)), <span class="integer">0</span>, <span class="integer">1024</span>), <span class="integer">0</span>, <span class="integer">255</span>),
-      )
-      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, data)
-      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">brightness</span><span class="delimiter">"</span></span>, brightness)
-      led.Brightness(brightness)
-    })
-  }
-
-  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sensorBot</span><span class="delimiter">"</span></span>,
-    []gobot.Connection{firmataAdaptor},
-    []gobot.Device{sensor, led},
-    work,
-  )
-
-  gbot.AddRobot(robot)
-
-  gbot.Start()
-} 
+              <pre class="CodeRay"><span class="comment">// code here</span>
 </pre>
             </section>
             <section class="circuit" id="Circuit">
@@ -313,12 +297,6 @@
                   </a>
                 </div>
                 <div class="compatability-link">
-                  <a href="/documentation/platforms/chip">
-                    <p class="title">C.H.I.P.</p>
-                    <img src="/images/devices/chip.jpg" style="width: 90%">
-                  </a>
-                </div>
-                <div class="compatability-link">
                   <a href="/documentation/platforms/digispark">
                     <p class="title">Digispark</p>
                     <img src="/images/devices/digispark.jpg" style="width: 90%">
@@ -328,18 +306,6 @@
                   <a href="/documentation/platforms/edison">
                     <p class="title">Intel Edison</p>
                     <img src="/images/devices/edison.jpg" style="width: 90%">
-                  </a>
-                </div>
-                <div class="compatability-link">
-                  <a href="/documentation/platforms/raspi">
-                    <p class="title">Raspberry Pi</p>
-                    <img src="/images/devices/raspi.jpg" style="width: 90%">
-                  </a>
-                </div>
-                <div class="compatability-link">
-                  <a href="/documentation/platforms/spark">
-                    <p class="title">Spark</p>
-                    <img src="/images/devices/spark.jpg" style="width: 90%">
                   </a>
                 </div>
               </div>

@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -77,59 +80,52 @@
         </div>
       </header>
       <div class="info-intro">
-        <p>The Parrot Bebop is the next generation of Drone, featuring a dual-core CPU,
-        quad-core GPU and 8 GB of Flash Memory. The Bebop also comes with a 14 meagpixel
-        camera and generates its own wifi hotspot.</p>
+        <p>The Bebop from Parrot is an inexpensive quadcopter that is controlled using WiFi. It includes a built-in front-facing HD video camera, as well as a second lower resolution bottom facing video camera.</p>
         
       </div>
       <div class="clear"></div>
       <section class="how-to">
         <h2 id="how-to-install">How to Install</h2>
-        
-        <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/bebop
+        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/parrot/bebop
 </pre>
         
         <h2 id="how-to-use">How to Use</h2>
-        
         <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-    <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/bebop</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/parrot/bebop</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
-    bebopAdaptor := bebop.NewBebopAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
-    drone := bebop.NewBebopDriver(bebopAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
+        bebopAdaptor := bebop.NewAdaptor()
+        drone := bebop.NewDriver(bebopAdaptor)
 
-    work := <span class="keyword">func</span>() {
+        work := <span class="keyword">func</span>() {
     drone.HullProtection(<span class="predefined-constant">true</span>)
-        drone.TakeOff()
-        gobot.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            gobot.After(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
-                drone.Land()
-            })
-        })
-    }
+                drone.TakeOff()
+                gobot.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        gobot.After(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
+                                drone.Land()
+                        })
+                })
+        }
 
-    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
-        []gobot.Connection{bebopAdaptor},
-        []gobot.Device{drone},
-        work,
-    )
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{bebopAdaptor},
+                []gobot.Device{drone},
+                work,
+        )
 
-    gbot.AddRobot(robot)
-    gbot.Start()
+        robot.Start()
 }
 </pre>
         
         <h2 id="how-to-connect">How to Connect</h2>
         
-        <p>The Bebop is a WiFi device, so there is no additional work to establish a connection
-        to a single drone. However, in order to connect to multiple drones, you need to perform
-        some configuration steps on each drone via SSH.</p>
+        <p>The Bebop is a WiFi device, so there is no additional work to establish a connection to a single drone. However, in order to connect to multiple drones, you need to perform some configuration steps on each drone via SSH.</p>
       </section>
     </div>
     <footer class="app-footer">

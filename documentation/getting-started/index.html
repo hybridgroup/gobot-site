@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -95,6 +98,10 @@
               <div class="section" ng-class="{active: active('Guides')}">
                 <div class="name" ng-click="show('Guides')">Guides</div>
                 <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/classic-gobot">Classic Gobot</a>
+                  <a href="/documentation/guides/master-gobot">Master Gobot</a>
+                  <a href="/documentation/guides/metal-gobot">Metal Gobot</a>
+                  <a href="/documentation/guides/adding-hardware-support">Adding Hardware Support</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                 </div>
@@ -102,24 +109,30 @@
               <div class="section" ng-class="{active: active('Platforms')}">
                 <div class="name" ng-click="show('Platforms')">Platforms</div>
                 <div class="links" ng-show="active('Platforms')">
-                  <a href="/documentation/platforms/ardrone">Ardrone</a>
                   <a href="/documentation/platforms/arduino">Arduino</a>
                   <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                  <a href="/documentation/platforms/bebop">Bebop</a>
+                  <a href="/documentation/platforms/ble">Bluetooth LE</a>
                   <a href="/documentation/platforms/chip">C.H.I.P.</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joule">Intel Joule</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
                   <a href="/documentation/platforms/keyboard">Keyboard</a>
                   <a href="/documentation/platforms/leapmotion">Leap Motion</a>
                   <a href="/documentation/platforms/mavlink">Mavlink</a>
                   <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nats">NATS</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/ardrone">Parrot ARdrone</a>
+                  <a href="/documentation/platforms/bebop">Parrot Bebop</a>
+                  <a href="/documentation/platforms/minidrone">Parrot Minidrone</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/raspi">Raspberry Pi</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/bb8">Sphero BB-8</a>
+                  <a href="/documentation/platforms/ollie">Sphero Ollie</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Drivers')}">
@@ -128,18 +141,13 @@
                   <div class="sub-section">
                     <div class="name">GPIO</div>
                     <div class="links">
-                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
                       <a href="/documentation/drivers/button">Button</a>
                       <a href="/documentation/drivers/grove-touch">Grove Touch</a>
-                      <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
                       <a href="/documentation/drivers/grove-button">Grove Button</a>
                       <a href="/documentation/drivers/grove-buzzer">Grove Buzzer</a>
                       <a href="/documentation/drivers/grove-led">Grove Led</a>
-                      <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor">Grove Vibration Sensor</a>
-                      <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
                       <a href="/documentation/drivers/grove-relay">Grove Relay</a>
-                      <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
                       <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/led">LED</a>
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
@@ -148,16 +156,36 @@
                     </div>
                   </div>
                   <div class="sub-section">
+                    <div class="name">AIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
+                      <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
+                      <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
+                      <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
                     <div class="name">I2C</div>
                     <div class="links">
+                      <a href="/documentation/drivers/adafruit-motor-hat">Adafruit Motor HAT</a>
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
                       <a href="/documentation/drivers/grove-lcd">Grove LCD</a>
                       <a href="/documentation/drivers/grove-accelerometer">Grove Accelerometer</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
                       <a href="/documentation/drivers/lidar-lite">LIDAR-Lite</a>
+                      <a href="/documentation/drivers/mcp23017">MCP23017</a>
                       <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
                       <a href="/documentation/drivers/mpu6050">MPU6050</a>
                       <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Bluetooth LE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery">Battery</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
                     </div>
                   </div>
                   <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
@@ -170,11 +198,18 @@
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/bb8">BB-8</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Core')}">
                 <div class="name" ng-click="show('Core')">Core</div>
                 <div class="links" ng-show="active('Core')">
+                  <a href="/documentation/core/robots">Robots</a>
+                  <a href="/documentation/core/adaptors">Adaptors</a>
+                  <a href="/documentation/core/drivers">Drivers</a>
+                  <a href="/documentation/core/events">Events</a>
+                  <a href="/documentation/core/commands">Commands</a>
                   <a href="/documentation/core/api">API</a>
                   <a href="/documentation/core/helpers">Helper Methods</a>
                   <a href="/documentation/core/sysfs">sysfs</a>
@@ -197,27 +232,15 @@
               
               <p>Gobot is a framework for robotics, physical computing, and the Internet of Things (IoT), written in the Go programming language.</p>
               
-              <p><strong>It provides:</strong></p>
+              <p>Gobot provides drivers and adapters for controlling a wide variety of physical devices from low-level Arduino and Raspberry Pi, as well as drones, toys, and other complete devices that themselves have APIs.</p>
               
-              <ul>
-                <li>Drivers and adapters for controlling a wide variety of drones, toys, and physical computing platforms like Arduino and Raspberry Pi</li>
-                <li>"Robots" - a software abstraction that makes it easy to build interesting high-level functionality for supported devices</li>
-                <li>An external control interface for individual or groups of Robots on a shared network, implemented as a JSON-over-HTTP API</li>
-              </ul>
+              <p>The "Robot" is the main software abstraction that makes it easy to build interesting high-level functionality for supported devices.</p>
               
               <p>Robots (Go programs) written with Gobot can run on a host machine communicating to connected devices, or directly on a single-board Linux computer, or anywhere in between.</p>
               
-              <p>Gobot's approach to standardization and abstraction makes it easy to write a program that works on multiple platforms with little modification.</p>
+              <p>Gobot can also provide an external facing API to allow other programs to control from individual devices to entire groups of Robots on a shared network, implemented using JSON-over-HTTP API.</p>
               
-              <p><strong>Robots in Other Languages</strong></p>
-              <p>
-                Want to use Node.js on robots? Check out our sister project CylonJS
-                <a target="_blank" href="http://cylonjs.com">(http://cylonjs.com)</a>
-              </p>
-              <p>
-                Want to use Ruby on robots? Check out our sister project Artoo
-                <a target="_blank" href="http://artoo.io">(http://artoo.io)</a>
-              </p>
+              <p>Gobot's approach to standardization and abstraction makes it easy to write a program that works on multiple hardware platforms with little modification.</p>
             </section>
             <section>
               <h2 id="set-up-your-environment">Set Up Your Environment</h2>
@@ -233,81 +256,33 @@
               
               <p>With Go installed, the <code>go get</code> tool will help you install Gobot and its required dependencies:</p>
               
-              <pre class="CodeRay">$ go get -d -u github.com/hybridgroup/gobot/...
+              <pre class="CodeRay">$ go get -d -u gobot.io/x/gobot/...
 </pre>
             </section>
             <section>
-              <h2 id="writing-and-running-gobot-robots">Writing And Running Gobot Robots</h2>
+              <h2 id="writing-your-first-robot">Writing Your First Robot</h2>
               
-              <p>With the Gobot packages installed, you're ready to start writing your own code.
-              Please take a look at some of the examples below.</p>
+              <p>Once you have the Gobot packages installed, you're ready to start writing your own code. The first program we are going to create is the "Hello, World" of things, which is a program to blink an LED on and off every second.</p>
               
-              <p>Additionally, if you want to find more examples of how to write Robots with Gobot, check out our
-              <a href="/documentation/examples" target="_blank">Examples page</a>.</p>
-              
-              <p>To run your Robots, you can just pass the source file to <code>go run</code>:</p>
-              
-              <p>$ go run my-robot.go</p>
-            </section>
-            <section>
-              <h2 id="gobot-code-examples">Gobot Code Examples</h2>
-              
-              <h3 id="hello">Hello</h3>
+              <h3 id="hello-world-of-things">Hello, World of Things</h3>
               
               <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
 
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
+        firmataAdaptor := firmata.NewAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+        led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
                 gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
-                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Hello, human!</span><span class="delimiter">"</span></span>)
-                })
-        }
-
-        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
-                []gobot.Connection{},
-                []gobot.Device{},
-                work,
-        )
-        gbot.AddRobot(robot)
-
-        gbot.Start()
-}
-</pre>
-              
-              <h3 id="arduino---led--button">Arduino - LED + Button</h3>
-              
-              <pre class="CodeRay"><span class="keyword">package</span> main
-
-<span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
-
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-)
-
-<span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
-
-        firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
-        led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
-        button := gpio.NewButtonDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">2</span><span class="delimiter">"</span></span>)
-
-        work := <span class="keyword">func</span>() {
-                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        led.On()
-                })
-                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        led.Off()
+                        led.Toggle()
                 })
         }
 
@@ -317,128 +292,59 @@
                 work,
         )
 
-        gbot.AddRobot(robot)
-
-        gbot.Start()
+        robot.Start()
 }
 </pre>
               
-              <h3 id="multiple-arduinos">Multiple Arduinos</h3>
+              <p>To run your Robot, you can just pass the source file to <code>go run</code>:</p>
+              
+              <p>$ go run blink.go</p>
+              
+              <p>You should see the LED turn on and off every second.</p>
+              
+              <h2 id="adding-input">Adding Input</h2>
+              
+              <p>Now that you have basic output, let's add some input in the form of a push-button.</p>
+              
+              <h3 id="button-and-led">Button and LED</h3>
               
               <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
-
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
+        firmataAdaptor := firmata.NewAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
 
-        firmataA := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">arduinoA</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
-        firmataB := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">arduinoB</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM1</span><span class="delimiter">"</span></span>)
-
-        led := gpio.NewLedDriver(firmataA, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
-        button := gpio.NewButtonDriver(firmataB, <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">2</span><span class="delimiter">"</span></span>)
+        button := gpio.NewButtonDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">5</span><span class="delimiter">"</span></span>)
+        led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
-                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                button.On(gpio.ButtonPush, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         led.On()
                 })
-                gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                button.On(gpio.ButtonRelease, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         led.Off()
                 })
         }
 
-        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
-                []gobot.Connection{firmataA, firmataB},
-                []gobot.Device{led, button},
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">buttonBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{firmataAdaptor},
+                []gobot.Device{button, led},
                 work,
         )
 
-        gbot.AddRobot(robot)
-
-        gbot.Start()
+        robot.Start()
 }
 </pre>
               
-              <h3 id="parrot-ardrone-20">Parrot ARDrone 2.0</h3>
-              
-              <pre class="CodeRay"><span class="keyword">package</span> main
-
-<span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
-
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/ardrone</span><span class="delimiter">"</span></span>
-)
-
-<span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
-
-        ardroneAdaptor := ardrone.NewArdroneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
-        drone := ardrone.NewArdroneDriver(ardroneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
-
-        work := <span class="keyword">func</span>() {
-                drone.TakeOff()
-                gobot.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        gobot.After(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
-                                drone.Land()
-                        })
-                })
-        }
-
-        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
-                []gobot.Connection{ardroneAdaptor},
-                []gobot.Device{drone},
-                work,
-        )
-        gbot.AddRobot(robot)
-
-        gbot.Start()
-}
-</pre>
+              <p>This time when you run your program, you should see the LED turn on when you push the button, and then off when you release the button.</p>
             </section>
             <section>
-              <h2 id="cli">CLI</h2>
-              
-              <p>To get access to a number of useful command-line tools, you should check out our helpful CLI tool,
-              <a href="http://gort.io" target="_blank">Gort</a>.</p>
-              
-              <pre class="CodeRay">$ gort
-NAME:
-  gort - Command Line Utility for RobotOps
-
-USAGE:
-  gort [global options] command [command options] [arguments...]
-
-VERSION:
-  0.3.0
-
-AUTHOR:
-  Author - &lt;unknown@email&gt;
-
-COMMANDS:
-  scan         Scan for connected devices on Serial, USB, or Bluetooth ports
-  bluetooth    Pair, unpair &amp; connect to bluetooth devices.
-  arduino      Install avrdude, and upload HEX files to your Arduino
-  spark        Upload sketches to your Spark
-  digispark    Configure your Digispark microcontroller
-  crazyflie    Configure your Crazyflie
-  klaatu       barada nikto
-  dronedrop    Install, uninstall, update and download dronedrop firmware
-  help, h      Shows a list of commands or help for one command
-
-GLOBAL OPTIONS:
-  --help, -h           show help
-  --version, -v        print the version
-</pre>
-            </section>
-            <section>
-              <h2 id="where-next">Where Next?</h2>
+              <h2 id="whats-next">What's Next?</h2>
               
               <p>Where do we go from here?</p>
               

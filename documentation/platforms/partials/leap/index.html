@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -90,7 +93,7 @@
         
         <p>Now you can install the package with:</p>
         
-        <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/leap
+        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/leap
 </pre>
         
         <h2 id="how-to-use">How to Use</h2>
@@ -100,15 +103,13 @@
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
 
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/leap</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/leap</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
-
-        leapMotionAdaptor := leap.NewLeapMotionAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">leap</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">127.0.0.1:6437</span><span class="delimiter">"</span></span>)
-        l := leap.NewLeapMotionDriver(leapMotionAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">leap</span><span class="delimiter">"</span></span>)
+        leapMotionAdaptor := leap.NewAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">127.0.0.1:6437</span><span class="delimiter">"</span></span>)
+        l := leap.NewDriver(leapMotionAdaptor)
 
         work := <span class="keyword">func</span>() {
                 gobot.On(l.Event(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
@@ -122,9 +123,7 @@
                 work,
         )
 
-        gbot.AddRobot(robot)
-
-        gbot.Start()
+        robot.Start()
 }
 </pre>
         

@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -79,19 +82,19 @@
       <div class="info-intro">
         <p>This repository contains the Gobot adaptor for <a href="http://getpebble.com/">Pebble smart watch</a>.</p>
         
-        <p>It uses the Pebble 2.0 SDK, and requires the 2.0 iOS or Android app, and that the <a href="https://github.com/hybridgroup/watchbot">"watchbot" app</a> has been installed on the Pebble watch.</p>
+        <p>It uses the Pebble 2.0 SDK, and requires the 2.0 iOS or Android app, and that the <a href="https://gobot.io/x/watchbot">"watchbot" app</a> has been installed on the Pebble watch.</p>
         
       </div>
       <div class="clear"></div>
       <section class="how-to">
         <h2 id="how-to-install">How to Install</h2>
         
-        <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/pebble
+        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/pebble
 </pre>
         
         <ul>
           <li>Install Pebble 2.0 iOS or Android app. (If you haven't already)</li>
-          <li>Follow README to install and configure "watchbot" on your watch: https://github.com/hybridgroup/watchbot</li>
+          <li>Follow README to install and configure "watchbot" on your watch: https://gobot.io/x/watchbot</li>
         </ul>
         
         <h2 id="how-to-use">How to Use</h2>
@@ -103,38 +106,38 @@
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
 
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/api</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/pebble</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/api</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/pebble</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
-        api.NewAPI(gbot).Start()
+        master := gobot.NewMaster()
+        api.NewAPI(master).Start()
 
-        pebbleAdaptor := pebble.NewPebbleAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>)
-        pebbleDriver := pebble.NewPebbleDriver(pebbleAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>)
+        pebbleAdaptor := pebble.NewAdaptor()
+        watch := pebble.NewDriver(pebbleAdaptor)
 
         work := <span class="keyword">func</span>() {
-                pebbleDriver.SendNotification(<span class="string"><span class="delimiter">"</span><span class="content">Hello Pebble!</span><span class="delimiter">"</span></span>)
-                gobot.On(pebbleDriver.Event(<span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                watch.SendNotification(<span class="string"><span class="delimiter">"</span><span class="content">Hello Pebble!</span><span class="delimiter">"</span></span>)
+                watch.On(watch.Event(<span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Button pushed: </span><span class="delimiter">"</span></span> + data.(<span class="predefined-type">string</span>))
                 })
 
-                gobot.On(pebbleDriver.Event(<span class="string"><span class="delimiter">"</span><span class="content">tap</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                watch.On(watch.Event(<span class="string"><span class="delimiter">"</span><span class="content">tap</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Tap event detected</span><span class="delimiter">"</span></span>)
                 })
         }
 
         robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>,
                 []gobot.Connection{pebbleAdaptor},
-                []gobot.Device{pebbleDriver},
+                []gobot.Device{watch},
                 work,
         )
 
-        gbot.AddRobot(robot)
+        master.AddRobot(robot)
 
-        gbot.Start()
+        master.Start()
 }
 </pre>
         
@@ -171,7 +174,7 @@
         
         <h2 id="license">License</h2>
         
-        <p>Copyright (c) 2013-2014 The Hybrid Group. Licensed under the Apache 2.0 license.</p>
+        <p>Copyright (c) 2013-2016 The Hybrid Group. Licensed under the Apache 2.0 license.</p>
       </section>
     </div>
     <footer class="app-footer">

@@ -68,6 +68,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -96,6 +99,10 @@
               <div class="section" ng-class="{active: active('Guides')}">
                 <div class="name" ng-click="show('Guides')">Guides</div>
                 <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/classic-gobot">Classic Gobot</a>
+                  <a href="/documentation/guides/master-gobot">Master Gobot</a>
+                  <a href="/documentation/guides/metal-gobot">Metal Gobot</a>
+                  <a href="/documentation/guides/adding-hardware-support">Adding Hardware Support</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                 </div>
@@ -103,24 +110,30 @@
               <div class="section" ng-class="{active: active('Platforms')}">
                 <div class="name" ng-click="show('Platforms')">Platforms</div>
                 <div class="links" ng-show="active('Platforms')">
-                  <a href="/documentation/platforms/ardrone">Ardrone</a>
                   <a href="/documentation/platforms/arduino">Arduino</a>
                   <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                  <a href="/documentation/platforms/bebop">Bebop</a>
+                  <a href="/documentation/platforms/ble">Bluetooth LE</a>
                   <a href="/documentation/platforms/chip">C.H.I.P.</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joule">Intel Joule</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
                   <a href="/documentation/platforms/keyboard">Keyboard</a>
                   <a href="/documentation/platforms/leapmotion">Leap Motion</a>
                   <a href="/documentation/platforms/mavlink">Mavlink</a>
                   <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nats">NATS</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/ardrone">Parrot ARdrone</a>
+                  <a href="/documentation/platforms/bebop">Parrot Bebop</a>
+                  <a href="/documentation/platforms/minidrone">Parrot Minidrone</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/raspi">Raspberry Pi</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/bb8">Sphero BB-8</a>
+                  <a href="/documentation/platforms/ollie">Sphero Ollie</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Drivers')}">
@@ -129,18 +142,13 @@
                   <div class="sub-section">
                     <div class="name">GPIO</div>
                     <div class="links">
-                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
                       <a href="/documentation/drivers/button">Button</a>
                       <a href="/documentation/drivers/grove-touch">Grove Touch</a>
-                      <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
                       <a href="/documentation/drivers/grove-button">Grove Button</a>
                       <a href="/documentation/drivers/grove-buzzer">Grove Buzzer</a>
                       <a href="/documentation/drivers/grove-led">Grove Led</a>
-                      <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor">Grove Vibration Sensor</a>
-                      <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
                       <a href="/documentation/drivers/grove-relay">Grove Relay</a>
-                      <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
                       <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/led">LED</a>
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
@@ -149,16 +157,36 @@
                     </div>
                   </div>
                   <div class="sub-section">
+                    <div class="name">AIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
+                      <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
+                      <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
+                      <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
                     <div class="name">I2C</div>
                     <div class="links">
+                      <a href="/documentation/drivers/adafruit-motor-hat">Adafruit Motor HAT</a>
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
                       <a href="/documentation/drivers/grove-lcd">Grove LCD</a>
                       <a href="/documentation/drivers/grove-accelerometer">Grove Accelerometer</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
                       <a href="/documentation/drivers/lidar-lite">LIDAR-Lite</a>
+                      <a href="/documentation/drivers/mcp23017">MCP23017</a>
                       <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
                       <a href="/documentation/drivers/mpu6050">MPU6050</a>
                       <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Bluetooth LE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery">Battery</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
                     </div>
                   </div>
                   <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
@@ -171,11 +199,18 @@
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/bb8">BB-8</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Core')}">
                 <div class="name" ng-click="show('Core')">Core</div>
                 <div class="links" ng-show="active('Core')">
+                  <a href="/documentation/core/robots">Robots</a>
+                  <a href="/documentation/core/adaptors">Adaptors</a>
+                  <a href="/documentation/core/drivers">Drivers</a>
+                  <a href="/documentation/core/events">Events</a>
+                  <a href="/documentation/core/commands">Commands</a>
                   <a href="/documentation/core/api">API</a>
                   <a href="/documentation/core/helpers">Helper Methods</a>
                   <a href="/documentation/core/sysfs">sysfs</a>
@@ -214,54 +249,36 @@
               <img class="display" src="/images/devices/chip.jpg">
             </section>
             <div class="info-intro">
-              <p>The CHIP is a small, inexpensive ARM based single board computer, with many different IO interfaces available on the pin headers.</p>
+              <p>The <a href="http://www.getchip.com/">C.H.I.P.</a> is a small, inexpensive ARM based single board computer, with many different IO interfaces available on the <a href="http://docs.getchip.com/#pin-headers">pin headers</a>.</p>
               
-              <p>For documentation about the CHIP platform click <a href="http://www.nextthing.co/pages/chip">here</a>.</p>
-              <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms" target="blank" class="api-link">API Reference</a>
+              <p>We recommend updating to the latest Debian OS when using the C.H.I.P., however Gobot should also support older versions of the OS, should your application require this.</p>
+              
+              <p>For documentation about the C.H.I.P. platform click <a href="http://docs.getchip.com/">here</a>.</p>
+              <a href="http://godoc.org/gobot.io/x/gobot/platforms/chip" target="blank" class="api-link">API Reference</a>
             </div>
             <div class="clear"></div>
             <section class="how-to">
               <h2 id="how-to-install">How to Install</h2>
-              <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/chip
-</pre>
-              
-              <h4 id="cross-compiling-for-the-chip">Cross Compiling for the CHIP</h4>
-              
-              <p>If you're using Go version earlier than 1.5, you must first configure your Go environment for ARM linux cross compiling.</p>
-              
-              <pre class="CodeRay">$ cd $GOROOT/src
-$ GOOS=linux GOARCH=arm ./make.bash --no-clean
-</pre>
-              
-              <p>The above step is not required for Go &gt;= 1.5</p>
-              
-              <p>Then compile your Gobot program with</p>
-              
-              <pre class="CodeRay">$ GOARM=7 GOARCH=arm GOOS=linux go build examples/chip_button.go
-</pre>
-              
-              <p>Then you can simply upload your program to the CHIP and execute it with</p>
-              
-              <pre class="CodeRay">$ scp chip_button root@192.168.1.xx:
-$ ssh -t root@192.168.1.xx "./chip_button"
+              <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/chip
 </pre>
               
               <h2 id="how-to-use">How to Use</h2>
+              
+              <p>The pin numbering used by your Gobot program should match the way your board is labeled right on the board itself.</p>
+              
               <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
     <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
 
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/chip</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/chip</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
-
-    chipAdaptor := chip.NewChipAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">chip</span><span class="delimiter">"</span></span>)
-    button := gpio.NewButtonDriver(chipAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">U14_13</span><span class="delimiter">"</span></span>)
+    chipAdaptor := chip.NewAdaptor()
+    button := gpio.NewButtonDriver(chipAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">XIO-P0</span><span class="delimiter">"</span></span>)
 
     work := <span class="keyword">func</span>() {
         gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
@@ -278,9 +295,24 @@ $ ssh -t root@192.168.1.xx "./chip_button"
         []gobot.Device{button},
         work,
     )
-    gbot.AddRobot(robot)
-    gbot.Start()
+
+    robot.Start()
 }
+</pre>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <h3 id="compiling">Compiling</h3>
+              
+              <p>Compile your Gobot program like this:</p>
+              
+              <pre class="CodeRay">$ GOARM=7 GOARCH=arm GOOS=linux go build examples/chip_button.go
+</pre>
+              
+              <p>Then you can simply upload your program to the CHIP and execute it with</p>
+              
+              <pre class="CodeRay">$ scp chip_button root@192.168.1.xx:
+$ ssh -t root@192.168.1.xx "./chip_button"
 </pre>
             </section>
             <section class="drivers" id="Drivers">
@@ -292,33 +324,21 @@ $ ssh -t root@192.168.1.xx "./chip_button"
                   <h2>GPIO Drivers</h2>
                   <section>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/analog-sensor" title="Analog Sensor">
-                        <p class="title">Analog Sensor</p>
-                        <img src="/images/devices/analog-sensor.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
                       <a href="/documentation/drivers/button" title="Button">
                         <p class="title">Button</p>
                         <img src="/images/devices/button.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
+                      <a href="/documentation/drivers/buzzer" title="Buzzer">
+                        <p class="title">Buzzer</p>
+                        <img src="/images/devices/buzzer.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
                       <a href="/documentation/drivers/direct-pin" title="Direct Pin">
                         <p class="title">Direct Pin</p>
                         <img src="/images/devices/direct-pin.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-touch" title="Grove Touch">
-                        <p class="title">Grove Touch</p>
-                        <img src="/images/devices/grove-touch.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-sound-sensor" title="Grove Sound Sensor">
-                        <p class="title">Grove Sound Sensor</p>
-                        <img src="/images/devices/grove-sound-sensor.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
@@ -340,21 +360,9 @@ $ ssh -t root@192.168.1.xx "./chip_button"
                       </a>
                     </div>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-light-sensor" title="Grove Light Sensor">
-                        <p class="title">Grove Light Sensor</p>
-                        <img src="/images/devices/grove-light-sensor.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor" title="Grove Vibration Sensor">
                         <p class="title">Grove Vibration Sensor</p>
                         <img src="/images/devices/grove-piezo-vibration-sensor.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-rotary" title="Grove Rotary">
-                        <p class="title">Grove Rotary</p>
-                        <img src="/images/devices/grove-rotary.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
@@ -364,9 +372,9 @@ $ ssh -t root@192.168.1.xx "./chip_button"
                       </a>
                     </div>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-temperature-sensor" title="Grove Temperature Sensor">
-                        <p class="title">Grove Temperature Sensor</p>
-                        <img src="/images/devices/grove-temperature-sensor.jpg" style="width: 100%">
+                      <a href="/documentation/drivers/grove-touch" title="Grove Touch">
+                        <p class="title">Grove Touch</p>
+                        <img src="/images/devices/grove-touch.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
@@ -388,6 +396,24 @@ $ ssh -t root@192.168.1.xx "./chip_button"
                       </a>
                     </div>
                     <div class="compatability-link">
+                      <a href="/documentation/drivers/pir-motion-sensor" title="PIR Motion Sensor">
+                        <p class="title">PIR Motion Sensor</p>
+                        <img src="/images/devices/pir-motion-sensor.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/relay" title="Relay">
+                        <p class="title">Relay</p>
+                        <img src="/images/devices/relay.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/rgb-led" title="RGB LED">
+                        <p class="title">RGB LED</p>
+                        <img src="/images/devices/rgb-led.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
                       <a href="/documentation/drivers/servo" title="Servo">
                         <p class="title">Servo</p>
                         <img src="/images/devices/servo.jpg" style="width: 100%">
@@ -398,14 +424,20 @@ $ ssh -t root@192.168.1.xx "./chip_button"
                   <h2>I2C Drivers</h2>
                   <section>
                     <div class="compatability-link">
+                      <a href="/documentation/drivers/adafruit-motor-hat" title="Adafruit Motor HAT">
+                        <p class="title">Adafruit Motor HAT</p>
+                        <img src="/images/devices/adafruit-motor-hat.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
                       <a href="/documentation/drivers/blinkm" title="BlinkM">
                         <p class="title">BlinkM</p>
                         <img src="/images/devices/blinkm.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-lcd" title="Grove LCD">
-                        <p class="title">Grove LCD</p>
+                      <a href="/documentation/drivers/grove-lcd" title="Grove LCD w/RGB">
+                        <p class="title">Grove LCD w/RGB</p>
                         <img src="/images/devices/grove-lcd.jpg" style="width: 100%">
                       </a>
                     </div>
@@ -428,15 +460,27 @@ $ ssh -t root@192.168.1.xx "./chip_button"
                       </a>
                     </div>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/mpu6050" title="MPU6050">
-                        <p class="title">MPU6050</p>
-                        <img src="/images/devices/mpu6050.jpg" style="width: 100%">
+                      <a href="/documentation/drivers/mcp23017" title="MCP23017">
+                        <p class="title">MCP23017</p>
+                        <img src="/images/devices/mcp23017.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/mma7660" title="MMA7660">
+                        <p class="title">MMA7660</p>
+                        <img src="/images/devices/mma7660.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
                       <a href="/documentation/drivers/mpl115a2" title="MPL115A2">
                         <p class="title">MPL115A2</p>
                         <img src="/images/devices/mpl115a2.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/mpu6050" title="MPU6050">
+                        <p class="title">MPU6050</p>
+                        <img src="/images/devices/mpu6050.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">

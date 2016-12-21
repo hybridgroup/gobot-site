@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -84,7 +87,7 @@
       <section class="how-to">
         <h2 id="how-to-install">How to Install</h2>
         
-        <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/mavlink
+        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/mavlink
 </pre>
         
         <h2 id="how-to-use">How to Use</h2>
@@ -94,16 +97,14 @@
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
 
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/mavlink</span><span class="delimiter">"</span></span>
-        common <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/mavlink/common</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/mavlink</span><span class="delimiter">"</span></span>
+        common <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/mavlink/common</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
-
-        adaptor := mavlink.NewMavlinkAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">iris</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
-        iris := mavlink.NewMavlinkDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">iris</span><span class="delimiter">"</span></span>)
+        adaptor := mavlink.NewAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+        iris := mavlink.NewDriver(adaptor)
 
         work := <span class="keyword">func</span>() {
                 gobot.Once(iris.Event(<span class="string"><span class="delimiter">"</span><span class="content">packet</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
@@ -143,9 +144,7 @@
                 work,
         )
 
-        gbot.AddRobot(robot)
-
-        gbot.Start()
+        robot.Start()
 }
 </pre>
       </section>

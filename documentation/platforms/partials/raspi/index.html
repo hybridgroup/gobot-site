@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -79,7 +82,9 @@
       <div class="info-intro">
         <p>The Raspberry Pi is an inexpensive and popular ARM based single board computer with digital &amp; PWM GPIO, and i2c interfaces built in.</p>
         
-        <p>The Raspberry Pi is a credit-card-sized single-board computer developed in the UK by the Raspberry Pi Foundation with the intention of promoting the teaching of basic computer science in schools</p>
+        <p>The Gobot adaptor for the Raspberry Pi should support all of the various Raspberry Pi boards such as the Raspberry Pi 3 Model B, Raspberry Pi 2 Model B, Raspberry Pi 1 Model A+, and Raspberry Pi Zero.</p>
+        
+        <p>We recommend updating to the latest Raspian Jessie OS when using the Raspberry Pi, however Gobot should also support older versions of the OS, should your application require this.</p>
         
         <p>For more info about the Raspberry Pi platform, click <a href="http://www.raspberrypi.org/">here</a>.</p>
         
@@ -88,68 +93,26 @@
       <section class="how-to">
         <h2 id="how-to-install">How to Install</h2>
         
-        <p>First you must install the appropriate Go packages</p>
-        
-        <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/raspi
-</pre>
-        
-        <h3 id="enabling-pwm-output-on-gpio-pins">Enabling PWM output on GPIO pins.</h3>
-        
-        <p>You need to install and have pi-blaster running in the raspberry-pi, you can follow the instructions for pi-blaster install in the pi-blaster repo here:</p>
-        
-        <p><a href="https://github.com/sarfata/pi-blaster">https://github.com/sarfata/pi-blaster</a></p>
-        
-        <h3 id="special-note-for-raspian-wheezy-users">Special note for Raspian Wheezy users</h3>
-        
-        <p>The go vesion installed from the default package repositories is very old and will not compile gobot. You can install go 1.4 as follows:</p>
-        
-        <pre class="CodeRay">$ wget -O - http://dave.cheney.net/paste/go1.4.linux-arm~multiarch-armv6-1.tar.gz|sudo tar -xzC /usr/local -f -
-
-$ echo '# Setup for golang' |sudo tee /etc/profile.d/golang.sh
-$ echo 'PATH=$PATH:/usr/local/go/bin'|sudo tee -a /etc/profile.d/golang.sh
-
-$ source /etc/profile.d/golang.sh
-</pre>
-        
-        <h4 id="cross-compiling-for-the-raspberry-pi">Cross compiling for the Raspberry Pi</h4>
-        <p>You must first configure your Go environment for linux cross compiling</p>
-        
-        <pre class="CodeRay">$ cd $GOROOT/src
-$ GOOS=linux GOARCH=arm ./make.bash --no-clean
-</pre>
-        
-        <p>Then compile your Gobot program with</p>
-        
-        <pre class="CodeRay">$ GOARM=6 GOARCH=arm GOOS=linux examples/raspi_blink.go
-</pre>
-        
-        <p>Then you can simply upload your program over the network from your host computer to the Raspi</p>
-        
-        <pre class="CodeRay">$ scp raspi_blink pi@192.168.1.xxx:/home/pi/
-</pre>
-        
-        <p>and execute it on your Raspberry Pi with</p>
-        
-        <pre class="CodeRay">$ ./raspi_blink
+        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/raspi
 </pre>
         
         <h2 id="how-to-use">How to Use</h2>
+        
+        <p>The pin numbering used by your Gobot program should match the way your board is labeled right on the board itself.</p>
         
         <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/raspi</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/raspi</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
-
-        r := raspi.NewRaspiAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">raspi</span><span class="delimiter">"</span></span>)
-        led := gpio.NewLedDriver(r, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">7</span><span class="delimiter">"</span></span>)
+        r := raspi.NewAdaptor()
+        led := gpio.NewLedDriver(r, <span class="string"><span class="delimiter">"</span><span class="content">7</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
                 gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
@@ -163,11 +126,39 @@ $ GOOS=linux GOARCH=arm ./make.bash --no-clean
                 work,
         )
 
-        gbot.AddRobot(robot)
-
-        gbot.Start()
+        robot.Start()
 }
 </pre>
+        
+        <h2 id="how-to-connect">How to Connect</h2>
+        
+        <h3 id="compiling">Compiling</h3>
+        
+        <p>Simply compile your Gobot program like this:</p>
+        
+        <pre class="CodeRay">$ GOARM=6 GOARCH=arm GOOS=linux examples/raspi_blink.go
+</pre>
+        
+        <p>Use the following <code>GOARM</code> values to compile depending on which model Raspberry Pi you are using:</p>
+        
+        <p><code>GOARM=6</code> (Raspberry Pi A, A+, B, B+, Zero)
+        <code>GOARM=7</code> (Raspberry Pi 2, 3)</p>
+        
+        <p>Once you have compiled your code, you can simply upload your program over the network from your host computer to the Raspi</p>
+        
+        <pre class="CodeRay">$ scp raspi_blink pi@192.168.1.xxx:/home/pi/
+</pre>
+        
+        <p>and execute it on your Raspberry Pi with</p>
+        
+        <pre class="CodeRay">$ ./raspi_blink
+</pre>
+        
+        <h3 id="enabling-pwm-output-on-gpio-pins">Enabling PWM output on GPIO pins.</h3>
+        
+        <p>For extended PWM support on the Raspberry Pi, you will need to use a program called pi-blaster. You can follow the instructions for pi-blaster install in the pi-blaster repo here:</p>
+        
+        <p><a href="https://github.com/sarfata/pi-blaster">https://github.com/sarfata/pi-blaster</a></p>
       </section>
     </div>
     <footer class="app-footer">

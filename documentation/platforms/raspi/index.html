@@ -68,6 +68,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -96,6 +99,10 @@
               <div class="section" ng-class="{active: active('Guides')}">
                 <div class="name" ng-click="show('Guides')">Guides</div>
                 <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/classic-gobot">Classic Gobot</a>
+                  <a href="/documentation/guides/master-gobot">Master Gobot</a>
+                  <a href="/documentation/guides/metal-gobot">Metal Gobot</a>
+                  <a href="/documentation/guides/adding-hardware-support">Adding Hardware Support</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                 </div>
@@ -103,24 +110,30 @@
               <div class="section" ng-class="{active: active('Platforms')}">
                 <div class="name" ng-click="show('Platforms')">Platforms</div>
                 <div class="links" ng-show="active('Platforms')">
-                  <a href="/documentation/platforms/ardrone">Ardrone</a>
                   <a href="/documentation/platforms/arduino">Arduino</a>
                   <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                  <a href="/documentation/platforms/bebop">Bebop</a>
+                  <a href="/documentation/platforms/ble">Bluetooth LE</a>
                   <a href="/documentation/platforms/chip">C.H.I.P.</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joule">Intel Joule</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
                   <a href="/documentation/platforms/keyboard">Keyboard</a>
                   <a href="/documentation/platforms/leapmotion">Leap Motion</a>
                   <a href="/documentation/platforms/mavlink">Mavlink</a>
                   <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nats">NATS</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/ardrone">Parrot ARdrone</a>
+                  <a href="/documentation/platforms/bebop">Parrot Bebop</a>
+                  <a href="/documentation/platforms/minidrone">Parrot Minidrone</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/raspi">Raspberry Pi</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/bb8">Sphero BB-8</a>
+                  <a href="/documentation/platforms/ollie">Sphero Ollie</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Drivers')}">
@@ -129,18 +142,13 @@
                   <div class="sub-section">
                     <div class="name">GPIO</div>
                     <div class="links">
-                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
                       <a href="/documentation/drivers/button">Button</a>
                       <a href="/documentation/drivers/grove-touch">Grove Touch</a>
-                      <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
                       <a href="/documentation/drivers/grove-button">Grove Button</a>
                       <a href="/documentation/drivers/grove-buzzer">Grove Buzzer</a>
                       <a href="/documentation/drivers/grove-led">Grove Led</a>
-                      <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor">Grove Vibration Sensor</a>
-                      <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
                       <a href="/documentation/drivers/grove-relay">Grove Relay</a>
-                      <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
                       <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/led">LED</a>
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
@@ -149,16 +157,36 @@
                     </div>
                   </div>
                   <div class="sub-section">
+                    <div class="name">AIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
+                      <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
+                      <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
+                      <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
                     <div class="name">I2C</div>
                     <div class="links">
+                      <a href="/documentation/drivers/adafruit-motor-hat">Adafruit Motor HAT</a>
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
                       <a href="/documentation/drivers/grove-lcd">Grove LCD</a>
                       <a href="/documentation/drivers/grove-accelerometer">Grove Accelerometer</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
                       <a href="/documentation/drivers/lidar-lite">LIDAR-Lite</a>
+                      <a href="/documentation/drivers/mcp23017">MCP23017</a>
                       <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
                       <a href="/documentation/drivers/mpu6050">MPU6050</a>
                       <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Bluetooth LE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery">Battery</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
                     </div>
                   </div>
                   <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
@@ -171,11 +199,18 @@
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/bb8">BB-8</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Core')}">
                 <div class="name" ng-click="show('Core')">Core</div>
                 <div class="links" ng-show="active('Core')">
+                  <a href="/documentation/core/robots">Robots</a>
+                  <a href="/documentation/core/adaptors">Adaptors</a>
+                  <a href="/documentation/core/drivers">Drivers</a>
+                  <a href="/documentation/core/events">Events</a>
+                  <a href="/documentation/core/commands">Commands</a>
                   <a href="/documentation/core/api">API</a>
                   <a href="/documentation/core/helpers">Helper Methods</a>
                   <a href="/documentation/core/sysfs">sysfs</a>
@@ -216,77 +251,37 @@
             <div class="info-intro">
               <p>The Raspberry Pi is an inexpensive and popular ARM based single board computer with digital &amp; PWM GPIO, and i2c interfaces built in.</p>
               
-              <p>The Raspberry Pi is a credit-card-sized single-board computer developed in the UK by the Raspberry Pi Foundation with the intention of promoting the teaching of basic computer science in schools</p>
+              <p>The Gobot adaptor for the Raspberry Pi should support all of the various Raspberry Pi boards such as the Raspberry Pi 3 Model B, Raspberry Pi 2 Model B, Raspberry Pi 1 Model A+, and Raspberry Pi Zero.</p>
+              
+              <p>We recommend updating to the latest Raspian Jessie OS when using the Raspberry Pi, however Gobot should also support older versions of the OS, should your application require this.</p>
               
               <p>For more info about the Raspberry Pi platform, click <a href="http://www.raspberrypi.org/">here</a>.</p>
-              <a href="http://godoc.org/github.com/hybridgroup/gobot/platforms/raspi#RaspiAdaptor" target="blank" class="api-link">API Reference</a>
+              <a href="http://godoc.org/gobot.io/x/gobot/platforms/raspi" target="blank" class="api-link">API Reference</a>
             </div>
             <div class="clear"></div>
             <section class="how-to">
               <h2 id="how-to-install">How to Install</h2>
               
-              <p>First you must install the appropriate Go packages</p>
-              
-              <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/raspi
-</pre>
-              
-              <h3 id="enabling-pwm-output-on-gpio-pins">Enabling PWM output on GPIO pins.</h3>
-              
-              <p>You need to install and have pi-blaster running in the raspberry-pi, you can follow the instructions for pi-blaster install in the pi-blaster repo here:</p>
-              
-              <p><a href="https://github.com/sarfata/pi-blaster">https://github.com/sarfata/pi-blaster</a></p>
-              
-              <h3 id="special-note-for-raspian-wheezy-users">Special note for Raspian Wheezy users</h3>
-              
-              <p>The go vesion installed from the default package repositories is very old and will not compile gobot. You can install go 1.4 as follows:</p>
-              
-              <pre class="CodeRay">$ wget -O - http://dave.cheney.net/paste/go1.4.linux-arm~multiarch-armv6-1.tar.gz|sudo tar -xzC /usr/local -f -
-
-$ echo '# Setup for golang' |sudo tee /etc/profile.d/golang.sh
-$ echo 'PATH=$PATH:/usr/local/go/bin'|sudo tee -a /etc/profile.d/golang.sh
-
-$ source /etc/profile.d/golang.sh
-</pre>
-              
-              <h4 id="cross-compiling-for-the-raspberry-pi">Cross compiling for the Raspberry Pi</h4>
-              <p>You must first configure your Go environment for linux cross compiling</p>
-              
-              <pre class="CodeRay">$ cd $GOROOT/src
-$ GOOS=linux GOARCH=arm ./make.bash --no-clean
-</pre>
-              
-              <p>Then compile your Gobot program with</p>
-              
-              <pre class="CodeRay">$ GOARM=6 GOARCH=arm GOOS=linux examples/raspi_blink.go
-</pre>
-              
-              <p>Then you can simply upload your program over the network from your host computer to the Raspi</p>
-              
-              <pre class="CodeRay">$ scp raspi_blink pi@192.168.1.xxx:/home/pi/
-</pre>
-              
-              <p>and execute it on your Raspberry Pi with</p>
-              
-              <pre class="CodeRay">$ ./raspi_blink
+              <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/raspi
 </pre>
               
               <h2 id="how-to-use">How to Use</h2>
+              
+              <p>The pin numbering used by your Gobot program should match the way your board is labeled right on the board itself.</p>
               
               <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/raspi</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/raspi</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
-
-        r := raspi.NewRaspiAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">raspi</span><span class="delimiter">"</span></span>)
-        led := gpio.NewLedDriver(r, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">7</span><span class="delimiter">"</span></span>)
+        r := raspi.NewAdaptor()
+        led := gpio.NewLedDriver(r, <span class="string"><span class="delimiter">"</span><span class="content">7</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
                 gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
@@ -300,11 +295,39 @@ $ GOOS=linux GOARCH=arm ./make.bash --no-clean
                 work,
         )
 
-        gbot.AddRobot(robot)
-
-        gbot.Start()
+        robot.Start()
 }
 </pre>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <h3 id="compiling">Compiling</h3>
+              
+              <p>Simply compile your Gobot program like this:</p>
+              
+              <pre class="CodeRay">$ GOARM=6 GOARCH=arm GOOS=linux examples/raspi_blink.go
+</pre>
+              
+              <p>Use the following <code>GOARM</code> values to compile depending on which model Raspberry Pi you are using:</p>
+              
+              <p><code>GOARM=6</code> (Raspberry Pi A, A+, B, B+, Zero)
+              <code>GOARM=7</code> (Raspberry Pi 2, 3)</p>
+              
+              <p>Once you have compiled your code, you can simply upload your program over the network from your host computer to the Raspi</p>
+              
+              <pre class="CodeRay">$ scp raspi_blink pi@192.168.1.xxx:/home/pi/
+</pre>
+              
+              <p>and execute it on your Raspberry Pi with</p>
+              
+              <pre class="CodeRay">$ ./raspi_blink
+</pre>
+              
+              <h3 id="enabling-pwm-output-on-gpio-pins">Enabling PWM output on GPIO pins.</h3>
+              
+              <p>For extended PWM support on the Raspberry Pi, you will need to use a program called pi-blaster. You can follow the instructions for pi-blaster install in the pi-blaster repo here:</p>
+              
+              <p><a href="https://github.com/sarfata/pi-blaster">https://github.com/sarfata/pi-blaster</a></p>
             </section>
             <section class="drivers" id="Drivers">
               <h2>Drivers</h2>
@@ -315,33 +338,21 @@ $ GOOS=linux GOARCH=arm ./make.bash --no-clean
                   <h2>GPIO Drivers</h2>
                   <section>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/analog-sensor" title="Analog Sensor">
-                        <p class="title">Analog Sensor</p>
-                        <img src="/images/devices/analog-sensor.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
                       <a href="/documentation/drivers/button" title="Button">
                         <p class="title">Button</p>
                         <img src="/images/devices/button.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
+                      <a href="/documentation/drivers/buzzer" title="Buzzer">
+                        <p class="title">Buzzer</p>
+                        <img src="/images/devices/buzzer.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
                       <a href="/documentation/drivers/direct-pin" title="Direct Pin">
                         <p class="title">Direct Pin</p>
                         <img src="/images/devices/direct-pin.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-touch" title="Grove Touch">
-                        <p class="title">Grove Touch</p>
-                        <img src="/images/devices/grove-touch.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-sound-sensor" title="Grove Sound Sensor">
-                        <p class="title">Grove Sound Sensor</p>
-                        <img src="/images/devices/grove-sound-sensor.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
@@ -363,21 +374,9 @@ $ GOOS=linux GOARCH=arm ./make.bash --no-clean
                       </a>
                     </div>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-light-sensor" title="Grove Light Sensor">
-                        <p class="title">Grove Light Sensor</p>
-                        <img src="/images/devices/grove-light-sensor.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor" title="Grove Vibration Sensor">
                         <p class="title">Grove Vibration Sensor</p>
                         <img src="/images/devices/grove-piezo-vibration-sensor.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-rotary" title="Grove Rotary">
-                        <p class="title">Grove Rotary</p>
-                        <img src="/images/devices/grove-rotary.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
@@ -387,9 +386,9 @@ $ GOOS=linux GOARCH=arm ./make.bash --no-clean
                       </a>
                     </div>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-temperature-sensor" title="Grove Temperature Sensor">
-                        <p class="title">Grove Temperature Sensor</p>
-                        <img src="/images/devices/grove-temperature-sensor.jpg" style="width: 100%">
+                      <a href="/documentation/drivers/grove-touch" title="Grove Touch">
+                        <p class="title">Grove Touch</p>
+                        <img src="/images/devices/grove-touch.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
@@ -411,6 +410,24 @@ $ GOOS=linux GOARCH=arm ./make.bash --no-clean
                       </a>
                     </div>
                     <div class="compatability-link">
+                      <a href="/documentation/drivers/pir-motion-sensor" title="PIR Motion Sensor">
+                        <p class="title">PIR Motion Sensor</p>
+                        <img src="/images/devices/pir-motion-sensor.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/relay" title="Relay">
+                        <p class="title">Relay</p>
+                        <img src="/images/devices/relay.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/rgb-led" title="RGB LED">
+                        <p class="title">RGB LED</p>
+                        <img src="/images/devices/rgb-led.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
                       <a href="/documentation/drivers/servo" title="Servo">
                         <p class="title">Servo</p>
                         <img src="/images/devices/servo.jpg" style="width: 100%">
@@ -421,14 +438,20 @@ $ GOOS=linux GOARCH=arm ./make.bash --no-clean
                   <h2>I2C Drivers</h2>
                   <section>
                     <div class="compatability-link">
+                      <a href="/documentation/drivers/adafruit-motor-hat" title="Adafruit Motor HAT">
+                        <p class="title">Adafruit Motor HAT</p>
+                        <img src="/images/devices/adafruit-motor-hat.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
                       <a href="/documentation/drivers/blinkm" title="BlinkM">
                         <p class="title">BlinkM</p>
                         <img src="/images/devices/blinkm.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/grove-lcd" title="Grove LCD">
-                        <p class="title">Grove LCD</p>
+                      <a href="/documentation/drivers/grove-lcd" title="Grove LCD w/RGB">
+                        <p class="title">Grove LCD w/RGB</p>
                         <img src="/images/devices/grove-lcd.jpg" style="width: 100%">
                       </a>
                     </div>
@@ -451,15 +474,27 @@ $ GOOS=linux GOARCH=arm ./make.bash --no-clean
                       </a>
                     </div>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/mpu6050" title="MPU6050">
-                        <p class="title">MPU6050</p>
-                        <img src="/images/devices/mpu6050.jpg" style="width: 100%">
+                      <a href="/documentation/drivers/mcp23017" title="MCP23017">
+                        <p class="title">MCP23017</p>
+                        <img src="/images/devices/mcp23017.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/mma7660" title="MMA7660">
+                        <p class="title">MMA7660</p>
+                        <img src="/images/devices/mma7660.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">
                       <a href="/documentation/drivers/mpl115a2" title="MPL115A2">
                         <p class="title">MPL115A2</p>
                         <img src="/images/devices/mpl115a2.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/mpu6050" title="MPU6050">
+                        <p class="title">MPU6050</p>
+                        <img src="/images/devices/mpu6050.jpg" style="width: 100%">
                       </a>
                     </div>
                     <div class="compatability-link">

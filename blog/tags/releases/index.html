@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a class="active" href="/blog">Blog</a>
               </li>
               <li>
@@ -86,6 +89,236 @@
       <div class="main-content blog" role="main">
         <div class="articles">
           <div class="article">
+            <div class="article">
+              <header class="header">
+                <div class="dates">
+                  <div class="date-top">
+                    <div class="month">
+                      Dec
+                    </div>
+                    <div class="day">
+                      21
+                    </div>
+                  </div>
+                  <div class="date-bottom">
+                    <div class="year">
+                      2016
+                    </div>
+                  </div>
+                </div>
+                <h3 class="article-title">
+                  <a href="/blog/2016/12/21/gobot-the-big-one-oh/">Gobot - The Big One Oh!</a>
+                  <br>
+                </h3>
+                <div class="author">
+                  by Ron Evans
+                </div>
+              </header>
+              <p>It's been a long time coming, and version 1.0 of Gobot is finally here!</p>
+              
+              <p>We're really excited to share this big news with all of you.</p>
+              
+              <p>If you want a "media-friendly" version of the story, here is our press release about it: <a href="http://gobot.io/news/gobot-1.0-release/">http://gobot.io/news/gobot-1.0-release/</a></p>
+              
+              <p>However, if you want the serious technical details, then read on!</p>
+              
+              <p>You can now use "Classic Gobot" to write the fewest possible lines of Golang code that can control physical devices.</p>
+              
+              <p>Or you can use "Metal Gobot", and use the low-level Gobot adaptors and drivers directly.</p>
+              
+              <p>Lastly, you can use "Master Gobot", to include the entire Gobot API and control swarms of devices.</p>
+              
+              <p>These are just some of the major changes we've made for the 1.0 release.</p>
+              
+              <h2 id="classic-gobot">Classic Gobot</h2>
+              
+              <p>We've reduced the amount of Golang code to control physical devices down as simple as possible, but no simpler.</p>
+              
+              <p>Here is the "Hello, World of Things" aka a program that blinks an LED. In this case the platform is an Arduino microcontroller.</p>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        firmataAdaptor := firmata.NewAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+        led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+                        led.Toggle()
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{firmataAdaptor},
+                []gobot.Device{led},
+                work,
+        )
+
+        robot.Start()
+}
+</pre>
+              
+              <h2 id="metal-gobot">Metal Gobot</h2>
+              
+              <p>Metal Gobot gives the developer the lowest-level control over the hardware interfaces themselves. If you want discrete control over exactly how your application handles concurrency, failover, and everything else, then Metal Gobot is looking pretty shiny.</p>
+              
+              <p>This is a program that blinks an LED using "Metal Gobot" style. The platform is an Intel Edison single-board Linux computer.</p>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/intel-iot/edison</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        e := edison.NewAdaptor()
+        e.Connect()
+
+        led := gpio.NewLedDriver(e, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
+        led.Start()
+
+        <span class="keyword">for</span> {
+                led.Toggle()
+                time.Sleep(<span class="integer">1000</span> * time.Millisecond)
+        }
+}
+</pre>
+              
+              <h2 id="master-gobot">Master Gobot</h2>
+              
+              <p>Master Gobot adds the built-in RESTful APIs, along other internal structures you need to control groups of robots.</p>
+              
+              <p>This program controls a swarm of four Sphero robots:</p>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/api</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> NewSwarmBot(port <span class="predefined-type">string</span>) *gobot.Robot {
+        spheroAdaptor := sphero.NewAdaptor(port)
+        spheroDriver := sphero.NewSpheroDriver(spheroAdaptor)
+        spheroDriver.SetName(<span class="string"><span class="delimiter">"</span><span class="content">Sphero</span><span class="delimiter">"</span></span> + port)
+
+        work := <span class="keyword">func</span>() {
+                spheroDriver.Stop()
+
+                spheroDriver.On(sphero.Collision, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Collision Detected!</span><span class="delimiter">"</span></span>)
+                })
+
+                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+                        spheroDriver.Roll(<span class="integer">100</span>, <span class="predefined-type">uint16</span>(gobot.Rand(<span class="integer">360</span>)))
+                })
+                gobot.Every(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
+                        spheroDriver.SetRGB(<span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
+                                <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
+                                <span class="predefined-type">uint8</span>(gobot.Rand(<span class="integer">255</span>)),
+                        )
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{spheroAdaptor},
+                []gobot.Device{spheroDriver},
+                work,
+        )
+
+        <span class="keyword">return</span> robot
+}
+
+<span class="keyword">func</span> main() {
+        master := gobot.NewMaster()
+        api.NewAPI(master).Start()
+
+        spheros := []<span class="predefined-type">string</span>{
+                <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>,
+                <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm1</span><span class="delimiter">"</span></span>,
+                <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm2</span><span class="delimiter">"</span></span>,
+                <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm3</span><span class="delimiter">"</span></span>,
+        }
+
+        <span class="keyword">for</span> _, port := <span class="keyword">range</span> spheros {
+                master.AddRobot(NewSwarmBot(port))
+        }
+
+        master.Start()
+}
+</pre>
+              
+              <h2 id="other-major-changes">Other Major Changes</h2>
+              
+              <p>Here is a list of some of our other major changes. If you want the complete <a href="https://github.com/hybridgroup/gobot/blob/master/CHANGELOG.md">CHANGELOG</a>, we've got that as well.</p>
+              
+              <ul>
+                <li>Refactor events to use channels all the way down. Allows 'metal' development using Gobot libs</li>
+                <li>No longer return slices of errors, instead use hashicorp/go-multierror</li>
+                <li>Use canonical import domain of gobot.io for all code</li>
+                <li>Add golang 1.7 &amp; 1.8 to build matrix for TravisCI</li>
+                <li>Reduce Travis builds to golang 1.4+ since it is late 2016 already</li>
+                <li>Complete move of test interfaces into the test files where they belong</li>
+                <li>Add missing godocs for everything</li>
+              </ul>
+              
+              <p>We've also added support for the <a href="http://nats.io/">NATS</a> open source messaging server.</p>
+              
+              <p>Also, many updates to our hardware support, such as:</p>
+              
+              <ul>
+                <li>I2C</li>
+                <li>GPIO</li>
+                <li>Beaglebone</li>
+                <li>Bluetooth LE</li>
+                <li>Intel Edison</li>
+                <li>Intel Joule</li>
+                <li>Arduino</li>
+                <li>C.H.I.P.</li>
+                <li>Sphero BB-8</li>
+              </ul>
+              
+              <h2 id="we-had-to-change-the-interface">We Had To Change The Interface</h2>
+              
+              <p>This is a big release, and makes breaking changes to a number of APIs. Normally this is frowned upon in the Golang programming world.</p>
+              
+              <p>However, we recognized that we could greatly simplify how code could be written, in particular by removing things that were redundant or repetitive.</p>
+              
+              <p>We're sorry about any inconvenience this may bring.</p>
+              
+              <p>Now the interfaces are stable, and we don't anticipate any more breaking changes in the near future.</p>
+              
+              <h2 id="thanks-to-the-contributors">Thanks To The Contributors</h2>
+              
+              <p>We'd really like to extend a massive thanks to the many contributors who've helped get Gobot to this 1.0 release milestone.</p>
+              
+              <p>We couldn't have done this without you. Thank you.</p>
+              
+              <h2 id="keep-up-to-date">Keep Up To Date</h2>
+              
+              <p>To keep up with the project, please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a>, as our team and many contributors work together to make Gobot the best it can be.</p>
+              <div class="tags">
+                <div class="img">
+                  <img src="/images/elements/tag.png">
+                </div>
+                <a href="/blog/tags/releases/">releases</a>
+              </div>
+            </div>
             <div class="article">
               <header class="header">
                 <div class="dates">
@@ -970,6 +1203,7 @@ $ GOOS=linux GOARCH=386 ./make.bash --no-clean
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2016/12/21/gobot-the-big-one-oh/">Gobot - The Big One Oh!</a></li>
               <li><a href="/blog/2016/02/17/gobot-this-one-goes-to-0.11/">Gobot - This One Goes To 0.11</a></li>
               <li><a href="/blog/2015/10/27/gobot-0.10-less-is-more/">Gobot 0.10 - Less Is More</a></li>
               <li><a href="/blog/2014/12/24/gobot-0.8/">Gobot 0.8 - The Happy Holiday Release</a></li>

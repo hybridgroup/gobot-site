@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -77,9 +80,11 @@
         </div>
       </header>
       <div class="info-intro">
-        <p>MQTT is an Internet of Things (IoT) connectivity protocol featuring a lightweight publish/subscribe messaging transport. It is useful for it's small code footprint and minimal network bandwidth usage.</p>
+        <p>MQTT is an Internet of Things connectivity protocol featuring a lightweight publish/subscribe messaging transport. It is useful for its small code footprint and minimal network bandwidth usage.</p>
         
-        <p>For more info about the MQTT machine to machine message broker click <a href="http://mqtt.org/">here</a>.</p>
+        <p>This repository contains the Gobot adaptor/drivers to connect to MQTT servers. It uses the Paho MQTT Golang client package (https://eclipse.org/paho/) created and maintained by the Eclipse Foundation (https://github.com/eclipse) thank you!</p>
+        
+        <p>For more info about the MQTT machine to machine messaging standard, go to http://mqtt.org/</p>
         
       </div>
       <div class="clear"></div>
@@ -88,7 +93,7 @@
         
         <p>Install running:</p>
         
-        <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/mqtt
+        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/mqtt
 </pre>
         
         <h2 id="how-to-use">How to Use</h2>
@@ -98,16 +103,14 @@
         <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/mqtt</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/mqtt</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
   <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-  gbot := gobot.NewGobot()
-
-  mqttAdaptor := mqtt.NewMqttAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">server</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">tcp://0.0.0.0:1883</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">pinger</span><span class="delimiter">"</span></span>)
+  mqttAdaptor := mqtt.NewAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">tcp://0.0.0.0:1883</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">pinger</span><span class="delimiter">"</span></span>)
 
   work := <span class="keyword">func</span>() {
     mqttAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(data []<span class="predefined-type">byte</span>) {
@@ -130,9 +133,7 @@
     work,
   )
 
-  gbot.AddRobot(robot)
-
-  gbot.Start()
+  robot.Start()
 }
 </pre>
         
@@ -145,24 +146,11 @@
         
         <h2 id="contributing">Contributing</h2>
         
-        <ul>
-          <li>All patches must be provided under the Apache 2.0 License</li>
-          <li>Please use the -s option in git to "sign off" that the commit is your work and you are providing it under the Apache 2.0 License</li>
-          <li>Submit a Github Pull Request to the appropriate branch and ideally discuss the changes with us in IRC.</li>
-          <li>We will look at the patch, test it out, and give you feedback.</li>
-          <li>Avoid doing minor whitespace changes, renamings, etc. along with merged content. These will be done by the maintainers from time to time but they can complicate merges and should be done seperately.</li>
-          <li>Take care to maintain the existing coding style.</li>
-          <li>Add unit tests for any new or changed functionality</li>
-          <li>All pull requests should be "fast forward"</li>
-          <li>If there are commits after yours use “git rebase -i <new_head_branch>”</new_head_branch>
-</li>
-          <li>If you have local changes you may need to use “git stash”</li>
-          <li>For git help see <a href="http://git-scm.com/book">progit</a> which is an awesome (and free) book on git</li>
-        </ul>
+        <p>For our contribution guidelines, please go to https://gobot.io/x/gobot/blob/master/CONTRIBUTING.md</p>
         
         <h2 id="license">License</h2>
         
-        <p>Copyright (c) 2013-2014 The Hybrid Group. Licensed under the Apache 2.0 license.</p>
+        <p>Copyright (c) 2013-2016 The Hybrid Group. Licensed under the Apache 2.0 license.</p>
       </section>
     </div>
     <footer class="app-footer">

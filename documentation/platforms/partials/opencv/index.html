@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -86,25 +89,30 @@
       <section class="how-to">
         <h2 id="how-to-install">How to Install</h2>
         
-        <p>This package requires <code>opencv</code> to be installed on your system</p>
+        <p>This package requires OpenCV version 2.4 to be installed on your system. Please note that it is not compatible with OpenCV 3.x at this time.</p>
         
         <h3 id="osx">OSX</h3>
         
-        <p>To install <code>opencv</code> on OSX using Homebrew:</p>
+        <p>To install OpenCV on OSX using Homebrew:</p>
         
         <pre class="CodeRay">$ brew tap homebrew/science &amp;&amp; brew install opencv
 </pre>
         
         <h3 id="ubuntu">Ubuntu</h3>
         
-        <p>Follow the official <a href="http://docs.opencv.org/doc/tutorials/introduction/linux_install/linux_install.html">OpenCV installation guide</a></p>
+        <p>To install OpenCV on Ubuntu 14.04:</p>
+        
+        <pre class="CodeRay">$ sudo apt-get install libopencv-dev
+</pre>
+        
+        <p>Or, follow the official <a href="http://docs.opencv.org/doc/tutorials/introduction/linux_install/linux_install.html">OpenCV installation guide</a></p>
         
         <h3 id="windows">Windows</h3>
         
         <p>Follow the official <a href="http://docs.opencv.org/doc/tutorials/introduction/windows_install/windows_install.html#windows-installation">OpenCV installation guide</a></p>
         
         <p>Now you can install the package with
-            go get -d -u github.com/hybridgroup/gobot/… &amp;&amp; go install github.com/hybridgroup/gobot/platforms/opencv</p>
+            go get -d -u gobot.io/x/gobot/… &amp;&amp; go install gobot.io/x/gobot/platforms/opencv</p>
         
         <h2 id="how-to-use">How to Use</h2>
         
@@ -113,19 +121,17 @@
         <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        cv <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/go-opencv/opencv</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/opencv</span><span class="delimiter">"</span></span>
+        cv <span class="string"><span class="delimiter">"</span><span class="content">github.com/lazywei/go-opencv/opencv</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/opencv</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
-
-        window := opencv.NewWindowDriver(<span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span>)
-        camera := opencv.NewCameraDriver(<span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>, <span class="integer">0</span>)
+        window := opencv.NewWindowDriver()
+        camera := opencv.NewCameraDriver(<span class="integer">0</span>)
 
         work := <span class="keyword">func</span>() {
-                gobot.On(camera.Event(<span class="string"><span class="delimiter">"</span><span class="content">frame</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                camera.On(camera.Event(<span class="string"><span class="delimiter">"</span><span class="content">frame</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         window.ShowImage(data.(*cv.IplImage))
                 })
         }
@@ -135,9 +141,7 @@
                 work,
         )
 
-        gbot.AddRobot(robot)
-
-        gbot.Start()
+        robot.Start()
 }
 </pre>
       </section>

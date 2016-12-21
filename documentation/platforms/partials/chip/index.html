@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -77,54 +80,36 @@
         </div>
       </header>
       <div class="info-intro">
-        <p>The CHIP is a small, inexpensive ARM based single board computer, with many different IO interfaces available on the pin headers.</p>
+        <p>The <a href="http://www.getchip.com/">C.H.I.P.</a> is a small, inexpensive ARM based single board computer, with many different IO interfaces available on the <a href="http://docs.getchip.com/#pin-headers">pin headers</a>.</p>
         
-        <p>For documentation about the CHIP platform click <a href="http://www.nextthing.co/pages/chip">here</a>.</p>
+        <p>We recommend updating to the latest Debian OS when using the C.H.I.P., however Gobot should also support older versions of the OS, should your application require this.</p>
+        
+        <p>For documentation about the C.H.I.P. platform click <a href="http://docs.getchip.com/">here</a>.</p>
         
       </div>
       <div class="clear"></div>
       <section class="how-to">
         <h2 id="how-to-install">How to Install</h2>
-        <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/chip
-</pre>
-        
-        <h4 id="cross-compiling-for-the-chip">Cross Compiling for the CHIP</h4>
-        
-        <p>If you're using Go version earlier than 1.5, you must first configure your Go environment for ARM linux cross compiling.</p>
-        
-        <pre class="CodeRay">$ cd $GOROOT/src
-$ GOOS=linux GOARCH=arm ./make.bash --no-clean
-</pre>
-        
-        <p>The above step is not required for Go &gt;= 1.5</p>
-        
-        <p>Then compile your Gobot program with</p>
-        
-        <pre class="CodeRay">$ GOARM=7 GOARCH=arm GOOS=linux go build examples/chip_button.go
-</pre>
-        
-        <p>Then you can simply upload your program to the CHIP and execute it with</p>
-        
-        <pre class="CodeRay">$ scp chip_button root@192.168.1.xx:
-$ ssh -t root@192.168.1.xx "./chip_button"
+        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/chip
 </pre>
         
         <h2 id="how-to-use">How to Use</h2>
+        
+        <p>The pin numbering used by your Gobot program should match the way your board is labeled right on the board itself.</p>
+        
         <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
     <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
 
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/chip</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/chip</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
-
-    chipAdaptor := chip.NewChipAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">chip</span><span class="delimiter">"</span></span>)
-    button := gpio.NewButtonDriver(chipAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">U14_13</span><span class="delimiter">"</span></span>)
+    chipAdaptor := chip.NewAdaptor()
+    button := gpio.NewButtonDriver(chipAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">XIO-P0</span><span class="delimiter">"</span></span>)
 
     work := <span class="keyword">func</span>() {
         gobot.On(button.Event(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
@@ -141,9 +126,24 @@ $ ssh -t root@192.168.1.xx "./chip_button"
         []gobot.Device{button},
         work,
     )
-    gbot.AddRobot(robot)
-    gbot.Start()
+
+    robot.Start()
 }
+</pre>
+        
+        <h2 id="how-to-connect">How to Connect</h2>
+        
+        <h3 id="compiling">Compiling</h3>
+        
+        <p>Compile your Gobot program like this:</p>
+        
+        <pre class="CodeRay">$ GOARM=7 GOARCH=arm GOOS=linux go build examples/chip_button.go
+</pre>
+        
+        <p>Then you can simply upload your program to the CHIP and execute it with</p>
+        
+        <pre class="CodeRay">$ scp chip_button root@192.168.1.xx:
+$ ssh -t root@192.168.1.xx "./chip_button"
 </pre>
       </section>
     </div>

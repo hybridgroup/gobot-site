@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -77,7 +80,12 @@
         </div>
       </header>
       <div class="info-intro">
-        <p>You can use Gobot with a Dualshock3 game controller, an XBox360 game controller, or any other USB joystick or game controller that is compatible with <a href="http://www.libsdl.org/">Simple DirectMedia Layer</a>.</p>
+        <p>You can use Gobot with any USB joystick or game controller that is compatible with <a href="http://www.libsdl.org/">Simple DirectMedia Layer</a>.</p>
+        
+        <p>Current configurations included:
+        - Dualshock3 game controller
+        - Dualshock4 game controller
+        - XBox360 game controller</p>
         
       </div>
       <div class="clear"></div>
@@ -100,7 +108,7 @@
         
         <p>Now you can install the package with</p>
         
-        <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/joystick
+        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/joystick
 </pre>
         
         <h2 id="how-to-use">How to Use</h2>
@@ -205,6 +213,8 @@
         
         <p>Plug your USB joystick or game controller into your USB port. If your device is supported by SDL, you are now ready.</p>
         
+        <p>For the Dualshock4, you must pair the device with your computers Bluetooth interface first, before running your Gobot program.</p>
+        
         <h2 id="examples">Examples</h2>
         
         <p>This small program receives joystick and button press events from an PlayStation 3 game controller.</p>
@@ -214,16 +224,13 @@
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
 
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/joystick</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/joystick</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
-
-        joystickAdaptor := joystick.NewJoystickAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>)
-        joystick := joystick.NewJoystickDriver(joystickAdaptor,
-                <span class="string"><span class="delimiter">"</span><span class="content">ps3</span><span class="delimiter">"</span></span>,
+        joystickAdaptor := joystick.NewAdaptor()
+        joystick := joystick.NewDriver(joystickAdaptor,
                 <span class="string"><span class="delimiter">"</span><span class="content">./platforms/joystick/configs/dualshock3.json</span><span class="delimiter">"</span></span>,
         )
 
@@ -260,9 +267,7 @@
                 work,
         )
 
-        gbot.AddRobot(robot)
-
-        gbot.Start()
+        robot.Start()
 }
 </pre>
       </section>

@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -84,7 +87,7 @@
               <span>Go, Robot, Go!</span> <br> Golang Powered Robotics
             </h1>
             <p>
-              Next generation robotics framework with support for <a class="platforms-number" href="#platforms">18 different platforms</a>
+              Next generation robotics/IoT framework with support for <a class="platforms-number" href="#platforms">24 different platforms</a>
             </p>
             <a href="/documentation/getting-started" class="call-to-action">Start Now</a>
             <div class="social">
@@ -130,7 +133,7 @@
           
           <p>All you need to get started is to install Gobot:</p>
           
-          <pre class="CodeRay">$ go get -d -u github.com/hybridgroup/gobot/...
+          <pre class="CodeRay">$ go get -d -u gobot.io/x/gobot/...
 </pre>
           
           <h2 id="the-hello-world-of-things">The "Hello, World" Of Things</h2>
@@ -142,16 +145,14 @@
 <span class="keyword">import</span> (
   <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
-  <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/gpio</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-  gbot := gobot.NewGobot()
-
-  firmataAdaptor := firmata.NewFirmataAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
-  led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
+  firmataAdaptor := firmata.NewAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+  led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
 
   work := <span class="keyword">func</span>() {
     gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
@@ -159,13 +160,13 @@
     })
   }
 
-  gbot.AddRobot(gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+  robot = gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
     []gobot.Connection{firmataAdaptor},
     []gobot.Device{led},
     work,
-  ))
+  )
 
-  gbot.Start()
+  robot.Start()
 }
 </pre>
           
@@ -178,7 +179,7 @@
             The following robotics and physical computing platforms are currently supported:
             </p>
 <h2>
-              18 Platforms
+              24 Platforms
             </h2>
             <ul class="platform-list">
               <li class="platform">
@@ -206,6 +207,12 @@
                 </a>
               </li>
               <li class="platform">
+                <a href="/documentation/platforms/ble">
+                  <p class="title">Bluetooth LE</p>
+                  <img src="/images/devices/ble.jpg" style="width: 90%">
+                </a>
+              </li>
+              <li class="platform">
                 <a href="/documentation/platforms/chip">
                   <p class="title">C.H.I.P.</p>
                   <img src="/images/devices/chip.jpg" style="width: 90%">
@@ -221,6 +228,12 @@
                 <a href="/documentation/platforms/edison">
                   <p class="title">Intel Edison</p>
                   <img src="/images/devices/edison.jpg" style="width: 90%">
+                </a>
+              </li>
+              <li class="platform">
+                <a href="/documentation/platforms/joule">
+                  <p class="title">Intel Joule</p>
+                  <img src="/images/devices/joule.jpg" style="width: 90%">
                 </a>
               </li>
               <li class="platform">
@@ -248,9 +261,21 @@
                 </a>
               </li>
               <li class="platform">
+                <a href="/documentation/platforms/minidrone">
+                  <p class="title">Minidrone</p>
+                  <img src="/images/devices/minidrone.jpg" style="width: 90%">
+                </a>
+              </li>
+              <li class="platform">
                 <a href="/documentation/platforms/mqtt">
                   <p class="title">MQTT</p>
                   <img src="/images/devices/mqtt.jpg" style="width: 90%">
+                </a>
+              </li>
+              <li class="platform">
+                <a href="/documentation/platforms/nats">
+                  <p class="title">NATS</p>
+                  <img src="/images/devices/nats.jpg" style="width: 90%">
                 </a>
               </li>
               <li class="platform">
@@ -278,9 +303,21 @@
                 </a>
               </li>
               <li class="platform">
-                <a href="/documentation/platforms/spark">
-                  <p class="title">Spark</p>
-                  <img src="/images/devices/spark.jpg" style="width: 90%">
+                <a href="/documentation/platforms/particle">
+                  <p class="title">Particle</p>
+                  <img src="/images/devices/particle.jpg" style="width: 90%">
+                </a>
+              </li>
+              <li class="platform">
+                <a href="/documentation/platforms/ollie">
+                  <p class="title">Ollie</p>
+                  <img src="/images/devices/ollie.jpg" style="width: 90%">
+                </a>
+              </li>
+              <li class="platform">
+                <a href="/documentation/platforms/bb8">
+                  <p class="title">BB-8</p>
+                  <img src="/images/devices/bb8.jpg" style="width: 90%">
                 </a>
               </li>
               <li class="platform">
@@ -292,17 +329,11 @@
             </ul>
             <div class="clear"></div>
           
-          <p>Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the gpio platform package:</p>
           <h2>
-            <a target="_blank" href="https://en.wikipedia.org/wiki/General_Purpose_Input/Output">17 GPIO drivers</a>
+            <a target="_blank" href="https://en.wikipedia.org/wiki/General_Purpose_Input/Output">16 GPIO drivers</a>
           </h2>
+          <p>Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the gpio platform package:</p>
           <ul class="platform-list">
-            <li class="platform">
-              <a href="/documentation/drivers/analog-sensor">
-                <p class="title">Analog Sensor</p>
-                <img src="/images/devices/analog-sensor.jpg" style="width: 90%">
-              </a>
-            </li>
             <li class="platform">
               <a href="/documentation/drivers/button">
                 <p class="title">Button</p>
@@ -310,21 +341,15 @@
               </a>
             </li>
             <li class="platform">
+              <a href="/documentation/drivers/buzzer">
+                <p class="title">Buzzer</p>
+                <img src="/images/devices/buzzer.jpg" style="width: 90%">
+              </a>
+            </li>
+            <li class="platform">
               <a href="/documentation/drivers/direct-pin">
                 <p class="title">Direct Pin</p>
                 <img src="/images/devices/direct-pin.jpg" style="width: 90%">
-              </a>
-            </li>
-            <li class="platform">
-              <a href="/documentation/drivers/grove-touch">
-                <p class="title">Grove Touch</p>
-                <img src="/images/devices/grove-touch.jpg" style="width: 90%">
-              </a>
-            </li>
-            <li class="platform">
-              <a href="/documentation/drivers/grove-sound-sensor">
-                <p class="title">Grove Sound Sensor</p>
-                <img src="/images/devices/grove-sound-sensor.jpg" style="width: 90%">
               </a>
             </li>
             <li class="platform">
@@ -346,21 +371,9 @@
               </a>
             </li>
             <li class="platform">
-              <a href="/documentation/drivers/grove-light-sensor">
-                <p class="title">Grove Light Sensor</p>
-                <img src="/images/devices/grove-light-sensor.jpg" style="width: 90%">
-              </a>
-            </li>
-            <li class="platform">
               <a href="/documentation/drivers/grove-piezo-vibration-sensor">
                 <p class="title">Grove Vibration Sensor</p>
                 <img src="/images/devices/grove-piezo-vibration-sensor.jpg" style="width: 90%">
-              </a>
-            </li>
-            <li class="platform">
-              <a href="/documentation/drivers/grove-rotary">
-                <p class="title">Grove Rotary</p>
-                <img src="/images/devices/grove-rotary.jpg" style="width: 90%">
               </a>
             </li>
             <li class="platform">
@@ -370,9 +383,9 @@
               </a>
             </li>
             <li class="platform">
-              <a href="/documentation/drivers/grove-temperature-sensor">
-                <p class="title">Grove Temperature Sensor</p>
-                <img src="/images/devices/grove-temperature-sensor.jpg" style="width: 90%">
+              <a href="/documentation/drivers/grove-touch">
+                <p class="title">Grove Touch</p>
+                <img src="/images/devices/grove-touch.jpg" style="width: 90%">
               </a>
             </li>
             <li class="platform">
@@ -394,6 +407,24 @@
               </a>
             </li>
             <li class="platform">
+              <a href="/documentation/drivers/pir-motion-sensor">
+                <p class="title">PIR Motion Sensor</p>
+                <img src="/images/devices/pir-motion-sensor.jpg" style="width: 90%">
+              </a>
+            </li>
+            <li class="platform">
+              <a href="/documentation/drivers/relay">
+                <p class="title">Relay</p>
+                <img src="/images/devices/relay.jpg" style="width: 90%">
+              </a>
+            </li>
+            <li class="platform">
+              <a href="/documentation/drivers/rgb-led">
+                <p class="title">RGB LED</p>
+                <img src="/images/devices/rgb-led.jpg" style="width: 90%">
+              </a>
+            </li>
+            <li class="platform">
               <a href="/documentation/drivers/servo">
                 <p class="title">Servo</p>
                 <img src="/images/devices/servo.jpg" style="width: 90%">
@@ -401,11 +432,54 @@
             </li>
           </ul>
           <div class="clear"></div>
-          <p>Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provided using the i2c platform package:</p>
           <h2>
-            <a target="_blank" href="https://en.wikipedia.org/wiki/I%C2%B2C">8 I2C drivers</a>
+            <a target="_blank" href="https://en.wikipedia.org/wiki/General_Purpose_Input/Output">5 Analog I/O (AIO) drivers</a>
           </h2>
+          <p>Support for many devices that use Analog Input/Output (AIO) have a shared set of drivers provided also using the gpio platform package:</p>
           <ul class="platform-list">
+            <li class="platform">
+              <a href="/documentation/drivers/analog-sensor">
+                <p class="title">Analog Sensor</p>
+                <img src="/images/devices/analog-sensor.jpg" style="width: 90%">
+              </a>
+            </li>
+            <li class="platform">
+              <a href="/documentation/drivers/grove-light-sensor">
+                <p class="title">Grove Light Sensor</p>
+                <img src="/images/devices/grove-light-sensor.jpg" style="width: 90%">
+              </a>
+            </li>
+            <li class="platform">
+              <a href="/documentation/drivers/grove-rotary">
+                <p class="title">Grove Rotary</p>
+                <img src="/images/devices/grove-rotary.jpg" style="width: 90%">
+              </a>
+            </li>
+            <li class="platform">
+              <a href="/documentation/drivers/grove-sound-sensor">
+                <p class="title">Grove Sound Sensor</p>
+                <img src="/images/devices/grove-sound-sensor.jpg" style="width: 90%">
+              </a>
+            </li>
+            <li class="platform">
+              <a href="/documentation/drivers/grove-temperature-sensor">
+                <p class="title">Grove Temperature Sensor</p>
+                <img src="/images/devices/grove-temperature-sensor.jpg" style="width: 90%">
+              </a>
+            </li>
+          </ul>
+          <div class="clear"></div>
+          <h2>
+            <a target="_blank" href="https://en.wikipedia.org/wiki/I%C2%B2C">11 I2C drivers</a>
+          </h2>
+          <p>Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provided using the i2c platform package:</p>
+          <ul class="platform-list">
+            <li class="platform">
+              <a href="/documentation/drivers/adafruit-motor-hat">
+                <p class="title">Adafruit Motor HAT</p>
+                <img src="/images/devices/adafruit-motor-hat.jpg" style="width: 90%">
+              </a>
+            </li>
             <li class="platform">
               <a href="/documentation/drivers/blinkm">
                 <p class="title">BlinkM</p>
@@ -414,7 +488,7 @@
             </li>
             <li class="platform">
               <a href="/documentation/drivers/grove-lcd">
-                <p class="title">Grove LCD</p>
+                <p class="title">Grove LCD w/RGB</p>
                 <img src="/images/devices/grove-lcd.jpg" style="width: 90%">
               </a>
             </li>
@@ -437,15 +511,27 @@
               </a>
             </li>
             <li class="platform">
-              <a href="/documentation/drivers/mpu6050">
-                <p class="title">MPU6050</p>
-                <img src="/images/devices/mpu6050.jpg" style="width: 90%">
+              <a href="/documentation/drivers/mcp23017">
+                <p class="title">MCP23017</p>
+                <img src="/images/devices/mcp23017.jpg" style="width: 90%">
+              </a>
+            </li>
+            <li class="platform">
+              <a href="/documentation/drivers/mma7660">
+                <p class="title">MMA7660</p>
+                <img src="/images/devices/mma7660.jpg" style="width: 90%">
               </a>
             </li>
             <li class="platform">
               <a href="/documentation/drivers/mpl115a2">
                 <p class="title">MPL115A2</p>
                 <img src="/images/devices/mpl115a2.jpg" style="width: 90%">
+              </a>
+            </li>
+            <li class="platform">
+              <a href="/documentation/drivers/mpu6050">
+                <p class="title">MPU6050</p>
+                <img src="/images/devices/mpu6050.jpg" style="width: 90%">
               </a>
             </li>
             <li class="platform">
@@ -468,7 +554,7 @@
           <p>
             It also comes with the
             <a target="blank" href="https://github.com/hybridgroup/robeaux">robeaux</a>
-            React.JS interface baked right into it's API server for quick and easy
+            React.JS interface baked right into its API server for quick and easy
             configuration.
             <img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%">
           </p>
@@ -490,7 +576,8 @@
           <ul>
             <li>Code on Github:   <a href="https://github.com/hybridgroup/gobot">https://github.com/hybridgroup/gobot</a>
 </li>
-            <li>Join us on IRC:   <code>#gobotio @ irc.freenode.net</code>
+            <li>Google Group: https://groups.google.com/forum/#!forum/gobotio</li>
+            <li>Twitter: <a href="https://twitter.com/gobotio">@gobotio</a>
 </li>
           </ul>
         </section>

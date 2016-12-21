@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -85,42 +88,39 @@
       <div class="clear"></div>
       <section class="how-to">
         <h2 id="how-to-install">How to Install</h2>
-        <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/ardrone
+        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/parrot/ardrone
 </pre>
         
         <h2 id="how-to-use">How to Use</h2>
         <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-    <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/ardrone</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/parrot/ardrone</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
+        ardroneAdaptor := ardrone.NewAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
+        drone := ardrone.NewDriver(ardroneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
 
-    ardroneAdaptor := ardrone.NewArdroneAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
-    drone := ardrone.NewArdroneDriver(ardroneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">Drone</span><span class="delimiter">"</span></span>)
+        work := <span class="keyword">func</span>() {
+                drone.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        gobot.After(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
+                                drone.Land()
+                        })
+                })
+                drone.TakeOff()
+        }
 
-    work := <span class="keyword">func</span>() {
-        drone.TakeOff()
-        gobot.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            gobot.After(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
-                drone.Land()
-            })
-        })
-    }
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{ardroneAdaptor},
+                []gobot.Device{drone},
+                work,
+        )
 
-    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">drone</span><span class="delimiter">"</span></span>,
-        []gobot.Connection{ardroneAdaptor},
-        []gobot.Device{drone},
-        work,
-    )
-    gbot.AddRobot(robot)
-
-    gbot.Start()
+        robot.Start()
 }
 </pre>
         

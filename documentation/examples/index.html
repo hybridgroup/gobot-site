@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -95,6 +98,10 @@
               <div class="section" ng-class="{active: active('Guides')}">
                 <div class="name" ng-click="show('Guides')">Guides</div>
                 <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/classic-gobot">Classic Gobot</a>
+                  <a href="/documentation/guides/master-gobot">Master Gobot</a>
+                  <a href="/documentation/guides/metal-gobot">Metal Gobot</a>
+                  <a href="/documentation/guides/adding-hardware-support">Adding Hardware Support</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/gobot-on-ardrone">Gobot on ARDrone</a>
                 </div>
@@ -102,24 +109,30 @@
               <div class="section" ng-class="{active: active('Platforms')}">
                 <div class="name" ng-click="show('Platforms')">Platforms</div>
                 <div class="links" ng-show="active('Platforms')">
-                  <a href="/documentation/platforms/ardrone">Ardrone</a>
                   <a href="/documentation/platforms/arduino">Arduino</a>
                   <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                  <a href="/documentation/platforms/bebop">Bebop</a>
+                  <a href="/documentation/platforms/ble">Bluetooth LE</a>
                   <a href="/documentation/platforms/chip">C.H.I.P.</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joule">Intel Joule</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
                   <a href="/documentation/platforms/keyboard">Keyboard</a>
                   <a href="/documentation/platforms/leapmotion">Leap Motion</a>
                   <a href="/documentation/platforms/mavlink">Mavlink</a>
                   <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nats">NATS</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/ardrone">Parrot ARdrone</a>
+                  <a href="/documentation/platforms/bebop">Parrot Bebop</a>
+                  <a href="/documentation/platforms/minidrone">Parrot Minidrone</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/raspi">Raspberry Pi</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/bb8">Sphero BB-8</a>
+                  <a href="/documentation/platforms/ollie">Sphero Ollie</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Drivers')}">
@@ -128,18 +141,13 @@
                   <div class="sub-section">
                     <div class="name">GPIO</div>
                     <div class="links">
-                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
                       <a href="/documentation/drivers/button">Button</a>
                       <a href="/documentation/drivers/grove-touch">Grove Touch</a>
-                      <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
                       <a href="/documentation/drivers/grove-button">Grove Button</a>
                       <a href="/documentation/drivers/grove-buzzer">Grove Buzzer</a>
                       <a href="/documentation/drivers/grove-led">Grove Led</a>
-                      <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor">Grove Vibration Sensor</a>
-                      <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
                       <a href="/documentation/drivers/grove-relay">Grove Relay</a>
-                      <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
                       <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/led">LED</a>
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
@@ -148,16 +156,36 @@
                     </div>
                   </div>
                   <div class="sub-section">
+                    <div class="name">AIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
+                      <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
+                      <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
+                      <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
                     <div class="name">I2C</div>
                     <div class="links">
+                      <a href="/documentation/drivers/adafruit-motor-hat">Adafruit Motor HAT</a>
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
                       <a href="/documentation/drivers/grove-lcd">Grove LCD</a>
                       <a href="/documentation/drivers/grove-accelerometer">Grove Accelerometer</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
                       <a href="/documentation/drivers/lidar-lite">LIDAR-Lite</a>
+                      <a href="/documentation/drivers/mcp23017">MCP23017</a>
                       <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
                       <a href="/documentation/drivers/mpu6050">MPU6050</a>
                       <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Bluetooth LE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery">Battery</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
                     </div>
                   </div>
                   <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
@@ -170,11 +198,18 @@
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/bb8">BB-8</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Core')}">
                 <div class="name" ng-click="show('Core')">Core</div>
                 <div class="links" ng-show="active('Core')">
+                  <a href="/documentation/core/robots">Robots</a>
+                  <a href="/documentation/core/adaptors">Adaptors</a>
+                  <a href="/documentation/core/drivers">Drivers</a>
+                  <a href="/documentation/core/events">Events</a>
+                  <a href="/documentation/core/commands">Commands</a>
                   <a href="/documentation/core/api">API</a>
                   <a href="/documentation/core/helpers">Helper Methods</a>
                   <a href="/documentation/core/sysfs">sysfs</a>
@@ -213,8 +248,16 @@
                     <td class="links"><a href="/documentation/examples/ardrone_ps3">Code</a></td>
                   </tr>
                   <tr>
+                    <td>audio</td>
+                    <td class="links"><a href="/documentation/examples/audio">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>batty</td>
                     <td class="links"><a href="/documentation/examples/batty">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>bb8</td>
+                    <td class="links"><a href="/documentation/examples/bb8">Code</a></td>
                   </tr>
                   <tr>
                     <td>beaglebone_basic_direct_pin</td>
@@ -257,6 +300,54 @@
                     <td class="links"><a href="/documentation/examples/beaglebone_servo">Code</a></td>
                   </tr>
                   <tr>
+                    <td>bebop</td>
+                    <td class="links"><a href="/documentation/examples/bebop">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>bebop_ps3</td>
+                    <td class="links"><a href="/documentation/examples/bebop_ps3">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>bebop_ps3_video</td>
+                    <td class="links"><a href="/documentation/examples/bebop_ps3_video">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>ble_battery</td>
+                    <td class="links"><a href="/documentation/examples/ble_battery">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>ble_device_info</td>
+                    <td class="links"><a href="/documentation/examples/ble_device_info">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>chip_blink</td>
+                    <td class="links"><a href="/documentation/examples/chip_blink">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>chip_button</td>
+                    <td class="links"><a href="/documentation/examples/chip_button">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>chip_button_led</td>
+                    <td class="links"><a href="/documentation/examples/chip_button_led">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>chip_grove_accelerometer</td>
+                    <td class="links"><a href="/documentation/examples/chip_grove_accelerometer">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>chip_grove_lcd</td>
+                    <td class="links"><a href="/documentation/examples/chip_grove_lcd">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>chip_mpu6050</td>
+                    <td class="links"><a href="/documentation/examples/chip_mpu6050">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>chip_wiichuck</td>
+                    <td class="links"><a href="/documentation/examples/chip_wiichuck">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>digispark_api</td>
                     <td class="links"><a href="/documentation/examples/digispark_api">Code</a></td>
                   </tr>
@@ -277,12 +368,72 @@
                     <td class="links"><a href="/documentation/examples/edison_blink">Code</a></td>
                   </tr>
                   <tr>
+                    <td>edison_blink_without_all_gobot_framework</td>
+                    <td class="links"><a href="/documentation/examples/edison_blink_without_all_gobot_framework">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>edison_blinkm</td>
                     <td class="links"><a href="/documentation/examples/edison_blinkm">Code</a></td>
                   </tr>
                   <tr>
                     <td>edison_button</td>
                     <td class="links"><a href="/documentation/examples/edison_button">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_button_led</td>
+                    <td class="links"><a href="/documentation/examples/edison_button_led">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_button_led_api</td>
+                    <td class="links"><a href="/documentation/examples/edison_button_led_api">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_accelerometer</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_accelerometer">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_blink</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_blink">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_button</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_button">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_buzzer</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_buzzer">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_lcd</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_lcd">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_led</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_led">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_light_sensor</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_light_sensor">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_piezo_vibration</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_piezo_vibration">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_rotary_sensor</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_rotary_sensor">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_sound_sensor</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_sound_sensor">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_temperature_sensor</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_temperature_sensor">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_grove_touch</td>
+                    <td class="links"><a href="/documentation/examples/edison_grove_touch">Code</a></td>
                   </tr>
                   <tr>
                     <td>edison_led_brightness</td>
@@ -293,8 +444,32 @@
                     <td class="links"><a href="/documentation/examples/edison_led_brightness_with_analog_input">Code</a></td>
                   </tr>
                   <tr>
+                    <td>edison_miniboard_grove_accelerometer</td>
+                    <td class="links"><a href="/documentation/examples/edison_miniboard_grove_accelerometer">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>edison_rgb_led</td>
+                    <td class="links"><a href="/documentation/examples/edison_rgb_led">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>every_done</td>
+                    <td class="links"><a href="/documentation/examples/every_done">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>firmata_blink</td>
                     <td class="links"><a href="/documentation/examples/firmata_blink">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>firmata_blink_api</td>
+                    <td class="links"><a href="/documentation/examples/firmata_blink_api">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>firmata_blink_metal</td>
+                    <td class="links"><a href="/documentation/examples/firmata_blink_metal">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>firmata_blink_robot</td>
+                    <td class="links"><a href="/documentation/examples/firmata_blink_robot">Code</a></td>
                   </tr>
                   <tr>
                     <td>firmata_blinkm</td>
@@ -321,6 +496,10 @@
                     <td class="links"><a href="/documentation/examples/firmata_hmc6352">Code</a></td>
                   </tr>
                   <tr>
+                    <td>firmata_integration</td>
+                    <td class="links"><a href="/documentation/examples/firmata_integration">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>firmata_led_brightness</td>
                     <td class="links"><a href="/documentation/examples/firmata_led_brightness">Code</a></td>
                   </tr>
@@ -337,6 +516,14 @@
                     <td class="links"><a href="/documentation/examples/firmata_makey_button">Code</a></td>
                   </tr>
                   <tr>
+                    <td>firmata_metal_button</td>
+                    <td class="links"><a href="/documentation/examples/firmata_metal_button">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>firmata_mma7660</td>
+                    <td class="links"><a href="/documentation/examples/firmata_mma7660">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>firmata_motor</td>
                     <td class="links"><a href="/documentation/examples/firmata_motor">Code</a></td>
                   </tr>
@@ -349,8 +536,20 @@
                     <td class="links"><a href="/documentation/examples/firmata_mpu6050">Code</a></td>
                   </tr>
                   <tr>
+                    <td>firmata_pir_motion</td>
+                    <td class="links"><a href="/documentation/examples/firmata_pir_motion">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>firmata_rgb_led</td>
+                    <td class="links"><a href="/documentation/examples/firmata_rgb_led">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>firmata_servo</td>
                     <td class="links"><a href="/documentation/examples/firmata_servo">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>firmata_temp36</td>
+                    <td class="links"><a href="/documentation/examples/firmata_temp36">Code</a></td>
                   </tr>
                   <tr>
                     <td>firmata_travis</td>
@@ -373,16 +572,52 @@
                     <td class="links"><a href="/documentation/examples/hello_api_auth">Code</a></td>
                   </tr>
                   <tr>
+                    <td>joule_blink</td>
+                    <td class="links"><a href="/documentation/examples/joule_blink">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>joule_blinkm</td>
+                    <td class="links"><a href="/documentation/examples/joule_blinkm">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>joule_grove_lcd</td>
+                    <td class="links"><a href="/documentation/examples/joule_grove_lcd">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>joule_leds</td>
+                    <td class="links"><a href="/documentation/examples/joule_leds">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>joule_rgb_led</td>
+                    <td class="links"><a href="/documentation/examples/joule_rgb_led">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>joystick_ps3</td>
                     <td class="links"><a href="/documentation/examples/joystick_ps3">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>joystick_ps4</td>
+                    <td class="links"><a href="/documentation/examples/joystick_ps4">Code</a></td>
                   </tr>
                   <tr>
                     <td>joystick_xbox360</td>
                     <td class="links"><a href="/documentation/examples/joystick_xbox360">Code</a></td>
                   </tr>
                   <tr>
+                    <td>keyboard</td>
+                    <td class="links"><a href="/documentation/examples/keyboard">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>keyboard_mqtt</td>
+                    <td class="links"><a href="/documentation/examples/keyboard_mqtt">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>leap_motion</td>
                     <td class="links"><a href="/documentation/examples/leap_motion">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>leap_motion_gestures</td>
+                    <td class="links"><a href="/documentation/examples/leap_motion_gestures">Code</a></td>
                   </tr>
                   <tr>
                     <td>leap_motion_hands</td>
@@ -401,6 +636,22 @@
                     <td class="links"><a href="/documentation/examples/mavlink">Code</a></td>
                   </tr>
                   <tr>
+                    <td>megapi_motor</td>
+                    <td class="links"><a href="/documentation/examples/megapi_motor">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>metal_button</td>
+                    <td class="links"><a href="/documentation/examples/metal_button">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>minidrone</td>
+                    <td class="links"><a href="/documentation/examples/minidrone">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>minidrone_ps3</td>
+                    <td class="links"><a href="/documentation/examples/minidrone_ps3">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>mqtt_firmata_blink</td>
                     <td class="links"><a href="/documentation/examples/mqtt_firmata_blink">Code</a></td>
                   </tr>
@@ -409,8 +660,24 @@
                     <td class="links"><a href="/documentation/examples/mqtt_ping">Code</a></td>
                   </tr>
                   <tr>
+                    <td>nats</td>
+                    <td class="links"><a href="/documentation/examples/nats">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>neurosky</td>
                     <td class="links"><a href="/documentation/examples/neurosky">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>ollie</td>
+                    <td class="links"><a href="/documentation/examples/ollie">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>ollie_mqtt</td>
+                    <td class="links"><a href="/documentation/examples/ollie_mqtt">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>ollie_roll</td>
+                    <td class="links"><a href="/documentation/examples/ollie_roll">Code</a></td>
                   </tr>
                   <tr>
                     <td>opencv_face_detect</td>
@@ -421,12 +688,52 @@
                     <td class="links"><a href="/documentation/examples/opencv_window">Code</a></td>
                   </tr>
                   <tr>
+                    <td>particle_api</td>
+                    <td class="links"><a href="/documentation/examples/particle_api">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>particle_blink</td>
+                    <td class="links"><a href="/documentation/examples/particle_blink">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>particle_button</td>
+                    <td class="links"><a href="/documentation/examples/particle_button">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>particle_events</td>
+                    <td class="links"><a href="/documentation/examples/particle_events">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>particle_function</td>
+                    <td class="links"><a href="/documentation/examples/particle_function">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>particle_led_brightness</td>
+                    <td class="links"><a href="/documentation/examples/particle_led_brightness">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>particle_variable</td>
+                    <td class="links"><a href="/documentation/examples/particle_variable">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>pebble</td>
                     <td class="links"><a href="/documentation/examples/pebble">Code</a></td>
                   </tr>
                   <tr>
                     <td>pebble_accelerometer</td>
                     <td class="links"><a href="/documentation/examples/pebble_accelerometer">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>raspi_adafruit_dcmotor</td>
+                    <td class="links"><a href="/documentation/examples/raspi_adafruit_dcmotor">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>raspi_adafruit_servo</td>
+                    <td class="links"><a href="/documentation/examples/raspi_adafruit_servo">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>raspi_adafruit_stepper</td>
+                    <td class="links"><a href="/documentation/examples/raspi_adafruit_stepper">Code</a></td>
                   </tr>
                   <tr>
                     <td>raspi_blink</td>
@@ -441,34 +748,6 @@
                     <td class="links"><a href="/documentation/examples/raspi_button">Code</a></td>
                   </tr>
                   <tr>
-                    <td>spark_core_api</td>
-                    <td class="links"><a href="/documentation/examples/spark_core_api">Code</a></td>
-                  </tr>
-                  <tr>
-                    <td>spark_core_blink</td>
-                    <td class="links"><a href="/documentation/examples/spark_core_blink">Code</a></td>
-                  </tr>
-                  <tr>
-                    <td>spark_core_button</td>
-                    <td class="links"><a href="/documentation/examples/spark_core_button">Code</a></td>
-                  </tr>
-                  <tr>
-                    <td>spark_core_events</td>
-                    <td class="links"><a href="/documentation/examples/spark_core_events">Code</a></td>
-                  </tr>
-                  <tr>
-                    <td>spark_core_function</td>
-                    <td class="links"><a href="/documentation/examples/spark_core_function">Code</a></td>
-                  </tr>
-                  <tr>
-                    <td>spark_core_led_brithgness</td>
-                    <td class="links"><a href="/documentation/examples/spark_core_led_brithgness">Code</a></td>
-                  </tr>
-                  <tr>
-                    <td>spark_core_variable</td>
-                    <td class="links"><a href="/documentation/examples/spark_core_variable">Code</a></td>
-                  </tr>
-                  <tr>
                     <td>sphero</td>
                     <td class="links"><a href="/documentation/examples/sphero">Code</a></td>
                   </tr>
@@ -481,12 +760,24 @@
                     <td class="links"><a href="/documentation/examples/sphero_conways">Code</a></td>
                   </tr>
                   <tr>
+                    <td>sphero_dpad</td>
+                    <td class="links"><a href="/documentation/examples/sphero_dpad">Code</a></td>
+                  </tr>
+                  <tr>
                     <td>sphero_master</td>
                     <td class="links"><a href="/documentation/examples/sphero_master">Code</a></td>
                   </tr>
                   <tr>
                     <td>sphero_multiple</td>
                     <td class="links"><a href="/documentation/examples/sphero_multiple">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>square</td>
+                    <td class="links"><a href="/documentation/examples/square">Code</a></td>
+                  </tr>
+                  <tr>
+                    <td>square_fire</td>
+                    <td class="links"><a href="/documentation/examples/square_fire">Code</a></td>
                   </tr>
                 </tbody>
               </table>

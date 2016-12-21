@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -79,15 +82,15 @@
       <div class="info-intro">
         <p>Sphero is a sophisticated and programmable robot housed in a polycarbonate sphere shell.</p>
         
-        <p>The gobot-sphero adaptor makes it easy to interact with Sphero using Go, once you have your Sphero setup and connected to your computer you can start writing code to make Sphero move, change direction, speed and colors, or detect Sphero events and execute some code when they occur.</p>
+        <p>The Gobot Sphero Adaptor &amp; Driver makes it easy to interact with Sphero using Go. Once you have your Sphero setup and connected to your computer you can start writing code to make Sphero move, change direction, speed and colors, or detect Sphero events and execute some code when they occur.</p>
         
-        <p>Learn more about the Sphero robot from Orbotix <a href="http://www.gosphero.com/">here</a>.</p>
+        <p>Learn more about the Sphero robot go here: http://www.gosphero.com/</p>
         
       </div>
       <div class="clear"></div>
       <section class="how-to">
         <h2 id="how-to-install">How to Install</h2>
-        <pre class="CodeRay">go get -d -u github.com/hybridgroup/gobot/... &amp;&amp; go install github.com/hybridgroup/gobot/platforms/sphero
+        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/sphero
 </pre>
         
         <h2 id="how-to-connect">How To Connect</h2>
@@ -100,7 +103,7 @@
         
         <h3 id="ubuntu">Ubuntu</h3>
         
-        <p>Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line using <a href="https://github.com/hybridgroup/gort">Gort</a> CLI commands. Here are the steps.</p>
+        <p>Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line using <a href="https://gobot.io/x/gort">Gort</a> CLI commands. Here are the steps.</p>
         
         <p>Find the address of the Sphero, by using:
             gort scan bluetooth</p>
@@ -125,15 +128,13 @@
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/sphero</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        gbot := gobot.NewGobot()
-
-        adaptor := sphero.NewSpheroAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>)
-        driver := sphero.NewSpheroDriver(adaptor, <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>)
+        adaptor := sphero.NewAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>)
+        driver := sphero.NewSpheroDriver(adaptor)
 
         work := <span class="keyword">func</span>() {
                 gobot.Every(<span class="integer">3</span>*time.Second, <span class="keyword">func</span>() {
@@ -147,9 +148,7 @@
                 work,
         )
 
-        gbot.AddRobot(robot)
-
-        gbot.Start()
+        robot.Start()
 }
 </pre>
       </section>

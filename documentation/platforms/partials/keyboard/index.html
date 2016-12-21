@@ -67,6 +67,9 @@
                 <a href="/resources" class="item">Resources</a>
               </li>
               <li>
+                <a href="/news" class="item">News</a>
+              </li>
+              <li>
                 <a href="/blog" class="item">Blog</a>
               </li>
               <li>
@@ -77,58 +80,51 @@
         </div>
       </header>
       <div class="info-intro">
-        <p>Packge keyboard contains the Gobot drivers for keyboard support.</p>
+        <p>This module implements support for keyboard events, wrapping the <code>stty</code> utility.</p>
         
       </div>
       <div class="clear"></div>
       <section class="how-to">
         <h2 id="how-to-install">How to Install</h2>
         
-        <pre class="CodeRay">go get github.com/hybridgroup/gobot &amp;&amp; go install github.com/hybridgroup/gobot/platforms/keyboard
+        <pre class="CodeRay">go get gobot.io/x/gobot &amp;&amp; go install gobot.io/x/gobot/platforms/keyboard
 </pre>
         
         <h2 id="how-to-use">How to Use</h2>
         
-        <h2 id="how-to-connect">How to Connect</h2>
-        
-        <p>All that you need to do is plug the keyboard into your computer as usual.</p>
-        
-        <h2 id="examples">Examples</h2>
-        
-        <p>This small program receives events from keyboard</p>
+        <p>Example parsing key events</p>
         
         <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-    <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot</span><span class="delimiter">"</span></span>
-    <span class="string"><span class="delimiter">"</span><span class="content">github.com/hybridgroup/gobot/platforms/keyboard</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/keyboard</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-    gbot := gobot.NewGobot()
-    keys := keyboard.NewKeyboardDriver(<span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span>)
+        keys := keyboard.NewDriver()
 
-    work := <span class="keyword">func</span>() {
-        gobot.On(keys.Event(<span class="string"><span class="delimiter">"</span><span class="content">key</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-            key := data.(keyboard.KeyEvent)
+        work := <span class="keyword">func</span>() {
+                keys.On(keyboard.Key, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        key := data.(keyboard.KeyEvent)
 
-            <span class="keyword">if</span> key.Key == keyboard.A {
-                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">A pressed!</span><span class="delimiter">"</span></span>)
-            } <span class="keyword">else</span> {
-                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">keyboard event!</span><span class="delimiter">"</span></span>, key, key.Char)
-            }
-        })
-    }
+                        <span class="keyword">if</span> key.Key == keyboard.A {
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">A pressed!</span><span class="delimiter">"</span></span>)
+                        } <span class="keyword">else</span> {
+                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">keyboard event!</span><span class="delimiter">"</span></span>, key, key.Char)
+                        }
+                })
+        }
 
-    robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">keyboardbot</span><span class="delimiter">"</span></span>,
-        []gobot.Connection{},
-        []gobot.Device{keys},
-        work,
-    )
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">keyboardbot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{},
+                []gobot.Device{keys},
+                work,
+        )
 
-    gbot.AddRobot(robot)
-    gbot.Start()
+        robot.Start()
 }
 </pre>
       </section>
