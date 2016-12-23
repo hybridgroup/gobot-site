@@ -1,0 +1,78 @@
+---
+title: Gobot - MMA7660 Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has an extensible system for connecting to hardware devices.
+page_title_docs: MMA7660
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/mma7660.jpg", class: "display"
+
+.info-intro
+  %p The MMA7660 is a 3-axis digital accelerometer.
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/i2c#MMA7660Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the package with: `go get gobot.io/x/gobot`
+
+        :::go
+      	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+      	mma7660 := i2c.NewMMA7660Driver(firmataAdaptor)
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using the MMA7660
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+        	"time"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/drivers/i2c"
+        	"gobot.io/x/gobot/platforms/firmata"
+        )
+
+        func main() {
+        	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+        	mma7660 := i2c.NewMMA7660Driver(firmataAdaptor)
+
+        	work := func() {
+        		gobot.Every(500*time.Millisecond, func() {
+        			if x, y, z, err := mma7660.XYZ(); err == nil {
+        				fmt.Println(x, y, z)
+        				fmt.Println(mma7660.Acceleration(x, y, z))
+        			} else {
+        				fmt.Println(err)
+        			}
+        		})
+        	}
+
+        	robot := gobot.NewRobot("mma76602Bot",
+        		[]gobot.Connection{firmataAdaptor},
+        		[]gobot.Device{mma7660},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "MMA7660" }
