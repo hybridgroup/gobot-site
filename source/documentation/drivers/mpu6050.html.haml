@@ -18,9 +18,7 @@ subnavjs: true
 
 .info-intro
   %p
-    The MPU-6050 is a serious little piece of motion processing tech!
-    By combining a MEMS 3-axis gyroscope and a 3-axis accelerometer on the same silicon die together with an onboard Digital Motion Processor™ capable of processing complex 9-axis MotionFusion algorithms, the MPU-6050 does away with the cross-axis alignment problems that can creep up on discrete parts. For more information click
-    = link_to "here.", "http://playground.arduino.cc/Main/MPU-6050", taget: :blank
+    The MPU-6050 combines a 3-axis gyroscope and a 3-axis accelerometer on a single chip.
 
   %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/i2c#MPU6050Driver", :class => "api-link", :target => "_blank"} API Reference
 .clear
@@ -29,8 +27,6 @@ subnavjs: true
   %h2 How To Connect
   :markdown
     Install the package with: `go get gobot.io/x/gobot`
-
-    ### For Arduino:
 
         :::go
         // code here
