@@ -17,18 +17,53 @@ subnavjs: true
   =image_tag "/images/devices/ble-battery.jpg", class: "display"
 .info-intro
   %p
-    The BLE Battery Service is a well-known Bluetooth LE Service for checking a peripheral's bettery level.
+    The BLE Battery Service is a well-known Bluetooth LE Service for checking a peripheral's battery level.
 
-  %a{:href => "https://godoc.org/gobot.io/x/gobot/platforms/ble", :class => "api-link", :target => "_blank"} API Reference
+  %a{:href => "https://godoc.org/gobot.io/x/gobot/platforms/ble#BatteryDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
-    Goes here...
+        :::go
+        bleAdaptor := ble.NewClientAdaptor("AA:BB:CC:DD:EE")
+        battery := ble.NewBatteryDriver(bleAdaptor)
+
 
 %section.how-to#HowToUse
   %h2 How To Use
+
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+        	"os"
+        	"time"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/platforms/ble"
+        )
+
+        func main() {
+        	bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+        	battery := ble.NewBatteryDriver(bleAdaptor)
+
+        	work := func() {
+        		gobot.Every(5*time.Second, func() {
+        			fmt.Println("Battery level:", battery.GetBatteryLevel())
+        		})
+        	}
+
+        	robot := gobot.NewRobot("bleBot",
+        		[]gobot.Connection{bleAdaptor},
+        		[]gobot.Device{battery},
+        		work,
+        	)
+
+        	robot.Start()
+        }
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

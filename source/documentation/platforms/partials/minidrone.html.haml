@@ -1,7 +1,25 @@
 .info-intro
   :markdown
-    The Parrot Minidrone is very inexpensive quadcopter that is controlled using Bluetooth LE.
+    The Parrot Minidrones are very inexpensive drones that are controlled using Bluetooth LE aka Bluetooth 4.0.
 
+    Models that are known to work with this package include:
+
+    	- Parrot Rolling Spider
+    	- Parrot Airborne Cargo Mars
+    	- Parrot Airborne Cargo Travis
+
+    Models that should work now, but have not been tested by us:
+
+    	- Parrot Airborne Night Swat
+    	- Parrot Airborne Night Maclane
+    	- Parrot Airborne Night Blaze
+    	- Parrot HYDROFOIL Orak
+    	- Parrot HYDROFOIL NewZ
+
+    Models that will require additional work for compatibility:
+
+    	- Parrot Swing
+    	- Parrot Mambo
 
 
   = current_page.data.api_reference
@@ -32,24 +50,30 @@
         	drone := minidrone.NewDriver(bleAdaptor)
         
         	work := func() {
-        		drone.On(drone.Event("battery"), func(data interface{}) {
+        		drone.On(minidrone.Battery, func(data interface{}) {
         			fmt.Printf("battery: %d\n", data)
         		})
         
-        		drone.On(drone.Event("status"), func(data interface{}) {
-        			fmt.Printf("status: %d\n", data)
+        		drone.On(minidrone.FlightStatus, func(data interface{}) {
+        			fmt.Printf("flight status: %d\n", data)
         		})
         
-        		drone.On(drone.Event("flying"), func(data interface{}) {
-        			fmt.Println("flying!")
+        		drone.On(minidrone.Takeoff, func(data interface{}) {
+        			fmt.Println("taking off...")
+        		})
+        
+        		drone.On(minidrone.Hovering, func(data interface{}) {
+        			fmt.Println("hovering!")
         			gobot.After(5*time.Second, func() {
-        				fmt.Println("landing...")
-        				drone.Land()
         				drone.Land()
         			})
         		})
         
-        		drone.On(drone.Event("landed"), func(data interface{}) {
+        		drone.On(minidrone.Landing, func(data interface{}) {
+        			fmt.Println("landing...")
+        		})
+        
+        		drone.On(minidrone.Landed, func(data interface{}) {
         			fmt.Println("landed.")
         		})
         
@@ -69,7 +93,7 @@
 
     ## How to Connect
 
-    The Parrot Minidrone is a Bluetooth LE device.
+    The Parrot Minidrones are Bluetooth LE devices.
 
     You need to know the BLE ID of the Minidrone you want to connect to. The Gobot BLE client adaptor also lets you connect by friendly name, aka "RS_1234".
 
@@ -90,7 +114,7 @@
     For example:
 
         go build examples/minidrone.go
-        sudo ./bb8 RS_1234
+        sudo ./minidrone RS_1234
 
     ### Windows
 

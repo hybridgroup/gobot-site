@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - minidrone"
-page_title: "Example: minidrone"
+title: "Gobot Example - ble_generic_access"
+page_title: "Example: ble_generic_access"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -14,29 +14,25 @@ active_menu_docs: true
         package main
 
         import (
+        	"fmt"
         	"os"
-        	"time"
 
         	"gobot.io/x/gobot"
         	"gobot.io/x/gobot/platforms/ble"
-        	"gobot.io/x/gobot/platforms/parrot/minidrone"
         )
 
         func main() {
         	bleAdaptor := ble.NewClientAdaptor(os.Args[1])
-        	drone := minidrone.NewDriver(bleAdaptor)
+        	access := ble.NewGenericAccessDriver(bleAdaptor)
 
         	work := func() {
-        		drone.TakeOff()
-
-        		gobot.After(5*time.Second, func() {
-        			drone.Land()
-        		})
+        		fmt.Println("Device name:", access.GetDeviceName())
+        		fmt.Println("Appearance:", access.GetAppearance())
         	}
 
-        	robot := gobot.NewRobot("minidrone",
+        	robot := gobot.NewRobot("bleBot",
         		[]gobot.Connection{bleAdaptor},
-        		[]gobot.Device{drone},
+        		[]gobot.Device{access},
         		work,
         	)
 

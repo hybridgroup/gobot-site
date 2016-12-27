@@ -70,7 +70,7 @@
       "HMC6352 Compass": "/documentation/drivers/hmc6352-compass",
       "LIDAR-Lite": "/documentation/drivers/lidar-lite",
       "MCP23017": "/documentation/drivers/mcp23017",
-      "MMA7660": "/documentation/drivers/mma7660",      
+      "MMA7660": "/documentation/drivers/mma7660",
       "MPL115A2": "/documentation/drivers/mpl115a2",
       "MPU6050": "/documentation/drivers/mpu6050",
       "Wiichuck": "/documentation/drivers/wiimote-nunchuk"
@@ -78,7 +78,8 @@
 
     "Bluetooth LE": {
       "Battery": "/documentation/drivers/ble-battery",
-      "Device Information": "/documentation/drivers/ble-device-information"
+      "Device Information": "/documentation/drivers/ble-device-information",
+      "Generic Access": "/documentation/drivers/ble-generic-access"
     },
 
     "Ardrone - Flight": "/documentation/drivers/ardrone-flight",
