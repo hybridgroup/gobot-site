@@ -4,7 +4,7 @@
 
     - if nested # specific GPIO/I2C drivers
       - value = value[name]
-      .compatability-link
+      .Compatibility-link
         %a{href:"/documentation/drivers/#{value}", title: name}
           %p.title=name
           %img{src: "/images/devices/#{value}.jpg", style: "width: 100%"}
@@ -15,13 +15,13 @@
         %h2= "#{name} Drivers"
         %section
           - data.drivers[name].each do |name, slug|
-            .compatability-link
+            .Compatibility-link
               %a{href:"/documentation/drivers/#{slug}", title: name}
                 %p.title=name
                 %img{src: "/images/devices/#{slug}.jpg", style: "width: 100%"}
 
       - else
-        .compatability-link
+        .Compatibility-link
           %a{href:"/documentation/drivers/#{value}", title: key}
             %p.title=name
             %img{src: "/images/devices/#{value}.jpg", style: "width: 100%"}

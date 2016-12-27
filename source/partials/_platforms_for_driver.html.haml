@@ -4,7 +4,7 @@
 
 - data.platforms.each do |name, obj|
   - if obj.drivers.any? { |d| names.include?(d) }
-    .compatability-link
+    .Compatibility-link
       %a{:href => "/documentation/platforms/#{obj.slug}"}
         %p.title= name
         %img{src: "/images/devices/#{obj.slug}.jpg", style: "width: 90%"}
