@@ -29,6 +29,7 @@
   "I2C": {
     "Adafruit Motor HAT": "adafruit-motor-hat",
     "BlinkM": "blinkm",
+    "BMP180": "bmp180",
     "Grove LCD w/RGB": "grove-lcd",
     "Grove Accelerometer": "grove-accelerometer",
     "HMC6352 Compass": "hmc6352-compass",

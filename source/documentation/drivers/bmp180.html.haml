@@ -1,0 +1,43 @@
+---
+title: Gobot - BMP180 Barometer/Thermometer Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: BMP180
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/bmp180.jpg", class: "display"
+
+.info-intro
+  %p Allows user to read barometric pressure and temperature via i2c interface
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/i2c#BMP180Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the package with: `go get gobot.io/x/gobot`
+  :markdown
+        :::go
+        // code here
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a BMP180 barometric pressure and temperature sensor.
+  :markdown
+        :::go
+        // code here
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "BMP180" }
