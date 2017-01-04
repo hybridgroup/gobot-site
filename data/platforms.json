@@ -41,6 +41,12 @@
     "drivers": ["GPIO", "AIO", "I2C"]
   },
 
+  "ESP8266": {
+    "slug": "esp8266",
+    "url": "http://espressif.com/products/hardware/esp8266ex/overview/",
+    "drivers": ["GPIO", "AIO", "I2C"]
+  },
+
   "Intel Edison": {
     "slug": "edison",
     "url": "http://www.intel.com/content/www/us/en/do-it-yourself/edison.html",
