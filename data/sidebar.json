@@ -69,11 +69,13 @@
       "Grove LCD": "/documentation/drivers/grove-lcd",
       "Grove Accelerometer": "/documentation/drivers/grove-accelerometer",
       "HMC6352 Compass": "/documentation/drivers/hmc6352-compass",
+      "L3GD20H": "/documentation/drivers/l3gd20h",
       "LIDAR-Lite": "/documentation/drivers/lidar-lite",
       "MCP23017": "/documentation/drivers/mcp23017",
       "MMA7660": "/documentation/drivers/mma7660",
       "MPL115A2": "/documentation/drivers/mpl115a2",
       "MPU6050": "/documentation/drivers/mpu6050",
+      "SHT3X": "/documentation/drivers/sht3x",
       "Wiichuck": "/documentation/drivers/wiimote-nunchuk"
     },
 

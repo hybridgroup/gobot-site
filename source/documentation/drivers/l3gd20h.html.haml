@@ -1,0 +1,43 @@
+---
+title: Gobot - L3GD20H 3-Axis Gyroscope Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: L3GD20H
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/l3gd20h.jpg", class: "display"
+
+.info-intro
+  %p Allows user to read 3-axis gyroscope via i2c interface
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/i2c#L3GD20HDriver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the package with: `go get gobot.io/x/gobot`
+  :markdown
+        :::go
+        // code here
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a L3GD20H 3-axis gyroscope.
+  :markdown
+        :::go
+        // code here
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "L3GD20H" }

@@ -33,11 +33,13 @@
     "Grove LCD w/RGB": "grove-lcd",
     "Grove Accelerometer": "grove-accelerometer",
     "HMC6352 Compass": "hmc6352-compass",
+    "L3GD20H": "l3gd20h",
     "LIDAR-Lite": "lidar-lite",
     "MCP23017": "mcp23017",
     "MMA7660": "mma7660",
     "MPL115A2": "mpl115a2",
     "MPU6050": "mpu6050",
+    "SHT3X": "sht3x",
     "Wiimote Nunchuk": "wiimote-nunchuk"
   },
 
