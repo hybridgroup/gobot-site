@@ -1,0 +1,76 @@
+---
+page_title_show: true
+title: Gobot - The 1.1 Release
+page_title: Blog
+date: 2017-01-09
+tags: releases
+author: Ron Evans
+---
+
+:markdown
+
+  It was just a few weeks ago since the release of version 1.0 of Gobot.
+
+  Thanks to the enthusiasm and work of our community, we've just had our 1.1 release already.
+
+  We are now up to 1500 commits from 56 contributors, and we're going strong.
+
+  Here are a few highlights from this new release:
+
+  ## ESP8266 and wireless Arduino
+
+  We now offer support for the ESP8266 wireless microcontroller.
+
+  Check out a short code sample:
+
+      :::go
+      package main
+
+      import (
+        "time"
+
+        "gobot.io/x/gobot"
+        "gobot.io/x/gobot/drivers/gpio"
+        "gobot.io/x/gobot/platforms/firmata"
+      )
+
+      func main() {
+        firmataAdaptor := firmata.NewTCPAdaptor("192.168.1.27:3030")
+        led := gpio.NewLedDriver(firmataAdaptor, "13")
+
+        work := func() {
+          gobot.Every(1*time.Second, func() {
+            led.Toggle()
+          })
+        }
+
+        robot := gobot.NewRobot("bot",
+          []gobot.Connection{firmataAdaptor},
+          []gobot.Device{led},
+          work,
+        )
+
+        robot.Start()
+      }
+
+  You can also use the new `firmata.TCPAdaptor()` with a WiFi-connected Arduino.
+
+  ## New I2C Drivers
+
+  Thanks to contributors [@elopio](https://github.com/elopio) and [@schmidtw](https://github.com/schmidtw) we now have support for the following new I2C devices:
+
+  * BMP180 barometer/temperature sensor
+  * L3GD20H gyroscope
+  * SHT3X temperature/humidity sensor
+
+  ## Parrot Bebop
+
+  We have several improvements and bugfixes for the Parrot Bebop and Bebop 2, including support for the latest firmware and RTP video streaming.
+
+  ## Full Changelog
+
+  There is lots more in this new release, check out the release info at [https://github.com/hybridgroup/gobot/releases/tag/v1.1.0](https://github.com/hybridgroup/gobot/releases/tag/v1.1.0).
+
+  ## Keep Up To Date
+
+  Keep up to date with the project by following us on Twitter at [@gobotio](http://twitter.com/gobotio). Thank you!
