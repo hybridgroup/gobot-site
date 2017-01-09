@@ -80,7 +80,29 @@
         </div>
       </header>
       <div class="info-intro">
-        <p>The Parrot Minidrone is very inexpensive quadcopter that is controlled using Bluetooth LE.</p>
+        <p>The Parrot Minidrones are very inexpensive drones that are controlled using Bluetooth LE aka Bluetooth 4.0.</p>
+        
+        <p>Models that are known to work with this package include:</p>
+        
+        <pre class="CodeRay">- Parrot Rolling Spider
+- Parrot Airborne Cargo Mars
+- Parrot Airborne Cargo Travis
+</pre>
+        
+        <p>Models that should work now, but have not been tested by us:</p>
+        
+        <pre class="CodeRay">- Parrot Airborne Night Swat
+- Parrot Airborne Night Maclane
+- Parrot Airborne Night Blaze
+- Parrot HYDROFOIL Orak
+- Parrot HYDROFOIL NewZ
+</pre>
+        
+        <p>Models that will require additional work for compatibility:</p>
+        
+        <pre class="CodeRay">- Parrot Swing
+- Parrot Mambo
+</pre>
         
       </div>
       <div class="clear"></div>
@@ -107,24 +129,30 @@
         drone := minidrone.NewDriver(bleAdaptor)
 
         work := <span class="keyword">func</span>() {
-                drone.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">battery</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                drone.On(minidrone.Battery, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">battery: %d</span><span class="char">\n</span><span class="delimiter">"</span></span>, data)
                 })
 
-                drone.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">status</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">status: %d</span><span class="char">\n</span><span class="delimiter">"</span></span>, data)
+                drone.On(minidrone.FlightStatus, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">flight status: %d</span><span class="char">\n</span><span class="delimiter">"</span></span>, data)
                 })
 
-                drone.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">flying!</span><span class="delimiter">"</span></span>)
+                drone.On(minidrone.Takeoff, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">taking off...</span><span class="delimiter">"</span></span>)
+                })
+
+                drone.On(minidrone.Hovering, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">hovering!</span><span class="delimiter">"</span></span>)
                         gobot.After(<span class="integer">5</span>*time.Second, <span class="keyword">func</span>() {
-                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">landing...</span><span class="delimiter">"</span></span>)
-                                drone.Land()
                                 drone.Land()
                         })
                 })
 
-                drone.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">landed</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                drone.On(minidrone.Landing, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">landing...</span><span class="delimiter">"</span></span>)
+                })
+
+                drone.On(minidrone.Landed, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">landed.</span><span class="delimiter">"</span></span>)
                 })
 
@@ -144,7 +172,7 @@
         
         <h2 id="how-to-connect">How to Connect</h2>
         
-        <p>The Parrot Minidrone is a Bluetooth LE device.</p>
+        <p>The Parrot Minidrones are Bluetooth LE devices.</p>
         
         <p>You need to know the BLE ID of the Minidrone you want to connect to. The Gobot BLE client adaptor also lets you connect by friendly name, aka "RS_1234".</p>
         
@@ -166,7 +194,7 @@
         <p>For example:</p>
         
         <pre class="CodeRay">go build examples/minidrone.go
-sudo ./bb8 RS_1234
+sudo ./minidrone RS_1234
 </pre>
         
         <h3 id="windows">Windows</h3>

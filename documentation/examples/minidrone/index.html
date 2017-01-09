@@ -114,6 +114,7 @@
                   <a href="/documentation/platforms/ble">Bluetooth LE</a>
                   <a href="/documentation/platforms/chip">C.H.I.P.</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/esp8266">ESP8266</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joule">Intel Joule</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -171,14 +172,17 @@
                     <div class="links">
                       <a href="/documentation/drivers/adafruit-motor-hat">Adafruit Motor HAT</a>
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BMP180</a>
                       <a href="/documentation/drivers/grove-lcd">Grove LCD</a>
                       <a href="/documentation/drivers/grove-accelerometer">Grove Accelerometer</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/l3gd20h">L3GD20H</a>
                       <a href="/documentation/drivers/lidar-lite">LIDAR-Lite</a>
                       <a href="/documentation/drivers/mcp23017">MCP23017</a>
                       <a href="/documentation/drivers/mma7660">MMA7660</a>
                       <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
                       <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      <a href="/documentation/drivers/sht3x">SHT3X</a>
                       <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
                     </div>
                   </div>
@@ -187,6 +191,7 @@
                     <div class="links">
                       <a href="/documentation/drivers/ble-battery">Battery</a>
                       <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
                     </div>
                   </div>
                   <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
@@ -232,7 +237,6 @@
               <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">os</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
@@ -246,29 +250,11 @@
         drone := minidrone.NewDriver(bleAdaptor)
 
         work := <span class="keyword">func</span>() {
-                drone.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">battery</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">battery: %d</span><span class="char">\n</span><span class="delimiter">"</span></span>, data)
-                })
-
-                drone.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">status</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">status: %d</span><span class="char">\n</span><span class="delimiter">"</span></span>, data)
-                })
-
-                drone.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">flying</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">flying!</span><span class="delimiter">"</span></span>)
-                        gobot.After(<span class="integer">5</span>*time.Second, <span class="keyword">func</span>() {
-                                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">landing...</span><span class="delimiter">"</span></span>)
-                                drone.Land()
-                                drone.Land()
-                        })
-                })
-
-                drone.On(drone.Event(<span class="string"><span class="delimiter">"</span><span class="content">landed</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">landed.</span><span class="delimiter">"</span></span>)
-                })
-
-                time.Sleep(<span class="integer">1000</span> * time.Millisecond)
                 drone.TakeOff()
+
+                gobot.After(<span class="integer">5</span>*time.Second, <span class="keyword">func</span>() {
+                        drone.Land()
+                })
         }
 
         robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">minidrone</span><span class="delimiter">"</span></span>,

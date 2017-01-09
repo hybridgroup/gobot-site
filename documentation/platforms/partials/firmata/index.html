@@ -84,7 +84,9 @@
         
         <p>This package provides the adaptor for microcontrollers such as Arduino that support the <a href="http://firmata.org/wiki/Main_Page">Firmata</a> protocol</p>
         
-        <p>For more info about the arduino platform click <a href="http://arduino.cc/">here</a>.</p>
+        <p>You can connect to the microcontroller using either a serial connection, or a TCP connection to a WiFi-connected microcontroller such as the ESP8266.</p>
+        
+        <p>For more info about the Arduino platform, go to <a href="http://arduino.cc/">http://arduino.cc/</a>.</p>
         
       </div>
       <div class="clear"></div>
@@ -94,7 +96,13 @@
         <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/firmata
 </pre>
         
+        <p>You must install Firmata on your microcontroller before you can connect to it using Gobot. You can do this in many cases using Gort (<a href="http://gort.io">http://gort.io</a>).</p>
+        
+        <p>In order to use a TCP connection with a WiFi-enbaled microcontroller, you must install WifiFirmata on the microcontroller. You can use the Arduino IDE to do this.</p>
+        
         <h2 id="how-to-use">How to Use</h2>
+        
+        <p>With a serial connection:</p>
         
         <pre class="CodeRay"><span class="keyword">package</span> main
 
@@ -126,6 +134,40 @@
 }
 </pre>
         
+        <p>With a TCP connection, use the <code>NewTCPAdaptor</code>:</p>
+        
+        <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        firmataAdaptor := firmata.NewTCPAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">192.168.0.66:3030</span><span class="delimiter">"</span></span>)
+        led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">2</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+                        led.Toggle()
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{firmataAdaptor},
+                []gobot.Device{led},
+                work,
+        )
+
+        robot.Start()
+}
+</pre>
+        
+        <p><strong>Important</strong> note that analog pins A4 and A5 are normally used by the Firmata I2C interface, so you will not be able to use them as analog inputs without changing the Firmata sketch.</p>
+        
         <h2 id="how-to-connect">How to Connect</h2>
         
         <h3 id="upload-the-firmata-firmware-to-the-arduino">Upload the Firmata Firmware to the Arduino</h3>
@@ -154,6 +196,8 @@
 </pre>
         
         <p>Now you are ready to connect and communicate with the Arduino using serial port connection</p>
+        
+        <p>Note that Gobot works best with the <code>tty.</code> version of the serial port as shown above, not the <code>cu.</code> version.</p>
         
         <h3 id="ubuntu">Ubuntu</h3>
         
@@ -217,12 +261,20 @@
         with your arduino.</p>
         
         <h2 id="hardware-support">Hardware Support</h2>
-        <p>The following firmata devices have been tested and are currently supported:</p>
+        <p>The following Firmata devices have been tested and are known to work:</p>
         
         <ul>
-          <li><a href="http://arduino.cc/en/Main/arduinoBoardUno">Arduino uno r3</a></li>
+          <li>
+<a href="http://arduino.cc/en/Main/arduinoBoardUno">Arduino Uno R3</a>
+            <ul>
+              <li><a href="https://www.arduino.cc/en/Main/ArduinoBoard101">Arduino/Genuino 101</a></li>
+            </ul>
+          </li>
           <li><a href="http://www.pjrc.com/store/teensy3.html">Teensy 3.0</a></li>
         </ul>
+        
+        <p>The following WiFi devices have been tested and are known to work:
+        	- <a href="http://nodemcu.com/index_en.html">NodeMCU 1.0</a></p>
         
         <p>More devices are coming soon…</p>
       </section>

@@ -115,6 +115,7 @@
                   <a href="/documentation/platforms/ble">Bluetooth LE</a>
                   <a href="/documentation/platforms/chip">C.H.I.P.</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/esp8266">ESP8266</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joule">Intel Joule</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -172,14 +173,17 @@
                     <div class="links">
                       <a href="/documentation/drivers/adafruit-motor-hat">Adafruit Motor HAT</a>
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BMP180</a>
                       <a href="/documentation/drivers/grove-lcd">Grove LCD</a>
                       <a href="/documentation/drivers/grove-accelerometer">Grove Accelerometer</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/l3gd20h">L3GD20H</a>
                       <a href="/documentation/drivers/lidar-lite">LIDAR-Lite</a>
                       <a href="/documentation/drivers/mcp23017">MCP23017</a>
                       <a href="/documentation/drivers/mma7660">MMA7660</a>
                       <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
                       <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      <a href="/documentation/drivers/sht3x">SHT3X</a>
                       <a href="/documentation/drivers/wiimote-nunchuk">Wiichuck</a>
                     </div>
                   </div>
@@ -188,6 +192,7 @@
                     <div class="links">
                       <a href="/documentation/drivers/ble-battery">Battery</a>
                       <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
                     </div>
                   </div>
                   <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
@@ -250,11 +255,19 @@
               <img class="display" src="/images/devices/ble.jpg">
             </section>
             <div class="info-intro">
-              <p>The Gobot BLE adaptor makes it easy to interact with Bluetooth LE using Go.</p>
+              <p>The Gobot BLE adaptor makes it easy to interact with Bluetooth LE aka Bluetooth 4.0 using Go.</p>
               
               <p>It is written using the <a href="https://github.com/currantlabs/gatt">gatt</a> package fork by Currant Labs of the package from <a href="https://github.com/paypal">Paypal</a>. Thank you!</p>
               
-              <p>Learn more about Bluetooth LE <a href="http://en.wikipedia.org/wiki/Bluetooth_low_energy">here</a>.</p>
+              <p>Learn more about Bluetooth LE at http://en.wikipedia.org/wiki/Bluetooth_low_energy</p>
+              
+              <p>This package also includes drivers for several well-known BLE Services:</p>
+              
+              <ul>
+                <li>Battery Service</li>
+                <li>Device Information Service</li>
+                <li>Generic Access Service</li>
+              </ul>
               <a href="http://godoc.org/gobot.io/x/gobot/platforms/ble" target="blank" class="api-link">API Reference</a>
             </div>
             <div class="clear"></div>
@@ -344,16 +357,22 @@ sudo ./minidrone AA:BB:CC:DD:EE
               </p>
               <div class="hardware">
                 <div class="devices">
-                  <div class="compatability-link">
+                  <div class="Compatibility-link">
                     <a href="/documentation/drivers/ble-battery" title="Battery Service">
                       <p class="title">Battery Service</p>
                       <img src="/images/devices/ble-battery.jpg" style="width: 100%">
                     </a>
                   </div>
-                  <div class="compatability-link">
+                  <div class="Compatibility-link">
                     <a href="/documentation/drivers/ble-device-information" title="Device Information Service">
                       <p class="title">Device Information Service</p>
                       <img src="/images/devices/ble-device-information.jpg" style="width: 100%">
+                    </a>
+                  </div>
+                  <div class="Compatibility-link">
+                    <a href="/documentation/drivers/ble-generic-access" title="Generic Access Service">
+                      <p class="title">Generic Access Service</p>
+                      <img src="/images/devices/ble-generic-access.jpg" style="width: 100%">
                     </a>
                   </div>
                 </div>

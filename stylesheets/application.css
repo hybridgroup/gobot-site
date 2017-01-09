@@ -1019,16 +1019,16 @@ ol.CodeRay li {
       margin: 0 auto; } }
 
 /* line 1, /home/ron/Development/gobot/gobot-site/source/stylesheets/support/_list-style.scss */
-.documentation .compatability-link a, .platform-list .platform a {
+.documentation .Compatibility-link a, .platform-list .platform a {
   color: #514b47;
   font-size: 1.125em;
   display: block;
   width: 100%; }
   /* line 7, /home/ron/Development/gobot/gobot-site/source/stylesheets/support/_list-style.scss */
-  .documentation .compatability-link a:hover, .platform-list .platform a:hover {
+  .documentation .Compatibility-link a:hover, .platform-list .platform a:hover {
     color: #77b547; }
     /* line 9, /home/ron/Development/gobot/gobot-site/source/stylesheets/support/_list-style.scss */
-    .documentation .compatability-link a:hover img, .platform-list .platform a:hover img {
+    .documentation .Compatibility-link a:hover img, .platform-list .platform a:hover img {
       opacity: .8; }
 
 /* line 1, /home/ron/Development/gobot/gobot-site/source/stylesheets/views/shared/_body.scss */
@@ -1833,25 +1833,25 @@ a:hover, a:focus {
         .documentation .subNavfixed .documentation-nav a:last-child {
           display: initial; }
   /* line 155, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-single.scss */
-  .documentation .compatability-link {
+  .documentation .Compatibility-link {
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 31.76157%;
     margin-right: 0; }
     /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
-    .documentation .compatability-link:last-child {
+    .documentation .Compatibility-link:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
       /* line 155, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-single.scss */
-      .documentation .compatability-link {
+      .documentation .Compatibility-link {
         float: left;
         display: block;
         margin-right: 2.35765%;
         width: 48.82117%;
         margin-right: 0; }
         /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
-        .documentation .compatability-link:last-child {
+        .documentation .Compatibility-link:last-child {
           margin-right: 0; } }
 
 /* line 1, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-title.scss */
