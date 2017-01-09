@@ -94,7 +94,34 @@
         
         <h2 id="how-to-use">How to Use</h2>
         
-        <pre class="CodeRay"><span class="comment">// code here...</span>
+        <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        firmataAdaptor := firmata.NewTCPAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">192.168.1.26:3030</span><span class="delimiter">"</span></span>)
+        led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">2</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+                        led.Toggle()
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{firmataAdaptor},
+                []gobot.Device{led},
+                work,
+        )
+
+        robot.Start()
+}
 </pre>
         
         <h2 id="how-to-connect">How to Connect</h2>
@@ -103,17 +130,54 @@
         
         <p>This section assumes you're using a ESP8266 or other compatible board. If you already have the Firmata sketch installed on your ESP8266, you can skip straight to the examples.</p>
         
-        <h3 id="os-x">OS X</h3>
+        <h4 id="install-esp8266-arduino-addon">Install ESP8266 Arduino Addon</h4>
         
-        <p>Instructions here…</p>
+        <p>Open up the Arduino IDE, then go to the Preferences (File &gt; Preferences) menu. Add the following URL to the "Additional Board Manager URLs" field:</p>
         
-        <h3 id="ubuntu">Ubuntu</h3>
+        <pre class="CodeRay">http://arduino.esp8266.com/stable/package_esp8266com_index.json
+</pre>
         
-        <p>Instructions here…</p>
+        <p>Save the new board manager location by clicking "OK".</p>
         
-        <h3 id="windows">Windows</h3>
+        <p>Now go to the Board Manager choosing "Tools &gt; Board &gt; Boards Manager".</p>
         
-        <p>Instructions here…</p>
+        <p>Search for "esp8266", then click on the "Install" button.</p>
+        
+        <h4 id="download-wifi-enabled-firmata">Download Wifi Enabled Firmata</h4>
+        
+        <p>You can obtain the WiFi-enabled version of Firmata from the <a href="http://firmatabuilder.com/">http://firmatabuilder.com/</a> web site.</p>
+        
+        <p>Under "Configure Connection" choose "WiFi" as the "Connection Type".</p>
+        
+        <p>Choose "ESP8266" from "Wi-Fi board or shield".</p>
+        
+        <p>Enter your network's SSID under "SSID"</p>
+        
+        <p>Make sure you choose all of the needed "Core Features", which are normally:</p>
+        
+        <ul>
+          <li>DigitalInputFirmata</li>
+          <li>DigitalOutputFirmata</li>
+          <li>AnalogInputFirmata</li>
+          <li>AnalogOutputFirmata</li>
+          <li>I2CFirmata</li>
+        </ul>
+        
+        <p>Now you can "Build and Download" your custom Firmata.</p>
+        
+        <h4 id="flash-the-esp8266-with-firmata">Flash the ESP8266 With Firmata</h4>
+        
+        <p>Once the ESP8266 board addon is installed, and you have downloaded your custom Firmata sketch, you are ready to flash your ESP8266.</p>
+        
+        <p>Open the custom Firmata you downloaded from FirmataBuilder with the Arduino IDE.</p>
+        
+        <p>Customize the sketch with the WPA passphrase for your network settings.</p>
+        
+        <p>Make sure your ESP8266 is plugged into your USB port.</p>
+        
+        <p>Choose your ESP8266 model from the "Tools &gt; Boards" menu.</p>
+        
+        <p>Click on the "Upload" button. Your ESP8266 should now be ready.</p>
       </section>
     </div>
     <footer class="app-footer">
