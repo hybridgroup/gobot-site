@@ -6,8 +6,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="description">
-    <meta content="Adrian Zankich" name="author">
-    <title>Gobot 0.7 - The Big Release</title>
+    <meta content="Ron Evans" name="author">
+    <title>Gobot - The 1.1 Release</title>
     <!-- /%link{href: "/stylesheets/style.css", rel: "stylesheet"} -->
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -92,111 +92,93 @@
               <div class="dates">
                 <div class="date-top">
                   <div class="month">
-                    Nov
+                    Jan
                   </div>
                   <div class="day">
-                    11
+                    09
                   </div>
                 </div>
                 <div class="date-bottom">
                   <div class="year">
-                    2014
+                    2017
                   </div>
                 </div>
               </div>
               <h3 class="article-title">
-                <a href="/blog/2014/11/11/gobot-0.7/">Gobot 0.7 - The Big Release</a>
+                <a href="/blog/2017/01/09/gobot-1.1/">Gobot - The 1.1 Release</a>
                 <br>
               </h3>
               <div class="author">
-                by Adrian Zankich
+                by Ron Evans
               </div>
             </header>
-            <p>We've been quietly (and not so quietly) working these last couple of months, and we've just released Gobot 0.7! This is a very big release, that adds a lot of new capabilities, adds a lot of test coverage, refactors code, and adds support for a whole bunch of new hardware platforms too.</p>
+            <p>It was just a few weeks ago since the release of version 1.0 of Gobot.</p>
             
-            <p>Here's a overview of the changes, but if you want to see more check out the compare view on <a href="https://github.com/hybridgroup/gobot/compare/0.6.3...0.7">GitHub</a>.</p>
+            <p>Thanks to the enthusiasm and work of our community, we've just had our 1.1 release already.</p>
             
-            <h2 id="changelog">Changelog</h2>
+            <p>We are now up to 1500 commits from 56 contributors, and we're going strong.</p>
+            
+            <p>Here are a few highlights from this new release:</p>
+            
+            <h2 id="esp8266-and-wireless-arduino">ESP8266 and wireless Arduino</h2>
+            
+            <p>We now offer support for the ESP8266 wireless microcontroller.</p>
+            
+            <p>Check out a short code sample:</p>
+            
+            <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+  firmataAdaptor := firmata.NewTCPAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">192.168.1.27:3030</span><span class="delimiter">"</span></span>)
+  led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
+
+  work := <span class="keyword">func</span>() {
+    gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+      led.Toggle()
+    })
+  }
+
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{firmataAdaptor},
+    []gobot.Device{led},
+    work,
+  )
+
+  robot.Start()
+}
+</pre>
+            
+            <p>You can also use the new <code>firmata.TCPAdaptor()</code> with a WiFi-connected Arduino.</p>
+            
+            <h2 id="new-i2c-drivers">New I2C Drivers</h2>
+            
+            <p>Thanks to contributors <a href="https://github.com/elopio">@elopio</a> and <a href="https://github.com/schmidtw">@schmidtw</a> we now have support for the following new I2C devices:</p>
             
             <ul>
-              <li><strong>Dramatically increased test coverage and documentation</strong></li>
-              <li>
-<strong>api</strong>
-                <ul>
-                  <li>Conform to the <a href="https://github.com/hybridgroup/cppp-io">cppp.io</a> spec</li>
-                  <li>Add support for basic middleware</li>
-                  <li>Add support for custom routes</li>
-                  <li>Add SSE support</li>
-                </ul>
-              </li>
-              <li>
-<strong>ardrone</strong>
-                <ul>
-                  <li>Add optional parameter to specify the drones network address</li>
-                </ul>
-              </li>
-              <li>
-<strong>core</strong>
-                <ul>
-                  <li>Add <strong>Once</strong> Event function</li>
-                  <li>Rename <strong>Expect</strong> to <strong>Assert</strong> and add <strong>Refute</strong> test helper function</li>
-                </ul>
-              </li>
-              <li>
-<strong>i2c</strong>
-                <ul>
-                  <li>Add support for MPL115A2</li>
-                  <li>Add support for MPU6050</li>
-                </ul>
-              </li>
-              <li>
-<strong>mavlink</strong>
-                <ul>
-                  <li>Add support for <strong>common</strong> mavlink messages</li>
-                </ul>
-              </li>
-              <li>
-<strong>mqtt</strong>
-                <ul>
-                  <li>Add support for mqtt</li>
-                </ul>
-              </li>
-              <li>
-<strong>raspi</strong>
-                <ul>
-                  <li>Add support for the Raspberry Pi</li>
-                </ul>
-              </li>
-              <li>
-<strong>sphero</strong>
-                <ul>
-                  <li>Enable stop on sphero disconnect</li>
-                  <li>Add <strong>Collision</strong> data struct  </li>
-                </ul>
-              </li>
-              <li>
-<strong>sysfs</strong>
-                <ul>
-                  <li>Add generic linux filesystem gpio implementation</li>
-                </ul>
-              </li>
+              <li>BMP180 barometer/temperature sensor</li>
+              <li>L3GD20H gyroscope</li>
+              <li>SHT3X temperature/humidity sensor</li>
             </ul>
             
-            <h2 id="contributors">Contributors</h2>
+            <h2 id="parrot-bebop">Parrot Bebop</h2>
             
-            <p>A very special thanks to <a href="https://github.com/strongh">strongh</a>, <a href="https://github.com/tangsoft">tangsoft</a>, <a href="https://github.com/derailed">derailed</a>, <a href="https://github.com/trevrosen">trevrosen</a>, <a href="https://github.com/nathany">nathany</a>, <a href="https://github.com/nzmichaelh">zmichaelh</a>, and everyone else who made this release possible. </p>
+            <p>We have several improvements and bugfixes for the Parrot Bebop and Bebop 2, including support for the latest firmware and RTP video streaming.</p>
             
-            <h2 id="documentation">Documentation</h2>
+            <h2 id="full-changelog">Full Changelog</h2>
             
-            <p>We are now generating proper godoc docs from our code. In addition, we're constantly updating the Gobot docs site with additional info to keep them up-to-date. You can find the latest info on the <a href="http://gobot.io/documentation/">docs page</a>.</p>
+            <p>There is lots more in this new release, check out the release info at <a href="https://github.com/hybridgroup/gobot/releases/tag/v1.1.0">https://github.com/hybridgroup/gobot/releases/tag/v1.1.0</a>.</p>
             
-            <h2 id="issues">Issues</h2>
+            <h2 id="keep-up-to-date">Keep Up To Date</h2>
             
-            <p>If you find any issues with Gobot, please let us know! We try to be on IRC (#gobotio on freenode) as much as possible, but if we're not around leave us a <a href="https://github.com/hybridgroup/gobot/issues">GitHub issue</a> and we'll get back to you as soon as possible.</p>
-            
-            <h2 id="stay-in-touch">Stay In Touch</h2>
-            
-            <p>Please follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a> for the latest updates, as we continue to work on this amazing platform.</p>
+            <p>Keep up to date with the project by following us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a>. Thank you!</p>
             <div class="blog-footer">
               <h2>Contact Us</h2>
               <ul>

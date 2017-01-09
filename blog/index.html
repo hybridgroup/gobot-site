@@ -93,6 +93,105 @@
                 <div class="dates">
                   <div class="date-top">
                     <div class="month">
+                      Jan
+                    </div>
+                    <div class="day">
+                      09
+                    </div>
+                  </div>
+                  <div class="date-bottom">
+                    <div class="year">
+                      2017
+                    </div>
+                  </div>
+                </div>
+                <h3 class="article-title">
+                  <a href="/blog/2017/01/09/gobot-1.1/">Gobot - The 1.1 Release</a>
+                  <br>
+                </h3>
+                <div class="author">
+                  by Ron Evans
+                </div>
+              </header>
+              <p>It was just a few weeks ago since the release of version 1.0 of Gobot.</p>
+              
+              <p>Thanks to the enthusiasm and work of our community, we've just had our 1.1 release already.</p>
+              
+              <p>We are now up to 1500 commits from 56 contributors, and we're going strong.</p>
+              
+              <p>Here are a few highlights from this new release:</p>
+              
+              <h2 id="esp8266-and-wireless-arduino">ESP8266 and wireless Arduino</h2>
+              
+              <p>We now offer support for the ESP8266 wireless microcontroller.</p>
+              
+              <p>Check out a short code sample:</p>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+  firmataAdaptor := firmata.NewTCPAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">192.168.1.27:3030</span><span class="delimiter">"</span></span>)
+  led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
+
+  work := <span class="keyword">func</span>() {
+    gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+      led.Toggle()
+    })
+  }
+
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{firmataAdaptor},
+    []gobot.Device{led},
+    work,
+  )
+
+  robot.Start()
+}
+</pre>
+              
+              <p>You can also use the new <code>firmata.TCPAdaptor()</code> with a WiFi-connected Arduino.</p>
+              
+              <h2 id="new-i2c-drivers">New I2C Drivers</h2>
+              
+              <p>Thanks to contributors <a href="https://github.com/elopio">@elopio</a> and <a href="https://github.com/schmidtw">@schmidtw</a> we now have support for the following new I2C devices:</p>
+              
+              <ul>
+                <li>BMP180 barometer/temperature sensor</li>
+                <li>L3GD20H gyroscope</li>
+                <li>SHT3X temperature/humidity sensor</li>
+              </ul>
+              
+              <h2 id="parrot-bebop">Parrot Bebop</h2>
+              
+              <p>We have several improvements and bugfixes for the Parrot Bebop and Bebop 2, including support for the latest firmware and RTP video streaming.</p>
+              
+              <h2 id="full-changelog">Full Changelog</h2>
+              
+              <p>There is lots more in this new release, check out the release info at <a href="https://github.com/hybridgroup/gobot/releases/tag/v1.1.0">https://github.com/hybridgroup/gobot/releases/tag/v1.1.0</a>.</p>
+              
+              <h2 id="keep-up-to-date">Keep Up To Date</h2>
+              
+              <p>Keep up to date with the project by following us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a>. Thank you!</p>
+              <div class="tags">
+                <div class="img">
+                  <img src="/images/elements/tag.png">
+                </div>
+                <a href="/blog/tags/releases/">releases</a>
+              </div>
+            </div>
+            <div class="article">
+              <header class="header">
+                <div class="dates">
+                  <div class="date-top">
+                    <div class="month">
                       Dec
                     </div>
                     <div class="day">
@@ -1601,6 +1700,7 @@ $ GOOS=linux GOARCH=386 ./make.bash --no-clean
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2017/01/09/gobot-1.1/">Gobot - The 1.1 Release</a></li>
               <li><a href="/blog/2016/12/21/gobot-the-big-one-oh/">Gobot - The Big One Oh!</a></li>
               <li><a href="/blog/2016/02/17/gobot-this-one-goes-to-0.11/">Gobot - This One Goes To 0.11</a></li>
               <li><a href="/blog/2015/10/27/gobot-0.10-less-is-more/">Gobot 0.10 - Less Is More</a></li>
