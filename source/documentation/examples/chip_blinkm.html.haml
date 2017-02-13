@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - joule_blinkm"
-page_title: "Example: joule_blinkm"
+title: "Gobot Example - chip_blinkm"
+page_title: "Example: chip_blinkm"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -19,12 +19,12 @@ active_menu_docs: true
 
         	"gobot.io/x/gobot"
         	"gobot.io/x/gobot/drivers/i2c"
-        	"gobot.io/x/gobot/platforms/intel-iot/joule"
+        	"gobot.io/x/gobot/platforms/chip"
         )
 
         func main() {
-        	e := joule.NewAdaptor()
-        	blinkm := i2c.NewBlinkMDriver(e, i2c.WithBus(0), i2c.WithAddress(0x09))
+        	a := chip.NewAdaptor()
+        	blinkm := i2c.NewBlinkMDriver(a)
 
         	work := func() {
         		gobot.Every(1*time.Second, func() {
@@ -38,7 +38,7 @@ active_menu_docs: true
         	}
 
         	robot := gobot.NewRobot("blinkmBot",
-        		[]gobot.Connection{e},
+        		[]gobot.Connection{a},
         		[]gobot.Device{blinkm},
         		work,
         	)

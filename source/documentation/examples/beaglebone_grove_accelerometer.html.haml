@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - chip_mpu6050"
-page_title: "Example: chip_mpu6050"
+title: "Gobot Example - beaglebone_grove_accelerometer"
+page_title: "Example: beaglebone_grove_accelerometer"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -19,26 +19,27 @@ active_menu_docs: true
 
         	"gobot.io/x/gobot"
         	"gobot.io/x/gobot/drivers/i2c"
-        	"gobot.io/x/gobot/platforms/chip"
+        	"gobot.io/x/gobot/platforms/beaglebone"
         )
 
         func main() {
-        	board := chip.NewAdaptor()
-        	mpu6050 := i2c.NewMPU6050Driver(board)
+        	board := beaglebone.NewAdaptor()
+        	accel := i2c.NewGroveAccelerometerDriver(board)
 
         	work := func() {
-        		gobot.Every(100*time.Millisecond, func() {
-        			mpu6050.GetData()
-
-        			fmt.Println("Accelerometer", mpu6050.Accelerometer)
-        			fmt.Println("Gyroscope", mpu6050.Gyroscope)
-        			fmt.Println("Temperature", mpu6050.Temperature)
+        		gobot.Every(500*time.Millisecond, func() {
+        			if x, y, z, err := accel.XYZ(); err == nil {
+        				fmt.Println(x, y, z)
+        				fmt.Println(accel.Acceleration(x, y, z))
+        			} else {
+        				fmt.Println(err)
+        			}
         		})
         	}
 
-        	robot := gobot.NewRobot("mpu6050Bot",
+        	robot := gobot.NewRobot("accelBot",
         		[]gobot.Connection{board},
-        		[]gobot.Device{mpu6050},
+        		[]gobot.Device{accel},
         		work,
         	)
 
