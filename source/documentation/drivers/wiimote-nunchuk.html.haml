@@ -21,15 +21,27 @@ subnavjs: true
 .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  :markdown
-    Install the package with: `go get gobot.io/x/gobot`
+%h2 How To Connect
+:markdown
+  Install the package with: `go get gobot.io/x/gobot`
 
-  %h3 For Arduino:
-  :markdown
-        :::go
-        // code here
-        ...
+  You must pass in an Adaptor that supports the `i2c.Connector` interface to use with this Driver.
+
+  You can use the following optional params if you wish to change the I2C Bus and I2C Address from the default values.
+
+    `i2c.WithBus(int)`:	bus to use with this driver.
+
+    `i2c.WithAddress(int)`:	address to use with this driver
+
+:markdown
+      :::go
+      // default bus/address
+      d := i2c.WiichuckDriver(adaptor)
+
+      // optional bus/address
+      d := i2c.WiichuckDriver(adaptor,
+                              i2c.WithBus(0),
+                              i2c.WithAddress(0x34))
 
 
 %section.how-to#HowToUse

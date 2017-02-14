@@ -21,12 +21,33 @@ subnavjs: true
 .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  :markdown
-    Install the package with: `go get gobot.io/x/gobot`
+%h2 How To Connect
+:markdown
+  Install the package with: `go get gobot.io/x/gobot`
+
+  You must pass in an Adaptor that supports the `i2c.Connector` interface to use with this Driver.
+
+  You can use the following optional params if you wish to change the I2C Bus from the default value.
+
+    `i2c.WithBus(int)`:	bus to use with this driver.
+
+:markdown
+      :::go
+      // default bus/addresses
+      lcd := i2c.NewGroveLcdDriver(adaptor)
+
+      // optional bus
+      lcd := i2c.NewGroveLcdDriver(adaptor,
+                                     i2c.WithBus(0))
+
 
 %section.how-to#HowToUse
-  %h2 How To Use
+   %h2 How To Use
+   %h3 Example using a Grove LCD.
+   :markdown
+         :::go
+         // code here
+
 
 %section.Compatibility.hardware#Compatibility
   %h2 Compatibility

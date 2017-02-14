@@ -22,13 +22,42 @@ subnavjs: true
 .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  :markdown
-    Install the package with: `go get gobot.io/x/gobot`
-  :markdown
-        :::go
-        // code here...
-        ...
+%h2 How To Connect
+:markdown
+  Install the package with: `go get gobot.io/x/gobot`
+
+  You must pass in an Adaptor that supports the `i2c.Connector` interface to use with this Driver.
+
+  You can use the following optional params if you wish to change the I2C Bus and I2C Address from the default values.
+
+    `i2c.WithBus(int)`:	bus to use with this driver.
+
+    `i2c.WithAddress(int)`:	address to use with this driver
+
+    `i2c.WithMCP23017Bank(int)`:	MCP23017 bank to use with this driver
+
+    `i2c.WithMCP23017Mirror(int)`:	MCP23017 mirror to use with this driver
+
+    `i2c.WithMCP23017Seqop(int)`:	MCP23017 seqop to use with this driver
+
+    `i2c.WithMCP23017Disslw(int)`:	MCP23017 disslw to use with this driver
+
+    `i2c.WithMCP23017Haen(int)`:	MCP23017 haen to use with this driver
+
+    `i2c.WithMCP23017Odr(int)`:	MCP23017 odr to use with this driver
+
+    `i2c.WithMCP23017Intpol(int)`:	MCP23017 intpol to use with this driver
+
+:markdown
+      :::go
+      // default bus/address
+      d := i2c.NewMCP23017Driver(adaptor)
+
+      // optional bus/address
+      d := i2c.NewMCP23017Driver(adaptor,
+                                 i2c.WithBus(0),
+                                 i2c.WithAddress(0x34))
+
 
 %section.how-to#HowToUse
   %h2 How To Use

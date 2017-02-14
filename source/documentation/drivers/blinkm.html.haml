@@ -26,18 +26,65 @@ subnavjs: true
   %h2 How To Connect
   :markdown
     Install the package with: `go get gobot.io/x/gobot`
-  %h3 For Arduino
+
+    You must pass in an Adaptor that supports the `i2c.Connector` interface to use with this Driver.
+
+    You can use the following optional params if you wish to change the I2C Bus and I2C Address from the default values.
+
+      `i2c.WithBus(int)`:	bus to use with this driver.
+
+      `i2c.WithAddress(int)`:	address to use with this driver
+
   :markdown
         :::go
-        // code here
-        ...
+        // default bus/address
+        blinkm := i2c.NewBlinkMDriver(adaptor)
+
+        // optional bus/address
+        blinkm := i2c.NewBlinkMDriver(adaptor,
+                                       i2c.WithBus(0),
+                                       i2c.WithAddress(0x34))
 
 %section.how-to#HowToUse
   %h2 How To Use
   %p Example using a BlinkM and Arduino
   :markdown
         :::go
-        // code here
+        package main
+
+        import (
+           "fmt"
+           "time"
+
+           "gobot.io/x/gobot"
+           "gobot.io/x/gobot/drivers/i2c"
+           "gobot.io/x/gobot/platforms/firmata"
+        )
+
+        func main() {
+           firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+           blinkm := i2c.NewBlinkMDriver(firmataAdaptor)
+
+           work := func() {
+         	  gobot.Every(3*time.Second, func() {
+         		  r := byte(gobot.Rand(255))
+         		  g := byte(gobot.Rand(255))
+         		  b := byte(gobot.Rand(255))
+         		  blinkm.Rgb(r, g, b)
+         		  color, _ := blinkm.Color()
+         		  fmt.Println("color", color)
+         	  })
+           }
+
+           robot := gobot.NewRobot("blinkmBot",
+         	  []gobot.Connection{firmataAdaptor},
+         	  []gobot.Device{blinkm},
+         	  work,
+           )
+
+           robot.Start()
+        }
+
 
 %section.circuit#Circuit
   %h2 Circuit
