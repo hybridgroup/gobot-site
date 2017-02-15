@@ -65,7 +65,7 @@ author: Ron Evans
 
   ## Bluetooth LE connection to Arduino 101
 
-  We now offer BLE support to connect to Arduino 101 Bluetooth-enabled microcontrollers that are running BLEFirmata.
+  We now offer BLE support to connect to [Arduino 101/Genuino 101](https://www.arduino.cc/en/Main/ArduinoBoard101) Bluetooth-enabled microcontrollers that are running BLEFirmata.
 
   Here is a code sample:
 
@@ -110,12 +110,19 @@ author: Ron Evans
 
   Thanks to contributor [@erkkah](https://github.com/erkkah) and ace Golang trainer/code coach [Bill Kennedy](https://github.com/goinggo) we have done a major refactoring of the [Gobot i2c package](https://github.com/hybridgroup/gobot/tree/master/drivers/i2c).
 
-  You can override the defaults to control which I2C bus you are using, and also use multiple I2C buses at the same time by putting different I2C devices on separate buses. Maximum performance and flexibility!
+  You can optionally override the defaults to control which I2C bus you are using, and also use multiple I2C buses at the same time by putting different I2C devices on separate buses. Maximum performance and flexibility!
 
   For example:
 
       :::go
-      blinkm := i2c.NewBlinkMDriver(e, i2c.WithBus(0), i2c.WithAddress(0x09))
+      // connect to device on default bus at default address
+      blinkm := i2c.NewBlinkMDriver(e)
+
+      // connect to device on I2C bus 1 at default address for this device
+      bmp180 := i2c.NewBMP180MDriver(e, i2c.WithBus(1))
+
+      // connect to device on I2C bus 0 at address 0x09
+      mcp := i2c.NewMCP23017Driver(e, i2c.WithBus(0), i2c.WithAddress(0x09))
 
   We've also upped our test coverage, and made it a lot easier to write new Drivers for I2C devices.
 
