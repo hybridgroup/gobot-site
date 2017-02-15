@@ -1,0 +1,136 @@
+---
+page_title_show: true
+title: Gobot - 1.2 Released
+page_title: Blog
+date: 2017-02-16
+tags: releases
+author: Ron Evans
+---
+
+:markdown
+
+  Happy release day! In coordination with the [Golang 1.8 release party](https://github.com/golang/go/wiki/Go-1.8-Release-Party) for what has become known as "the best Golang yet", we are also releasing Gobot 1.2 today.
+
+  If you have seen the [recent FOSDEM 2017 talk](https://video.fosdem.org/2017/H.1302/go_gobot.vp8.webm), you already know that the real-time capabilities of Gobot have been substantially improved just by virtue of being written in the Go programming language.
+
+  That said, we've also been really busy working on improving Gobot itself to better take advantage of all of the fantastic work being done in the broader community.
+
+  Our wonderful contributors and project advisors have done a lot, here are some highlights from the new release:
+
+  ## New improved BLE support
+
+  We've switched to the [Currant Labs ble package](https://github.com/currantlabs/ble) for all Bluetooth Low Energy communication.
+
+  As a result, you can now use all supported BLE peripherals such as the BB-8 on both OSX and Linux.
+
+  Check out a short code sample:
+
+      :::go
+      package main
+
+      import (
+      	"fmt"
+      	"os"
+
+      	"gobot.io/x/gobot"
+      	"gobot.io/x/gobot/platforms/ble"
+      	"gobot.io/x/gobot/platforms/sphero/bb8"
+      )
+
+      func main() {
+      	bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+      	bb := bb8.NewDriver(bleAdaptor)
+
+      	work := func() {
+
+      		bb.On("collision", func(data interface{}) {
+      			fmt.Printf("collision detected = %+v \n", data)
+      			bb.SetRGB(255, 0, 0)
+      		})
+
+      		bb.SetRGB(0, 255, 0)
+      		bb.Roll(80, 0)
+      	}
+
+      	robot := gobot.NewRobot("bb8",
+      		[]gobot.Connection{bleAdaptor},
+      		[]gobot.Device{bb},
+      		work,
+      	)
+
+      	robot.Start()
+      }
+
+  This also shows off the new collision detection support added by contributor [@durgeshm](https://github.com/durgeshm). Too cool!
+
+  ## Bluetooth LE connection to Arduino 101
+
+  We now offer BLE support to connect to Arduino 101 Bluetooth-enabled microcontrollers that are running BLEFirmata.
+
+  Check out a short code sample:
+
+      :::go
+      package main
+
+      import (
+      	"os"
+      	"time"
+
+      	"gobot.io/x/gobot"
+      	"gobot.io/x/gobot/drivers/gpio"
+      	"gobot.io/x/gobot/platforms/firmata"
+      )
+
+      func main() {
+      	firmataAdaptor := firmata.NewBLEAdaptor(os.Args[1])
+      	led := gpio.NewLedDriver(firmataAdaptor, "13")
+
+      	work := func() {
+      		gobot.Every(1*time.Second, func() {
+      			led.Toggle()
+      		})
+      	}
+
+      	robot := gobot.NewRobot("bot",
+      		[]gobot.Connection{firmataAdaptor},
+      		[]gobot.Device{led},
+      		work,
+      	)
+
+      	robot.Start()
+      }
+
+  Looks just like any of the other Firmata types like the original serial Firmata or TCPFirmata because it is!
+
+  You can also use the new `firmata.BLEAdaptor` with other BLE-connected microcontrollers running BLEFirmata.
+
+  This support was inspired by some [cool work](https://github.com/monteslu/ble-serial) originally done in JavaScript by [@monteslu](https://github.com/monteslu).
+
+  ## Big I2C Refactor
+
+  Thanks to contributor [@erkkah](https://github.com/erkkah) and ace Golang trainer/code coach [Bill Kennedy](https://github.com/goinggo) we have done a major refactoring of the [Gobot i2c package](https://github.com/hybridgroup/gobot/tree/master/drivers/i2c).
+
+  You can override the defaults to control which I2C bus you are using, and also use multiple I2C buses at the same time by putting different I2C devices on separate buses. Maximum performance and flexibility!
+
+  For example:
+
+      :::go
+      blinkm := i2c.NewBlinkMDriver(e, i2c.WithBus(0), i2c.WithAddress(0x09))
+
+  We've also upped our test coverage, and made it a lot easier to write new Drivers for I2C devices.
+
+  ## MQTT Improvements
+
+  We have a number of key improvements and bugfixes for our MQTT support, including adding a new Driver for more easily representing "virtual devices" as well as full support for TLS/SSL.
+
+  ## NATS, Natch
+
+  We also added a new NATS Driver so you can use "virtual devices" with the [NATS](http://nats.io/) messaging server.
+
+  ## Full Changelog
+
+  There are lot of fixes and features in this new release, check out the release info at [https://github.com/hybridgroup/gobot/releases/tag/v1.2.0](https://github.com/hybridgroup/gobot/releases/tag/v1.2.0).
+
+  ## Stay In Touch
+
+  Stay in touch with the project by following us on Twitter at [@gobotio](http://twitter.com/gobotio). Thank you!
