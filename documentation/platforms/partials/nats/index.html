@@ -138,12 +138,53 @@
 }
 </pre>
         
+        <p>To run with TLS enabled, set the URL scheme prefix to tls://. Make sure the NATS server has TLS enabled and use the NATS option parameters to pass in the TLS settings to the adaptor. Refer to the github.com/nats-io/go-nats README for more TLS option parameters.</p>
+        
+        <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+  <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+  natsio <span class="string"><span class="delimiter">"</span><span class="content">github.com/nats-io/nats</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+  <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/nats</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+  natsAdaptor := nats.NewNatsAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">tls://localhost:4222</span><span class="delimiter">"</span></span>, <span class="integer">1234</span>, natsio.RootCAs(<span class="string"><span class="delimiter">"</span><span class="content">certs/ca.pem</span><span class="delimiter">"</span></span>))
+
+  work := <span class="keyword">func</span>() {
+    natsAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(data []<span class="predefined-type">byte</span>) {
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>)
+    })
+    natsAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hola</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(data []<span class="predefined-type">byte</span>) {
+      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">hola</span><span class="delimiter">"</span></span>)
+    })
+    data := []<span class="predefined-type">byte</span>(<span class="string"><span class="delimiter">"</span><span class="content">o</span><span class="delimiter">"</span></span>)
+    gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+      natsAdaptor.Publish(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>, data)
+    })
+    gobot.Every(<span class="integer">5</span>*time.Second, <span class="keyword">func</span>() {
+      natsAdaptor.Publish(<span class="string"><span class="delimiter">"</span><span class="content">hola</span><span class="delimiter">"</span></span>, data)
+    })
+  }
+
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">natsBot</span><span class="delimiter">"</span></span>,
+    []gobot.Connection{natsAdaptor},
+    work,
+  )
+
+  robot.Start()
+}
+</pre>
+        
         <h3 id="supported-features">Supported Features</h3>
         
         <ul>
           <li>Publish messages</li>
           <li>Respond to incoming message events</li>
           <li>Support for Username/password authentication</li>
+          <li>Support for NATS adaptor options to support TLS</li>
         </ul>
         
         <h3 id="upcoming-features">Upcoming Features</h3>
