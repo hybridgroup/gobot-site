@@ -143,13 +143,13 @@
                     <div class="name">GPIO</div>
                     <div class="links">
                       <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/grove-touch">Grove Touch</a>
                       <a href="/documentation/drivers/grove-button">Grove Button</a>
                       <a href="/documentation/drivers/grove-buzzer">Grove Buzzer</a>
                       <a href="/documentation/drivers/grove-led">Grove Led</a>
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor">Grove Vibration Sensor</a>
                       <a href="/documentation/drivers/grove-relay">Grove Relay</a>
-                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/led">LED</a>
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/motor">Motor</a>
@@ -160,11 +160,11 @@
                     <div class="name">AIO</div>
                     <div class="links">
                       <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
                       <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
                       <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
                       <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
-                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                     </div>
                   </div>
                   <div class="sub-section">
@@ -251,8 +251,8 @@
 
         work := <span class="keyword">func</span>() {
                 gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
-                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Pressure</span><span class="delimiter">"</span></span>, mpl115a2.Pressure)
-                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Temperature</span><span class="delimiter">"</span></span>, mpl115a2.Temperature)
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Pressure</span><span class="delimiter">"</span></span>, mpl115a2.Pressure())
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Temperature</span><span class="delimiter">"</span></span>, mpl115a2.Temperature())
                 })
         }
 

@@ -94,6 +94,166 @@
                 <div class="dates">
                   <div class="date-top">
                     <div class="month">
+                      Feb
+                    </div>
+                    <div class="day">
+                      16
+                    </div>
+                  </div>
+                  <div class="date-bottom">
+                    <div class="year">
+                      2017
+                    </div>
+                  </div>
+                </div>
+                <h3 class="article-title">
+                  <a href="/blog/2017/02/16/gobot-1.2-released/">Gobot - 1.2 Released</a>
+                  <br>
+                </h3>
+              </header>
+              <p>Happy release day! In coordination with the <a href="https://github.com/golang/go/wiki/Go-1.8-Release-Party">Golang 1.8 release party</a> for what has become known as "the best Golang yet", we are also releasing Gobot 1.2 today.</p>
+              
+              <p>If you have seen the <a href="https://video.fosdem.org/2017/H.1302/go_gobot.vp8.webm">recent FOSDEM 2017 talk</a>, you already know that the real-time capabilities of Gobot have been substantially improved just by virtue of being written in the Go programming language.</p>
+              
+              <p>That said, we've also been really busy working on improving Gobot itself to better take advantage of all of the fantastic work being done in the broader community.</p>
+              
+              <p>Our wonderful contributors and project advisors have done a lot, here are some highlights from the new release:</p>
+              
+              <h2 id="new-improved-ble-support">New improved BLE support</h2>
+              
+              <p>We've switched to the <a href="https://github.com/currantlabs/ble">Currant Labs ble package</a> for all Bluetooth Low Energy communication.</p>
+              
+              <p>As a result, you can now use all supported BLE peripherals such as the <a href="http://www.sphero.com/bb8">Sphero BB-8</a> on both OSX and Linux.</p>
+              
+              <p>Check out a short code sample:</p>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">os</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/ble</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/sphero/bb8</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        bleAdaptor := ble.NewClientAdaptor(os.Args[<span class="integer">1</span>])
+        bb := bb8.NewDriver(bleAdaptor)
+
+        work := <span class="keyword">func</span>() {
+                bb.On(<span class="string"><span class="delimiter">"</span><span class="content">collision</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Printf(<span class="string"><span class="delimiter">"</span><span class="content">collision detected = %+v </span><span class="char">\n</span><span class="delimiter">"</span></span>, data)
+                        bb.SetRGB(<span class="integer">255</span>, <span class="integer">0</span>, <span class="integer">0</span>)
+                })
+
+                bb.SetRGB(<span class="integer">0</span>, <span class="integer">255</span>, <span class="integer">0</span>)
+                bb.Roll(<span class="integer">80</span>, <span class="integer">0</span>)
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bb8</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{bleAdaptor},
+                []gobot.Device{bb},
+                work,
+        )
+
+        robot.Start()
+}
+</pre>
+              
+              <p>This also shows off the new collision detection support added by contributor <a href="https://github.com/durgeshm">@durgeshm</a>. Too cool!</p>
+              
+              <h2 id="bluetooth-le-connection-to-arduino-101">Bluetooth LE connection to Arduino 101</h2>
+              
+              <p>We now offer BLE support to connect to <a href="https://www.arduino.cc/en/Main/ArduinoBoard101">Arduino 101/Genuino 101</a> Bluetooth-enabled microcontrollers that are running BLEFirmata.</p>
+              
+              <p>Here is a code sample:</p>
+              
+              <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">os</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        firmataAdaptor := firmata.NewBLEAdaptor(os.Args[<span class="integer">1</span>])
+        led := gpio.NewLedDriver(firmataAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+                        led.Toggle()
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{firmataAdaptor},
+                []gobot.Device{led},
+                work,
+        )
+
+        robot.Start()
+}
+</pre>
+              
+              <p>Looks just like any of the other Firmata types like the original serial Firmata or TCPFirmata because it is!</p>
+              
+              <p>You can also use the new <code>firmata.BLEAdaptor</code> with other BLE-connected microcontrollers running BLEFirmata.</p>
+              
+              <p>This support was inspired by some <a href="https://github.com/monteslu/ble-serial">cool work</a> originally done in JavaScript by <a href="https://github.com/monteslu">@monteslu</a>.</p>
+              
+              <h2 id="big-i2c-refactor">Big I2C Refactor</h2>
+              
+              <p>Thanks to contributor <a href="https://github.com/erkkah">@erkkah</a> and ace Golang trainer/code coach <a href="https://github.com/goinggo">Bill Kennedy</a> we have done a major refactoring of the <a href="https://github.com/hybridgroup/gobot/tree/master/drivers/i2c">Gobot i2c package</a>.</p>
+              
+              <p>You can optionally override the defaults to control which I2C bus you are using, and also use multiple I2C buses at the same time by putting different I2C devices on separate buses. Maximum performance and flexibility!</p>
+              
+              <p>For example:</p>
+              
+              <pre class="CodeRay"><span class="comment">// connect to device on default bus at default address</span>
+blinkm := i2c.NewBlinkMDriver(e)
+
+<span class="comment">// connect to device on I2C bus 1 at default address for this device</span>
+bmp180 := i2c.NewBMP180MDriver(e, i2c.WithBus(<span class="integer">1</span>))
+
+<span class="comment">// connect to device on I2C bus 0 at address 0x09</span>
+mcp := i2c.NewMCP23017Driver(e, i2c.WithBus(<span class="integer">0</span>), i2c.WithAddress(<span class="hex">0x09</span>))
+</pre>
+              
+              <p>We've also upped our test coverage, and made it a lot easier to write new Drivers for I2C devices.</p>
+              
+              <h2 id="mqtt-improvements">MQTT Improvements</h2>
+              
+              <p>We have a number of key improvements and bugfixes for our MQTT support, including adding a new Driver for more easily representing "virtual devices" as well as full support for TLS/SSL.</p>
+              
+              <h2 id="nats-natch">NATS, Natch</h2>
+              
+              <p>We also added a new NATS Driver so you can use "virtual devices" with the <a href="http://nats.io/">NATS</a> messaging server.</p>
+              
+              <h2 id="full-changelog">Full Changelog</h2>
+              
+              <p>There are lot of fixes and features in this new release, check out the release info at <a href="https://github.com/hybridgroup/gobot/releases/tag/v1.2.0">https://github.com/hybridgroup/gobot/releases/tag/v1.2.0</a>.</p>
+              
+              <h2 id="stay-in-touch">Stay In Touch</h2>
+              
+              <p>Stay in touch with the project by following us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a>. Thank you!</p>
+              <div class="tags">
+                <div class="img">
+                  <img src="/images/elements/tag.png">
+                </div>
+                <a href="/blog/tags/releases/">releases</a>
+              </div>
+            </div>
+            <div class="article">
+              <header class="header">
+                <div class="dates">
+                  <div class="date-top">
+                    <div class="month">
                       Jan
                     </div>
                     <div class="day">
@@ -1275,6 +1435,7 @@ $ GOOS=linux GOARCH=386 ./make.bash --no-clean
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2017/02/16/gobot-1.2-released/">Gobot - 1.2 Released</a></li>
               <li><a href="/blog/2017/01/09/gobot-1.1/">Gobot - The 1.1 Release</a></li>
               <li><a href="/blog/2016/12/21/gobot-the-big-one-oh/">Gobot - The Big One Oh!</a></li>
               <li><a href="/blog/2016/02/17/gobot-this-one-goes-to-0.11/">Gobot - This One Goes To 0.11</a></li>

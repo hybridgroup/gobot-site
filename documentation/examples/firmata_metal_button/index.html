@@ -143,13 +143,13 @@
                     <div class="name">GPIO</div>
                     <div class="links">
                       <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/grove-touch">Grove Touch</a>
                       <a href="/documentation/drivers/grove-button">Grove Button</a>
                       <a href="/documentation/drivers/grove-buzzer">Grove Buzzer</a>
                       <a href="/documentation/drivers/grove-led">Grove Led</a>
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor">Grove Vibration Sensor</a>
                       <a href="/documentation/drivers/grove-relay">Grove Relay</a>
-                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/led">LED</a>
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/motor">Motor</a>
@@ -160,11 +160,11 @@
                     <div class="name">AIO</div>
                     <div class="links">
                       <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
                       <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
                       <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
                       <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
-                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                     </div>
                   </div>
                   <div class="sub-section">
@@ -234,34 +234,38 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">package</span> main
+              <pre class="CodeRay"><span class="comment">// TO RUN:</span>
+<span class="comment">//        firmata_metal_button &lt;PORT&gt;</span>
+<span class="comment">//</span>
+<span class="comment">// EXAMPLE:</span>
+<span class="comment">//        go run ./examples/firmata_metal_button /dev/ttyACM0</span>
+<span class="comment">//</span>
+<span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">os</span><span class="delimiter">"</span></span>
 
         <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/firmata</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        f := firmata.NewAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>)
+        f := firmata.NewAdaptor(os.Args[<span class="integer">1</span>])
         f.Connect()
 
-        led := gpio.NewLedDriver(f, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>)
+        led := gpio.NewLedDriver(f, <span class="string"><span class="delimiter">"</span><span class="content">2</span><span class="delimiter">"</span></span>)
         led.Start()
         led.Off()
 
-        button := gpio.NewButtonDriver(f, <span class="string"><span class="delimiter">"</span><span class="content">5</span><span class="delimiter">"</span></span>)
+        button := gpio.NewButtonDriver(f, <span class="string"><span class="delimiter">"</span><span class="content">3</span><span class="delimiter">"</span></span>)
         button.Start()
 
         buttonEvents := button.Subscribe()
-        <span class="keyword">for</span> {
-                <span class="keyword">select</span> {
-                <span class="keyword">case</span> event := &lt;-buttonEvents:
-                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Event:</span><span class="delimiter">"</span></span>, event.Name, event.Data)
-                        <span class="keyword">if</span> event.Name == gpio.ButtonPush {
-                                led.Toggle()
-                        }
+        <span class="keyword">for</span> event := <span class="keyword">range</span> buttonEvents {
+                fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Event:</span><span class="delimiter">"</span></span>, event.Name, event.Data)
+                <span class="keyword">if</span> event.Name == gpio.ButtonPush {
+                        led.Toggle()
                 }
         }
 }

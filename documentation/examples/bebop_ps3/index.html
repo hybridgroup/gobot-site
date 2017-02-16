@@ -143,13 +143,13 @@
                     <div class="name">GPIO</div>
                     <div class="links">
                       <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/grove-touch">Grove Touch</a>
                       <a href="/documentation/drivers/grove-button">Grove Button</a>
                       <a href="/documentation/drivers/grove-buzzer">Grove Buzzer</a>
                       <a href="/documentation/drivers/grove-led">Grove Led</a>
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor">Grove Vibration Sensor</a>
                       <a href="/documentation/drivers/grove-relay">Grove Relay</a>
-                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/led">LED</a>
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/motor">Motor</a>
@@ -160,11 +160,11 @@
                     <div class="name">AIO</div>
                     <div class="links">
                       <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
                       <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
                       <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
                       <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
-                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                     </div>
                   </div>
                   <div class="sub-section">
@@ -237,7 +237,7 @@
               <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
-        <span class="string"><span class="delimiter">"</span><span class="content">math</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">sync/atomic</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
 
         <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
@@ -250,6 +250,10 @@
         y <span class="predefined-type">float64</span>
 }
 
+<span class="keyword">var</span> leftX, leftY, rightX, rightY atomic.Value
+
+<span class="keyword">const</span> offset = <span class="float">32767.0</span>
+
 <span class="keyword">func</span> main() {
         joystickAdaptor := joystick.NewAdaptor()
         stick := joystick.NewDriver(joystickAdaptor,
@@ -260,9 +264,10 @@
         drone := bebop.NewDriver(bebopAdaptor)
 
         work := <span class="keyword">func</span>() {
-                offset := <span class="float">32767.0</span>
-                rightStick := pair{x: <span class="integer">0</span>, y: <span class="integer">0</span>}
-                leftStick := pair{x: <span class="integer">0</span>, y: <span class="integer">0</span>}
+                leftX.Store(<span class="predefined-type">float64</span>(<span class="float">0.0</span>))
+                leftY.Store(<span class="predefined-type">float64</span>(<span class="float">0.0</span>))
+                rightX.Store(<span class="predefined-type">float64</span>(<span class="float">0.0</span>))
+                rightY.Store(<span class="predefined-type">float64</span>(<span class="float">0.0</span>))
 
                 recording := <span class="predefined-constant">false</span>
 
@@ -279,71 +284,74 @@
                         drone.HullProtection(<span class="predefined-constant">true</span>)
                         drone.TakeOff()
                 })
+
                 stick.On(joystick.TrianglePress, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         drone.Stop()
                 })
+
                 stick.On(joystick.XPress, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         drone.Land()
                 })
+
                 stick.On(joystick.LeftX, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         val := <span class="predefined-type">float64</span>(data.(<span class="predefined-type">int16</span>))
-                        <span class="keyword">if</span> leftStick.x != val {
-                                leftStick.x = val
-                        }
+                        leftX.Store(val)
                 })
+
                 stick.On(joystick.LeftY, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         val := <span class="predefined-type">float64</span>(data.(<span class="predefined-type">int16</span>))
-                        <span class="keyword">if</span> leftStick.y != val {
-                                leftStick.y = val
-                        }
+                        leftY.Store(val)
                 })
+
                 stick.On(joystick.RightX, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         val := <span class="predefined-type">float64</span>(data.(<span class="predefined-type">int16</span>))
-                        <span class="keyword">if</span> rightStick.x != val {
-                                rightStick.x = val
-                        }
+                        rightX.Store(val)
                 })
+
                 stick.On(joystick.RightY, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         val := <span class="predefined-type">float64</span>(data.(<span class="predefined-type">int16</span>))
-                        <span class="keyword">if</span> rightStick.y != val {
-                                rightStick.y = val
-                        }
+                        rightY.Store(val)
                 })
 
                 gobot.Every(<span class="integer">10</span>*time.Millisecond, <span class="keyword">func</span>() {
-                        pair := leftStick
-                        <span class="keyword">if</span> pair.y &lt; <span class="integer">-10</span> {
-                                drone.Forward(validatePitch(pair.y, offset))
-                        } <span class="keyword">else</span> <span class="keyword">if</span> pair.y &gt; <span class="integer">10</span> {
-                                drone.Backward(validatePitch(pair.y, offset))
-                        } <span class="keyword">else</span> {
+                        leftStick := getLeftStick()
+
+                        <span class="keyword">switch</span> {
+                        <span class="keyword">case</span> leftStick.y &lt; <span class="integer">-10</span>:
+                                drone.Forward(bebop.ValidatePitch(leftStick.y, offset))
+                        <span class="keyword">case</span> leftStick.y &gt; <span class="integer">10</span>:
+                                drone.Backward(bebop.ValidatePitch(leftStick.y, offset))
+                        <span class="keyword">default</span>:
                                 drone.Forward(<span class="integer">0</span>)
                         }
 
-                        <span class="keyword">if</span> pair.x &gt; <span class="integer">10</span> {
-                                drone.Right(validatePitch(pair.x, offset))
-                        } <span class="keyword">else</span> <span class="keyword">if</span> pair.x &lt; <span class="integer">-10</span> {
-                                drone.Left(validatePitch(pair.x, offset))
-                        } <span class="keyword">else</span> {
+                        <span class="keyword">switch</span> {
+                        <span class="keyword">case</span> leftStick.x &gt; <span class="integer">10</span>:
+                                drone.Right(bebop.ValidatePitch(leftStick.x, offset))
+                        <span class="keyword">case</span> leftStick.x &lt; <span class="integer">-10</span>:
+                                drone.Left(bebop.ValidatePitch(leftStick.x, offset))
+                        <span class="keyword">default</span>:
                                 drone.Right(<span class="integer">0</span>)
                         }
                 })
 
                 gobot.Every(<span class="integer">10</span>*time.Millisecond, <span class="keyword">func</span>() {
-                        pair := rightStick
-                        <span class="keyword">if</span> pair.y &lt; <span class="integer">-10</span> {
-                                drone.Up(validatePitch(pair.y, offset))
-                        } <span class="keyword">else</span> <span class="keyword">if</span> pair.y &gt; <span class="integer">10</span> {
-                                drone.Down(validatePitch(pair.y, offset))
-                        } <span class="keyword">else</span> {
+                        rightStick := getRightStick()
+                        <span class="keyword">switch</span> {
+                        <span class="keyword">case</span> rightStick.y &lt; <span class="integer">-10</span>:
+                                drone.Up(bebop.ValidatePitch(rightStick.y, offset))
+                        <span class="keyword">case</span> rightStick.y &gt; <span class="integer">10</span>:
+                                drone.Down(bebop.ValidatePitch(rightStick.y, offset))
+                        <span class="keyword">default</span>:
                                 drone.Up(<span class="integer">0</span>)
                         }
 
-                        <span class="keyword">if</span> pair.x &gt; <span class="integer">20</span> {
-                                drone.Clockwise(validatePitch(pair.x, offset))
-                        } <span class="keyword">else</span> <span class="keyword">if</span> pair.x &lt; <span class="integer">-20</span> {
-                                drone.CounterClockwise(validatePitch(pair.x, offset))
-                        } <span class="keyword">else</span> {
+                        <span class="keyword">switch</span> {
+                        <span class="keyword">case</span> rightStick.x &gt; <span class="integer">20</span>:
+                                drone.Clockwise(bebop.ValidatePitch(rightStick.x, offset))
+                        <span class="keyword">case</span> rightStick.x &lt; <span class="integer">-20</span>:
+                                drone.CounterClockwise(bebop.ValidatePitch(rightStick.x, offset))
+                        <span class="keyword">default</span>:
                                 drone.Clockwise(<span class="integer">0</span>)
                         }
                 })
@@ -358,15 +366,18 @@
         robot.Start()
 }
 
-<span class="keyword">func</span> validatePitch(data <span class="predefined-type">float64</span>, offset <span class="predefined-type">float64</span>) <span class="predefined-type">int</span> {
-        value := math.Abs(data) / offset
-        <span class="keyword">if</span> value &gt;= <span class="float">0.1</span> {
-                <span class="keyword">if</span> value &lt;= <span class="float">1.0</span> {
-                        <span class="keyword">return</span> <span class="predefined-type">int</span>((<span class="predefined-type">float64</span>(<span class="predefined-type">int</span>(value*<span class="integer">100</span>)) / <span class="integer">100</span>) * <span class="integer">100</span>)
-                }
-                <span class="keyword">return</span> <span class="integer">100</span>
-        }
-        <span class="keyword">return</span> <span class="integer">0</span>
+<span class="keyword">func</span> getLeftStick() pair {
+        s := pair{x: <span class="integer">0</span>, y: <span class="integer">0</span>}
+        s.x = leftX.Load().(<span class="predefined-type">float64</span>)
+        s.y = leftY.Load().(<span class="predefined-type">float64</span>)
+        <span class="keyword">return</span> s
+}
+
+<span class="keyword">func</span> getRightStick() pair {
+        s := pair{x: <span class="integer">0</span>, y: <span class="integer">0</span>}
+        s.x = rightX.Load().(<span class="predefined-type">float64</span>)
+        s.y = rightY.Load().(<span class="predefined-type">float64</span>)
+        <span class="keyword">return</span> s
 }
 </pre>
             </div>

@@ -144,13 +144,13 @@
                     <div class="name">GPIO</div>
                     <div class="links">
                       <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/grove-touch">Grove Touch</a>
                       <a href="/documentation/drivers/grove-button">Grove Button</a>
                       <a href="/documentation/drivers/grove-buzzer">Grove Buzzer</a>
                       <a href="/documentation/drivers/grove-led">Grove Led</a>
                       <a href="/documentation/drivers/grove-piezo-vibration-sensor">Grove Vibration Sensor</a>
                       <a href="/documentation/drivers/grove-relay">Grove Relay</a>
-                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/led">LED</a>
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/motor">Motor</a>
@@ -161,11 +161,11 @@
                     <div class="name">AIO</div>
                     <div class="links">
                       <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                       <a href="/documentation/drivers/grove-sound-sensor">Grove Sound Sensor</a>
                       <a href="/documentation/drivers/grove-light-sensor">Grove Light Sensor</a>
                       <a href="/documentation/drivers/grove-rotary">Grove Rotary</a>
                       <a href="/documentation/drivers/grove-temperature-sensor">Grove Temperature Sensor</a>
-                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
                     </div>
                   </div>
                   <div class="sub-section">
@@ -258,16 +258,28 @@
               <a class="api-link" href="http://godoc.org/gobot.io/x/gobot/drivers/i2c#HMC6352Driver" target="_blank">API Reference</a>
             </div>
             <div class="clear"></div>
-            <section class="how-to" id="HowToConnect">
-              <h2>How To Connect</h2>
-              <p>Install the package with: <code>go get gobot.io/x/gobot</code></p>
-              <pre class="CodeRay"><span class="comment">// code here</span>
-...
+            <section class="how-to" id="HowToConnect"></section>
+            <h2>How To Connect</h2>
+            <p>Install the package with: <code>go get gobot.io/x/gobot</code></p>
+            
+            <p>You must pass in an Adaptor that supports the <code>i2c.Connector</code> interface to use with this Driver.</p>
+            
+            <p>You can use the following optional params if you wish to change the I2C Bus and I2C Address from the default values.</p>
+            
+            <p><code>i2c.WithBus(int)</code>:	bus to use with this driver.</p>
+            
+            <p><code>i2c.WithAddress(int)</code>:	address to use with this driver</p>
+            <pre class="CodeRay"><span class="comment">// default bus/address</span>
+bpm180 := i2c.NewHMC6352Driver(adaptor)
+
+<span class="comment">// optional bus/address</span>
+bpm180 := i2c.NewHMC6352Driver(adaptor,
+                               i2c.WithBus(<span class="integer">0</span>),
+                               i2c.WithAddress(<span class="hex">0x34</span>))
 </pre>
-            </section>
             <section class="how-to" id="HowToUse">
               <h2>How To Use</h2>
-              <h3>Example using a HMC6352 Digital Compass.</h3>
+              <p>Example using a HMC6352 digital compass.</p>
               <pre class="CodeRay"><span class="comment">// code here</span>
 </pre>
             </section>
