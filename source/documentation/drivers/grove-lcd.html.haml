@@ -29,7 +29,7 @@ subnavjs: true
 
   You can use the following optional params if you wish to change the I2C Bus from the default value.
 
-    `i2c.WithBus(int)`:	bus to use with this driver.
+  `i2c.WithBus(int)`:   bus to use with this driver.
 
 :markdown
       :::go
@@ -38,15 +38,14 @@ subnavjs: true
 
       // optional bus
       lcd := i2c.NewGroveLcdDriver(adaptor,
-                                     i2c.WithBus(0))
-
+                                   i2c.WithBus(0))
 
 %section.how-to#HowToUse
-   %h2 How To Use
-   %h3 Example using a Grove LCD.
-   :markdown
-         :::go
-         // code here
+  %h2 How To Use
+  %h3 Example using a Grove LCD.
+  :markdown
+        :::go
+        // code here
 
 
 %section.Compatibility.hardware#Compatibility
