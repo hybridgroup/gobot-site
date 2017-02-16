@@ -93,6 +93,8 @@
     "Keyboard": "/documentation/drivers/keyboard",
     "Leap Motion": "/documentation/drivers/leapmotion",
     "Mavlink": "/documentation/drivers/mavlink",
+    "MQTT": "/documentation/drivers/mqtt",
+    "NATS": "/documentation/drivers/nats",
     "Neurosky Mindwave": "/documentation/drivers/neurosky",
     "Pebble": "/documentation/drivers/pebble",
     "Sphero": "/documentation/drivers/sphero",

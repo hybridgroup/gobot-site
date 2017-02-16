@@ -57,6 +57,8 @@
   "Leap Motion": "leapmotion",
   "Mavlink": "mavlink",
   "Minidrone": "minidrone",
+  "MQTT": "mqtt",
+  "NATS": "nats",  
   "Neurosky Mindwave": "neurosky",
   "Pebble": "pebble",
   "Sphero": "sphero",

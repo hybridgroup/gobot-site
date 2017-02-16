@@ -20,4 +20,5 @@ subnavjs: true
 
 %section.drivers#Drivers
   %h2 Drivers
-  %p The MQTT does not have any drivers.
+  .devices
+    = partial "/partials/devices_for_platform", locals: { platform: "MQTT" }

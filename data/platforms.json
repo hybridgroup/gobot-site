@@ -98,7 +98,7 @@
   "NATS": {
     "slug": "nats",
     "url": "http://nats.io/",
-    "drivers": []
+    "drivers": ["NATS"]
   },
 
   "Neurosky": {
