@@ -54,7 +54,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
             })
           }
 
-          robot = gobot.NewRobot("bot",
+          robot := gobot.NewRobot("bot",
             []gobot.Connection{firmataAdaptor},
             []gobot.Device{led},
             work,
