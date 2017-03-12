@@ -160,7 +160,7 @@
     })
   }
 
-  robot = gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">bot</span><span class="delimiter">"</span></span>,
     []gobot.Connection{firmataAdaptor},
     []gobot.Device{led},
     work,
