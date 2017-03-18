@@ -52,6 +52,7 @@
       "LED": "/documentation/drivers/led",
       "Makey Button": "/documentation/drivers/makey-button",
       "Motor": "/documentation/drivers/motor",
+      "PIR Motion Sensor": "/documentation/drivers/pir-motion-sensor",
       "Servo": "/documentation/drivers/servo"
     },
 
