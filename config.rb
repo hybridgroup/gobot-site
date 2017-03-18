@@ -19,6 +19,7 @@ end
 activate :directory_indexes
 activate :neat
 activate :livereload
+activate :minify_html
 
 configure :build do
 end
@@ -34,4 +35,3 @@ helpers do
     properties
   end
 end
-
