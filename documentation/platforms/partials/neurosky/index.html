@@ -1,19 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html ng-app="gobot">
-  <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="description">
-    <meta name="author">
-    <title></title>
-    <!-- /%link{href: "/stylesheets/style.css", rel: "stylesheet"} -->
-    <link href="/stylesheets/application.css" rel="stylesheet">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/javascripts/vendor/angular.min.js"></script>
-    <script src="/javascripts/app.js"></script>
-  <script type="text/javascript">
+<html ng-app="gobot"> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta content="width=device-width, initial-scale=1.0" name="viewport"> <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"> <meta name="description"> <meta name="author"> <title></title> <link href="/stylesheets/application.css" rel="stylesheet"> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script src="/javascripts/vendor/angular.min.js"></script> <script src="/javascripts/app.js"></script> <script type="text/javascript">
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -41,88 +28,8 @@
    ga('send', 'pageview');
 
 
-</script></head>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet" type="text/css">
-    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
-  
-  <body>
-    
-    <div class="app">
-      <header class="app-header" id="top" role="banner">
-        <div class="container">
-          <div class="display">
-            <div class="app-logo">
-              <a href="/">Gobot</a>
-            </div>
-          </div>
-          <nav class="menu">
-            <ul class="nav-list">
-              <li>
-                <a href="/documentation" class="item">Docs</a>
-              </li>
-              <li>
-                <a href="/documentation/platforms" class="item">Platforms</a>
-              </li>
-              <li>
-                <a href="/resources" class="item">Resources</a>
-              </li>
-              <li>
-                <a href="/news" class="item">News</a>
-              </li>
-              <li>
-                <a href="/blog" class="item">Blog</a>
-              </li>
-              <li>
-                <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <div class="info-intro">
-        <p>NeuroSky delivers fully integrated, single chip EEG biosensors. NeuroSky enables its partners and developers to bring their brainwave application ideas to market with the shortest amount of time, and lowest end consumer price.</p>
-        
-        <p>This package contains the Gobot adaptor and driver for the <a href="http://store.neurosky.com/products/mindwave-mobile">Neurosky Mindwave Mobile EEG</a>.</p>
-        
-      </div>
-      <div class="clear"></div>
-      <section class="how-to">
-        <h2 id="how-to-install">How to Install</h2>
-        <p>Installing Gobot with Neurosky support is pretty easy.</p>
-        
-        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/neurosky
-</pre>
-        
-        <h2 id="how-to-connect">How To Connect</h2>
-        
-        <h3 id="osx">OSX</h3>
-        
-        <p>In order to allow Gobot running on your Mac to access the Mindwave, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p>
-        
-        <p>Now you must pair with the Mindwave. Open System Preferences &gt; Bluetooth. Now with the Bluetooth devices windows open, hold the On/Pair button on the Mindwave towards the On/Pair text until you see "Mindwave" pop up as available devices. Pair with that device. Once paired your Mindwave will be accessable through the serial device similarly named as <code>/dev/tty.MindWaveMobile-DevA</code></p>
-        
-        <h3 id="ubuntu">Ubuntu</h3>
-        
-        <p>Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using <a href="https://gobot.io/x/gort">Gort</a> CLI commands. Here are the steps.</p>
-        
-        <p>Find the address of the Mindwave, by using:
-            gort scan bluetooth</p>
-        
-        <p>Pair to Mindwave using this command (substituting the actual address of your Mindwave):
-            gort bluetooth pair &lt;address&gt;</p>
-        
-        <p>Connect to the Mindwave using this command (substituting the actual address of your Mindwave):
-            gort bluetooth connect &lt;address&gt;</p>
-        
-        <h3 id="windows">Windows</h3>
-        
-        <p>You should be able to pair your Mindwave using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as <code>COM3</code>.</p>
-        
-        <h2 id="how-to-use">How to Use</h2>
-        
-        <p>This small program lets you connect the Neurosky an load data.</p>
-        
-        <pre class="CodeRay"><span class="keyword">package</span> main
+</script></head> <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet"> <link href="/favicon.ico" rel="shortcut icon" type="image/gif">  <body> <div class="app"> <header class="app-header" id="top" role="banner"> <div class="container"> <div class="display"> <div class="app-logo"> <a href="/">Gobot</a> </div> </div> <nav class="menu"> <ul class="nav-list"> <li> <a href="/documentation" class="item">Docs</a> </li> <li> <a href="/documentation/platforms" class="item">Platforms</a> </li> <li> <a href="/resources" class="item">Resources</a> </li> <li> <a href="/news" class="item">News</a> </li> <li> <a href="/blog" class="item">Blog</a> </li> <li> <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a> </li> </ul> </nav> </div> </header> <div class="info-intro"> <p>NeuroSky delivers fully integrated, single chip EEG biosensors. NeuroSky enables its partners and developers to bring their brainwave application ideas to market with the shortest amount of time, and lowest end consumer price.</p> <p>This package contains the Gobot adaptor and driver for the <a href="http://store.neurosky.com/products/mindwave-mobile">Neurosky Mindwave Mobile EEG</a>.</p> </div> <div class="clear"></div> <section class="how-to"> <h2 id="how-to-install">How to Install</h2> <p>Installing Gobot with Neurosky support is pretty easy.</p> <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/neurosky
+</pre> <h2 id="how-to-connect">How To Connect</h2> <h3 id="osx">OSX</h3> <p>In order to allow Gobot running on your Mac to access the Mindwave, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p> <p>Now you must pair with the Mindwave. Open System Preferences &gt; Bluetooth. Now with the Bluetooth devices windows open, hold the On/Pair button on the Mindwave towards the On/Pair text until you see "Mindwave" pop up as available devices. Pair with that device. Once paired your Mindwave will be accessable through the serial device similarly named as <code>/dev/tty.MindWaveMobile-DevA</code></p> <h3 id="ubuntu">Ubuntu</h3> <p>Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using <a href="https://gobot.io/x/gort">Gort</a> CLI commands. Here are the steps.</p> <p>Find the address of the Mindwave, by using: gort scan bluetooth</p> <p>Pair to Mindwave using this command (substituting the actual address of your Mindwave): gort bluetooth pair &lt;address&gt;</p> <p>Connect to the Mindwave using this command (substituting the actual address of your Mindwave): gort bluetooth connect &lt;address&gt;</p> <h3 id="windows">Windows</h3> <p>You should be able to pair your Mindwave using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as <code>COM3</code>.</p> <h2 id="how-to-use">How to Use</h2> <p>This small program lets you connect the Neurosky an load data.</p> <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
@@ -176,57 +83,4 @@
 
         robot.Start()
 }
-</pre>
-      </section>
-    </div>
-    <footer class="app-footer">
-      <div class="grass-footer"></div>
-      <div class="frameworks">
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/gobot-home.png">
-            </div>
-            <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/artoo.png">
-            </div>
-            <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="footer-button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/cylon.png">
-            </div>
-            <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p>
-            <div class="footer-button">
-              <a target="blank" href="http://cylonjs.com">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
-        </div>
-      </div>
-      <div class="copyright">
-        <div class="container">
-          <div class="hybrid-group">
-            <span>© Copyright 2012-2017</span>
-            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
-              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
-            </a>
-          </div>
-          <div class="top-link">
-            <a href="#top">
-              <img alt="Top" src="/images/elements/triangle_up.svg">
-              <p>Top</p>
-            </a>
-          </div>
-          <div class="clear"></div>
-        </div>
-      </div>
-    </footer>
-  </body>
-</html>
+</pre> </section> </div> <footer class="app-footer"> <div class="grass-footer"></div> <div class="frameworks"> <div class="container"> <div class="column-footer"> <div class="img"> <img src="/images/elements/gobot-home.png"> </div> <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/artoo.png"> </div> <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p> <div class="footer-button"> <a target="blank" href="http://artoo.io">View Project</a> </div> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/cylon.png"> </div> <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p> <div class="footer-button"> <a target="blank" href="http://cylonjs.com">View Project</a> </div> </div> <div class="clear"></div> </div> </div> <div class="copyright"> <div class="container"> <div class="hybrid-group"> <span>© Copyright 2012-2017</span> <a href="http://hybridgroup.com" id="THG-logo" target="_blank"> <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"> </a> </div> <div class="top-link"> <a href="#top"> <img alt="Top" src="/images/elements/triangle_up.svg"> <p>Top</p> </a> </div> <div class="clear"></div> </div> </div> </footer> </body> </html>

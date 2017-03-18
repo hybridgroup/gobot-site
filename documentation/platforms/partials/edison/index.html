@@ -1,19 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html ng-app="gobot">
-  <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="description">
-    <meta name="author">
-    <title></title>
-    <!-- /%link{href: "/stylesheets/style.css", rel: "stylesheet"} -->
-    <link href="/stylesheets/application.css" rel="stylesheet">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/javascripts/vendor/angular.min.js"></script>
-    <script src="/javascripts/app.js"></script>
-  <script type="text/javascript">
+<html ng-app="gobot"> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta content="width=device-width, initial-scale=1.0" name="viewport"> <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"> <meta name="description"> <meta name="author"> <title></title> <link href="/stylesheets/application.css" rel="stylesheet"> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script src="/javascripts/vendor/angular.min.js"></script> <script src="/javascripts/app.js"></script> <script type="text/javascript">
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -41,92 +28,9 @@
    ga('send', 'pageview');
 
 
-</script></head>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet" type="text/css">
-    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
-  
-  <body>
-    
-    <div class="app">
-      <header class="app-header" id="top" role="banner">
-        <div class="container">
-          <div class="display">
-            <div class="app-logo">
-              <a href="/">Gobot</a>
-            </div>
-          </div>
-          <nav class="menu">
-            <ul class="nav-list">
-              <li>
-                <a href="/documentation" class="item">Docs</a>
-              </li>
-              <li>
-                <a href="/documentation/platforms" class="item">Platforms</a>
-              </li>
-              <li>
-                <a href="/resources" class="item">Resources</a>
-              </li>
-              <li>
-                <a href="/news" class="item">News</a>
-              </li>
-              <li>
-                <a href="/blog" class="item">Blog</a>
-              </li>
-              <li>
-                <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <div class="info-intro">
-        <p>The Intel Edison is a wifi and Bluetooth® enabled devolopment platform for the Internet of Things. It packs a robust set of features into its small size and supports a broad spectrum of I/O and software support.</p>
-        
-        <p>For more info about the Edison platform click <a href="http://www.intel.com/content/www/us/en/do-it-yourself/edison.html">here</a>.</p>
-        
-      </div>
-      <div class="clear"></div>
-      <section class="how-to">
-        <h2 id="how-to-install-using-go-15">How to Install (using Go 1.5+)</h2>
-        
-        <p>Install Go from source or use an <a href="https://golang.org/dl/">official distribution</a>.</p>
-        
-        <p>Then you must install the appropriate Go packages</p>
-        
-        <h2 id="setting-up-your-intel-edison">Setting up your Intel Edison</h2>
-        
-        <p>Everything you need to get started with the Edison is in the Intel Getting Started Guide:</p>
-        
-        <p>https://software.intel.com/en-us/iot/library/edison-getting-started</p>
-        
-        <p>Don't forget to configure your Edison's wifi connection and flash your Edison with the latest firmware image!</p>
-        
-        <p>The recommended way to connect to your device is via wifi, for that follow the directions here:</p>
-        
-        <p>https://software.intel.com/en-us/connecting-your-intel-edison-board-using-wifi</p>
-        
-        <p>If you don't have a wifi network available, the Intel documentation explains how to use another connection type, but note that this guide assumes you are using wifi connection.</p>
-        
-        <p>You can obtain the IP address of your Edison, by running the floowing command:</p>
-        
-        <pre class="CodeRay">ip addr show | grep inet
-</pre>
-        
-        <p>Don't forget to setup the a password for the device otherwise you won't be able to connect using SSH. From within the screen session, run the following command:</p>
-        
-        <pre class="CodeRay">configure_edison --password
-</pre>
-        
-        <p>Note that you MUST setup a password otherwise SSH won't be enabled. If
-        later on you aren't able to scp to the device, try to reset the
-        password. This password will obviously be needed next time you connect to
-        your device.</p>
-        
-        <h2 id="example-program">Example program</h2>
-        
-        <p>Save the following code into a file called <code>main.go</code>.</p>
-        
-        <pre class="CodeRay"><span class="keyword">package</span> main
+</script></head> <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet"> <link href="/favicon.ico" rel="shortcut icon" type="image/gif">  <body> <div class="app"> <header class="app-header" id="top" role="banner"> <div class="container"> <div class="display"> <div class="app-logo"> <a href="/">Gobot</a> </div> </div> <nav class="menu"> <ul class="nav-list"> <li> <a href="/documentation" class="item">Docs</a> </li> <li> <a href="/documentation/platforms" class="item">Platforms</a> </li> <li> <a href="/resources" class="item">Resources</a> </li> <li> <a href="/news" class="item">News</a> </li> <li> <a href="/blog" class="item">Blog</a> </li> <li> <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a> </li> </ul> </nav> </div> </header> <div class="info-intro"> <p>The Intel Edison is a wifi and Bluetooth® enabled devolopment platform for the Internet of Things. It packs a robust set of features into its small size and supports a broad spectrum of I/O and software support.</p> <p>For more info about the Edison platform click <a href="http://www.intel.com/content/www/us/en/do-it-yourself/edison.html">here</a>.</p> </div> <div class="clear"></div> <section class="how-to"> <h2 id="how-to-install-using-go-15">How to Install (using Go 1.5+)</h2> <p>Install Go from source or use an <a href="https://golang.org/dl/">official distribution</a>.</p> <p>Then you must install the appropriate Go packages</p> <h2 id="setting-up-your-intel-edison">Setting up your Intel Edison</h2> <p>Everything you need to get started with the Edison is in the Intel Getting Started Guide:</p> <p>https://software.intel.com/en-us/iot/library/edison-getting-started</p> <p>Don't forget to configure your Edison's wifi connection and flash your Edison with the latest firmware image!</p> <p>The recommended way to connect to your device is via wifi, for that follow the directions here:</p> <p>https://software.intel.com/en-us/connecting-your-intel-edison-board-using-wifi</p> <p>If you don't have a wifi network available, the Intel documentation explains how to use another connection type, but note that this guide assumes you are using wifi connection.</p> <p>You can obtain the IP address of your Edison, by running the floowing command:</p> <pre class="CodeRay">ip addr show | grep inet
+</pre> <p>Don't forget to setup the a password for the device otherwise you won't be able to connect using SSH. From within the screen session, run the following command:</p> <pre class="CodeRay">configure_edison --password
+</pre> <p>Note that you MUST setup a password otherwise SSH won't be enabled. If later on you aren't able to scp to the device, try to reset the password. This password will obviously be needed next time you connect to your device.</p> <h2 id="example-program">Example program</h2> <p>Save the following code into a file called <code>main.go</code>.</p> <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
@@ -158,87 +62,7 @@
 
         robot.Start()
 }
-</pre>
-        
-        <p>You can read the <a href="http://godoc.org/gobot.io/x/gobot">full API documentation online</a>.</p>
-        
-        <h4 id="cross-compiling-for-the-intel-edison">Cross compiling for the Intel Edison</h4>
-        
-        <p>Compile your Gobot program run the following command using the command
-        line from the directory where you have your <code>main.go</code> file:</p>
-        
-        <pre class="CodeRay">$ GOARCH=386 GOOS=linux go build .
-</pre>
-        
-        <p>Then you can simply upload your program over the network from your host computer to the Edison</p>
-        
-        <pre class="CodeRay">$ scp main root@&lt;IP of your device&gt;:/home/root/blink
-</pre>
-        
-        <p>and execute it on your Edison (use screen to connect, see the Intel
-        setup steps if you don't recall how to connect)</p>
-        
-        <pre class="CodeRay">$ ./blink
-</pre>
-        
-        <p>At this point you should see the onboard LED blinking. Press control + c
-        to exit.</p>
-        
-        <p>To update the program after you made a change, you will need to scp it
-        over once again and start it from the command line (via screen).</p>
-        
-        <h2 id="license">License</h2>
-        <p>Copyright (c) 2014-2017 The Hybrid Group. Licensed under the Apache 2.0 license.</p>
-      </section>
-    </div>
-    <footer class="app-footer">
-      <div class="grass-footer"></div>
-      <div class="frameworks">
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/gobot-home.png">
-            </div>
-            <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/artoo.png">
-            </div>
-            <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="footer-button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/cylon.png">
-            </div>
-            <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p>
-            <div class="footer-button">
-              <a target="blank" href="http://cylonjs.com">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
-        </div>
-      </div>
-      <div class="copyright">
-        <div class="container">
-          <div class="hybrid-group">
-            <span>© Copyright 2012-2017</span>
-            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
-              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
-            </a>
-          </div>
-          <div class="top-link">
-            <a href="#top">
-              <img alt="Top" src="/images/elements/triangle_up.svg">
-              <p>Top</p>
-            </a>
-          </div>
-          <div class="clear"></div>
-        </div>
-      </div>
-    </footer>
-  </body>
-</html>
+</pre> <p>You can read the <a href="http://godoc.org/gobot.io/x/gobot">full API documentation online</a>.</p> <h4 id="cross-compiling-for-the-intel-edison">Cross compiling for the Intel Edison</h4> <p>Compile your Gobot program run the following command using the command line from the directory where you have your <code>main.go</code> file:</p> <pre class="CodeRay">$ GOARCH=386 GOOS=linux go build .
+</pre> <p>Then you can simply upload your program over the network from your host computer to the Edison</p> <pre class="CodeRay">$ scp main root@&lt;IP of your device&gt;:/home/root/blink
+</pre> <p>and execute it on your Edison (use screen to connect, see the Intel setup steps if you don't recall how to connect)</p> <pre class="CodeRay">$ ./blink
+</pre> <p>At this point you should see the onboard LED blinking. Press control + c to exit.</p> <p>To update the program after you made a change, you will need to scp it over once again and start it from the command line (via screen).</p> <h2 id="license">License</h2> <p>Copyright (c) 2014-2017 The Hybrid Group. Licensed under the Apache 2.0 license.</p> </section> </div> <footer class="app-footer"> <div class="grass-footer"></div> <div class="frameworks"> <div class="container"> <div class="column-footer"> <div class="img"> <img src="/images/elements/gobot-home.png"> </div> <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/artoo.png"> </div> <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p> <div class="footer-button"> <a target="blank" href="http://artoo.io">View Project</a> </div> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/cylon.png"> </div> <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p> <div class="footer-button"> <a target="blank" href="http://cylonjs.com">View Project</a> </div> </div> <div class="clear"></div> </div> </div> <div class="copyright"> <div class="container"> <div class="hybrid-group"> <span>© Copyright 2012-2017</span> <a href="http://hybridgroup.com" id="THG-logo" target="_blank"> <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"> </a> </div> <div class="top-link"> <a href="#top"> <img alt="Top" src="/images/elements/triangle_up.svg"> <p>Top</p> </a> </div> <div class="clear"></div> </div> </div> </footer> </body> </html>

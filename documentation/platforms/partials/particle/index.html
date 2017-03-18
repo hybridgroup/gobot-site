@@ -1,19 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html ng-app="gobot">
-  <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="description">
-    <meta name="author">
-    <title></title>
-    <!-- /%link{href: "/stylesheets/style.css", rel: "stylesheet"} -->
-    <link href="/stylesheets/application.css" rel="stylesheet">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/javascripts/vendor/angular.min.js"></script>
-    <script src="/javascripts/app.js"></script>
-  <script type="text/javascript">
+<html ng-app="gobot"> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta content="width=device-width, initial-scale=1.0" name="viewport"> <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"> <meta name="description"> <meta name="author"> <title></title> <link href="/stylesheets/application.css" rel="stylesheet"> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script src="/javascripts/vendor/angular.min.js"></script> <script src="/javascripts/app.js"></script> <script type="text/javascript">
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -41,62 +28,8 @@
    ga('send', 'pageview');
 
 
-</script></head>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet" type="text/css">
-    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
-  
-  <body>
-    
-    <div class="app">
-      <header class="app-header" id="top" role="banner">
-        <div class="container">
-          <div class="display">
-            <div class="app-logo">
-              <a href="/">Gobot</a>
-            </div>
-          </div>
-          <nav class="menu">
-            <ul class="nav-list">
-              <li>
-                <a href="/documentation" class="item">Docs</a>
-              </li>
-              <li>
-                <a href="/documentation/platforms" class="item">Platforms</a>
-              </li>
-              <li>
-                <a href="/resources" class="item">Resources</a>
-              </li>
-              <li>
-                <a href="/news" class="item">News</a>
-              </li>
-              <li>
-                <a href="/blog" class="item">Blog</a>
-              </li>
-              <li>
-                <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <div class="info-intro">
-        <p>The Particle Photon and Particle Electron are connected microcontrollers from Particle (http://particle.io), the company formerly known as Spark Devices. The Photon uses a Wi-Fi connection to the Particle cloud, and the Electron uses a 3G wireless connection. Once the Photon or Electron connects to the network, it automatically connects with a central server (the "Particle Cloud") and stays connected so it can be controlled from external systems, such as a Gobot program. To run Gobot programs please make sure you are running default Tinker firmware on the Photon or Electron.</p>
-        
-        <p>For more info about the Particle platform go to https://www.particle.io/</p>
-        
-      </div>
-      <div class="clear"></div>
-      <section class="how-to">
-        <h2 id="how-to-install">How to Install</h2>
-        
-        <p>Installing Gobot with Particle support is pretty easy.</p>
-        
-        <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/particle
-</pre>
-        
-        <h2 id="how-to-use">How to Use</h2>
-        
-        <pre class="CodeRay"><span class="keyword">package</span> main
+</script></head> <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet"> <link href="/favicon.ico" rel="shortcut icon" type="image/gif">  <body> <div class="app"> <header class="app-header" id="top" role="banner"> <div class="container"> <div class="display"> <div class="app-logo"> <a href="/">Gobot</a> </div> </div> <nav class="menu"> <ul class="nav-list"> <li> <a href="/documentation" class="item">Docs</a> </li> <li> <a href="/documentation/platforms" class="item">Platforms</a> </li> <li> <a href="/resources" class="item">Resources</a> </li> <li> <a href="/news" class="item">News</a> </li> <li> <a href="/blog" class="item">Blog</a> </li> <li> <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a> </li> </ul> </nav> </div> </header> <div class="info-intro"> <p>The Particle Photon and Particle Electron are connected microcontrollers from Particle (http://particle.io), the company formerly known as Spark Devices. The Photon uses a Wi-Fi connection to the Particle cloud, and the Electron uses a 3G wireless connection. Once the Photon or Electron connects to the network, it automatically connects with a central server (the "Particle Cloud") and stays connected so it can be controlled from external systems, such as a Gobot program. To run Gobot programs please make sure you are running default Tinker firmware on the Photon or Electron.</p> <p>For more info about the Particle platform go to https://www.particle.io/</p> </div> <div class="clear"></div> <section class="how-to"> <h2 id="how-to-install">How to Install</h2> <p>Installing Gobot with Particle support is pretty easy.</p> <pre class="CodeRay">go get -d -u gobot.io/x/gobot/... &amp;&amp; go install gobot.io/x/gobot/platforms/particle
+</pre> <h2 id="how-to-use">How to Use</h2> <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
@@ -124,57 +57,4 @@
 
         robot.Start()
 }
-</pre>
-      </section>
-    </div>
-    <footer class="app-footer">
-      <div class="grass-footer"></div>
-      <div class="frameworks">
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/gobot-home.png">
-            </div>
-            <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/artoo.png">
-            </div>
-            <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="footer-button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/cylon.png">
-            </div>
-            <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p>
-            <div class="footer-button">
-              <a target="blank" href="http://cylonjs.com">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
-        </div>
-      </div>
-      <div class="copyright">
-        <div class="container">
-          <div class="hybrid-group">
-            <span>© Copyright 2012-2017</span>
-            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
-              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
-            </a>
-          </div>
-          <div class="top-link">
-            <a href="#top">
-              <img alt="Top" src="/images/elements/triangle_up.svg">
-              <p>Top</p>
-            </a>
-          </div>
-          <div class="clear"></div>
-        </div>
-      </div>
-    </footer>
-  </body>
-</html>
+</pre> </section> </div> <footer class="app-footer"> <div class="grass-footer"></div> <div class="frameworks"> <div class="container"> <div class="column-footer"> <div class="img"> <img src="/images/elements/gobot-home.png"> </div> <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/artoo.png"> </div> <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p> <div class="footer-button"> <a target="blank" href="http://artoo.io">View Project</a> </div> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/cylon.png"> </div> <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p> <div class="footer-button"> <a target="blank" href="http://cylonjs.com">View Project</a> </div> </div> <div class="clear"></div> </div> </div> <div class="copyright"> <div class="container"> <div class="hybrid-group"> <span>© Copyright 2012-2017</span> <a href="http://hybridgroup.com" id="THG-logo" target="_blank"> <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"> </a> </div> <div class="top-link"> <a href="#top"> <img alt="Top" src="/images/elements/triangle_up.svg"> <p>Top</p> </a> </div> <div class="clear"></div> </div> </div> </footer> </body> </html>
