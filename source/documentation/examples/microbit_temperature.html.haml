@@ -1,0 +1,43 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - microbit_temperature"
+page_title: "Example: microbit_temperature"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+        	"os"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/platforms/ble"
+        	"gobot.io/x/gobot/platforms/microbit"
+        )
+
+        func main() {
+        	bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+        	ubit := microbit.NewTemperatureDriver(bleAdaptor)
+
+        	work := func() {
+        		ubit.On(microbit.Temperature, func(data interface{}) {
+        			fmt.Println("Temperature", data)
+        		})
+        	}
+
+        	robot := gobot.NewRobot("thermoBot",
+        		[]gobot.Connection{bleAdaptor},
+        		[]gobot.Device{ubit},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+

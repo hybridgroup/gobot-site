@@ -89,6 +89,12 @@
     "drivers": ["Mavlink"]
   },
 
+  "Microbit": {
+    "slug": "microbit",
+    "url": "http://microbit.org/",
+    "drivers": ["Battery Service", "Device Information Service", "Generic Access Service", "Microbit Accelerometer", "Microbit Button", "Microbit LED", "Microbit Magnetometer", "Microbit Temperature" ]
+  },
+
   "Minidrone": {
     "slug": "minidrone",
     "url": "http://www.parrot.com/products/minidrone/",

@@ -25,6 +25,7 @@
     "Keyboard": "/documentation/platforms/keyboard",
     "Leap Motion": "/documentation/platforms/leapmotion",
     "Mavlink": "/documentation/platforms/mavlink",
+    "Microbit": "/documentation/platforms/microbit",
     "MQTT": "/documentation/platforms/mqtt",
     "NATS": "/documentation/platforms/nats",
     "Neurosky Mindwave": "/documentation/platforms/neurosky",
