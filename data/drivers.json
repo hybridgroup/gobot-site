@@ -30,6 +30,7 @@
     "Adafruit Motor HAT": "adafruit-motor-hat",
     "BlinkM": "blinkm",
     "BMP180": "bmp180",
+    "DRV2605L": "drv2605l",
     "Grove LCD w/RGB": "grove-lcd",
     "Grove Accelerometer": "grove-accelerometer",
     "HMC6352 Compass": "hmc6352-compass",
@@ -40,6 +41,7 @@
     "MPL115A2": "mpl115a2",
     "MPU6050": "mpu6050",
     "SHT3X": "sht3x",
+    "TSL2561": "tsl2561",
     "Wiimote Nunchuk": "wiimote-nunchuk"
   },
 
@@ -58,7 +60,7 @@
   "Mavlink": "mavlink",
   "Minidrone": "minidrone",
   "MQTT": "mqtt",
-  "NATS": "nats",  
+  "NATS": "nats",
   "Neurosky Mindwave": "neurosky",
   "Pebble": "pebble",
   "Sphero": "sphero",
