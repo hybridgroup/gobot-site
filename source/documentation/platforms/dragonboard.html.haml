@@ -1,0 +1,30 @@
+---
+title: Dragonboard with Gobot
+author: The Hybrid Group
+page_title: Platforms
+page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
+page_title_docs: Dragonboard
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot' target='blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/gobot/issues' target='blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/gobot.io/x/gobot/platforms/dragonboard' target='blank' class='api-link'>API Reference</a>
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+
+%section.intro
+  = image_tag "/images/devices/dragonboard.jpg", class: "display"
+
+= partial "documentation/platforms/partials/dragonboard"
+
+
+%section.drivers#Drivers
+  :markdown
+    ## Drivers
+
+    Available drivers for the Dragonboard platform are listed below.
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "Dragonboard"}

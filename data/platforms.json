@@ -41,6 +41,12 @@
     "drivers": ["GPIO", "AIO", "I2C"]
   },
 
+  "Dragonboard": {
+    "slug": "dragonboard",
+    "url": "https://www.arrow.com/en/products/dragonboard410c/arrow-development-tools",
+    "drivers": ["GPIO", "I2C"]
+  },
+
   "ESP8266": {
     "slug": "esp8266",
     "url": "http://espressif.com/products/hardware/esp8266ex/overview/",

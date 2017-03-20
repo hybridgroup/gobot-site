@@ -17,6 +17,7 @@
     "Bluetooth LE": "/documentation/platforms/ble",
     "C.H.I.P.": "/documentation/platforms/chip",
     "Digispark": "/documentation/platforms/digispark",
+    "Dragonboard": "/documentation/platforms/dragonboard",
     "ESP8266": "/documentation/platforms/esp8266",
     "Intel Edison": "/documentation/platforms/edison",
     "Intel Joule": "/documentation/platforms/joule",

@@ -1,0 +1,45 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - dragonboard_button"
+page_title: "Example: dragonboard_button"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+            "fmt"
+
+            "gobot.io/x/gobot"
+            "gobot.io/x/gobot/drivers/gpio"
+            "gobot.io/x/gobot/platforms/dragonboard"
+        )
+
+        func main() {
+            dragonAdaptor := chip.NewAdaptor()
+            button := gpio.NewButtonDriver(dragonAdaptor, "GPIO_A")
+
+            work := func() {
+                gobot.On(button.Event("push"), func(data interface{}) {
+                    fmt.Println("button pressed")
+                })
+
+                gobot.On(button.Event("release"), func(data interface{}) {
+                    fmt.Println("button released")
+                })
+            }
+
+            robot := gobot.NewRobot("buttonBot",
+                []gobot.Connection{chipAdaptor},
+                []gobot.Device{button},
+                work,
+            )
+
+            robot.Start()
+        }
