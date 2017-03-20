@@ -71,9 +71,11 @@
       "Adafruit Motor HAT": "/documentation/drivers/adafruit-motor-hat",
       "BlinkM": "/documentation/drivers/blinkm",
       "BMP180": "/documentation/drivers/bmp180",
+      "DRV2605L": "/documentation/drivers/drv2605l",
       "Grove LCD": "/documentation/drivers/grove-lcd",
       "Grove Accelerometer": "/documentation/drivers/grove-accelerometer",
       "HMC6352 Compass": "/documentation/drivers/hmc6352-compass",
+      "JHD1313M1": "/documentation/drivers/jhd1313m1",
       "L3GD20H": "/documentation/drivers/l3gd20h",
       "LIDAR-Lite": "/documentation/drivers/lidar-lite",
       "MCP23017": "/documentation/drivers/mcp23017",
@@ -81,6 +83,7 @@
       "MPL115A2": "/documentation/drivers/mpl115a2",
       "MPU6050": "/documentation/drivers/mpu6050",
       "SHT3X": "/documentation/drivers/sht3x",
+      "TSL2561": "/documentation/drivers/tsl2561",
       "Wiichuck": "/documentation/drivers/wiimote-nunchuk"
     },
 

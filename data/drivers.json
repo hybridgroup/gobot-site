@@ -34,6 +34,7 @@
     "Grove LCD w/RGB": "grove-lcd",
     "Grove Accelerometer": "grove-accelerometer",
     "HMC6352 Compass": "hmc6352-compass",
+    "JHD1313M1": "jhd1313m1",
     "L3GD20H": "l3gd20h",
     "LIDAR-Lite": "lidar-lite",
     "MCP23017": "mcp23017",
