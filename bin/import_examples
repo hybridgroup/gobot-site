@@ -21,6 +21,11 @@ class Example
   def page
     body = @content.dup
 
+    # remove the build comments
+    if body[0] == "// +build example"
+      body = body.to_a[4..-1].join
+    end
+
     # indent by eight spaces
     body.gsub! /^(.+)/, '        \1'
 
