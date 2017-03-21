@@ -1,0 +1,36 @@
+---
+title: Gobot - Microbit Magnetometer
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Microbit Magnetometer
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/ble-generic-access.jpg", class: "display"
+.info-intro
+  %p
+    The Microbit Magnetometer Service is a Bluetooth LE Service specific to the Microbit.
+
+  %a{:href => "https://godoc.org/gobot.io/x/gobot/platforms/microbit#MagnetometerDriver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Goes here...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Microbit Magnetometer" }
