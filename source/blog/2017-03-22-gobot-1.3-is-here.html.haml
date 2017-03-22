@@ -1,0 +1,100 @@
+---
+page_title_show: true
+title: Gobot - 1.3 Is Here
+page_title: Blog
+date: 2017-03-22
+tags: releases
+author: Ron Evans
+---
+
+:markdown
+
+  Hello, dear friends. We present to you today release v1.3 of Gobot, our Golang framework for programming devices in the real world.
+
+  We've been very busy at conferences like [SCaLE 15x](https://gobot.io/blog/2017/03/12/all-about-the-next-generation-at-scale15x/) over the last month since the big Golang birthday bash, but thanks to our hard-working team and contributors we're so very happy to present to you our latest and greatest.
+
+  ## BBC Microbit support
+
+  Inspired by lot of activity around the awesome [BBC Microbit](http://microbit.org/) in the kids programming world, we now have support for it.
+
+  Here is an example that uses the built-in LEDs to display "Hello" then a smile:
+
+      :::go
+      package main
+
+      import (
+      	"os"
+      	"time"
+
+      	"gobot.io/x/gobot"
+      	"gobot.io/x/gobot/platforms/ble"
+      	"gobot.io/x/gobot/platforms/microbit"
+      )
+
+      func main() {
+      	bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+      	ubit := microbit.NewLEDDriver(bleAdaptor)
+
+      	work := func() {
+      		ubit.Blank()
+      		gobot.After(1*time.Second, func() {
+      			ubit.WriteText("Hello")
+      		})
+      		gobot.After(7*time.Second, func() {
+      			ubit.Smile()
+      		})
+      	}
+
+      	robot := gobot.NewRobot("blinkBot",
+      		[]gobot.Connection{bleAdaptor},
+      		[]gobot.Device{ubit},
+      		work,
+      	)
+
+      	robot.Start()
+      }
+
+
+  The Gobot interface uses the cool [Microbit firmware](https://github.com/sandeepmistry/node-bbc-microbit-firmware) created by [@sandeepmistry](https://github.com/sandeepmistry) we are able to use the Microbit's BLE interface to access some of the built-in capabilities.
+
+  ## DragonBoard
+
+  Thanks to contributor [@thetooth](https://github.com/thetooth) we now have support for the [DragonBoard](https://developer.qualcomm.com/hardware/dragonboard-410c) using the GPIO and I2C interfaces. Thank you!
+
+  ## More I2C Devices
+
+  Thanks to contributor [@erkkah](https://github.com/erkkah) we have more work on the the Gobot I2C implementations, alongside a couple of new I2C devices:
+
+  - DRV2605L Haptic Controller
+  - TSL2561 Luminosity Sensor
+
+  ## New Gort Release
+
+  We've also released [Gort](http://gort.io) v0.8.0 to support the Microbit, along with a couple other updates.
+
+  ## Code Coverage
+
+  We've switched our code coverage to an awesome new free service [codecov.io](https://codecov.io) and worked on upping our coverage based on the more realistic numbers.
+
+  The code coverage dashboard for Gobot is located at [https://codecov.io/gh/hybridgroup/gobot](https://codecov.io/gh/hybridgroup/gobot)
+
+  First, the good news:
+
+  - Gobot core is at an excellent level of code coverage, with only a handful of lines lacking tests.
+  - Gobot API is also at over 96% coverage.
+
+  Now, the areas where we need work:
+
+  - Gobot sysfs around 65% coverage.
+  - Gobot drivers around 75% coverage.
+  - Gobot platforms only around 57% coverage. Ouch!
+
+  So, if you ever wanted to help out, dear reader, that would be a greatly appreciated place to pitch in.
+
+  ## Full Changelog
+
+  There are many fixes and features in this new release, please take a look at the release info at [https://github.com/hybridgroup/gobot/releases/tag/v1.3.0](https://github.com/hybridgroup/gobot/releases/tag/v1.3.0).
+
+  ## Keep On Moving
+
+  Stay in touch with the project by following us on Twitter at [@gobotio](http://twitter.com/gobotio). Thank you!
