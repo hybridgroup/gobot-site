@@ -22,13 +22,23 @@ subnavjs: true
   %a{:href => "https://godoc.org/gobot.io/x/gobot/platforms/microbit#TemperatureDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
-%section.how-to#HowToConnect
-  %h2 How To Connect
-  :markdown
-    Goes here...
+%h2 How To Connect
+:markdown
+   The Microbit is a Bluetooth LE device, so you use the Gobot `ble.ClientAdaptor` to connect. You need to know the BLE address or name of the device.
+
+:markdown
+         bleAdaptor := ble.NewClientAdaptor("c5:b9:46:fd:40:c0")
+         ubit := microbit.NewTemperatureDriver(bleAdaptor)
 
 %section.how-to#HowToUse
-  %h2 How To Use
+%h2 How To Use
+
+Once you have connected using the ble.ClientAdaptor, you can call any of the Driver's methods, or subscribe to any of the driver's events.
+
+:markdown
+         ubit.On(microbit.Temperature, func(data interface{}) {
+            fmt.Println("Temperature", data)
+         })
 
 %section.Compatibility.hardware#Compatibility
   %h2 Compatibility

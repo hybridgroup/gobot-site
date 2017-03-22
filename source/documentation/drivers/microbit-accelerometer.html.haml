@@ -14,23 +14,34 @@ subnavjs: true
 ---
 
 %section.intro
-  =image_tag "/images/devices/ble-generic-access.jpg", class: "display"
+   =image_tag "/images/devices/ble-generic-access.jpg", class: "display"
 .info-intro
-  %p
-    The Microbit Accelerometer Service is a Bluetooth LE Service specific to the Microbit.
+   %p
+   The Microbit Accelerometer Service is a Bluetooth LE Service specific to the Microbit.
 
-  %a{:href => "https://godoc.org/gobot.io/x/gobot/platforms/microbit#AccelerometerDriver", :class => "api-link", :target => "_blank"} API Reference
+   %a{:href => "https://godoc.org/gobot.io/x/gobot/platforms/microbit#AccelerometerDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  :markdown
-    Goes here...
+%h2 How To Connect
+:markdown
+   The Microbit is a Bluetooth LE device, so you use the Gobot `ble.ClientAdaptor` to connect. You need to know the BLE address or name of the device.
+
+:markdown
+         bleAdaptor := ble.NewClientAdaptor("c5:b9:46:fd:40:c0")
+         ubit := microbit.NewAccelerometerDriver(bleAdaptor)
 
 %section.how-to#HowToUse
-  %h2 How To Use
+%h2 How To Use
+
+Once you have connected using the ble.ClientAdaptor, you can call any of the Driver's methods, or subscribe to any of the driver's events.
+
+:markdown
+         ubit.On(microbit.Accelerometer, func(data interface{}) {
+            fmt.Println("Accelerometer", data)
+         })
 
 %section.Compatibility.hardware#Compatibility
-  %h2 Compatibility
-  .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "Microbit Accelerometer" }
+   %h2 Compatibility
+   .devices
+      = partial "/partials/platforms_for_driver", locals: { driver: "Microbit Accelerometer" }

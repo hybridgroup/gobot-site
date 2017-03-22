@@ -43,7 +43,7 @@
 
   "Dragonboard": {
     "slug": "dragonboard",
-    "url": "https://www.arrow.com/en/products/dragonboard410c/arrow-development-tools",
+    "url": "https://developer.qualcomm.com/hardware/dragonboard-410c",
     "drivers": ["GPIO", "I2C"]
   },
 
