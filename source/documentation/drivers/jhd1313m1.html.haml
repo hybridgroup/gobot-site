@@ -1,0 +1,54 @@
+---
+title: Gobot - JHD1313M1 Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Grove JHD1313M1
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/jhd1313m1.jpg", class: "display"
+.info-intro
+  %p Used for displaying text on an LCD screen.
+  %a{:href => "https://godoc.org/gobot.io/x/gobot/drivers/i2c#JHD1313M1Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+%h2 How To Connect
+:markdown
+  Install the package with: `go get gobot.io/x/gobot`
+
+  You must pass in an Adaptor that supports the `i2c.Connector` interface to use with this Driver.
+
+  You can use the following optional params if you wish to change the I2C Bus from the default value.
+
+  `i2c.WithBus(int)`:   bus to use with this driver.
+
+:markdown
+      :::go
+      // default bus/addresses
+      lcd := i2c.NewJHD1313M1Driver(adaptor)
+
+      // optional bus
+      lcd := i2c.NewJHD1313M1Driver(adaptor,
+                                   i2c.WithBus(0))
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %h3 Example using a JHD1313M1 LCD.
+  :markdown
+        :::go
+        // code here
+
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "JHD1313M1" }
