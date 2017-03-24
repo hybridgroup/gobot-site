@@ -1,9 +1,9 @@
 ---
-title: Gobot - Grove Relay Driver
+title: Gobot - Relay Driver
 author: The Hybrid Group
 page_title: Drivers
 page_subtitle: Gobot has a extensible system for connecting to hardware devices.
-page_title_docs: Grove Relay
+page_title_docs: Relay
 page_subtitle_docs: Driver
 page_title_show: true
 layout: documentation
@@ -14,14 +14,14 @@ subnavjs: true
 ---
 
 %section.intro
-  =image_tag "/images/devices/grove-relay.jpg", class: "display"
+  =image_tag "/images/devices/relay.jpg", class: "display"
 .info-intro
   %p
-    The Grove-Relay module is a digital normally-open switch. Through it, you can control circuit of high voltage
+    The Relay module is a digital normally-open switch. Through it, you can control circuit of high voltage
     with low voltage, say 5V on the controller. There is an indicator LED on the board, which will light up when
     the controlled terminals get closed.
 
-  %a{:href => "https://godoc.org/gobot.io/x/gobot/drivers/gpio#GroveRelayDriver", :class => "api-link", :target => "_blank"} API Reference
+  %a{:href => "https://godoc.org/gobot.io/x/gobot/drivers/gpio#RelayDriver", :class => "api-link", :target => "_blank"} API Reference
 .clear
 
 %section.how-to#HowToConnect
@@ -31,8 +31,10 @@ subnavjs: true
 
 %section.how-to#HowToUse
   %h2 How To Use
+  :markdown
+    Code example needed here...
 
 %section.Compatibility.hardware#Compatibility
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "Grove Relay" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "Relay" }
