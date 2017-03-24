@@ -1,11 +1,11 @@
 @charset "UTF-8";
-/* line 4, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_box-sizing.scss */
+/* line 4, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_box-sizing.scss */
 html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-/* line 9, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_box-sizing.scss */
+/* line 9, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_box-sizing.scss */
 *, *:before, *:after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
@@ -1054,7 +1054,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 2.5em; }
-  /* line 9, /home/ron/.rvm/gems/ruby-2.1.0/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
+  /* line 9, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
   .main-content::after {
     clear: both;
     content: "";
@@ -1062,7 +1062,7 @@ body {
   /* line 22, /home/ron/Development/gobot/gobot-site/source/stylesheets/views/shared/_body.scss */
   .main-content section {
     display: block; }
-    /* line 9, /home/ron/.rvm/gems/ruby-2.1.0/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
+    /* line 9, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
     .main-content section::after {
       clear: both;
       content: "";
@@ -1087,7 +1087,7 @@ body {
   margin: 0 auto;
   position: relative;
   padding: 0 0.9375em; }
-  /* line 9, /home/ron/.rvm/gems/ruby-2.1.0/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
+  /* line 9, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
   .container::after {
     clear: both;
     content: "";
@@ -1151,7 +1151,7 @@ a:hover, a:focus {
     background: url("/images/elements/logo.png") left top no-repeat;
     text-indent: -624.9375em;
     margin-top: 1.25em; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .app-header .app-logo a:last-child {
       margin-right: 0; }
   /* line 16, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_app-header.scss */
@@ -1166,7 +1166,7 @@ a:hover, a:focus {
     margin-right: 2.35765%;
     width: 40.29137%;
     margin: -0.0625em 0 0 0; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .app-header .display:last-child {
       margin-right: 0; }
     @media screen and (max-width: 966px) {
@@ -1176,7 +1176,7 @@ a:hover, a:focus {
         display: block;
         margin-right: 2.35765%;
         width: 48.82117%; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .app-header .display:last-child {
           margin-right: 0; } }
   /* line 31, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_app-header.scss */
@@ -1188,7 +1188,7 @@ a:hover, a:focus {
     text-align: right;
     display: inline-block;
     margin: 1.125em 0 0 0; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .app-header .menu:last-child {
       margin-right: 0; }
     @media screen and (max-width: 966px) {
@@ -1199,7 +1199,7 @@ a:hover, a:focus {
         margin-right: 2.35765%;
         width: 48.82117%;
         padding: 0; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .app-header .menu:last-child {
           margin-right: 0; }
         /* line 41, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_app-header.scss */
@@ -1249,7 +1249,7 @@ a:hover, a:focus {
       width: 100%;
       text-align: center;
       margin: -0.0625em 0 0; }
-      /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+      /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
       .app-header .display:last-child {
         margin-right: 0; }
     /* line 98, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_app-header.scss */
@@ -1268,7 +1268,7 @@ a:hover, a:focus {
       display: block;
       margin-right: 2.35765%;
       width: 100%; }
-      /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+      /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
       .app-header .menu:last-child {
         margin-right: 0; }
       /* line 113, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_app-header.scss */
@@ -1320,7 +1320,7 @@ a:hover, a:focus {
     margin-right: 2.35765%;
     width: 65.88078%;
     padding-top: 1.25em; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .blog .articles:last-child {
       margin-right: 0; }
     /* line 8, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_blog.scss */
@@ -1331,7 +1331,7 @@ a:hover, a:focus {
       width: 100%;
       margin: 0.625em 0;
       max-width: 100%; }
-      /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+      /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
       .blog .articles img:last-child {
         margin-right: 0; }
     @media screen and (max-width: 768px) {
@@ -1341,7 +1341,7 @@ a:hover, a:focus {
         display: block;
         margin-right: 2.35765%;
         width: 100%; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .blog .articles:last-child {
           margin-right: 0; } }
     @media screen and (max-width: 480px) {
@@ -1370,7 +1370,7 @@ a:hover, a:focus {
   /* line 46, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_blog.scss */
   .blog .header {
     display: block; }
-    /* line 9, /home/ron/.rvm/gems/ruby-2.1.0/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
+    /* line 9, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
     .blog .header::after {
       clear: both;
       content: "";
@@ -1382,7 +1382,7 @@ a:hover, a:focus {
     margin-right: 2.35765%;
     width: 100%;
     margin-bottom: 0.9375em; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .blog .comments:last-child {
       margin-right: 0; }
   /* line 55, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_blog.scss */
@@ -1407,7 +1407,7 @@ a:hover, a:focus {
     display: block;
     margin-right: 2.35765%;
     width: 23.23176%; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .blog .side-column:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
@@ -1417,7 +1417,7 @@ a:hover, a:focus {
         display: block;
         margin-right: 2.35765%;
         width: 100%; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .blog .side-column:last-child {
           margin-right: 0; } }
   /* line 83, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_blog.scss */
@@ -1487,7 +1487,7 @@ a:hover, a:focus {
   display: block;
   margin-right: 2.35765%;
   width: 100%; }
-  /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+  /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
   .documentation-boxes:last-child {
     margin-right: 0; }
   @media screen and (max-width: 768px) {
@@ -1503,7 +1503,7 @@ a:hover, a:focus {
     background: #6ba340;
     margin-bottom: 1.25em;
     border-radius: 2px; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .documentation-boxes .box:last-child {
       margin-right: 0; }
     /* line 14, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-boxes.scss */
@@ -1516,7 +1516,7 @@ a:hover, a:focus {
         display: block;
         margin-right: 2.35765%;
         width: 100%; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .documentation-boxes .box:last-child {
           margin-right: 0; } }
   /* line 23, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-boxes.scss */
@@ -1527,7 +1527,7 @@ a:hover, a:focus {
     width: 100%;
     height: 100%;
     display: block; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .documentation-boxes a:last-child {
       margin-right: 0; }
   /* line 29, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-boxes.scss */
@@ -1548,7 +1548,7 @@ a:hover, a:focus {
   display: block;
   margin-right: 2.35765%;
   width: 48.82117%; }
-  /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+  /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
   .container-documentation .image-circuit img:last-child {
     margin-right: 0; }
 /* line 6, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-driver.scss */
@@ -1559,7 +1559,7 @@ a:hover, a:focus {
   width: 48.82117%;
   margin-right: 0;
   float: right; }
-  /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+  /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
   .container-documentation .description-circuit:last-child {
     margin-right: 0; }
 /* line 13, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-driver.scss */
@@ -1638,7 +1638,7 @@ a:hover, a:focus {
   margin-right: 2.35765%;
   width: 100%;
   padding: 0 0.9375em; }
-  /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+  /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
   .documentation:last-child {
     margin-right: 0; }
   @media screen and (max-width: 768px) {
@@ -1652,7 +1652,7 @@ a:hover, a:focus {
     margin-right: 2.35765%;
     width: 74.41059%;
     overflow: hidden; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .documentation .container-documentation:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
@@ -1663,7 +1663,7 @@ a:hover, a:focus {
         margin-right: 2.35765%;
         width: 100%;
         padding: 0 0.9375em; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .documentation .container-documentation:last-child {
           margin-right: 0; }
         /* line 17, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-single.scss */
@@ -1718,7 +1718,7 @@ a:hover, a:focus {
     display: block;
     margin-right: 2.35765%;
     width: 40.29137%; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .documentation .intro:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
@@ -1728,7 +1728,7 @@ a:hover, a:focus {
         display: block;
         margin-right: 2.35765%;
         width: 100%; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .documentation .intro:last-child {
           margin-right: 0; } }
   /* line 85, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-single.scss */
@@ -1739,7 +1739,7 @@ a:hover, a:focus {
     width: 57.35098%;
     float: right;
     margin: 0; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .documentation .info-intro:last-child {
       margin-right: 0; }
     /* line 90, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-single.scss */
@@ -1754,7 +1754,7 @@ a:hover, a:focus {
         display: block;
         margin-right: 2.35765%;
         width: 100%; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .documentation .info-intro:last-child {
           margin-right: 0; } }
   /* line 102, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-single.scss */
@@ -1766,7 +1766,7 @@ a:hover, a:focus {
     display: block;
     margin-right: 2.35765%;
     width: 100%; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .documentation .display:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
@@ -1776,7 +1776,7 @@ a:hover, a:focus {
         display: block;
         margin-right: 2.35765%;
         width: 100%; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .documentation .display:last-child {
           margin-right: 0; } }
   /* line 114, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-single.scss */
@@ -1796,7 +1796,7 @@ a:hover, a:focus {
     top: 0;
     white-space: nowrap;
     z-index: 1; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .documentation .subNavfixed:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
@@ -1812,7 +1812,7 @@ a:hover, a:focus {
       color: white;
       margin: 0.6875em 0;
       white-space: nowrap; }
-      /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+      /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
       .documentation .subNavfixed h5:last-child {
         margin-right: 0; }
     /* line 140, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-single.scss */
@@ -1822,7 +1822,7 @@ a:hover, a:focus {
       margin-right: 2.35765%;
       width: 74.41059%;
       margin: 0.9375em 0 0.9375em 0.625em; }
-      /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+      /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
       .documentation .subNavfixed .documentation-nav:last-child {
         margin-right: 0; }
       /* line 144, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_documentation-single.scss */
@@ -1839,7 +1839,7 @@ a:hover, a:focus {
     margin-right: 2.35765%;
     width: 31.76157%;
     margin-right: 0; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .documentation .Compatibility-link:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
@@ -1850,7 +1850,7 @@ a:hover, a:focus {
         margin-right: 2.35765%;
         width: 48.82117%;
         margin-right: 0; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .documentation .Compatibility-link:last-child {
           margin-right: 0; } }
 
@@ -1891,7 +1891,7 @@ a:hover, a:focus {
   color: #fafaf1;
   position: relative;
   overflow: hidden; }
-  /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+  /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
   .app-footer:last-child {
     margin-right: 0; }
   /* line 13, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_footer.scss */
@@ -1912,7 +1912,7 @@ a:hover, a:focus {
     z-index: 0;
     position: relative;
     padding: 20px; }
-    /* line 79, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 79, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .app-footer .column-footer:last-child {
       width: 29.52859%; }
     @media screen and (max-width: 768px) {
@@ -1922,7 +1922,7 @@ a:hover, a:focus {
         display: block;
         margin-right: 2.35765%;
         width: 100%; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .app-footer .column-footer:last-child {
           margin-right: 0; } }
   /* line 36, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_footer.scss */
@@ -1968,7 +1968,7 @@ a:hover, a:focus {
   margin-left: auto;
   margin-right: auto;
   text-align: center; }
-  /* line 9, /home/ron/.rvm/gems/ruby-2.1.0/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
+  /* line 9, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
   .hardware .devices::after {
     clear: both;
     content: "";
@@ -1977,7 +1977,7 @@ a:hover, a:focus {
   .hardware .devices h2 {
     display: block;
     text-align: left; }
-    /* line 9, /home/ron/.rvm/gems/ruby-2.1.0/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
+    /* line 9, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/bourbon-4.1.1/app/assets/stylesheets/addons/_clearfix.scss */
     .hardware .devices h2::after {
       clear: both;
       content: "";
@@ -2016,7 +2016,7 @@ a:hover, a:focus {
     width: 31.76157%;
     width: 14.375em;
     float: right; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .hero .display:last-child {
       margin-right: 0; }
     /* line 12, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_hero.scss */
@@ -2033,7 +2033,7 @@ a:hover, a:focus {
     margin-right: 2.35765%;
     width: 65.88078%;
     margin-top: 2.1875em; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .hero .description:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
@@ -2044,7 +2044,7 @@ a:hover, a:focus {
         margin-right: 2.35765%;
         width: 100%;
         text-align: center; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .hero .description:last-child {
           margin-right: 0; } }
     /* line 30, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_hero.scss */
@@ -2248,7 +2248,7 @@ a:hover, a:focus {
   width: 100%;
   list-style: none;
   margin: 0; }
-  /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+  /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
   .platform-list:last-child {
     margin-right: 0; }
   /* line 6, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_platform-list.scss */
@@ -2261,7 +2261,7 @@ a:hover, a:focus {
     display: inline-block;
     float: none;
     text-align: center; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .platform-list .platform:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
@@ -2272,7 +2272,7 @@ a:hover, a:focus {
         margin-right: 2.35765%;
         width: 48.82117%;
         margin-right: 0; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .platform-list .platform:last-child {
           margin-right: 0; }
         /* line 20, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_platform-list.scss */
@@ -2289,7 +2289,7 @@ a:hover, a:focus {
     margin-right: 2.35765%;
     width: 48.82117%;
     margin: .5%; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .resources .video:last-child {
       margin-right: 0; }
     /* line 8, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_resources.scss */
@@ -2302,7 +2302,7 @@ a:hover, a:focus {
       margin-right: 2.35765%;
       width: 100%;
       height: 300px; }
-      /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+      /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
       .resources .video iframe:last-child, .resources .video object:last-child {
         margin-right: 0; }
     @media screen and (max-width: 966px) {
@@ -2316,7 +2316,7 @@ a:hover, a:focus {
         display: block;
         margin-right: 2.35765%;
         width: 100%; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .resources .video:last-child {
           margin-right: 0; } }
   /* line 28, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_resources.scss */
@@ -2340,7 +2340,7 @@ a:hover, a:focus {
   border-radius: 5px;
   margin-top: 1.25em;
   padding: 0 0.625em; }
-  /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+  /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
   .side-documentation:last-child {
     margin-right: 0; }
   @media screen and (max-width: 768px) {
@@ -2353,7 +2353,7 @@ a:hover, a:focus {
       height: auto;
       margin-top: 0;
       position: relative; }
-      /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+      /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
       .side-documentation:last-child {
         margin-right: 0; } }
   /* line 15, /home/ron/Development/gobot/gobot-site/source/stylesheets/objects/_side-bar.scss */
@@ -2468,7 +2468,7 @@ a:hover, a:focus {
   display: block;
   margin-right: 2.35765%;
   width: 74.41059%; }
-  /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+  /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
   .container-documentation:last-child {
     margin-right: 0; }
   @media screen and (max-width: 768px) {
@@ -2479,7 +2479,7 @@ a:hover, a:focus {
       margin-right: 2.35765%;
       width: 100%;
       margin-top: 50px; }
-      /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+      /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
       .container-documentation:last-child {
         margin-right: 0; } }
 
@@ -2535,7 +2535,7 @@ a:hover, a:focus {
     margin-right: 0;
     float: none;
     display: inline-block; }
-    /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+    /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
     .documentation .platform:last-child {
       margin-right: 0; }
     @media screen and (max-width: 640px) {
@@ -2546,7 +2546,7 @@ a:hover, a:focus {
         margin-right: 2.35765%;
         width: 48.82117%;
         margin-right: 0; }
-        /* line 87, /home/ron/.rvm/gems/ruby-2.1.0/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
+        /* line 87, /home/ron/.rvm/gems/ruby-2.0.0-p643@gobot.io/gems/neat-1.7.1/app/assets/stylesheets/grid/_span-columns.scss */
         .documentation .platform:last-child {
           margin-right: 0; } }
   /* line 33, /home/ron/Development/gobot/gobot-site/source/stylesheets/views/_documentation.scss */
