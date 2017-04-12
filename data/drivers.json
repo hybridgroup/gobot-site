@@ -29,7 +29,9 @@
   "I2C": {
     "Adafruit Motor HAT": "adafruit-motor-hat",
     "BlinkM": "blinkm",
+    "BME180": "bme280",
     "BMP180": "bmp180",
+    "BMP280": "bmp280",
     "DRV2605L": "drv2605l",
     "Grove LCD w/RGB": "grove-lcd",
     "Grove Accelerometer": "grove-accelerometer",
@@ -42,6 +44,7 @@
     "MPL115A2": "mpl115a2",
     "MPU6050": "mpu6050",
     "SHT3X": "sht3x",
+    "SSD1306": "ssd1306",
     "TSL2561": "tsl2561",
     "Wiimote Nunchuk": "wiimote-nunchuk"
   },

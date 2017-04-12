@@ -89,7 +89,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
   %h2
     = link_to "#{data.drivers.GPIO.length} GPIO drivers", "https://en.wikipedia.org/wiki/General_Purpose_Input/Output" , target:"_blank"
 
-  %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the gpio platform package:
+  %p Support for devices that use General Purpose Input/Output (GPIO) communication have a shared set of drivers provided using the "gobot/drivers/gpio" package:
 
   %ul.platform-list
     - data.drivers.GPIO.each do |name, slug|
@@ -102,7 +102,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
   %h2
     = link_to "#{data.drivers.AIO.length} Analog I/O (AIO) drivers", "https://en.wikipedia.org/wiki/General_Purpose_Input/Output" , target:"_blank"
 
-  %p Support for many devices that use Analog Input/Output (AIO) have a shared set of drivers provided also using the gpio platform package:
+  %p Support for devices that use Analog Input/Output (AIO) communication have a shared set of drivers provided using the "gobot/drivers/aio" package:
 
   %ul.platform-list
     - data.drivers.AIO.each do |name, slug|
@@ -115,7 +115,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
   %h2
     = link_to "#{data.drivers.I2C.length} I2C drivers", "https://en.wikipedia.org/wiki/I%C2%B2C", target:"_blank"
 
-  %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provided using the i2c platform package:
+  %p Support for devices that use Inter-Integrated Circuit (I2C) communication have a shared set of drivers provided using the "gobot/drivers/i2c" package:
 
   %ul.platform-list
     - data.drivers.I2C.each do |name, slug|
@@ -127,11 +127,14 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
 %section.api
   %h2 API
   %p
-    Gobot includes a
-    = link_to "cppp.io", "http://cppp.io", target: :blank
-    compliant RESTful API to query the status of any connection, device or
+    Gobot includes a RESTful API
+    to query the status of any connection, device or
     robot running in your swarm. It additionally has the ability to issue
     commands directly to your devices and robots.
+
+    Check out
+    = link_to "http://cppp.io", "http://cppp.io", target: :blank
+    for more information.
 
   %p
     It also comes with the
@@ -163,5 +166,5 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
     ## Be Part Of The Robot Evolution
 
     - Code on Github:   [https://github.com/hybridgroup/gobot](https://github.com/hybridgroup/gobot)
-    - Google Group: https://groups.google.com/forum/#!forum/gobotio
+    - Google Group: [https://groups.google.com/forum/#!forum/gobotio](https://groups.google.com/forum/#!forum/gobotio)
     - Twitter: [@gobotio](https://twitter.com/gobotio)

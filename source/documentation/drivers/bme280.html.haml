@@ -1,0 +1,58 @@
+---
+title: Gobot - BME280 Humidity Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: BME280
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/bme280.jpg", class: "display"
+
+.info-intro
+  %p Allows user to read humidity via i2c interface
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/i2c#BME280Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+%h2 How To Connect
+:markdown
+  Install the package with: `go get gobot.io/x/gobot`
+
+  You must pass in an Adaptor that supports the `i2c.Connector` interface to use with this Driver.
+
+  You can use the following optional params if you wish to change the I2C Bus and I2C Address from the default values.
+
+    `i2c.WithBus(int)`:	bus to use with this driver.
+
+    `i2c.WithAddress(int)`:	address to use with this driver
+
+:markdown
+      :::go
+      // default bus/address
+      bme280 := i2c.NewBME280Driver(adaptor)
+
+      // optional bus/address
+      bme280 := i2c.NewBME280Driver(adaptor,
+                                     i2c.WithBus(0),
+                                     i2c.WithAddress(0x34))
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a BME280 humidity sensor.
+  :markdown
+        :::go
+        // code here
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "BME280" }
