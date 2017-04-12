@@ -103,6 +103,10 @@ To add images for platforms or devices:
 
 Background color is #F3F1EB
 
+To replace background color using GIMP:
+
+[https://www.gimp.org/tutorials/Changing_Background_Color_1/](https://www.gimp.org/tutorials/Changing_Background_Color_1/)
+
 ### Send your Pull Request
 
 When you have your code ready, create a new PR : `base: master` and `compare:"your_branch"`
