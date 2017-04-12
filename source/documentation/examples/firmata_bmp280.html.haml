@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - firmata_mpl115a2"
-page_title: "Example: firmata_mpl115a2"
+title: "Gobot Example - firmata_bmp280"
+page_title: "Example: firmata_bmp280"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -15,6 +15,7 @@ active_menu_docs: true
 
         import (
         	"fmt"
+        	"os"
         	"time"
 
         	"gobot.io/x/gobot"
@@ -23,22 +24,25 @@ active_menu_docs: true
         )
 
         func main() {
-        	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
-        	mpl115a2 := i2c.NewMPL115A2Driver(firmataAdaptor)
+        	firmataAdaptor := firmata.NewAdaptor(os.Args[1])
+        	bmp280 := i2c.NewBMP280Driver(firmataAdaptor)
 
         	work := func() {
         		gobot.Every(1*time.Second, func() {
-        			press, _ := mpl115a2.Pressure()
-        			fmt.Println("Pressure", press)
+        			t, _ := bmp280.Temperature()
+        			fmt.Println("Temperature", t)
 
-        			temp, _ := mpl115a2.Temperature()
-        			fmt.Println("Temperature", temp)
+        			p, _ := bmp280.Pressure()
+        			fmt.Println("Pressure", p)
+
+        			a, _ := bmp280.Altitude()
+        			fmt.Println("Altitude", a)
         		})
         	}
 
-        	robot := gobot.NewRobot("mpl115a2Bot",
+        	robot := gobot.NewRobot("bmp280bot",
         		[]gobot.Connection{firmataAdaptor},
-        		[]gobot.Device{mpl115a2},
+        		[]gobot.Device{bmp280},
         		work,
         	)
 
