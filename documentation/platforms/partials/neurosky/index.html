@@ -62,7 +62,7 @@
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Wave</span><span class="delimiter">"</span></span>, data)
                 })
                 gobot.On(neuro.Event(<span class="string"><span class="delimiter">"</span><span class="content">eeg</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        eeg := data.(neurosky.EEG)
+                        eeg := data.(neurosky.EEGData)
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Delta</span><span class="delimiter">"</span></span>, eeg.Delta)
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">Theta</span><span class="delimiter">"</span></span>, eeg.Theta)
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">LoAlpha</span><span class="delimiter">"</span></span>, eeg.LoAlpha)
