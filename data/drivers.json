@@ -29,7 +29,7 @@
   "I2C": {
     "Adafruit Motor HAT": "adafruit-motor-hat",
     "BlinkM": "blinkm",
-    "BME180": "bme280",
+    "BME280": "bme280",
     "BMP180": "bmp180",
     "BMP280": "bmp280",
     "DRV2605L": "drv2605l",
