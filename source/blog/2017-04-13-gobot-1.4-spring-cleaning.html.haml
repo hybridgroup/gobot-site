@@ -1,0 +1,48 @@
+---
+page_title_show: true
+title: Gobot - 1.4 Spring Cleaning
+page_title: Blog
+date: 2017-04-13
+tags: releases
+author: Ron Evans
+---
+
+:markdown
+
+  This week is [National Robotics Week](http://www.nationalroboticsweek.org/), along with last night being [Yuri's Night](https://en.wikipedia.org/wiki/Yuri%27s_Night), we decided it was the perfect time to release the next Gobot update.
+
+  In that spirit, we released Gobot 1.4:
+
+  [https://github.com/hybridgroup/gobot/releases/tag/v1.4.0](https://github.com/hybridgroup/gobot/releases/tag/v1.4.0)
+
+  Thank you to the largest number of first-time contributors ever in a single Gobot release!
+
+  ## We're Getting It Covered
+
+  <img src="/images/blog/2017-04-13/gobot-14-coverage.svg" alt="SCaLE15x kids" style="margin: 10px 0;">
+
+  This is a big release for stability and test coverage. We've reached some important testing milestones, such as over 90% test coverage for Gobot core, sysfs, and drivers.
+
+  Overall, the entire codebase now has over 80%+ test coverage.
+
+  Check out the latest stats at [https://codecov.io/gh/hybridgroup/gobot](https://codecov.io/gh/hybridgroup/gobot)
+
+  ## The Race Is Run
+
+  Thanks to ongoing contributor [@maruel](https://github.com/maruel), we discovered that the race detection in our Travis builds were not triggering the errors they should have been.
+
+  Our team then set out to find and fix every race condition detected by the new, improved test suite. We succeeded, and all those fixes are a part of this new release.
+
+  ## More I2C Devices
+
+  Thanks to contributors we have added support for a few new I2C devices:
+
+  - [BME280 Humidity Sensor](https://gobot.io/documentation/drivers/bme280/)
+  - [BMP280 Temperature/Barometer Sensor](https://gobot.io/documentation/drivers/bme280/)
+  - [SSD1306 OLED Display](https://gobot.io/documentation/drivers/ssd1306/)
+
+  We have also done refactoring and fixes to all of the various I2C sensors, now numbering 20 in total.
+
+  ## Keep In Touch
+
+  Keep in touch with the latest activity on the project by following us on Twitter at [@gobotio](http://twitter.com/gobotio). Thank you!
