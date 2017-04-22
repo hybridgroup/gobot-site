@@ -12,7 +12,7 @@ active_menu_docs: true
   :markdown
     # Adding Hardware Support
 
-    Gobot is easy to extend to add new support for additional hardware and software devices.
+    Gobot can be extended to add new support for additional hardware and software devices.
 
     If you discover new capabilities that should be added to Gobot, you would add either an Adaptor or a Driver to support them. In some cases, you will want to add both, in order to support an entirely new platform.
 
@@ -20,15 +20,65 @@ active_menu_docs: true
 
     Normally, you would want to add a new Adaptor to Gobot in order to add support for something such as a new kind of single-board Linux computer. In many cases, we would consider this a new platform, and it should be added to a new package under the `/platforms` directory.
 
+    The `Adaptor` interface itself has 4 methods that must be implemented for a minimal Gobot Adaptor:
+
+          type Adaptor interface {
+            // Name returns the label for the Adaptor
+            Name() string
+            // SetName sets the label for the Adaptor
+            SetName(n string)
+            // Connect initiates the Adaptor
+            Connect() error
+            // Finalize terminates the Adaptor
+            Finalize() error
+          }
+
+    In addition to this interface, your Adaptor will also need to implement some other interfaces, in order to provide those interfaces to whatever Driver require them.
+
+    For example, an Adaptor that implements the `DigitalWriter` interface can be used by the `LedDriver`.
+
+          type DigitalWriter interface {
+            DigitalWrite(string, byte) (err error)
+          }
+
+    So a valid Gobot Adaptor that is intended to be used by the LedDriver, would need to implement both the `Adaptor` interface, as well as the `DigitalWriter` interface.
+
     ### Adding a Driver
 
     You would want to add a new Driver to Gobot in order to add support for a device that can be used on multiple platform, such as a digital compass.
 
     In other cases, you might want to add a new Driver to expose a related set of functionality, such as the navigation interface for a particular drone.
 
-    ## Adding a new platform
+    The Gobot `Driver` interface has 5 methods that must be implemented for a valid Gobot Driver:
 
-    You can add platform support to the Gobot package itself, or you can create a new package that contains your new functionality.
+         type Driver interface {
+           // Name returns the label for the Driver
+           Name() string
+           // SetName sets the label for the Driver
+           SetName(s string)
+           // Start initiates the Driver
+           Start() error
+           // Halt terminates the Driver
+           Halt() error
+           // Connection returns the Connection associated with the Driver
+           Connection() Connection
+         }
+
+    The Driver can use whatever interfaces it needs, by way of the Connection to the Adaptor that the Driver uses.
+
+    For example, the LedDriver needs a Connection that provides the `DigitalWrite` method that comprises the `DigitalWriter` interface discussed above.
+
+         func (l *LedDriver) On() (err error) {
+           if err = l.connection.DigitalWrite(l.Pin(), 1); err != nil {
+             return
+           }
+           l.high = true
+           return
+         }
+
+
+    ## Where to add the new Adaptor or Driver
+
+    You can add your new hardware support to the Gobot package itself, or you can create a separate package that contains your new functionality.
 
     If you have some new capabilities that you are willing to share with the community, we'd love to have your contribution.
-    
