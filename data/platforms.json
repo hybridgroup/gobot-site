@@ -35,6 +35,12 @@
     "drivers": ["GPIO", "I2C"]
   },
 
+  "C.H.I.P. Pro": {
+    "slug": "chip-pro",
+    "url": "https://www.nextthing.co/pages/chippro",
+    "drivers": ["GPIO", "I2C"]
+  },
+
   "Digispark": {
     "slug": "digispark",
     "url": "http://digistump.com/category/1",
@@ -159,5 +165,11 @@
     "slug": "sphero",
     "url": "http://www.sphero.com/",
     "drivers": ["Sphero"]
+},
+
+  "Tinker Board": {
+    "slug": "tinkerboard",
+    "url": "https://www.asus.com/us/Motherboards/Tinker-Board",
+    "drivers": ["GPIO", "I2C"]
   }
 }

@@ -1,12 +1,6 @@
 .info-intro
   :markdown
-    The [C.H.I.P.](http://www.getchip.com/) is a small, inexpensive ARM based single board computer, with many different IO interfaces available on the [pin headers](http://docs.getchip.com/#pin-headers).
-
-    For documentation about the C.H.I.P. platform click [here](http://docs.getchip.com/).
-
     The [C.H.I.P. Pro](https://getchip.com/pages/chippro) is a version of C.H.I.P. intended for use in embedded product development. Here is info about the [C.H.I.P. Pro pin headers](https://docs.getchip.com/chip_pro.html#pin-descriptions).
-
-
 
   = current_page.data.api_reference
 .clear
@@ -15,12 +9,11 @@
 
     ## How to Install
 
-    We recommend updating to the latest Debian OS when using the C.H.I.P., however Gobot should also support older versions of the OS, should your application require this.
+    We recommend updating to the latest Debian OS when using the C.H.I.P. Pro, however Gobot should also support older versions of the OS, should your application require this.
 
-    You would normally install Go and Gobot on your workstation. Once installed, cross compile your program on your workstation, transfer the final executable to your C.H.I.P and run the program on the C.H.I.P. itself as documented here.
+    You would normally install Go and Gobot on your workstation. Once installed, cross compile your program on your workstation, transfer the final executable to your C.H.I.P Pro and run the program on the C.H.I.P. Pro itself as documented here.
 
         go get -d -u gobot.io/x/gobot/...
-
 
     ### PWM support
     Note that PWM might not be available in your kernel. In that case, you can install the required device tree overlay
@@ -44,43 +37,37 @@
 
         :::go
         package main
-        
+
         import (
             "fmt"
-        
+
             "gobot.io/x/gobot"
             "gobot.io/x/gobot/drivers/gpio"
             "gobot.io/x/gobot/platforms/chip"
         )
-        
+
         func main() {
-            chipAdaptor := chip.NewAdaptor()
-            button := gpio.NewButtonDriver(chipAdaptor, "XIO-P0")
-        
+            chipAdaptor := chip.NewProAdaptor()
+            button := gpio.NewButtonDriver(chipAdaptor, "CSID0")
+
             work := func() {
                 gobot.On(button.Event("push"), func(data interface{}) {
                     fmt.Println("button pressed")
                 })
-        
+
                 gobot.On(button.Event("release"), func(data interface{}) {
                     fmt.Println("button released")
                 })
             }
-        
+
             robot := gobot.NewRobot("buttonBot",
                 []gobot.Connection{chipAdaptor},
                 []gobot.Device{button},
                 work,
             )
-        
+
             robot.Start()
         }
-
-
-    If you want to use the C.H.I.P. Pro, use the `NewProAdaptor()` function like this:
-
-        :::go
-        chipProAdaptor := chip.NewProAdaptor()
 
 
     ## How to Connect
@@ -98,5 +85,3 @@
         :::bash
         $ scp chip_button root@192.168.1.xx:
         $ ssh -t root@192.168.1.xx "./chip_button"
-
-

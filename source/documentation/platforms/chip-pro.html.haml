@@ -1,0 +1,27 @@
+---
+title: C.H.I.P. Pro with Gobot
+author: The Hybrid Group
+page_title: Platforms
+page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
+page_title_docs: C.H.I.P. Pro
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/gobot/issues' target='_blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/gobot.io/x/gobot/platforms/chip' target='blank' class='api-link'>API Reference</a>
+page_title_show: true
+layout: documentation
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+
+%section.intro
+  = image_tag "/images/devices/chip-pro.jpg", class: "display"
+
+= partial "documentation/platforms/partials/chip-pro"
+
+%section.drivers#Drivers
+  %h2 Drivers
+  %p All Gobot digital GPIO and i2c drivers listed below should work with the C.H.I.P. Pro:
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "C.H.I.P. Pro" }

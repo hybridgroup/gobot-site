@@ -16,6 +16,7 @@
     "Beaglebone": "/documentation/platforms/beaglebone",
     "Bluetooth LE": "/documentation/platforms/ble",
     "C.H.I.P.": "/documentation/platforms/chip",
+    "C.H.I.P. Pro": "/documentation/platforms/chip-pro",
     "Digispark": "/documentation/platforms/digispark",
     "Dragonboard": "/documentation/platforms/dragonboard",
     "ESP8266": "/documentation/platforms/esp8266",
@@ -38,7 +39,8 @@
     "Raspberry Pi": "/documentation/platforms/raspi",
     "Sphero": "/documentation/platforms/sphero",
     "Sphero BB-8": "/documentation/platforms/bb8",
-    "Sphero Ollie": "/documentation/platforms/ollie"
+    "Sphero Ollie": "/documentation/platforms/ollie",
+    "Tinker Board": "/documentation/platforms/tinkerboard"
   },
 
   "Drivers": {
