@@ -1,0 +1,58 @@
+---
+title: Gobot - ADS1015 Analog to Digital Converter
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: ADS1015
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/ads1015.jpg", class: "display"
+
+.info-intro
+  %p The ADS1015 12-bit Analog to Digital Converter (ADC) allows user to read analog voltages via i2c interface
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/i2c#ADS1015Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+%h2 How To Connect
+:markdown
+  Install the package with: `go get gobot.io/x/gobot`
+
+  You must pass in an Adaptor that supports the `i2c.Connector` interface to use with this Driver.
+
+  You can use the following optional params if you wish to change the I2C Bus and I2C Address from the default values.
+
+    `i2c.WithBus(int)`:	bus to use with this driver.
+
+    `i2c.WithAddress(int)`:	address to use with this driver
+
+:markdown
+      :::go
+      // default bus/address
+      bpm180 := i2c.NewADS1015Driver(adaptor)
+
+      // optional bus/address
+      bpm180 := i2c.NewADS1015Driver(adaptor,
+                                     i2c.WithBus(0),
+                                     i2c.WithAddress(0x34))
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a ADS1015 ADC.
+  :markdown
+        :::go
+        // code here
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "ADS1015" }

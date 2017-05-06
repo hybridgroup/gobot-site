@@ -73,6 +73,8 @@
 
     "I2C": {
       "Adafruit Motor HAT": "/documentation/drivers/adafruit-motor-hat",
+      "ADS1015": "/documentation/drivers/ads1015",
+      "ADS1115": "/documentation/drivers/ads1115",
       "BlinkM": "/documentation/drivers/blinkm",
       "BME280": "/documentation/drivers/bme280",
       "BMP180": "/documentation/drivers/bmp180",
@@ -81,6 +83,7 @@
       "Grove LCD": "/documentation/drivers/grove-lcd",
       "Grove Accelerometer": "/documentation/drivers/grove-accelerometer",
       "HMC6352 Compass": "/documentation/drivers/hmc6352-compass",
+      "INA3221": "/documentation/drivers/ina3221",
       "JHD1313M1": "/documentation/drivers/jhd1313m1",
       "L3GD20H": "/documentation/drivers/l3gd20h",
       "LIDAR-Lite": "/documentation/drivers/lidar-lite",
