@@ -1,0 +1,44 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - raspi_grove_rotary_sensor"
+page_title: "Example: raspi_grove_rotary_sensor"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/drivers/aio"
+        	"gobot.io/x/gobot/drivers/i2c"
+        	"gobot.io/x/gobot/platforms/raspi"
+        )
+
+        func main() {
+        	board := raspi.NewAdaptor()
+        	ads1015 := i2c.NewADS1015Driver(board)
+        	sensor := aio.NewGroveRotaryDriver(ads1015, "0")
+
+        	work := func() {
+        		sensor.On(aio.Data, func(data interface{}) {
+        			fmt.Println("sensor", data)
+        		})
+        	}
+
+        	robot := gobot.NewRobot("sensorBot",
+        		[]gobot.Connection{board},
+        		[]gobot.Device{ads1015, sensor},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+
