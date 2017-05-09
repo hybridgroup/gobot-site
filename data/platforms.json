@@ -98,7 +98,7 @@
   "Microbit": {
     "slug": "microbit",
     "url": "http://microbit.org/",
-    "drivers": ["Battery Service", "Device Information Service", "Generic Access Service", "Microbit Accelerometer", "Microbit Button", "Microbit LED", "Microbit Magnetometer", "Microbit Temperature" ]
+    "drivers": ["Battery Service", "Device Information Service", "Generic Access Service", "Accelerometer Service", "Button Service", "LED Service", "Magnetometer Service", "Temperature Service", "IOPin Service" ]
   },
 
   "Minidrone": {

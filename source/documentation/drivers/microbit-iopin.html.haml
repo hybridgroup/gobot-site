@@ -1,0 +1,48 @@
+---
+title: Gobot - Microbit IOPin
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: Microbit IOPin
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/ble-generic-access.jpg", class: "display"
+.info-intro
+  %p
+    The Microbit IOPin Service is a Bluetooth LE Service specific to the Microbit.
+
+  %a{:href => "https://godoc.org/gobot.io/x/gobot/platforms/microbit#IOPinDriver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%h2 How To Connect
+:markdown
+   The Microbit is a Bluetooth LE device, so you use the Gobot `ble.ClientAdaptor` to connect. You need to know the BLE address or name of the device.
+
+:markdown
+         bleAdaptor := ble.NewClientAdaptor("c5:b9:46:fd:40:c0")
+         ubit := microbit.NewIOPinDriver(bleAdaptor)
+
+%section.how-to#HowToUse
+%h2 How To Use
+
+Once you have connected using the ble.ClientAdaptor, you can call any of the Driver's methods, or subscribe to any of the driver's events.
+
+You can also use the IOPinDriver as a Adaptor for any of the GPIO or I2C drivers.
+
+:markdown
+         ubit := microbit.NewIOPinDriver(bleAdaptor)
+         button := gpio.NewButtonDriver(ubit, "0")
+         led := gpio.NewLedDriver(ubit, "1")
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Microbit IOPin" }

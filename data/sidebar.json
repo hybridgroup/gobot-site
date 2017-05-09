@@ -113,6 +113,7 @@
     "Microbit": {
       "Accelerometer": "/documentation/drivers/microbit-accelerometer",
       "Button": "/documentation/drivers/microbit-button",
+      "IOPin": "/documentation/drivers/microbit-iopin",
       "LED": "/documentation/drivers/microbit-led",
       "Magnetometer": "/documentation/drivers/microbit-magnetometer",
       "Temperature": "/documentation/drivers/microbit-temperature"

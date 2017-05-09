@@ -58,6 +58,15 @@
     "Generic Access Service": "ble-generic-access"
   },
 
+  "Microbit": {
+    "Accelerometer Service": "microbit-accelerometer",
+    "Button Service": "microbit-button",
+    "IOPin Service": "microbit-iopin",
+    "LED Service": "microbit-led",
+    "Magnetometer Service": "microbit-magnetometer",
+    "Temperature Service": "microbit-temperature"
+  },
+
   "ARDrone - Flight": "ardrone-flight",
   "Bebop": "bebop",
   "Joystick - DualShock 3": "dualshock3",
