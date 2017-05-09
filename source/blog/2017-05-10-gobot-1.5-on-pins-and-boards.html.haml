@@ -1,0 +1,176 @@
+---
+page_title_show: true
+title: Gobot - 1.5 On Pins And Boards
+page_title: Blog
+date: 2017-05-10
+tags: releases
+author: Ron Evans
+---
+
+:markdown
+
+  This month's Gobot release focuses on big things in very small packages.
+
+  We now have support for a couple different Analog to Digital Converter (ADC) devices such as the [ADS1015](https://www.adafruit.com/product/1083). This lets you add analog input to digital-only boards such the Raspberry Pi, with a single line of code.
+
+  There is also a new subsystem & interface for Pulse Width Modulation (PWM) pins. The Raspberry Pi, Intel Joule, Intel Edison, and all of Gobot's other single-board Linux Adaptors now all support the new `PWMPinner` interface.
+
+  Our support for the BBC Microbit has been expanded. We've also added new board support for the new [ASUS Tinker Board](https://www.asus.com/uk/Single-Board-Computer/Tinker-Board/), along with the [C.H.I.P. Pro](https://getchip.com/pages/chippro).
+
+  For the full changelog, here is a link to the Gobot 1.5 release:
+
+  [https://github.com/hybridgroup/gobot/releases/tag/v1.5.0](https://github.com/hybridgroup/gobot/releases/tag/v1.5.0)
+
+  Or read on, for the rundown of what we've done for the new release.
+
+  ## The Analog Experience
+
+  Thanks to our awesome contributor [@bezineb5](https://github.com/bezineb5) we now have support for the ADS1015 and ADS1115, both ADC devices with an I2C hardware interface:
+
+  - [ADS1015 Analog to Digital Converter](https://gobot.io/documentation/drivers/ads1015/)
+  - [ADS1115 Analog to Digital Converter](https://gobot.io/documentation/drivers/ads1115/)
+
+  Since both of these drivers also implement the Gobot `AnalogReader` interface, it lets you connect any of the Gobot `aio` sensors with 1 line of code.
+
+  Here is an example that uses an ADS1015 with a Raspberry Pi and an analog rotary dial:
+
+      :::go
+      package main
+
+      import (
+      	"fmt"
+
+      	"gobot.io/x/gobot"
+      	"gobot.io/x/gobot/drivers/aio"
+      	"gobot.io/x/gobot/drivers/i2c"
+      	"gobot.io/x/gobot/platforms/raspi"
+      )
+
+      func main() {
+      	board := raspi.NewAdaptor()
+      	ads1015 := i2c.NewADS1015Driver(board)
+      	sensor := aio.NewGroveRotaryDriver(ads1015, "0")
+
+      	work := func() {
+      		sensor.On(aio.Data, func(data interface{}) {
+      			fmt.Println("sensor", data)
+      		})
+      	}
+
+      	robot := gobot.NewRobot("sensorBot",
+      		[]gobot.Connection{board},
+      		[]gobot.Device{ads1015, sensor},
+      		work,
+      	)
+
+      	robot.Start()
+      }
+
+  We've connected the ADS1015 driver to use the Raspberry Pi as its adaptor, and then the Grove Rotary driver to use the ADS1015 driver as its adaptor.
+
+  This is a good example of how interfaces in Golang can be used as part of Gobot.
+
+  With 1 import, and 1 line of code, you can add analog capabilities to a Raspberry Pi or an Intel Joule.
+
+  ## Big PWMPin
+
+  We have added a new shared interface for using Pulse Width Modulation (PWM) pins.
+
+  Every adaptor that provides a PWM capability now implements a `PWMPin()` method, to satisfy the new `PWMPinner` interface.
+
+  `PWMPin` allows for more granular control of PWM period, duty cycle, and polarity. This lets you control high-resolution servos and other applications that require low level PWM control.
+
+  Of course the current `PWMWrite()` and `ServoWrite()` methods now use `PWMPin`.
+
+  ## Improved Support for Intel Joule and Edison
+
+  Speaking of the Joule, we've improved our support for the Intel Joule and Intel Edison boards.
+
+  Both boards now support the full range of GPIO, PWM, and I2C capabilities of their respective hardware, with updated pin mappings.
+
+  The pin naming on the Intel Joule now properly matches the labels on the breakout board, to make it much easier to code for.
+
+  ## ASUS Tinker Board
+
+  We've added support for the new single-board Linux computer from ASUS called the Tinker Board.
+
+  The Tinker Board is a single board SoC computer based on the Rockchip RK3288 processor. It has built-in GPIO, PWM, SPI, and I2C interfaces.
+
+  Featuring a quad-core Rockchip RK3288 ARM-based processor, you can achieve some pretty serious performance using Golang.
+
+  You can find out more at:
+  [https://gobot.io/documentation/platforms/tinkerboard](https://gobot.io/documentation/platforms/tinkerboard).
+
+  ## C.H.I.P. Pro
+
+  We've also added support for the C.H.I.P. Pro, the new professional board from Next Thing Co.
+
+  The C.H.I.P. Pro is based on the GR8, Next Thing Co's own ARMv7-A processor.
+
+  Like the C.H.I.P., it has built-in WiFi and Bluetooth 4.x interfaces, along with GPIO, PWM, I2C, and even a single ADC.
+
+  More info is at:
+  [https://gobot.io/documentation/platforms/tinkerboard](https://gobot.io/documentation/platforms/chip-pro).
+
+  ## More Fun With Microbit
+
+  In Gobot v1.3, we added support for the BBC Microbit. Now we've added a new driver for it called 'IOPinDriver'.
+
+  The `IOPinDriver` supports the standard Gobot `DigitalReader`, `DigitalWriter`, and `AnalogReader` interfaces.
+
+  This means you can use your Microbit with any of the normal gpio or aio drivers.
+
+  Here is an example that uses a Microbit along with the gpio Button and LED drivers:
+
+      :::go
+      package main
+
+      import (
+      	"os"
+
+      	"gobot.io/x/gobot"
+      	"gobot.io/x/gobot/drivers/gpio"
+      	"gobot.io/x/gobot/platforms/ble"
+      	"gobot.io/x/gobot/platforms/microbit"
+      )
+
+      func main() {
+      	bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+
+      	ubit := microbit.NewIOPinDriver(bleAdaptor)
+      	button := gpio.NewButtonDriver(ubit, "0")
+      	led := gpio.NewLedDriver(ubit, "1")
+
+      	work := func() {
+      		button.On(gpio.ButtonPush, func(data interface{}) {
+      			led.On()
+      		})
+      		button.On(gpio.ButtonRelease, func(data interface{}) {
+      			led.Off()
+      		})
+      	}
+
+      	robot := gobot.NewRobot("buttonBot",
+      		[]gobot.Connection{bleAdaptor},
+      		[]gobot.Device{ubit, button, led},
+      		work,
+      	)
+
+      	robot.Start()
+      }
+
+  The BBC Microbit is a cool little board for learning that is seemingly full of surprises.
+
+  Once again, the elegance of using Golang interfaces pays off with a lot of flexibility.
+
+  More info about the Microbit `IOPinDriver` is at:
+
+  [https://gobot.io/documentation/drivers/microbit-iopin](https://gobot.io/documentation/platforms/microbit-iopin).
+
+  ## A Release Of Some Substance
+
+  This has been one of our more substantial releases, thanks so much to all of the contributors and collaborators that make Gobot happen.
+
+  ## Stay Informed
+
+  Stay informed about the latest Gobot project developments by following us on Twitter at [@gobotio](http://twitter.com/gobotio). Thank you!
