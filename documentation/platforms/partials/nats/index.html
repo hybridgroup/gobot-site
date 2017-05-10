@@ -43,11 +43,11 @@
   natsAdaptor := nats.NewNatsAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">nats</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">localhost:4222</span><span class="delimiter">"</span></span>, <span class="integer">1234</span>)
 
   work := <span class="keyword">func</span>() {
-    natsAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(data []<span class="predefined-type">byte</span>) {
-      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>)
+    natsAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(msg nats.Message) {
+      fmt.Println(subject)
     })
-    natsAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hola</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(data []<span class="predefined-type">byte</span>) {
-      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">hola</span><span class="delimiter">"</span></span>)
+    natsAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hola</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(msg nats.Message) {
+      fmt.Println(subject)
     })
     data := []<span class="predefined-type">byte</span>(<span class="string"><span class="delimiter">"</span><span class="content">o</span><span class="delimiter">"</span></span>)
     gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
@@ -79,11 +79,11 @@
   natsAdaptor := nats.NewNatsAdaptor(<span class="string"><span class="delimiter">"</span><span class="content">tls://localhost:4222</span><span class="delimiter">"</span></span>, <span class="integer">1234</span>, natsio.RootCAs(<span class="string"><span class="delimiter">"</span><span class="content">certs/ca.pem</span><span class="delimiter">"</span></span>))
 
   work := <span class="keyword">func</span>() {
-    natsAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(data []<span class="predefined-type">byte</span>) {
-      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>)
+    natsAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(msg nats.Message) {
+      fmt.Println(subject)
     })
-    natsAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hola</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(data []<span class="predefined-type">byte</span>) {
-      fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">hola</span><span class="delimiter">"</span></span>)
+    natsAdaptor.On(<span class="string"><span class="delimiter">"</span><span class="content">hola</span><span class="delimiter">"</span></span>, <span class="keyword">func</span>(msg nats.Message) {
+      fmt.Println(subject)
     })
     data := []<span class="predefined-type">byte</span>(<span class="string"><span class="delimiter">"</span><span class="content">o</span><span class="delimiter">"</span></span>)
     gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
