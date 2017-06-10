@@ -11,6 +11,15 @@ active_menu_docs: true
 .example
   :markdown
         :::go
+        /*
+         How to run
+         Pass the Bluetooth name or address as first param:
+
+        	go run examples/minidrone_events.go "Mambo_1234"
+
+         NOTE: sudo is required to use BLE in Linux
+        */
+
         package main
 
         import (
