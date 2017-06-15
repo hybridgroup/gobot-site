@@ -20,6 +20,7 @@
     "Digispark": "/documentation/platforms/digispark",
     "Dragonboard": "/documentation/platforms/dragonboard",
     "ESP8266": "/documentation/platforms/esp8266",
+    "Intel Curie": "/documentation/platforms/curie",
     "Intel Edison": "/documentation/platforms/edison",
     "Intel Joule": "/documentation/platforms/joule",
     "Joystick": "/documentation/platforms/joystick",
@@ -105,6 +106,7 @@
 
     "Ardrone - Flight": "/documentation/drivers/ardrone-flight",
     "Bebop": "/documentation/drivers/bebop",
+    "Intel Curie": "/documentation/drivers/curie",
     "Joystick - DualShock 3": "/documentation/drivers/dualshock3",
     "Joystick - Xbox 360": "/documentation/drivers/xbox360",
     "Keyboard": "/documentation/drivers/keyboard",

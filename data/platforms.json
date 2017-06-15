@@ -59,6 +59,12 @@
     "drivers": ["GPIO", "AIO", "I2C"]
   },
 
+  "Intel Curie": {
+    "slug": "curie",
+    "url": "https://www.intel.com/content/www/us/en/products/boards-kits/curie.html",
+    "drivers": ["GPIO", "AIO", "I2C", "CurieIMU"]
+  },
+
   "Intel Edison": {
     "slug": "edison",
     "url": "http://www.intel.com/content/www/us/en/do-it-yourself/edison.html",
