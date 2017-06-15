@@ -10,6 +10,11 @@ page_title_show: true
   %h2 Videos
   %p We've traveled around the world to talk about Gobot, here are just a few of the videos.
 
+
+  .video
+    %h3.video-description Global IoT Devfest With The Best 2017: High-performance IoT Using Go and Gobot
+    %iframe{:src => "https://www.youtube.com/embed/WMCs_Xm3-aY", :frameborder => "0", :allowfullscreen => "true"}
+
   .video
     %h3.video-description FOSDEM 2017 Talk: High-performance IoT Using Go and Gobot
     %iframe{:src => "http://ftp.fau.de/fosdem/2017/H.1302/go_gobot.vp8.webm", :frameborder => "0", :allowfullscreen => "true"}
@@ -48,6 +53,10 @@ page_title_show: true
 %section.resources
   %h2 Friends of Gobot
   %p  Listed below are a few of the many blogs, videos, and projects which have featured Gobot.
+
+
+  %h4
+    = link_to "Controlling a Digispark board - <span class='site-name'>Applied Go</span>", "https://appliedgo.net/digispark/", target:"_blank",  class: "external-link"
   %h4
     = link_to "qpid - BBQ controller - <span class='site-name'>Github</span>", "https://github.com/bbqgophers/qpid", target:"_blank",  class: "external-link"
   %h4
