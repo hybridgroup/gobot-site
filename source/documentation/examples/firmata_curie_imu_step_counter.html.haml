@@ -1,0 +1,51 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - firmata_curie_imu_step_counter"
+page_title: "Example: firmata_curie_imu_step_counter"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"log"
+        	"time"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/drivers/gpio"
+        	"gobot.io/x/gobot/platforms/firmata"
+        	"gobot.io/x/gobot/platforms/intel-iot/curie"
+        )
+
+        func main() {
+        	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+        	led := gpio.NewLedDriver(firmataAdaptor, "13")
+        	imu := curie.NewIMUDriver(firmataAdaptor)
+
+        	work := func() {
+        		imu.On("Steps", func(data interface{}) {
+        			log.Println("Steps", data)
+        		})
+
+        		gobot.Every(1*time.Second, func() {
+        			led.Toggle()
+        		})
+
+        		imu.EnableStepCounter(true)
+        	}
+
+        	robot := gobot.NewRobot("curieBot",
+        		[]gobot.Connection{firmataAdaptor},
+        		[]gobot.Device{imu, led},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+
