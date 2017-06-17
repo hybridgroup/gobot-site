@@ -12,4 +12,98 @@ active_menu_docs: true
   :markdown
     # Snapcraft
 
-    You can use Gobot with [Snapcraft](https://snapcraft.io/) to create deployable packages. More information coming soon...
+    You can use Gobot with [snapcraft](https://snapcraft.io/) to create deployable packages.
+
+    snapcraft is a new packaging format and delivery mechanism for Linux distributions. It offers automatic updates, and rollbacks in case of failure, with very low maintenance.
+
+    This makes it a very good option to deliver software products to your users. Once you finish prototyping your board, the components and the code to drive them, you can make a very simple `snapcraft.yaml`, push it to GitHub and enable the continuous delivery in [build.snapcraft.io](https://build.snapcraft.io/). This will make your software available through the store to [all the distributions that support snaps](https://snapcraft.io/docs/core/install).
+
+    Let's make a very simple `blink` snap for the Raspberry Pi, as an example. First, [create a new repository](https://github.com/new) in GitHub and call it something like `gobot-blink-snap`. Then, clone it locally:
+
+        $ git clone https://github.com/username/gobot-blink.git
+        $ cd gobot-blink
+
+    (replacing `username` with your GitHub username. You will have to do this a few more time in this guide every time you see `username`)
+
+    Now, we will write the code to blink an LED with Gobot an save it to a file called `main.go`:
+
+        :::go
+        package main
+
+        import (
+        	"time"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/drivers/gpio"
+        	"gobot.io/x/gobot/platforms/raspi"
+        )
+
+        func main() {
+        	adaptor := raspi.NewAdaptor()
+        	led := gpio.NewLedDriver(adaptor, "7")
+
+        	work := func() {
+        		gobot.Every(1*time.Second, func() {
+        			led.Toggle()
+        		})
+        	}
+
+        	robot := gobot.NewRobot("snapbot",
+        		[]gobot.Connection{adaptor},
+        		[]gobot.Device{led},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+
+    Packaging go applications as snaps is very simple. Let's write the following contents in a file named `snapcraft.yaml`:
+
+        name: gobot-blink-username
+        version: master
+        summary:  Blink snap for the Raspberry Pi with Gobot
+        description: |
+          This is a simple example to blink an LED in the Raspberry Pi
+          using the Gobot framework.
+
+        confinement: devmode
+
+        apps:
+          gobot-blink-username:
+            command: gobot-blink
+
+        parts:
+          gobot-blink:
+            source: .
+            plugin: go
+            go-importpath: github.com/username/gobot-blink
+
+    (the name of the snap must be unique, that's why we append `username` to it. Remember to replace it here with your username, too)
+
+    In here we won't dig into the details of the `snapcraft.yaml`. If you want to learn more about it you can go to the [tutorial to create your first snap](https://tutorials.ubuntu.com/tutorial/create-first-snap#0) or to the [documentatation in the snapcraft site](https://snapcraft.io/docs/).
+
+    One important thing to note is the `confinement: devmode`. We are currently improving the `strict` access to GPIO on the supported boards, but for now to keep this guide simple we will avoid the fully secure confinement.
+
+    Okay, we have the code local, so let's push it to our repository in GitHub:
+
+        $ git add main.go snapcraft.yaml
+        $ git commit -m 'add a blink snap for the Raspberry Pi'
+        $ git push
+
+    With the code in GitHub, we now can go to [build.snapcraft.io](https://build.snapcraft.io/), *Sign in* with GitHub and *Add the repo* that we are using for this example.
+
+    The snap is not yet registered in the store, so click the *Not registered* link, *Sign in* to the store and *Register the name*. The site will put the snap in the build queue, so we have to wait a little until it's build and published.
+
+    In the meantime, let's get ready the Raspberry Pi to check that the snap works. Ubuntu offers a [version for IoT](https://www.ubuntu.com/internet-of-things) which is a very secure operating system, taking the advantages of snaps for the kernel, the base operating system, the bits specific to your gadget and the applications that you run on top of them. Here are the installation instructions for Raspberry Pi: [https://developer.ubuntu.com/core/get-started/raspberry-pi-2-3](https://developer.ubuntu.com/core/get-started/raspberry-pi-2-3).
+
+    By the time you are done installing the operating system, the snap should be already in the edge channel of the store. So let's ssh into the Raspberry Pi and install it:
+
+        raspberry-pi:~$ sudo snap install gobot-blink-username --edge --devmode
+
+    and run it:
+
+        raspberry-pi:~$ sudo gobot-blink-username
+
+    Now go and tell other people with a Raspberry Pi to install your snap and give it a try. From now on, every time you push something new to your repository in GitHub, it will be automatically built and published to the store, and the people with your snap installed will also get the update automatically. You can add more complex interactions to your app with Gobot drivers, and the problem of delivering it to your users is already solved.
+
+    There are tutorials about snaps in [https://tutorials.ubuntu.com/](https://tutorials.ubuntu.com/), in case you want to learn how to package more complex applications.
