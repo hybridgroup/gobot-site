@@ -36,7 +36,7 @@
         	l := leap.NewDriver(leapMotionAdaptor)
         
         	work := func() {
-        		gobot.On(l.Event("message"), func(data interface{}) {
+        		leap.On(l.Event("message"), func(data interface{}) {
         			fmt.Println(data.(leap.Frame))
         		})
         	}
