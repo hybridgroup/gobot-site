@@ -28,7 +28,32 @@ subnavjs: true
   %h3 For Arduino:
   :markdown
         :::go
-        // code here
+        package main
+
+        import (
+                "time"
+
+                "gobot.io/x/gobot"
+                "gobot.io/x/gobot/drivers/gpio"
+                "gobot.io/x/gobot/platforms/firmata"
+        )
+
+        func main() {
+                firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+                led := gpio.NewLedDriver(firmataAdaptor, "13")
+
+                work := func() {
+                  led.On
+                }
+
+                robot := gobot.NewRobot("bot",
+                        []gobot.Connection{firmataAdaptor},
+                        []gobot.Device{led},
+                        work,
+                )
+
+                robot.Start()
+        }
         ...
 
 %section.how-to#HowToUse
@@ -38,7 +63,34 @@ subnavjs: true
 
   :markdown
         :::go
-        // code here
+        package main
+
+        import (
+                "time"
+
+                "gobot.io/x/gobot"
+                "gobot.io/x/gobot/drivers/gpio"
+                "gobot.io/x/gobot/platforms/firmata"
+        )
+
+        func main() {
+                firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+                led := gpio.NewLedDriver(firmataAdaptor, "13")
+
+                work := func() {
+                        gobot.Every(1*time.Second, func() {
+                                led.Toggle()
+                        })
+                }
+
+                robot := gobot.NewRobot("bot",
+                        []gobot.Connection{firmataAdaptor},
+                        []gobot.Device{led},
+                        work,
+                )
+
+                robot.Start()
+        }
 
 %section.circuit#Circuit
   %h2 Circuit
