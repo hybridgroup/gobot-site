@@ -59,6 +59,18 @@
     "drivers": ["GPIO", "AIO", "I2C"]
   },
 
+  "GoPiGo3": {
+    "slug": "gopigo3",
+    "url": "https://www.dexterindustries.com/gopigo3/",
+    "drivers": ["GPIO", "AIO", "I2C", "GoPiGo3"]
+  },
+
+  "HS-200": {
+    "slug": "hs200",
+    "url": "http://www.holystone.com/",
+    "drivers": ["HS-200"]
+  },
+
   "Intel Curie": {
     "slug": "curie",
     "url": "https://www.intel.com/content/www/us/en/products/boards-kits/curie.html",
@@ -171,7 +183,7 @@
     "slug": "sphero",
     "url": "http://www.sphero.com/",
     "drivers": ["Sphero"]
-},
+  },
 
   "Tinker Board": {
     "slug": "tinkerboard",

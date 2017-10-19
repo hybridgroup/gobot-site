@@ -1,0 +1,28 @@
+---
+title: GoPiGo3 with Gobot
+author: The Hybrid Group
+page_title: Platforms
+page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
+page_title_docs: GoPiGo3
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot' target='blank' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot/issues' target='_blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/gobot.io/x/gobot/platforms/dexter/gopigo3' target='_blank' class='api-link'>API Reference</a>
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+
+%section.intro
+  = image_tag "/images/devices/gopigo3.jpg", class: "display"
+
+= partial "documentation/platforms/partials/gopigo3"
+
+
+%section.drivers#Drivers
+  %h2 Drivers
+  %p Available drivers for the Dexter GoPiGo3 platform are listed below..
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "GoPiGo3" }
