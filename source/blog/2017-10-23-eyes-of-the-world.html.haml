@@ -1,0 +1,103 @@
+---
+page_title_show: true
+title: Gobot 1.7 - Eyes Of The World
+page_title: Blog
+date: 2017-10-23
+tags: releases
+author: Ron Evans
+---
+
+:markdown
+
+  It has been a few months since our last release, and the new Gobot v1.7 has lots of good things onboard.
+
+  We have added support for [OpenCV 3](https://opencv.org/), by way of the brand new [GoCV](https://gocv.io) computer vision package.
+  
+  Also, thanks to the wonderful humans at the [Gophercon](https://gophercon.com/) hardware hackday, we have also added support for the very aptly named [GoPiGo3](https://www.dexterindustries.com/gopigo3/) robot from [Dexter Industries](https://www.dexterindustries.com/). We also have experimental support for the [Holystone HS-200 drone](http://www.holystone.com/product/Holy_Stone_HS200W_FPV_Drone_with_720P_HD_Live_Video_Wifi_Camera_2_4GHz_4CH_6_Axis_Gyro_RC_Quadcopter_with_Altitude_Hold,_Gravity_Sensor_and_Headless_Mode_Function_RTF,_Color_Red-39.html).
+
+  For the full changelog, here is a link to the Gobot 1.7 release:
+
+  [https://github.com/hybridgroup/gobot/releases/tag/v1.7.0](https://github.com/hybridgroup/gobot/releases/tag/v1.7.0)
+
+  Here are some highlights of what we've added for this new release.
+
+  ## OpenCV 3 Using GoCV
+
+  We've had support for OpenCV for quite some time, but have been stuck on older versions (2.x) from a couple of years ago, due to the challenges involved in wrapping the OpenCV C++ code in Go. 
+  
+  Thanks to a new project from our team called GoCV ([https://gocv.io](https://gocv.io)), we now can use the latest version of OpenCV 3.3. We even have it running on Linux, OS X, and Windows too!
+
+  Because of this very significant development, Gobot can make use of the very latest work in open source computer vision. Watch this space for more soon.
+
+  ## GoPiGo3 Robot
+
+  Thanks to the efforts of an entire team of contributors at Gophercon, especially [@ulisesflynn](https://github.com/ulisesflynn) we have support for the GoPiGo3 robot from Dexter Industries..
+
+  The GoPiGo3 is a rolling robotic platform based on the Raspberry Pi, intended for people who want to learn about robotics. In addition to the built-in motor controller, you can also connect Grove GPIO, Analog (AIO), and I2C devices very easily. You can use any of the Gobot GPIO, AIO, or I2C drivers with the GoPiGo3.
+
+  Check out this example that blinks the LEDs on the GoPiGo's built-in "eyes":
+
+      :::go
+      package main
+
+      import (
+          "fmt"
+          "time"
+
+          "gobot.io/x/gobot"
+          "gobot.io/x/gobot/platforms/dexter/gopigo3"
+          "gobot.io/x/gobot/platforms/raspi"
+      )
+
+      func main() {
+          raspiAdaptor := raspi.NewAdaptor()
+          gpg3 := gopigo3.NewDriver(raspiAdaptor)
+
+          work := func() {
+              on := uint8(0xFF)
+              gobot.Every(1000*time.Millisecond, func() {
+                  err := gpg3.SetLED(gopigo3.LED_EYE_RIGHT, 0x00, 0x00, on)
+                  if err != nil {
+                      fmt.Println(err)
+                  }
+                  err = gpg3.SetLED(gopigo3.LED_EYE_LEFT, ^on, 0x00, 0x00)
+                  if err != nil {
+                      fmt.Println(err)
+                  }
+                  on = ^on
+              })
+          }
+
+        robot := gobot.NewRobot("gopigo3eyeleds",
+            []gobot.Connection{raspiAdaptor},
+            []gobot.Device{gpg3},
+            work,
+        )
+
+        robot.Start()
+      }
+
+
+  ## SPI
+
+  In order to implement the above-mentioned GoPiGo3 support, our intrepid Gophercon contributors have also added [Serial Peripheral Interface (SPI)](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus) support to Gobot. 
+  
+  SPI is a standard high-speed communication interface used for embedded devices. Making use of the fine work done by Golang expert [@rakyll](https://github.com/rakyll) on [defining a SPI interface for Go](https://godoc.org/golang.org/x/exp/io/spi) we are now able to connect SPI devices to the rest of the Gobot ecosystem.
+
+  The first platform supporting the SPI interface is an adaptor for the Raspberry Pi, but we will be adding all of the Linux systems that support `SPIDEV`.
+
+  Need to add a SPI device to your Gobot solution? Now you can! Let us know what devices you want, we're happy to help.
+
+  ## Holystone HS-200 Drone
+
+  The other major platform contribution to come out of Gophercon was experimental support for the Holystone HS-200 WiFi controlled drone. We did not know much about this quadcopter but thanks to the efforts of contributor [@GuySirton](https://github.com/GuySirton) we have been able to fly.
+
+  ## There's More
+
+  We have more goodness in this release, so do please checkout the changelog for the complete story.
+
+  [https://github.com/hybridgroup/gobot/releases/tag/v1.7.0](https://github.com/hybridgroup/gobot/releases/tag/v1.7.0)
+  
+  ## Keep In Touch
+
+  Want to know about the latest Gobot news? Follow us on Twitter at [@gobotio](http://twitter.com/gobotio). Thank you!
