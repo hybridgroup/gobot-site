@@ -43,7 +43,7 @@
         l := leap.NewDriver(leapMotionAdaptor)
 
         work := <span class="keyword">func</span>() {
-                gobot.On(l.Event(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                l.On(l.Event(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(data.(leap.Frame))
                 })
         }

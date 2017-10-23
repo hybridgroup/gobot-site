@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="gobot"> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta content="width=device-width, initial-scale=1.0" name="viewport"> <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"> <meta name="description"> <meta content="Ron Evans" name="author"> <title>Gobot 1.7 - Eyes Of The World</title> <link href="/stylesheets/application.css" rel="stylesheet"> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script src="/javascripts/vendor/angular.min.js"></script> <script src="/javascripts/app.js"></script> <script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-3', {"cookieDomain":"gobot.io"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head> <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet"> <link href="/favicon.ico" rel="shortcut icon" type="image/gif">  <body> <div class="app"> <header class="app-header" id="top" role="banner"> <div class="container"> <div class="display"> <div class="app-logo"> <a href="/">Gobot</a> </div> </div> <nav class="menu"> <ul class="nav-list"> <li> <a href="/documentation" class="item">Docs</a> </li> <li> <a href="/documentation/platforms" class="item">Platforms</a> </li> <li> <a href="/resources" class="item">Resources</a> </li> <li> <a href="/news" class="item">News</a> </li> <li> <a href="/blog" class="item">Blog</a> </li> <li> <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a> </li> </ul> </nav> </div> </header> <div class="page-title"> <div class="container"> <h1 class="title">Blog</h1> </div> </div> <div class="main-content blog" role="main"> <div class="articles"> <div class="article"> <header class="header"> <div class="dates"> <div class="date-top"> <div class="month"> Oct </div> <div class="day"> 23 </div> </div> <div class="date-bottom"> <div class="year"> 2017 </div> </div> </div> <h3 class="article-title"> <a href="/blog/2017/10/23/eyes-of-the-world/">Gobot 1.7 - Eyes Of The World</a> <br> </h3> </header> <p>It has been a few months since our last release, and the new Gobot v1.7 has lots of good things onboard.</p> <p>We have added support for <a href="https://opencv.org/">OpenCV 3</a>, by way of the brand new <a href="https://gocv.io">GoCV</a> computer vision package.</p> <p>Also, thanks to the wonderful humans at the <a href="https://gophercon.com/">Gophercon</a> hardware hackday, we have also added support for the very aptly named <a href="https://www.dexterindustries.com/gopigo3/">GoPiGo3</a> robot from <a href="https://www.dexterindustries.com/">Dexter Industries</a>. We also have experimental support for the <a href="http://www.holystone.com/product/Holy_Stone_HS200W_FPV_Drone_with_720P_HD_Live_Video_Wifi_Camera_2_4GHz_4CH_6_Axis_Gyro_RC_Quadcopter_with_Altitude_Hold,_Gravity_Sensor_and_Headless_Mode_Function_RTF,_Color_Red-39.html">Holystone HS-200 drone</a>.</p> <p>For the full changelog, here is a link to the Gobot 1.7 release:</p> <p><a href="https://github.com/hybridgroup/gobot/releases/tag/v1.7.0">https://github.com/hybridgroup/gobot/releases/tag/v1.7.0</a></p> <p>Here are some highlights of what we've added for this new release.</p> <h2 id="opencv-3-using-gocv">OpenCV 3 Using GoCV</h2> <p>We've had support for OpenCV for quite some time, but have been stuck on older versions (2.x) from a couple of years ago, due to the challenges involved in wrapping the OpenCV C++ code in Go. </p> <p>Thanks to a new project from our team called GoCV (<a href="https://gocv.io">https://gocv.io</a>), we now can use the latest version of OpenCV 3.3. We even have it running on Linux, OS X, and Windows too!</p> <p>Because of this very significant development, Gobot can make use of the very latest work in open source computer vision. Watch this space for more soon.</p> <h2 id="gopigo3-robot">GoPiGo3 Robot</h2> <p>Thanks to the efforts of an entire team of contributors at Gophercon, especially <a href="https://github.com/ulisesflynn">@ulisesflynn</a> we have support for the GoPiGo3 robot from Dexter Industries..</p> <p>The GoPiGo3 is a rolling robotic platform based on the Raspberry Pi, intended for people who want to learn about robotics. In addition to the built-in motor controller, you can also connect Grove GPIO, Analog (AIO), and I2C devices very easily. You can use any of the Gobot GPIO, AIO, or I2C drivers with the GoPiGo3.</p> <p>Check out this example that blinks the LEDs on the GoPiGo's built-in "eyes":</p> <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+    <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+    <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/dexter/gopigo3</span><span class="delimiter">"</span></span>
+    <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/raspi</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+    raspiAdaptor := raspi.NewAdaptor()
+    gpg3 := gopigo3.NewDriver(raspiAdaptor)
+
+    work := <span class="keyword">func</span>() {
+        on := <span class="predefined-type">uint8</span>(<span class="hex">0xFF</span>)
+        gobot.Every(<span class="integer">1000</span>*time.Millisecond, <span class="keyword">func</span>() {
+            err := gpg3.SetLED(gopigo3.LED_EYE_RIGHT, <span class="hex">0x00</span>, <span class="hex">0x00</span>, on)
+            <span class="keyword">if</span> err != <span class="predefined-constant">nil</span> {
+                fmt.Println(err)
+            }
+            err = gpg3.SetLED(gopigo3.LED_EYE_LEFT, ^on, <span class="hex">0x00</span>, <span class="hex">0x00</span>)
+            <span class="keyword">if</span> err != <span class="predefined-constant">nil</span> {
+                fmt.Println(err)
+            }
+            on = ^on
+        })
+    }
+
+  robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">gopigo3eyeleds</span><span class="delimiter">"</span></span>,
+      []gobot.Connection{raspiAdaptor},
+      []gobot.Device{gpg3},
+      work,
+  )
+
+  robot.Start()
+}
+</pre> <h2 id="spi">SPI</h2> <p>In order to implement the above-mentioned GoPiGo3 support, our intrepid Gophercon contributors have also added <a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">Serial Peripheral Interface (SPI)</a> support to Gobot. </p> <p>SPI is a standard high-speed communication interface used for embedded devices. Making use of the fine work done by Golang expert <a href="https://github.com/rakyll">@rakyll</a> on <a href="https://godoc.org/golang.org/x/exp/io/spi">defining a SPI interface for Go</a> we are now able to connect SPI devices to the rest of the Gobot ecosystem.</p> <p>The first platform supporting the SPI interface is an adaptor for the Raspberry Pi, but we will be adding all of the Linux systems that support <code>SPIDEV</code>.</p> <p>Need to add a SPI device to your Gobot solution? Now you can! Let us know what devices you want, we're happy to help.</p> <h2 id="holystone-hs-200-drone">Holystone HS-200 Drone</h2> <p>The other major platform contribution to come out of Gophercon was experimental support for the Holystone HS-200 WiFi controlled drone. We did not know much about this quadcopter but thanks to the efforts of contributor <a href="https://github.com/GuySirton">@GuySirton</a> we have been able to fly.</p> <h2 id="theres-more">There's More</h2> <p>We have more goodness in this release, so do please checkout the changelog for the complete story.</p> <p><a href="https://github.com/hybridgroup/gobot/releases/tag/v1.7.0">https://github.com/hybridgroup/gobot/releases/tag/v1.7.0</a></p> <h2 id="keep-in-touch">Keep In Touch</h2> <p>Want to know about the latest Gobot news? Follow us on Twitter at <a href="http://twitter.com/gobotio">@gobotio</a>. Thank you!</p> <div class="blog-footer"> <h2>Contact Us</h2> <ul> <li> To stay up to date with all Gobot news, join our <a target="blank" href="https://groups.google.com/forum/#!forum/gobotio">mailing list</a> <li> If you need help or you feel we can improve something, let us know! Open a <a target="blank" href="https://github.com/hybridgroup/gobot/issues/new">new issue.</a> <li> To subscribe for announcements of releases and important changes please follow <a target="blank" href="https://twitter.com/gobotio">@gobotio</a> </ul> </div> </div> </div> <div class="side-column"> <div class="categories"> <h4>Tags</h4> <ul> <li><a href="/blog/tags/robots/">Robots</a></li> <li><a href="/blog/tags/events/">Events</a></li> </ul> </div> <div class="network"> <h4>Network</h4> <div class="network-links"> <a href="https://twitter.com/gobotio"><img src="/images/elements/twitter.png"></a> <a href="https://github.com/hybridgroup/gobot"><img src="/images/elements/github.png"></a> </div> </div> <div class="titles"> <h4>Posts</h4> <ul> <li><a href="/blog/2017/10/23/eyes-of-the-world/">Gobot 1.7 - Eyes Of The World</a></li> <li><a href="/blog/2017/05/10/gobot-1.5-on-pins-and-boards/">Gobot 1.5 - On Pins And Boards</a></li> <li><a href="/blog/2017/04/13/gobot-1.4-spring-cleaning/">Gobot - 1.4 Spring Cleaning</a></li> <li><a href="/blog/2017/03/22/gobot-1.3-is-here/">Gobot - 1.3 Is Here</a></li> <li><a href="/blog/2017/03/12/all-about-the-next-generation-at-scale15x/">All About The Next Generation At SCaLE15x</a></li> <li><a href="/blog/2017/02/16/gobot-1.2-released/">Gobot - 1.2 Released</a></li> <li><a href="/blog/2017/02/09/gobot-at-fosdem-2017/">Gobot At FOSDEM 2017</a></li> <li><a href="/blog/2017/01/09/gobot-1.1/">Gobot - The 1.1 Release</a></li> <li><a href="/blog/2016/12/21/gobot-the-big-one-oh/">Gobot - The Big One Oh!</a></li> <li><a href="/blog/2016/02/17/gobot-this-one-goes-to-0.11/">Gobot - This One Goes To 0.11</a></li> <li><a href="/blog/2015/10/27/gobot-0.10-less-is-more/">Gobot 0.10 - Less Is More</a></li> <li><a href="/blog/2015/09/14/gobot-vice/">Gobot in Vice</a></li> <li><a href="/blog/2015/09/01/gobot-in-sdtimes/">Gobot mentioned in SD Times</a></li> <li><a href="/blog/2015/04/13/gobot-featured-in-wired/">Gobot featured in Wired</a></li> <li><a href="/blog/2014/12/24/gobot-0.8/">Gobot 0.8 - The Happy Holiday Release</a></li> <li><a href="/blog/2014/11/11/gobot-0.7/">Gobot 0.7 - The Big Release</a></li> <li><a href="/blog/2014/09/24/run-golang-on-the-intel-edison-with-gobot/">Run Golang On The Intel Edison With Gobot</a></li> <li><a href="/blog/2014/08/08/flying-iris-at-distill-2014/">Flying Iris At Distill 2014</a></li> <li><a href="/blog/2014/07/11/gobot-0.6/">Gobot 0.6 is out!</a></li> <li><a href="/blog/2014/06/18/gobot-0.5/">Gobot 0.5 is out!</a></li> <li><a href="/blog/2014/04/29/taking-the-stage-at-gophercon/">Taking The Stage At GopherCon</a></li> <li><a href="/blog/2014/04/10/national-robotics-week-at-boston-golang/">National Robotics Week at Boston Golang</a></li> <li><a href="/blog/2013/10/21/go-gobot-go-golang-powered-robotics/">Go, Gobot, Go! Golang Powered Robotics</a></li> </ul> </div> </div> </div> </div> <footer class="app-footer"> <div class="grass-footer"></div> <div class="frameworks"> <div class="container"> <div class="column-footer"> <div class="img"> <img src="/images/elements/gobot-home.png"> </div> <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/artoo.png"> </div> <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p> <div class="footer-button"> <a target="blank" href="http://artoo.io">View Project</a> </div> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/cylon.png"> </div> <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p> <div class="footer-button"> <a target="blank" href="http://cylonjs.com">View Project</a> </div> </div> <div class="clear"></div> </div> </div> <div class="copyright"> <div class="container"> <div class="hybrid-group"> <span>© Copyright 2012-2017</span> <a href="http://hybridgroup.com" id="THG-logo" target="_blank"> <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"> </a> </div> <div class="top-link"> <a href="#top"> <img alt="Top" src="/images/elements/triangle_up.svg"> <p>Top</p> </a> </div> <div class="clear"></div> </div> </div> </footer> </body> </html>

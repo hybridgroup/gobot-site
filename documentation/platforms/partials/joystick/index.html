@@ -29,7 +29,7 @@
 
 
 </script></head> <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet"> <link href="/favicon.ico" rel="shortcut icon" type="image/gif">  <body> <div class="app"> <header class="app-header" id="top" role="banner"> <div class="container"> <div class="display"> <div class="app-logo"> <a href="/">Gobot</a> </div> </div> <nav class="menu"> <ul class="nav-list"> <li> <a href="/documentation" class="item">Docs</a> </li> <li> <a href="/documentation/platforms" class="item">Platforms</a> </li> <li> <a href="/resources" class="item">Resources</a> </li> <li> <a href="/news" class="item">News</a> </li> <li> <a href="/blog" class="item">Blog</a> </li> <li> <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a> </li> </ul> </nav> </div> </header> <div class="info-intro"> <p>You can use Gobot with any USB joystick or game controller that is compatible with <a href="http://www.libsdl.org/">Simple DirectMedia Layer</a>.</p> <p>Current configurations included: - Dualshock3 game controller - Dualshock4 game controller - XBox360 game controller</p> </div> <div class="clear"></div> <section class="how-to"> <h2 id="how-to-install">How to Install</h2> <p>This package requires <code>sdl2</code> to be installed on your system</p> <h3 id="osx">OSX</h3> <p>To install <code>sdl2</code> on OSX using Homebrew:</p> <pre class="CodeRay">$ brew install sdl2
-</pre> <h3 id="ubuntu">Ubuntu</h3> <pre class="CodeRay">$ sudo apt-get install libsdl2-2.0-0
+</pre> <p>To use an XBox360 controller on OS X, you will most likely need to install additional software such as <a href="https://github.com/360Controller/360Controller">https://github.com/360Controller/360Controller</a>.</p> <h3 id="ubuntu">Ubuntu</h3> <pre class="CodeRay">$ sudo apt-get install libsdl2-2.0-0
 </pre> <p>Now you can install the package with</p> <pre class="CodeRay">go get -d -u gobot.io/x/gobot/...
 </pre> <h2 id="how-to-use">How to Use</h2> <p>Controller configurations are stored in JSON format. Here's an example configuration file for the Dualshock 3 controller</p> <pre class="CodeRay">{
     <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">Sony PLAYSTATION(R)3 Controller</span><span class="delimiter">"</span></span>,
@@ -134,43 +134,97 @@
 
 <span class="keyword">func</span> main() {
         joystickAdaptor := joystick.NewAdaptor()
-        joystick := joystick.NewDriver(joystickAdaptor,
+        stick := joystick.NewDriver(joystickAdaptor,
                 <span class="string"><span class="delimiter">"</span><span class="content">./platforms/joystick/configs/dualshock3.json</span><span class="delimiter">"</span></span>,
         )
 
         work := <span class="keyword">func</span>() {
-                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                <span class="comment">// buttons</span>
+                stick.On(joystick.SquarePress, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">square_press</span><span class="delimiter">"</span></span>)
                 })
-                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">square_release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                stick.On(joystick.SquareRelease, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">square_release</span><span class="delimiter">"</span></span>)
                 })
-                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                stick.On(joystick.TrianglePress, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">triangle_press</span><span class="delimiter">"</span></span>)
                 })
-                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">triangle_release</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                stick.On(joystick.TriangleRelease, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">triangle_release</span><span class="delimiter">"</span></span>)
                 })
-                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                stick.On(joystick.CirclePress, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">circle_press</span><span class="delimiter">"</span></span>)
+                })
+                stick.On(joystick.CircleRelease, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">circle_release</span><span class="delimiter">"</span></span>)
+                })
+                stick.On(joystick.XPress, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">x_press</span><span class="delimiter">"</span></span>)
+                })
+                stick.On(joystick.XRelease, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">x_release</span><span class="delimiter">"</span></span>)
+                })
+                stick.On(joystick.StartPress, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">start_press</span><span class="delimiter">"</span></span>)
+                })
+                stick.On(joystick.StartRelease, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">start_release</span><span class="delimiter">"</span></span>)
+                })
+                stick.On(joystick.SelectPress, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">select_press</span><span class="delimiter">"</span></span>)
+                })
+                stick.On(joystick.SelectRelease, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">select_release</span><span class="delimiter">"</span></span>)
+                })
+
+                <span class="comment">// joysticks</span>
+                stick.On(joystick.LeftX, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>, data)
                 })
-                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                stick.On(joystick.LeftY, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>, data)
                 })
-                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                stick.On(joystick.RightX, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>, data)
                 })
-                gobot.On(joystick.Event(<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>), <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                stick.On(joystick.RightY, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
                         fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>, data)
+                })
+
+                <span class="comment">// triggers</span>
+                stick.On(joystick.R1Press, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">R1Press</span><span class="delimiter">"</span></span>, data)
+                })
+                stick.On(joystick.R2Press, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">R2Press</span><span class="delimiter">"</span></span>, data)
+                })
+                stick.On(joystick.L1Press, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">L1Press</span><span class="delimiter">"</span></span>, data)
+                })
+                stick.On(joystick.L2Press, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
+                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">L2Press</span><span class="delimiter">"</span></span>, data)
                 })
         }
 
         robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">joystickBot</span><span class="delimiter">"</span></span>,
                 []gobot.Connection{joystickAdaptor},
-                []gobot.Device{joystick},
+                []gobot.Device{stick},
                 work,
         )
 
         robot.Start()
 }
-</pre> </section> </div> <footer class="app-footer"> <div class="grass-footer"></div> <div class="frameworks"> <div class="container"> <div class="column-footer"> <div class="img"> <img src="/images/elements/gobot-home.png"> </div> <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/artoo.png"> </div> <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p> <div class="footer-button"> <a target="blank" href="http://artoo.io">View Project</a> </div> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/cylon.png"> </div> <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p> <div class="footer-button"> <a target="blank" href="http://cylonjs.com">View Project</a> </div> </div> <div class="clear"></div> </div> </div> <div class="copyright"> <div class="container"> <div class="hybrid-group"> <span>© Copyright 2012-2017</span> <a href="http://hybridgroup.com" id="THG-logo" target="_blank"> <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"> </a> </div> <div class="top-link"> <a href="#top"> <img alt="Top" src="/images/elements/triangle_up.svg"> <p>Top</p> </a> </div> <div class="clear"></div> </div> </div> </footer> </body> </html>
+</pre> <h2 id="how-to-add-a-new-joystick">How to Add A New Joystick</h2> <p>In the <code>bin</code> directory for this package is a CLI utility program that scans for SDL joystick events, and displays the ID and value:</p> <pre class="CodeRay">$ go run ./platforms/joystick/bin/scanner.go 
+Joystick 0 connected
+[6625 ms] Axis: 1       value:-22686
+[6641 ms] Axis: 1       value:-32768
+[6836 ms] Axis: 1       value:-18317
+[6852 ms] Axis: 1       value:0
+[8663 ms] Axis: 3       value:-32768
+[8873 ms] Axis: 3       value:0
+[10183 ms] Axis: 0      value:-24703
+[10183 ms] Axis: 0      value:-32768
+[10313 ms] Axis: 1      value:-3193
+[10329 ms] Axis: 1      value:0
+[10345 ms] Axis: 0      value:0
+</pre> <p>You can use the output from this program to create a JSON file for the various buttons and axes on your joystick/gamepad.</p> </section> </div> <footer class="app-footer"> <div class="grass-footer"></div> <div class="frameworks"> <div class="container"> <div class="column-footer"> <div class="img"> <img src="/images/elements/gobot-home.png"> </div> <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/artoo.png"> </div> <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p> <div class="footer-button"> <a target="blank" href="http://artoo.io">View Project</a> </div> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/cylon.png"> </div> <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p> <div class="footer-button"> <a target="blank" href="http://cylonjs.com">View Project</a> </div> </div> <div class="clear"></div> </div> </div> <div class="copyright"> <div class="container"> <div class="hybrid-group"> <span>© Copyright 2012-2017</span> <a href="http://hybridgroup.com" id="THG-logo" target="_blank"> <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"> </a> </div> <div class="top-link"> <a href="#top"> <img alt="Top" src="/images/elements/triangle_up.svg"> <p>Top</p> </a> </div> <div class="clear"></div> </div> </div> </footer> </body> </html>
