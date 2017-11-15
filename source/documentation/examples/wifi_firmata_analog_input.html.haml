@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - firmata_led_brightness_with_analog_input"
-page_title: "Example: firmata_led_brightness_with_analog_input"
+title: "Gobot Example - wifi_firmata_analog_input"
+page_title: "Example: wifi_firmata_analog_input"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -11,13 +11,6 @@ active_menu_docs: true
 .example
   :markdown
         :::go
-        /*
-         How to run
-         Pass serial port to use as the first param:
-
-        	go run examples/firmata_led_brightness_with_analog_input.go /dev/ttyACM0
-        */
-
         package main
 
         import (
@@ -26,14 +19,12 @@ active_menu_docs: true
 
         	"gobot.io/x/gobot"
         	"gobot.io/x/gobot/drivers/aio"
-        	"gobot.io/x/gobot/drivers/gpio"
         	"gobot.io/x/gobot/platforms/firmata"
         )
 
         func main() {
-        	firmataAdaptor := firmata.NewAdaptor(os.Args[1])
-        	sensor := aio.NewAnalogSensorDriver(firmataAdaptor, "0")
-        	led := gpio.NewLedDriver(firmataAdaptor, "3")
+        	firmataAdaptor := firmata.NewTCPAdaptor(os.Args[1])
+        	sensor := aio.NewAnalogSensorDriver(firmataAdaptor, "A0")
 
         	work := func() {
         		sensor.On(aio.Data, func(data interface{}) {
@@ -42,13 +33,12 @@ active_menu_docs: true
         			)
         			fmt.Println("sensor", data)
         			fmt.Println("brightness", brightness)
-        			led.Brightness(brightness)
         		})
         	}
 
         	robot := gobot.NewRobot("sensorBot",
         		[]gobot.Connection{firmataAdaptor},
-        		[]gobot.Device{sensor, led},
+        		[]gobot.Device{sensor},
         		work,
         	)
 

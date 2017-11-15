@@ -11,10 +11,18 @@ active_menu_docs: true
 .example
   :markdown
         :::go
+        /*
+         How to run
+         Pass serial port to use as the first param:
+
+        	go run examples/firmata_blinkm.go /dev/ttyACM0
+        */
+
         package main
 
         import (
         	"fmt"
+        	"os"
         	"time"
 
         	"gobot.io/x/gobot"
@@ -23,7 +31,7 @@ active_menu_docs: true
         )
 
         func main() {
-        	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+        	firmataAdaptor := firmata.NewAdaptor(os.Args[1])
         	blinkm := i2c.NewBlinkMDriver(firmataAdaptor)
 
         	work := func() {

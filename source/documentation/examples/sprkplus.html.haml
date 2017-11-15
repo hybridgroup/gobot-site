@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - firmata_rgb_led"
-page_title: "Example: firmata_rgb_led"
+title: "Gobot Example - sprkplus"
+page_title: "Example: sprkplus"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -13,9 +13,11 @@ active_menu_docs: true
         :::go
         /*
          How to run
-         Pass serial port to use as the first param:
+         Pass the Bluetooth address or name as the first param:
 
-        	go run examples/firmata_rgb_led.go /dev/ttyACM0
+        	go run examples/sprkplus.go SK-1234
+
+         NOTE: sudo is required to use BLE in Linux
         */
 
         package main
@@ -25,26 +27,26 @@ active_menu_docs: true
         	"time"
 
         	"gobot.io/x/gobot"
-        	"gobot.io/x/gobot/drivers/gpio"
-        	"gobot.io/x/gobot/platforms/firmata"
+        	"gobot.io/x/gobot/platforms/ble"
+        	"gobot.io/x/gobot/platforms/sphero/sprkplus"
         )
 
         func main() {
-        	board := firmata.NewAdaptor(os.Args[1])
-        	led := gpio.NewRgbLedDriver(board, "3", "5", "6")
+        	bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+        	sprk := sprkplus.NewDriver(bleAdaptor)
 
         	work := func() {
         		gobot.Every(1*time.Second, func() {
         			r := uint8(gobot.Rand(255))
         			g := uint8(gobot.Rand(255))
         			b := uint8(gobot.Rand(255))
-        			led.SetRGB(r, g, b)
+        			sprk.SetRGB(r, g, b)
         		})
         	}
 
-        	robot := gobot.NewRobot("rgbBot",
-        		[]gobot.Connection{board},
-        		[]gobot.Device{led},
+        	robot := gobot.NewRobot("sprkBot",
+        		[]gobot.Connection{bleAdaptor},
+        		[]gobot.Device{sprk},
         		work,
         	)
 

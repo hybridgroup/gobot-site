@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - firmata_button"
-page_title: "Example: firmata_button"
+title: "Gobot Example - gopigo3_grove_button"
+page_title: "Example: gopigo3_grove_button"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -11,41 +11,37 @@ active_menu_docs: true
 .example
   :markdown
         :::go
-        /*
-         How to run
-         Pass serial port to use as the first param:
-
-        	go run examples/firmata_button.go /dev/ttyACM0
-        */
-
         package main
 
         import (
-        	"os"
+        	"fmt"
 
         	"gobot.io/x/gobot"
         	"gobot.io/x/gobot/drivers/gpio"
-        	"gobot.io/x/gobot/platforms/firmata"
+        	"gobot.io/x/gobot/platforms/dexter/gopigo3"
+        	"gobot.io/x/gobot/platforms/raspi"
         )
 
         func main() {
-        	firmataAdaptor := firmata.NewAdaptor(os.Args[1])
-
-        	button := gpio.NewButtonDriver(firmataAdaptor, "2")
-        	led := gpio.NewLedDriver(firmataAdaptor, "3")
+        	raspiAdaptor := raspi.NewAdaptor()
+        	gpg3 := gopigo3.NewDriver(raspiAdaptor)
+        	led := gpio.NewGroveLedDriver(gpg3, "AD_1_1")
+        	button := gpio.NewGroveButtonDriver(gpg3, "AD_2_1")
 
         	work := func() {
         		button.On(gpio.ButtonPush, func(data interface{}) {
+        			fmt.Println("On!")
         			led.On()
         		})
         		button.On(gpio.ButtonRelease, func(data interface{}) {
+        			fmt.Println("Off!")
         			led.Off()
         		})
         	}
 
-        	robot := gobot.NewRobot("buttonBot",
-        		[]gobot.Connection{firmataAdaptor},
-        		[]gobot.Device{button, led},
+        	robot := gobot.NewRobot("gopigo3button",
+        		[]gobot.Connection{raspiAdaptor},
+        		[]gobot.Device{gpg3, button, led},
         		work,
         	)
 

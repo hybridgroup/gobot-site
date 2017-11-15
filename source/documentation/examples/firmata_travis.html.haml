@@ -11,6 +11,13 @@ active_menu_docs: true
 .example
   :markdown
         :::go
+        /*
+         How to run
+         Pass serial port to use as the first param:
+
+        	go run examples/firmata_travis.go /dev/ttyACM0
+        */
+
         package main
 
         import (
@@ -18,6 +25,7 @@ active_menu_docs: true
         	"fmt"
         	"io/ioutil"
         	"net/http"
+        	"os"
         	"time"
 
         	"gobot.io/x/gobot"
@@ -78,7 +86,7 @@ active_menu_docs: true
 
         func main() {
         	master := gobot.NewMaster()
-        	firmataAdaptor := firmata.NewAdaptor("/dev/ttyACM0")
+        	firmataAdaptor := firmata.NewAdaptor(os.Args[1])
         	red := gpio.NewLedDriver(firmataAdaptor, "7")
         	red.SetName("red")
         	green := gpio.NewLedDriver(firmataAdaptor, "6")

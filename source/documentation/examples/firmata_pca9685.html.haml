@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - firmata_wiichuck"
-page_title: "Example: firmata_wiichuck"
+title: "Gobot Example - firmata_pca9685"
+page_title: "Example: firmata_pca9685"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -15,7 +15,7 @@ active_menu_docs: true
          How to run
          Pass serial port to use as the first param:
 
-        	go run examples/firmata_wiichuck.go /dev/ttyACM0
+        	go run examples/firmata_pca9685.go /dev/ttyACM0
         */
 
         package main
@@ -23,37 +23,38 @@ active_menu_docs: true
         import (
         	"fmt"
         	"os"
+        	"time"
 
         	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/drivers/gpio"
         	"gobot.io/x/gobot/drivers/i2c"
         	"gobot.io/x/gobot/platforms/firmata"
         )
 
         func main() {
         	firmataAdaptor := firmata.NewAdaptor(os.Args[1])
-        	wiichuck := i2c.NewWiichuckDriver(firmataAdaptor)
+        	pca9685 := i2c.NewPCA9685Driver(firmataAdaptor)
+        	servo := gpio.NewServoDriver(pca9685, "15")
 
         	work := func() {
-        		wiichuck.On(wiichuck.Event("joystick"), func(data interface{}) {
-        			fmt.Println("joystick", data)
-        		})
+        		pca9685.SetPWMFreq(60)
 
-        		wiichuck.On(wiichuck.Event("c"), func(data interface{}) {
-        			fmt.Println("c")
-        		})
+        		for i := 10; i < 150; i += 10 {
+        			fmt.Println("Turning", i)
+        			servo.Move(uint8(i))
+        			time.Sleep(1 * time.Second)
+        		}
 
-        		wiichuck.On(wiichuck.Event("z"), func(data interface{}) {
-        			fmt.Println("z")
-        		})
-
-        		wiichuck.On(wiichuck.Event("error"), func(data interface{}) {
-        			fmt.Println("Wiichuck error:", data)
-        		})
+        		for i := 150; i > 10; i -= 10 {
+        			fmt.Println("Turning", i)
+        			servo.Move(uint8(i))
+        			time.Sleep(1 * time.Second)
+        		}
         	}
 
-        	robot := gobot.NewRobot("chuck",
+        	robot := gobot.NewRobot("servoBot",
         		[]gobot.Connection{firmataAdaptor},
-        		[]gobot.Device{wiichuck},
+        		[]gobot.Device{pca9685, servo},
         		work,
         	)
 
