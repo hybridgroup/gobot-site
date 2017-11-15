@@ -1,0 +1,58 @@
+---
+title: Gobot - PCA9685 Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: PCA9685
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/pca9685.jpg", class: "display"
+
+.info-intro
+  %p Driver for the PCA9685 16-channel 12-bit PWM/Servo controller.
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/i2c#PCA9685Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+%h2 How To Connect
+:markdown
+  Install the package with: `go get gobot.io/x/gobot`
+
+  You must pass in an Adaptor that supports the `i2c.Connector` interface to use with this Driver.
+
+  You can use the following optional params if you wish to change the I2C Bus and I2C Address from the default values.
+
+    `i2c.WithBus(int)`:	bus to use with this driver.
+
+    `i2c.WithAddress(int)`:	address to use with this driver
+
+:markdown
+      :::go
+      // default bus/address
+      d := i2c.NewPCA9685Driver(adaptor)
+
+      // optional bus/address
+      d := i2c.NewPCA9685Driver(adaptor,
+                                     i2c.WithBus(0),
+                                     i2c.WithAddress(0x34))
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using PCA9685 16-channel 12-bit PWM/Servo controller:
+  :markdown
+        :::go
+        // code here
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "PCA9685" }

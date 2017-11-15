@@ -94,6 +94,7 @@
       "MMA7660": "/documentation/drivers/mma7660",
       "MPL115A2": "/documentation/drivers/mpl115a2",
       "MPU6050": "/documentation/drivers/mpu6050",
+      "PCA9685": "/documentation/drivers/pca9685",
       "SHT3X": "/documentation/drivers/sht3x",
       "SSD1306": "/documentation/drivers/ssd1306",
       "TSL2561": "/documentation/drivers/tsl2561",
