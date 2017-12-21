@@ -39,6 +39,7 @@
     "Parrot Minidrone": "/documentation/platforms/minidrone",
     "Particle": "/documentation/platforms/particle",
     "Pebble": "/documentation/platforms/pebble",
+    "PocketBeagle": "/documentation/platforms/pocketbeagle",    
     "Raspberry Pi": "/documentation/platforms/raspi",
     "Sphero": "/documentation/platforms/sphero",
     "Sphero BB-8": "/documentation/platforms/bb8",
@@ -62,7 +63,8 @@
       "PIR Motion Sensor": "/documentation/drivers/pir-motion-sensor",
       "Relay": "/documentation/drivers/relay",
       "RGB LED": "/documentation/drivers/rgb-led",
-      "Servo": "/documentation/drivers/servo"
+      "Servo": "/documentation/drivers/servo",
+      "Stepper Motor": "/documentation/drivers/stepper"
     },
 
     "AIO": {

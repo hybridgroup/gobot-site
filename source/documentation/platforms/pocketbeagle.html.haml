@@ -1,11 +1,11 @@
 ---
-title: BeagleBone with Gobot
+title: PocketBeagle with Gobot
 author: The Hybrid Group
 page_title: Platforms
 page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
-page_title_docs: BeagleBone
+page_title_docs: PocketBeagle
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot' class='repository' target='_blank'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot/issues' target='_blank'>Issues</a>"
-api_reference: <a href='http://godoc.org/gobot.io/x/gobot/platforms/beaglebone#Adaptor' target='blank' class='api-link'>API Reference</a>
+api_reference: <a href='http://godoc.org/gobot.io/x/gobot/platforms/beaglebone#PocketBeagleAdaptor' target='blank' class='api-link'>API Reference</a>
 page_title_show: true
 layout: documentation
 subnav_platform: true
@@ -14,14 +14,14 @@ subnavjs: true
 ---
 
 %section.intro
-  = image_tag "/images/devices/beaglebone.jpg", class: "display"
+  = image_tag "/images/devices/pocketbeagle.jpg", class: "display"
 
-= partial "documentation/platforms/partials/beaglebone"
+= partial "documentation/platforms/partials/pocketbeagle"
 
 %section.drivers#Drivers
   %h2 Drivers
-  %p All Gobot GPIO, AIO, I2C, and SPI drivers listed below should work with the BeagleBone:
+  %p All Gobot digital GPIO, AIO, I2C, and SPI drivers listed below should work with the PocketBeagle:
 
   .hardware
     .devices
-      = partial "/partials/devices_for_platform", locals: { platform: "Beaglebone Black" }
+      = partial "/partials/devices_for_platform", locals: { platform: "PocketBeagle" }

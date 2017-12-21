@@ -155,6 +155,12 @@
     "drivers": ["Pebble"]
   },
 
+  "PocketBeagle": {
+    "slug": "pocketbeagle",
+    "url": "http://beagleboard.org/pocket",
+    "drivers": ["GPIO", "AIO", "I2C", "SPI"]
+  },
+
   "Raspberry Pi": {
     "slug": "raspi",
     "url": "http://www.raspberrypi.org/",

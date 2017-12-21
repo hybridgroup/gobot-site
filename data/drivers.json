@@ -15,7 +15,8 @@
     "PIR Motion Sensor": "pir-motion-sensor",
     "Relay": "relay",
     "RGB LED": "rgb-led",
-    "Servo": "servo"
+    "Servo": "servo",
+    "Stepper": "stepper"
   },
 
   "AIO": {
