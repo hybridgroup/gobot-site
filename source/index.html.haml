@@ -124,6 +124,18 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
           %p.title= name
           %img{src: "/images/devices/#{slug}.jpg", style: "width: 90%"}
 
+  %h2
+    = link_to "#{data.drivers.SPI.length} SPI drivers", "https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus", target:"_blank"
+
+  %p Support for devices that use Serial Peripheral Interface (SPI) communication have a shared set of drivers provided using the "gobot/drivers/spi" package:
+
+  %ul.platform-list
+    - data.drivers.SPI.each do |name, slug|
+      %li.platform
+        %a{:href => "/documentation/drivers/#{slug}"}
+          %p.title= name
+          %img{src: "/images/devices/#{slug}.jpg", style: "width: 90%"}
+
 %section.api
   %h2 API
   %p

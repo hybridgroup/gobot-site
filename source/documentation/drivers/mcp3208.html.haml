@@ -1,0 +1,47 @@
+---
+title: Gobot - MCP3208 Analog to Digital Converter
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: MCP3208
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/mcp3208.jpg", class: "display"
+
+.info-intro
+  %p The MCP3208 Analog to Digital Converter (ADC) allows user to read analog voltages via SPI interface.
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/spi#MCP3208Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+%h2 How To Connect
+:markdown
+  Install the package with: `go get gobot.io/x/gobot`
+
+  You must pass in an Adaptor that supports the `spi.Connector` interface to use with this Driver.
+
+  The MCP3208Driver implements the AnalogPinner interface, so you can use any of the AIO Drivers with the MCP3208Driver.
+
+:markdown
+      :::go
+      d := spi.NewMCP3208(adaptor)
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a MCP3208 Analog-to-Digital Converter
+  :markdown
+        :::go
+        // code here
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "MCP3208" }

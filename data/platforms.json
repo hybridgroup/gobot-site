@@ -14,7 +14,7 @@
   "Beaglebone Black": {
     "slug": "beaglebone",
     "url": "http://beagleboard.org/Products/BeagleBone+Black/",
-    "drivers": ["GPIO", "AIO", "I2C"]
+    "drivers": ["GPIO", "AIO", "I2C", "SPI"]
   },
 
   "Bebop": {
@@ -158,7 +158,7 @@
   "Raspberry Pi": {
     "slug": "raspi",
     "url": "http://www.raspberrypi.org/",
-    "drivers": ["GPIO", "I2C"]
+    "drivers": ["GPIO", "I2C", "SPI"]
   },
 
   "Particle": {

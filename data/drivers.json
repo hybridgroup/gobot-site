@@ -53,6 +53,17 @@
     "Wiimote Nunchuk": "wiimote-nunchuk"
   },
 
+  "SPI": {
+    "APA102": "apa102",
+    "MCP3002": "mcp3002",
+    "MCP3004": "mcp3004",
+    "MCP3008": "mcp3008",
+    "MCP3202": "mcp3202",
+    "MCP3204": "mcp3204",
+    "MCP3208": "mcp3208",
+    "MCP3304": "mcp3304"
+  },
+
   "BLE": {
     "Battery Service": "ble-battery",
     "Device Information Service": "ble-device-information",
