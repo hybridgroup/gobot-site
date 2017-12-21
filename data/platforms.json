@@ -185,6 +185,12 @@
     "drivers": ["Sphero"]
   },
 
+  "SPRK+": {
+    "slug": "sprkplus",
+    "url": "http://www.sphero.com/sprk-plus",
+    "drivers": ["SPRK+"]
+  },
+
   "Tinker Board": {
     "slug": "tinkerboard",
     "url": "https://www.asus.com/us/Motherboards/Tinker-Board",

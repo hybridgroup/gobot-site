@@ -130,6 +130,7 @@
     "Neurosky Mindwave": "/documentation/drivers/neurosky",
     "Pebble": "/documentation/drivers/pebble",
     "Sphero": "/documentation/drivers/sphero",
+    "SPRK+": "/documentation/drivers/sprkplus",
     "BB-8": "/documentation/drivers/bb8",
     "Ollie": "/documentation/drivers/ollie"
   },

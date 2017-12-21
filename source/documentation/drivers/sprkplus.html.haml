@@ -1,0 +1,84 @@
+---
+title: Gobot - Sphero SPRK+ Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: SPRK+
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/sprkplus.jpg", class: "display"
+.info-intro
+  %p
+    Allows user to send commands to Sphero SPRK+.
+    %a{ :href => "http://godoc.org/gobot.io/x/gobot/platforms/sphero/sprkplus#Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+
+  %p
+    The Sphero SPRK+ is a Bluetooth LE device.
+
+    You need to know the BLE ID of the SPRK+ you want to connect to. The Gobot BLE client adaptor also lets you connect by friendly name, aka "SPRK+247".
+
+  :markdown
+        :::go
+        import (
+          "gobot.io/x/gobot/platforms/ble"
+          "gobot.io/x/gobot/platforms/sphero/sprkplus"
+        )
+
+        bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+        sprk := sprkplus.NewDriver(bleAdaptor)
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+  :markdown
+        :::go
+        package main
+
+        import (
+          "os"
+          "time"
+
+          "gobot.io/x/gobot"
+          "gobot.io/x/gobot/platforms/ble"
+          "gobot.io/x/gobot/platforms/sphero/sprkplus"
+        )
+
+        func main() {
+          bleAdaptor := ble.NewClientAdaptor(os.Args[1])
+          sprk := sprkplus.NewDriver(bleAdaptor)
+
+          work := func() {
+            gobot.Every(1*time.Second, func() {
+              r := uint8(gobot.Rand(255))
+              g := uint8(gobot.Rand(255))
+              b := uint8(gobot.Rand(255))
+              bb8.SetRGB(r, g, b)
+            })
+          }
+
+          robot := gobot.NewRobot("sprkie",
+            []gobot.Connection{bleAdaptor},
+            []gobot.Device{sprk},
+            work,
+          )
+
+          robot.Start()
+        }
+
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "SPRK+" }
