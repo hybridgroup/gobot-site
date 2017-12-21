@@ -4,7 +4,6 @@
 
     For more info about OpenCV click [here](http://opencv.org/)
 
-    Gobot uses the GoCV ([https://gocv.io](https://gocv.io)) Go package for OpenCV.
 
   = current_page.data.api_reference
 .clear
@@ -13,12 +12,30 @@
 
     ## How to Install
 
-    This package requires GoCV and OpenCV version 3.3 be installed on your system.
+    This package requires OpenCV version 3.3 to be installed on your system.
 
-    First, follow the installation instructions for your platform at [https://gocv.io/getting-started/](https://gocv.io/getting-started/)
+    ### OSX
 
-    Now you can install the Gobot package with
+    To install OpenCV on OSX using Homebrew:
 
+        $ brew install opencv
+
+
+    ### Ubuntu
+
+    To install OpenCV on Ubuntu 14.04:
+
+        $ sudo apt-get install libopencv-dev
+
+
+    Or, follow the official [OpenCV installation guide](http://docs.opencv.org/doc/tutorials/introduction/linux_install/linux_install.html)
+
+    ### Windows
+
+    Follow the official [OpenCV installation guide](http://docs.opencv.org/doc/tutorials/introduction/windows_install/windows_install.html#windows-installation)
+
+
+    Now you can install the package with
         go get -d -u gobot.io/x/gobot/...
 
 
@@ -54,4 +71,5 @@
         
         	robot.Start()
         }
+
 
