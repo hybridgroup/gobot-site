@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="gobot"> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta content="width=device-width, initial-scale=1.0" name="viewport"> <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"> <meta name="description"> <meta name="author"> <title></title> <link href="/stylesheets/application.css" rel="stylesheet"> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script src="/javascripts/vendor/angular.min.js"></script> <script src="/javascripts/app.js"></script> <script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-3', {"cookieDomain":"gobot.io"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head> <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet"> <link href="/favicon.ico" rel="shortcut icon" type="image/gif">  <body> <div class="app"> <header class="app-header" id="top" role="banner"> <div class="container"> <div class="display"> <div class="app-logo"> <a href="/">Gobot</a> </div> </div> <nav class="menu"> <ul class="nav-list"> <li> <a href="/documentation" class="item">Docs</a> </li> <li> <a href="/documentation/platforms" class="item">Platforms</a> </li> <li> <a href="/resources" class="item">Resources</a> </li> <li> <a href="/news" class="item">News</a> </li> <li> <a href="/blog" class="item">Blog</a> </li> <li> <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a> </li> </ul> </nav> </div> </header> <div class="info-intro"> <p>This is the Adaptor for the PocketBeagle, a USB-key-fob sized computer. The PocketBeagle is based on the BeagleBone Black/Green, but has a different pin layout and somewhat different capabilities.</p> <p>For more info about the PocketBeagle platform go to <a href="http://beagleboard.org/pocket">http://beagleboard.org/pocket</a>.</p> </div> <div class="clear"></div> <section class="how-to"> <h2 id="how-to-install">How to Install</h2> <p>We recommend updating to the latest Debian OS when using the BeagleBone. The current Gobot only supports 4.x versions of the OS. If you need support for older versions of the OS, you will need to use Gobot v1.4.</p> <p>You would normally install Go and Gobot on your workstation. Once installed, cross compile your program on your workstation, transfer the final executable to your BeagleBone, and run the program on the BeagleBone itself as documented here.</p> <pre class="CodeRay">go get -d -u gobot.io/x/gobot/...
+</pre> <h2 id="how-to-use">How to Use</h2> <p>The pin numbering used by your Gobot program should match the way your board is labeled right on the board itself.</p> <p>Gobot also has support for the four built-in LEDs on the PcoketBeagle, by referring to them as <code>usr0</code>, <code>usr1</code>, <code>usr2</code>, and <code>usr3</code>.</p> <p>To use the PocketBeagle, use <code>beaglebone.NewPocketBeagleAdaptor()</code> like this:</p> <pre class="CodeRay"><span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+        <span class="string"><span class="delimiter">"</span><span class="content">time</span><span class="delimiter">"</span></span>
+
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/beaglebone</span><span class="delimiter">"</span></span>
+)
+
+<span class="keyword">func</span> main() {
+        beagleboneAdaptor := beaglebone.NewPocketBeagleAdaptor()
+        led := gpio.NewLedDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">P1_2</span><span class="delimiter">"</span></span>)
+
+        work := <span class="keyword">func</span>() {
+                gobot.Every(<span class="integer">1</span>*time.Second, <span class="keyword">func</span>() {
+                        led.Toggle()
+                })
+        }
+
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">pocketBeagleBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{beagleboneAdaptor},
+                []gobot.Device{led},
+                work,
+        )
+
+        robot.Start()
+}
+</pre> <h2 id="how-to-connect">How to Connect</h2> <h3 id="compiling">Compiling</h3> <p>Compile your Gobot program on your workstation like this:</p> <pre class="CodeRay">$ GOARM=7 GOARCH=arm GOOS=linux go build examples/beaglebone_blink.go
+</pre> <p>Once you have compiled your code, you can you can upload your program and execute it on the BeagleBone from your workstation using the <code>scp</code> and <code>ssh</code> commands like this:</p> <pre class="CodeRay">$ scp beaglebone_blink debian@192.168.7.2:/home/debian/
+$ ssh -t debian@192.168.7.2 "./beaglebone_blink"
+</pre> <p>In order to run the preceeding commands, you must be running the official Debian Linux through the usb-&gt;ethernet connection, or be connected to the board using WiFi.</p> <p>You must also configure hardware settings as described below.</p> <h3 id="updating-your-board-to-the-latest-os">Updating your board to the latest OS</h3> <p>We recommend updating your BeagleBone to the latest Debian OS. It is very easy to do this using the Etcher (https://etcher.io/) utility program.</p> <p>First, download the latest BeagleBone OS from http://beagleboard.org/latest-images</p> <p>Now, use Etcher to create an SD card with the OS image you have downloaded.</p> <p>Once you have created the SD card, boot your BeagleBone using the new image as follows:</p> <ul> <li> <p>Insert SD card into your (powered-down) board, hold down the USER/BOOT button (if using Black) and apply power, either by the USB cable or 5V adapter.</p> </li> <li> <p>If all you want to do it boot once from the SD card, it should now be booting.</p> </li> <li> <p>If using BeagleBone Black and desire to write the image to your on-board eMMC, you'll need to follow the instructions at http://elinux.org/Beagleboard:BeagleBoneBlack_Debian#Flashing_eMMC. When the flashing is complete, all 4 USRx LEDs will be steady on or off. The latest Debian flasher images automatically power down the board upon completion. This can take up to 45 minutes. Power-down your board, remove the SD card and apply power again to be complete.</p> </li> </ul> <p>These instructions come from the Beagleboard web site's "Getting Started" page located here:</p> <p>http://beagleboard.org/getting-started</p> <h3 id="configure-hardware-settings">Configure hardware settings</h3> <p>In order to enable the various hardware devices on your BeagleBone or PocketBeagle, you need to configure a special file named <code>/boot/uEnv.txt</code>.</p> <p>This file controls all of the different hardware options used at startup time, so you can enable or disable features based on your specific needs. You only need to do this once, and then the settings will apply each time you start up your BeagleBone.</p> <p>First connect to the BeagleBone using ssh:</p> <pre class="CodeRay">ssh debian@192.168.7.2
+</pre> <p>Once you are connected to the BeagleBone, edit the /boot/uEnv.txt file like this:</p> <pre class="CodeRay">sudo nano /boot/uEnv.txt
+</pre> <p>To enable GPIO, PWM, I2C, and SPI, modify the <code>##Example v4.1.x</code> section to add a line to enable the cape manager:</p> <pre class="CodeRay">##Example v4.1.x
+cape_enable=bone_capemgr.enable_partno=cape-universaln,BB-ADC
+</pre> <p>Save the file, then reboot your BeagleBone.</p> <p>You will now be able to run your Gobot programs to control the various hardware.</p> </section> </div> <footer class="app-footer"> <div class="grass-footer"></div> <div class="frameworks"> <div class="container"> <div class="column-footer"> <div class="img"> <img src="/images/elements/gobot-home.png"> </div> <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/artoo.png"> </div> <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p> <div class="footer-button"> <a target="blank" href="http://artoo.io">View Project</a> </div> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/cylon.png"> </div> <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p> <div class="footer-button"> <a target="blank" href="http://cylonjs.com">View Project</a> </div> </div> <div class="clear"></div> </div> </div> <div class="copyright"> <div class="container"> <div class="hybrid-group"> <span>© Copyright 2012-2017</span> <a href="http://hybridgroup.com" id="THG-logo" target="_blank"> <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"> </a> </div> <div class="top-link"> <a href="#top"> <img alt="Top" src="/images/elements/triangle_up.svg"> <p>Top</p> </a> </div> <div class="clear"></div> </div> </div> </footer> </body> </html>
