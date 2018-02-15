@@ -1,0 +1,51 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - raspi_stepper_move"
+page_title: "Example: raspi_stepper_move"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        package main
+
+        import (
+        	"fmt"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/drivers/gpio"
+        	"gobot.io/x/gobot/platforms/raspi"
+        )
+
+        func main() {
+        	r := raspi.NewAdaptor()
+        	stepper := gpio.NewStepperDriver(r, [4]string{"7", "11", "13", "15"}, gpio.StepperModes.DualPhaseStepping, 2048)
+
+        	work := func() {
+        		//set spped
+        		stepper.SetSpeed(15)
+
+        		//Move forward one revolution
+        		if err := stepper.Move(2048); err != nil {
+        			fmt.Println(err)
+        		}
+
+        		//Move backward one revolution
+        		if err := stepper.Move(-2048); err != nil {
+        			fmt.Println(err)
+        		}
+        	}
+
+        	robot := gobot.NewRobot("stepperBot",
+        		[]gobot.Connection{r},
+        		[]gobot.Device{stepper},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+
