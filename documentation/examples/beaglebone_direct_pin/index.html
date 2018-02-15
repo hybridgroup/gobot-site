@@ -41,7 +41,7 @@
 <span class="keyword">func</span> main() {
         beagleboneAdaptor := beaglebone.NewAdaptor()
         led := gpio.NewDirectPinDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">P8_10</span><span class="delimiter">"</span></span>)
-        button := gpio.NewDirectPinDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">P8_9</span><span class="delimiter">"</span></span>)
+        button := gpio.NewDirectPinDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">P8_09</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
                 gobot.Every(<span class="integer">500</span>*time.Millisecond, <span class="keyword">func</span>() {

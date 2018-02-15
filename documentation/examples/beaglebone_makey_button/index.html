@@ -40,7 +40,7 @@
 
 <span class="keyword">func</span> main() {
         beagleboneAdaptor := beaglebone.NewAdaptor()
-        button := gpio.NewMakeyButtonDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">P8_9</span><span class="delimiter">"</span></span>)
+        button := gpio.NewMakeyButtonDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">P8_09</span><span class="delimiter">"</span></span>)
 
         work := <span class="keyword">func</span>() {
                 button.On(gpio.ButtonPush, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html ng-app="gobot"> <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta content="width=device-width, initial-scale=1.0" name="viewport"> <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"> <meta content="A Gobot code example" name="description"> <meta content="The Hybrid Group" name="author"> <title>Gobot Example - beaglebone_button</title> <link href="/stylesheets/application.css" rel="stylesheet"> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script src="/javascripts/vendor/angular.min.js"></script> <script src="/javascripts/app.js"></script> <script type="text/javascript">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta content="width=device-width, initial-scale=1.0" name="viewport"> <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"> <meta content="A Gobot code example" name="description"> <meta content="The Hybrid Group" name="author"> <title>Gobot Example - raspi_stepper_move</title> <link href="/stylesheets/application.css" rel="stylesheet"> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script src="/javascripts/vendor/angular.min.js"></script> <script src="/javascripts/app.js"></script> <script type="text/javascript">
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -35,26 +35,31 @@
 
         <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot</span><span class="delimiter">"</span></span>
         <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/drivers/gpio</span><span class="delimiter">"</span></span>
-        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/beaglebone</span><span class="delimiter">"</span></span>
+        <span class="string"><span class="delimiter">"</span><span class="content">gobot.io/x/gobot/platforms/raspi</span><span class="delimiter">"</span></span>
 )
 
 <span class="keyword">func</span> main() {
-        beagleboneAdaptor := beaglebone.NewAdaptor()
-        button := gpio.NewButtonDriver(beagleboneAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">P8_09</span><span class="delimiter">"</span></span>)
+        r := raspi.NewAdaptor()
+        stepper := gpio.NewStepperDriver(r, [<span class="integer">4</span>]<span class="predefined-type">string</span>{<span class="string"><span class="delimiter">"</span><span class="content">7</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">11</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">15</span><span class="delimiter">"</span></span>}, gpio.StepperModes.DualPhaseStepping, <span class="integer">2048</span>)
 
         work := <span class="keyword">func</span>() {
-                button.On(gpio.ButtonPush, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">button pressed</span><span class="delimiter">"</span></span>)
-                })
+                <span class="comment">//set spped</span>
+                stepper.SetSpeed(<span class="integer">15</span>)
 
-                button.On(gpio.ButtonRelease, <span class="keyword">func</span>(data <span class="keyword">interface</span>{}) {
-                        fmt.Println(<span class="string"><span class="delimiter">"</span><span class="content">button released</span><span class="delimiter">"</span></span>)
-                })
+                <span class="comment">//Move forward one revolution</span>
+                <span class="keyword">if</span> err := stepper.Move(<span class="integer">2048</span>); err != <span class="predefined-constant">nil</span> {
+                        fmt.Println(err)
+                }
+
+                <span class="comment">//Move backward one revolution</span>
+                <span class="keyword">if</span> err := stepper.Move(<span class="integer">-2048</span>); err != <span class="predefined-constant">nil</span> {
+                        fmt.Println(err)
+                }
         }
 
-        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">buttonBot</span><span class="delimiter">"</span></span>,
-                []gobot.Connection{beagleboneAdaptor},
-                []gobot.Device{button},
+        robot := gobot.NewRobot(<span class="string"><span class="delimiter">"</span><span class="content">stepperBot</span><span class="delimiter">"</span></span>,
+                []gobot.Connection{r},
+                []gobot.Device{stepper},
                 work,
         )
 
