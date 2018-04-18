@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Gobot Example - bebop_ps3"
-page_title: "Example: bebop_ps3"
+title: "Gobot Example - tello_ps3"
+page_title: "Example: tello_ps3"
 author: The Hybrid Group
 description: A Gobot code example
 page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
@@ -11,15 +11,27 @@ active_menu_docs: true
 .example
   :markdown
         :::go
+        /*
+        How to setup
+        You must be using a PS3 or compatible controller, along with a DJI Tello drone to run this example.
+
+        You run the Go program on your computer and communicate wirelessly via WiFi with the Tello.
+
+        How to run
+
+        	go run examples/tello_ps3.go
+        */
+
         package main
 
         import (
+        	"fmt"
         	"sync/atomic"
         	"time"
 
         	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/platforms/dji/tello"
         	"gobot.io/x/gobot/platforms/joystick"
-        	"gobot.io/x/gobot/platforms/parrot/bebop"
         )
 
         type pair struct {
@@ -35,8 +47,7 @@ active_menu_docs: true
         	joystickAdaptor := joystick.NewAdaptor()
         	stick := joystick.NewDriver(joystickAdaptor, "dualshock3")
 
-        	bebopAdaptor := bebop.NewAdaptor()
-        	drone := bebop.NewDriver(bebopAdaptor)
+        	drone := tello.NewDriver("8888")
 
         	work := func() {
         		leftX.Store(float64(0.0))
@@ -44,28 +55,32 @@ active_menu_docs: true
         		rightX.Store(float64(0.0))
         		rightY.Store(float64(0.0))
 
-        		recording := false
-
-        		stick.On(joystick.CirclePress, func(data interface{}) {
-        			if recording {
-        				drone.StopRecording()
-        			} else {
-        				drone.StartRecording()
-        			}
-        			recording = !recording
-        		})
-
-        		stick.On(joystick.SquarePress, func(data interface{}) {
-        			drone.HullProtection(true)
-        			drone.TakeOff()
-        		})
-
         		stick.On(joystick.TrianglePress, func(data interface{}) {
-        			drone.Stop()
+        			drone.TakeOff()
         		})
 
         		stick.On(joystick.XPress, func(data interface{}) {
         			drone.Land()
+        		})
+
+        		stick.On(joystick.UpPress, func(data interface{}) {
+        			fmt.Println("FrontFlip")
+        			drone.FrontFlip()
+        		})
+
+        		stick.On(joystick.DownPress, func(data interface{}) {
+        			fmt.Println("BackFlip")
+        			drone.BackFlip()
+        		})
+
+        		stick.On(joystick.RightPress, func(data interface{}) {
+        			fmt.Println("RightFlip")
+        			drone.RightFlip()
+        		})
+
+        		stick.On(joystick.LeftPress, func(data interface{}) {
+        			fmt.Println("LeftFlip")
+        			drone.LeftFlip()
         		})
 
         		stick.On(joystick.LeftX, func(data interface{}) {
@@ -89,51 +104,51 @@ active_menu_docs: true
         		})
 
         		gobot.Every(10*time.Millisecond, func() {
-        			leftStick := getLeftStick()
+        			rightStick := getRightStick()
 
         			switch {
-        			case leftStick.y < -10:
-        				drone.Forward(bebop.ValidatePitch(leftStick.y, offset))
-        			case leftStick.y > 10:
-        				drone.Backward(bebop.ValidatePitch(leftStick.y, offset))
+        			case rightStick.y < -10:
+        				drone.Forward(tello.ValidatePitch(rightStick.y, offset))
+        			case rightStick.y > 10:
+        				drone.Backward(tello.ValidatePitch(rightStick.y, offset))
         			default:
         				drone.Forward(0)
         			}
 
         			switch {
-        			case leftStick.x > 10:
-        				drone.Right(bebop.ValidatePitch(leftStick.x, offset))
-        			case leftStick.x < -10:
-        				drone.Left(bebop.ValidatePitch(leftStick.x, offset))
+        			case rightStick.x > 10:
+        				drone.Right(tello.ValidatePitch(rightStick.x, offset))
+        			case rightStick.x < -10:
+        				drone.Left(tello.ValidatePitch(rightStick.x, offset))
         			default:
         				drone.Right(0)
         			}
         		})
 
         		gobot.Every(10*time.Millisecond, func() {
-        			rightStick := getRightStick()
+        			leftStick := getLeftStick()
         			switch {
-        			case rightStick.y < -10:
-        				drone.Up(bebop.ValidatePitch(rightStick.y, offset))
-        			case rightStick.y > 10:
-        				drone.Down(bebop.ValidatePitch(rightStick.y, offset))
+        			case leftStick.y < -10:
+        				drone.Up(tello.ValidatePitch(leftStick.y, offset))
+        			case leftStick.y > 10:
+        				drone.Down(tello.ValidatePitch(leftStick.y, offset))
         			default:
         				drone.Up(0)
         			}
 
         			switch {
-        			case rightStick.x > 20:
-        				drone.Clockwise(bebop.ValidatePitch(rightStick.x, offset))
-        			case rightStick.x < -20:
-        				drone.CounterClockwise(bebop.ValidatePitch(rightStick.x, offset))
+        			case leftStick.x > 20:
+        				drone.Clockwise(tello.ValidatePitch(leftStick.x, offset))
+        			case leftStick.x < -20:
+        				drone.CounterClockwise(tello.ValidatePitch(leftStick.x, offset))
         			default:
         				drone.Clockwise(0)
         			}
         		})
         	}
 
-        	robot := gobot.NewRobot("bebop",
-        		[]gobot.Connection{joystickAdaptor, bebopAdaptor},
+        	robot := gobot.NewRobot("tello",
+        		[]gobot.Connection{joystickAdaptor},
         		[]gobot.Device{stick, drone},
         		work,
         	)

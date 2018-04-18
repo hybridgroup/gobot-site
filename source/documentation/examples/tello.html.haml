@@ -1,0 +1,50 @@
+---
+layout: documentation
+page_title_show: true
+title: "Gobot Example - tello"
+page_title: "Example: tello"
+author: The Hybrid Group
+description: A Gobot code example
+page_subtitle: "<a href='https://github.com/hybridgroup/gobot/tree/master/examples' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::go
+        /*
+         How to run
+         Pass the UDP port to use for the ground station to receive responses from the drone as first param:
+
+        	go run examples/tello.go "8888"
+        */
+
+        package main
+
+        import (
+        	"os"
+        	"time"
+
+        	"gobot.io/x/gobot"
+        	"gobot.io/x/gobot/platforms/dji/tello"
+        )
+
+        func main() {
+        	drone := tello.NewDriver(os.Args[1])
+
+        	work := func() {
+        		drone.TakeOff()
+
+        		gobot.After(5*time.Second, func() {
+        			drone.Land()
+        		})
+        	}
+
+        	robot := gobot.NewRobot("tello",
+        		[]gobot.Connection{},
+        		[]gobot.Device{drone},
+        		work,
+        	)
+
+        	robot.Start()
+        }
+
