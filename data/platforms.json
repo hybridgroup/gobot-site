@@ -47,6 +47,12 @@
     "drivers": ["GPIO", "AIO", "I2C"]
   },
 
+  "DJI Tello": {
+    "slug": "tello",
+    "url": "https://www.ryzerobotics.com/tello",
+    "drivers": ["DJI Tello"]
+  },
+
   "Dragonboard": {
     "slug": "dragonboard",
     "url": "https://developer.qualcomm.com/hardware/dragonboard-410c",

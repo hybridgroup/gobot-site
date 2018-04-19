@@ -1,0 +1,75 @@
+---
+title: Gobot - Tello Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: DJI Tello
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/tello.jpg", class: "display"
+.info-intro
+  %p
+    Allows user to send flight control commands to DJI Tello. Flight control commands are those used
+    to tell the Tello to take off, land, and or any number of other autonomous flight maneuvers.
+    %a{ :href => "http://godoc.org/gobot.io/x/gobot/platforms/dji/tello#Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+
+  %p
+    Connect to the drone's Wi-Fi network from your computer. It will be named something like "TELLO-XXXXXX".
+
+    Once you are connected you can run the Gobot code on your computer to control the drone.
+
+
+  :markdown
+        :::go
+          drone := tello.NewDriver("8888")
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+  :markdown
+        :::go
+          package main
+
+          import (
+            "fmt"
+            "time"
+
+            "gobot.io/x/gobot"
+            "gobot.io/x/gobot/platforms/dji/tello"
+          )
+
+          func main() {
+            drone := tello.NewDriver("8888")
+
+            work := func() {
+              drone.TakeOff()
+
+              gobot.After(5*time.Second, func() {
+                drone.Land()
+              })
+            }
+
+            robot := gobot.NewRobot("tello",
+              []gobot.Connection{},
+              []gobot.Device{drone},
+              work,
+            )
+
+            robot.Start()
+          }
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "DJI Tello" }

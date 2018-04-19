@@ -18,6 +18,7 @@
     "C.H.I.P.": "/documentation/platforms/chip",
     "C.H.I.P. Pro": "/documentation/platforms/chip-pro",
     "Digispark": "/documentation/platforms/digispark",
+    "DJI Tello": "/documentation/platforms/tello",
     "Dragonboard": "/documentation/platforms/dragonboard",
     "ESP8266": "/documentation/platforms/esp8266",
     "GoPiGo3": "/documentation/platforms/gopigo3",

@@ -1,0 +1,28 @@
+---
+title: DJI Tello with Gobot
+author: The Hybrid Group
+page_title: Platforms
+page_subtitle: Gobot has a extensible system for connecting to hardware devices. The following robotics and physical computing platforms are currently supported.
+page_title_docs: DJI Tello
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/gobot' target='blank' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/gobot/issues' target='_blank'>Issues</a>"
+api_reference: <a href='http://godoc.org/gobot.io/x/gobot/platforms/dji/tello' target='_blank' class='api-link'>API Reference</a>
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+
+%section.intro
+  = image_tag "/images/devices/tello.jpg", class: "display"
+
+= partial "documentation/platforms/partials/tello"
+
+
+%section.drivers#Drivers
+  %h2 Drivers
+  %p Available drivers for the DJI Tello platform are listed below..
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "DJI Tello" }
