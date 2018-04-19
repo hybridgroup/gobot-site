@@ -1,0 +1,44 @@
+---
+title: Gobot - TM1638 LED
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Gobot has a extensible system for connecting to hardware devices.
+page_title_docs: TM1638
+page_subtitle_docs: Driver
+page_title_show: true
+layout: documentation
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+
+%section.intro
+  =image_tag "/images/devices/tm1638.jpg", class: "display"
+
+.info-intro
+  %p Info about the TM1638 LED controller goes here.
+  %a{ :href => "http://godoc.org/gobot.io/x/gobot/drivers/gpio#TM1638Driver", :class => "api-link", :target => "_blank"} API Reference
+.clear
+
+%section.how-to#HowToConnect
+%h2 How To Connect
+:markdown
+  Install the package with: `go get gobot.io/x/gobot`
+
+:markdown
+      :::go
+      // info needed here...
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a TM1638.
+  :markdown
+        :::go
+        // code here
+
+%section.Compatibility.hardware#Compatibility
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "TM1638" }

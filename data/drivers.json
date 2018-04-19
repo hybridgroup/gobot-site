@@ -1,5 +1,6 @@
 {
   "GPIO": {
+    "AIP1640": "aip1640",
     "Button": "button",
     "Buzzer": "buzzer",
     "Direct Pin": "direct-pin",
@@ -16,7 +17,8 @@
     "Relay": "relay",
     "RGB LED": "rgb-led",
     "Servo": "servo",
-    "Stepper": "stepper"
+    "Stepper": "stepper",
+    "TM1638": "tm1638"
   },
 
   "AIO": {

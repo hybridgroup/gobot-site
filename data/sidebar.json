@@ -50,6 +50,7 @@
 
   "Drivers": {
     "GPIO": {
+      "AIP1640": "/documentation/drivers/aip1640",
       "Button": "/documentation/drivers/button",
       "Direct Pin": "/documentation/drivers/direct-pin",
       "Grove Touch": "/documentation/drivers/grove-touch",
@@ -65,7 +66,8 @@
       "Relay": "/documentation/drivers/relay",
       "RGB LED": "/documentation/drivers/rgb-led",
       "Servo": "/documentation/drivers/servo",
-      "Stepper Motor": "/documentation/drivers/stepper"
+      "Stepper Motor": "/documentation/drivers/stepper",
+      "TM1638": "/documentation/drivers/tm1638"
     },
 
     "AIO": {
