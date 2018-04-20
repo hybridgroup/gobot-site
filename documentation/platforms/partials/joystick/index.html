@@ -31,99 +31,7 @@
 </script></head> <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800%7CLato:400" rel="stylesheet"> <link href="/favicon.ico" rel="shortcut icon" type="image/gif">  <body> <div class="app"> <header class="app-header" id="top" role="banner"> <div class="container"> <div class="display"> <div class="app-logo"> <a href="/">Gobot</a> </div> </div> <nav class="menu"> <ul class="nav-list"> <li> <a href="/documentation" class="item">Docs</a> </li> <li> <a href="/documentation/platforms" class="item">Platforms</a> </li> <li> <a href="/resources" class="item">Resources</a> </li> <li> <a href="/news" class="item">News</a> </li> <li> <a href="/blog" class="item">Blog</a> </li> <li> <a class="item" target="blanck" href="https://github.com/hybridgroup/gobot/">Github</a> </li> </ul> </nav> </div> </header> <div class="info-intro"> <p>You can use Gobot with any USB joystick or game controller that is compatible with <a href="http://www.libsdl.org/">Simple DirectMedia Layer</a>.</p> <p>Current configurations included: - Dualshock3 game controller - Dualshock4 game controller - XBox360 game controller</p> </div> <div class="clear"></div> <section class="how-to"> <h2 id="how-to-install">How to Install</h2> <p>This package requires <code>sdl2</code> to be installed on your system</p> <h3 id="osx">OSX</h3> <p>To install <code>sdl2</code> on OSX using Homebrew:</p> <pre class="CodeRay">$ brew install sdl2
 </pre> <p>To use an XBox360 controller on OS X, you will most likely need to install additional software such as <a href="https://github.com/360Controller/360Controller">https://github.com/360Controller/360Controller</a>.</p> <h3 id="ubuntu">Ubuntu</h3> <pre class="CodeRay">$ sudo apt-get install libsdl2-2.0-0
 </pre> <p>Now you can install the package with</p> <pre class="CodeRay">go get -d -u gobot.io/x/gobot/...
-</pre> <h2 id="how-to-use">How to Use</h2> <p>Controller configurations are stored in JSON format. Here's an example configuration file for the Dualshock 3 controller</p> <pre class="CodeRay">{
-    <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">Sony PLAYSTATION(R)3 Controller</span><span class="delimiter">"</span></span>,
-    <span class="key"><span class="delimiter">"</span><span class="content">guid</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">030000004c0500006802000011010000</span><span class="delimiter">"</span></span>,
-    <span class="key"><span class="delimiter">"</span><span class="content">axis</span><span class="delimiter">"</span></span>: [
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">left_x</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">0</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">left_y</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">1</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">right_x</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">2</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">right_y</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">3</span>
-        }
-    ],
-    <span class="key"><span class="delimiter">"</span><span class="content">buttons</span><span class="delimiter">"</span></span>: [
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">square</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">15</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">triangle</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">12</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">circle</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">13</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">14</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">up</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">4</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">down</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">6</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">left</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">7</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">right</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">5</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">left_stick</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">1</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">right_stick</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">2</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">l1</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">10</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">l2</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">8</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">r1</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">11</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">r2</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">9</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">start</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">3</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">select</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">0</span>
-        },
-        {
-            <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">home</span><span class="delimiter">"</span></span>,
-            <span class="key"><span class="delimiter">"</span><span class="content">id</span><span class="delimiter">"</span></span>: <span class="integer">16</span>
-        }
-    ]
-}
-</pre> <h2 id="how-to-connect">How to Connect</h2> <p>Plug your USB joystick or game controller into your USB port. If your device is supported by SDL, you are now ready.</p> <p>For the Dualshock4, you must pair the device with your computers Bluetooth interface first, before running your Gobot program.</p> <h2 id="examples">Examples</h2> <p>This small program receives joystick and button press events from an PlayStation 3 game controller.</p> <pre class="CodeRay"><span class="keyword">package</span> main
+</pre> <h2 id="how-to-use">How to Use</h2> <p>Controller configurations are stored in Gobot it, but you can also use external file in JSON format. Take a look at the <code>configs</code> directory for examples.</p> <h2 id="how-to-connect">How to Connect</h2> <p>Plug your USB joystick or game controller into your USB port. If your device is supported by SDL, you are now ready.</p> <p>For the Dualshock4, you must pair the device with your computers Bluetooth interface first, before running your Gobot program.</p> <h2 id="examples">Examples</h2> <p>This small program receives joystick and button press events from an PlayStation 3 game controller.</p> <pre class="CodeRay"><span class="keyword">package</span> main
 
 <span class="keyword">import</span> (
         <span class="string"><span class="delimiter">"</span><span class="content">fmt</span><span class="delimiter">"</span></span>
@@ -134,8 +42,7 @@
 
 <span class="keyword">func</span> main() {
         joystickAdaptor := joystick.NewAdaptor()
-        stick := joystick.NewDriver(joystickAdaptor,
-                <span class="string"><span class="delimiter">"</span><span class="content">./platforms/joystick/configs/dualshock3.json</span><span class="delimiter">"</span></span>,
+        stick := joystick.NewDriver(joystickAdaptor, <span class="string"><span class="delimiter">"</span><span class="content">dualshock3</span><span class="delimiter">"</span></span>,
         )
 
         work := <span class="keyword">func</span>() {
@@ -227,4 +134,4 @@ Joystick 0 connected
 [10313 ms] Axis: 1      value:-3193
 [10329 ms] Axis: 1      value:0
 [10345 ms] Axis: 0      value:0
-</pre> <p>You can use the output from this program to create a JSON file for the various buttons and axes on your joystick/gamepad.</p> </section> </div> <footer class="app-footer"> <div class="grass-footer"></div> <div class="frameworks"> <div class="container"> <div class="column-footer"> <div class="img"> <img src="/images/elements/gobot-home.png"> </div> <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/artoo.png"> </div> <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p> <div class="footer-button"> <a target="blank" href="http://artoo.io">View Project</a> </div> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/cylon.png"> </div> <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p> <div class="footer-button"> <a target="blank" href="http://cylonjs.com">View Project</a> </div> </div> <div class="clear"></div> </div> </div> <div class="copyright"> <div class="container"> <div class="hybrid-group"> <span>© Copyright 2012-2017</span> <a href="http://hybridgroup.com" id="THG-logo" target="_blank"> <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"> </a> </div> <div class="top-link"> <a href="#top"> <img alt="Top" src="/images/elements/triangle_up.svg"> <p>Top</p> </a> </div> <div class="clear"></div> </div> </div> </footer> </body> </html>
+</pre> <p>You can use the output from this program to create a JSON file for the various buttons and axes on your joystick/gamepad. You could also create a file similar to <code>joystick_dualshock3.go</code> and submit a pull request with the new configuration so others can use it as well.</p> </section> </div> <footer class="app-footer"> <div class="grass-footer"></div> <div class="frameworks"> <div class="container"> <div class="column-footer"> <div class="img"> <img src="/images/elements/gobot-home.png"> </div> <p class="footer-description">Gobot provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/artoo.png"> </div> <p class="footer-description">Want to use Ruby on robots? Check out our sister project Artoo</p> <div class="footer-button"> <a target="blank" href="http://artoo.io">View Project</a> </div> </div> <div class="column-footer"> <div class="img"> <img src="/images/elements/cylon.png"> </div> <p class="footer-description">Want to use Javascript to power your robots? Check out our sister project Cylon.js</p> <div class="footer-button"> <a target="blank" href="http://cylonjs.com">View Project</a> </div> </div> <div class="clear"></div> </div> </div> <div class="copyright"> <div class="container"> <div class="hybrid-group"> <span>© Copyright 2012-2018</span> <a href="http://hybridgroup.com" id="THG-logo" target="_blank"> <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"> </a> </div> <div class="top-link"> <a href="#top"> <img alt="Top" src="/images/elements/triangle_up.svg"> <p>Top</p> </a> </div> <div class="clear"></div> </div> </div> </footer> </body> </html>
