@@ -5,7 +5,9 @@
     Current configurations included:
     - Dualshock3 game controller
     - Dualshock4 game controller
+    - Thrustmaster T-Flight Hotas X Joystick
     - XBox360 game controller
+    - XBox360 "Rock Band" drum controller
 
 
   = current_page.data.api_reference
@@ -28,7 +30,10 @@
 
     ### Ubuntu
 
-        $ sudo apt-get install libsdl2-2.0-0
+        wget https://www.libsdl.org/release/SDL2-2.0.8.tar.gz
+        tar -zxvf SDL2-2.0.8.tar.gz
+        cd SDL2-2.0.8/
+        ./configure && make && sudo make install
 
 
     Now you can install the package with
