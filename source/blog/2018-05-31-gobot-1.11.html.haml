@@ -1,0 +1,54 @@
+---
+page_title_show: true
+title: Gobot - Release 1.11
+page_title: Blog
+date: 2018-05-31
+tags: releases
+author: Ron Evans
+---
+
+:markdown
+
+  Thanks to our wonderful contributors, we've just released version 1.11 of Gobot. The newest Gobot updates to the newest [go-sdl2 package](https://github.com/veandco/go-sdl2), and also adds 2 new kinds of controllers: the [XBox 360 "Rock Band" drum controller](), and also the [T-Flight Hotas X flight controller](). We also have added lots more features to the [DJI Tello](https://www.ryzerobotics.com/tello), including `PalmLand()` which in fact thanks to the [Intel Movidius chip](https://www.movidius.com/) in the drone does in fact land the on the palm of your hand. Neat!
+
+  Check out this code sample:
+
+      :::go
+        package main
+
+        import (
+            "time"
+
+            "gobot.io/x/gobot"
+            "gobot.io/x/gobot/platforms/dji/tello"
+        )
+
+        func main() {
+            drone := tello.NewDriver("8888")
+
+            work := func() {
+                drone.TakeOff()
+
+                gobot.After(10*time.Second, func() {
+                    drone.PalmLand()
+                })
+            }
+
+            robot := gobot.NewRobot("tello",
+                []gobot.Connection{},
+                []gobot.Device{drone},
+                work,
+            )
+
+            robot.Start()
+        }
+  
+  This new release also updates to the newest [GoCV](http://gocv.io) which adds the new default auto-configuration allowing you usually to just install OpenCV and "go run" code without needing all of the extra environment setup that previous versions had required. We like less!
+
+  ## Full Changelog
+
+  There's even more in the new release, so if you want the full details, check out the release info at [https://github.com/hybridgroup/gobot/releases/tag/1.11.0](https://github.com/hybridgroup/gobot/releases/tag/1.11.0).
+
+  ## Keep Informed
+
+  Keep informed with the latest project updates by following us on Twitter at [@gobotio](http://twitter.com/gobotio). Thank you!
