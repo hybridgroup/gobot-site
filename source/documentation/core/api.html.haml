@@ -20,17 +20,16 @@ active_menu_docs: true
     and instantiate the `API` like this:
 
         :::go
-        gbot := gobot.NewGobot()
-        api.NewAPI(gbot).Start()
+        mbot := gobot.NewMaster()
+        api.NewAPI(mbot).Start()
 
     You can also specify the api host and port, and turn on authentication:
 
         :::go
-        gbot := gobot.NewGobot()
-        server := api.NewAPI(gbot)
+        mbot := gobot.NewMaster()
+        server := api.NewAPI(mbot)
+        server.AddHandler(api.BasicAuth("gort", "klaatu"))
         server.Port = "3000"
-        server.Username = "Gort"
-        server.Password = "klaatu"
         server.Start()
 
     You may access the [robeaux][] React.js interface with Gobot by navigating to `http://localhost:3000/`.
@@ -58,9 +57,9 @@ active_menu_docs: true
         )
 
         func main() {
-          gbot := gobot.NewGobot()
+          mbot := gobot.NewMaster()
 
-          a := api.NewAPI(gbot)
+          a := api.NewAPI(mbot)
           a.AddHandler(func(w http.ResponseWriter, r *http.Request) {
             fmt.Fprintf(w, "Hello, %q \n", html.EscapeString(r.URL.Path))
           })
