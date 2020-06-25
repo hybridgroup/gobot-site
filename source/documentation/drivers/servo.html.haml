@@ -29,8 +29,31 @@ subnavjs: true
   %h3 For Arduino:
   :markdown
         :::go
-        // code here
-        ...
+        package main
+
+        import (
+          "gobot.io/x/gobot"
+          "gobot.io/x/gobot/drivers/gpio"
+          "gobot.io/x/gobot/platforms/firmata"
+        )
+
+        func main() {
+
+          fa := firmata.NewAdaptor("/dev/ttyACM0")
+          servo := gpio.NewServoDriver(fa, "2")
+
+          work := func() {
+            servo.Center()
+          }
+          robot := gobot.NewRobot("servo",
+            []gobot.Connection{fa},
+            []gobot.Device{servo},
+            work,
+          )
+
+          robot.Start()
+        }
+
 
 %section.how-to#HowToUse
   %h2 How To Use
@@ -40,7 +63,39 @@ subnavjs: true
   %h3 Example
   :markdown
         :::go
-        // code here
+        package main
+
+        import (
+          "math/rand"
+          
+          "gobot.io/x/gobot"
+          "gobot.io/x/gobot/drivers/gpio"
+          "gobot.io/x/gobot/platforms/firmata"
+        )
+
+        func main() {
+
+          fa := firmata.NewAdaptor("/dev/ttyACM0")
+          servo := gpio.NewServoDriver(fa, "2")
+
+          work := func() {
+                servo.Center()
+                time.Sleep(500*time.Millisecond)
+                
+                gobot.Every(1*time.Second, func() {
+                    d := rand.Intn(100)
+                    servo.Move(uint8(d))
+                })
+           
+          }
+          robot := gobot.NewRobot("servo",
+            []gobot.Connection{fa},
+            []gobot.Device{servo},
+            work,
+          )
+
+          robot.Start()
+        }
 
 %section.circuit#Circuit
   %h2 Circuit
