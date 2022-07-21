@@ -133,7 +133,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (1.4.1)
-    tzinfo (1.2.2)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
@@ -160,7 +160,7 @@ DEPENDENCIES
   rack-google-analytics (= 1.0.0)
   rake
   therubyracer
-  tzinfo (= 1.2.2)
+  tzinfo (= 1.2.10)
 
 BUNDLED WITH
    1.17.3
