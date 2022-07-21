@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activesupport', '3.2.22.5'
-gem 'tzinfo', '1.2.2'
+gem 'tzinfo', '1.2.10'
 gem 'actionpack', '1.4.0'
 gem 'neat', '1.7.1'
 gem 'compass', '1.0.1'
